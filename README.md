@@ -1,2 +1,2 @@
-# corum-api
-Simple forum software built with a modern JavaScript stack. (Server Side)
+# Corum (Server)
+Simple forum software built with a modern JavaScript stack. (Server)
