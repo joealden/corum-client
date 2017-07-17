@@ -1,0 +1,16 @@
+{
+  "name": "corum-server",
+  "version": "0.1.0",
+  "description": "Simple forum software built with a modern JavaScript stack. (Server)",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joealden/corum-server.git"
+  },
+  "author": "Joe Alden",
+  "license": "GPL-3.0",
+  "homepage": "https://joealden.github.io/corum",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {}
+}
