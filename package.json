@@ -2,6 +2,9 @@
   "name": "corum-server",
   "version": "0.1.0",
   "description": "Simple forum software built with a modern JavaScript stack. (Server)",
+  "engines":{
+    "node": ">=8.0.0"
+  },
   "private": true,
   "repository": {
     "type": "git",
@@ -17,9 +20,11 @@
   },
   "devDependencies": {
     "eslint": "^4.2.0",
+    "eslint-plugin-node": "^5.1.0",
     "nodemon": "^1.11.0"
   },
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "lint": "eslint src"
   }
 }
