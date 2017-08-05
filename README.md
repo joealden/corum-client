@@ -25,3 +25,4 @@ Simple forum software built with a modern JavaScript stack. (Server)
 - **Transpiler** - Babel
 - **Type Checker** - Flow
 - **Logger** - Pino
+- **Configuration Manager** - dotenv
