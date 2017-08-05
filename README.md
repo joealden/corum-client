@@ -1,5 +1,5 @@
-# Corum Server
-Simple forum software built with a modern JavaScript stack. (Server)
+# Corum
+Simple forum software built with a modern JavaScript stack.
 
 ## Technology Stack for Corum
 
