@@ -1,29 +1,19 @@
 {
-  "name": "corum-server",
+  "name": "corum",
   "version": "0.1.0",
-  "description": "Simple forum software built with a modern JavaScript stack. (Server)",
+  "description": "Simple forum software built with a modern JavaScript stack.",
   "engines":{
     "node": ">=8.0.0"
   },
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joealden/corum-server.git"
+    "url": "git+https://github.com/joealden/corum.git"
   },
   "author": "Joe Alden",
   "license": "GPL-3.0",
   "homepage": "https://joealden.github.io/corum",
-  "dependencies": {
-    "express": "^4.15.3",
-    "express-graphql": "^0.6.6",
-    "graphql": "^0.10.5"
-  },
-  "devDependencies": {
-    "eslint": "^4.2.0",
-    "nodemon": "^1.11.0"
-  },
   "scripts": {
-    "start": "nodemon src/index.js",
-    "lint": "eslint src"
+    "start": "echo Placeholder Script"
   }
 }
