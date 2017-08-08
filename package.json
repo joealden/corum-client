@@ -2,9 +2,6 @@
   "name": "corum",
   "version": "0.1.0",
   "description": "Simple forum software built with a modern JavaScript stack.",
-  "engines":{
-    "node": ">=8.0.0"
-  },
   "private": true,
   "repository": {
     "type": "git",
@@ -12,8 +9,5 @@
   },
   "author": "Joe Alden",
   "license": "GPL-3.0",
-  "homepage": "https://joealden.github.io/corum",
-  "scripts": {
-    "start": "echo Placeholder Script"
-  }
+  "homepage": "https://joealden.github.io/corum"
 }
