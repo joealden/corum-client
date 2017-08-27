@@ -1,9 +1,9 @@
-<h1 align="center">
+<p align="center">
   <a href="#">Corum</a> <!-- Update title with Logo that Joe Sutton will be doing -->
-</h1>
+</p>
 
 <p align="center">
-  Democratic, self governing forum software.
+  <i><b>Democratic, self governing forum software.</b></i>
 </p>
 
 ---
@@ -15,7 +15,6 @@ However, unlike these solutions, Corum will be built upon modern technologies an
 ## Table of Contents
 - [The Idea](#the-idea)
   - [A Self Governing Democracy](#a-self-governing-democracy)
-  - [A Modern Codebase](#a-modern-codebase)
 - [The Investigation](#the-investigation)
   - [Focus Groups (The End User)](#focus-groups-the-end-user)
   - [Interviews](#interviews)
@@ -26,26 +25,23 @@ However, unlike these solutions, Corum will be built upon modern technologies an
   - [Essential Features](#essential-features)
   - [Software Requirements and technologies](#software-requirements-and-technologies)
   - [Success Criteria](#success-criteria)
+  - [Limitations of the Project](#limitations-of-the-project)
 
 ## The Idea
 
 ### A Self Governing Democracy
-The idea of having self governing forum software means that the role of forum moderators doesn't need to exist. 
+The idea of having self governing forum software means that the role of the forum moderator does not need to exist. 
 This is a good thing because:
 * It means that the forum require less maintenance. (Less man power required)
 * The users of the forum are responsible for maintaining it. (More **neutral** and **fair**)
 * The removal of the moderator role keeps code complexity down. (Only 1 type of user account needs to exist)
 
-### A Modern Codebase
-stub 
-
-
 ## The Investigation
 
 ### Focus Groups (The End User)
-- Two possible types of end users
-  - The possible forum admin looking for new forum software
-  - The end user of individual forums
+Two possible types of end users:
+- The possible forum admin looking for new forum software
+- The end user of individual forums
 
 ### Interviews
 - Reason for interviewing people (What kind of people as well)
@@ -53,10 +49,12 @@ stub
 - List of answers (3/4 for each question)
 
 ### Research into Existing Systems
-stub
-
-### Observations
-stub
+List of systems to research (5 most popular):
+- [phpBB](https://www.phpbb.com/) - GPL
+- [bbPress](https://bbpress.org/) - GPL
+- [MyBB](https://mybb.com/) - LGPL
+- [IPBoard](https://invisioncommunity.com/) - Proprietary
+- [vBulletin](https://www.vbulletin.com/) - Proprietary
 
 ### Computational Methods Required
 List given by Maria (Add more as seen fit)
@@ -78,13 +76,48 @@ List given by Maria (Add more as seen fit)
 ## The Analysis
 
 ### Essential Features
-stub
+
+#### Page Layout
+- Header (Top of the page, 70-80% page width on desktop)
+  - Top left - Logo linking to homepage
+  - Top Right - Login/logout button/link
+- Navigation (Left/right side under Header on desktop, hamburger menu on mobile)
+  - Sub-forum subscriptions at the top (Called Favorites)
+  - All other sub-forums below (Decide on order / if it is a user option or not)
+  - Highlight the currently selected sub-forum in the nav
+- Current sub-forum (Render selection message with an arrow to nav upon first load/after login)
+  - Give user sort selection (**Default**: newest, then most popular)
+  - Load first _10/15?_ links/threads from selected sub-forum
+  - Each Link/thread
+    - Current amount of up votes
+    - Title -> links to link/thread
+    - Time posted?
+    - User that posted it?
+    - Whether it is a link or a thread (in brackets)
+- Selected thread (Fills the space where the sub-forum was)
+  - Title
+  - Time Posted
+  - User that posted it
+  - Content (None if it is a link)
+  - Comments
+
+#### General Features
+- Login System
+  - Account Creation (username, email, password)
+  - Require login to post/comment
 
 ### Software Requirements and technologies
-stub
+
+#### Software Requirements to Run/Develop Corum
+NodeJS
+
+#### Technologies to Use
 
 ### Success Criteria
 stub
+
+### Limitations of the Project
+
 
 
 
