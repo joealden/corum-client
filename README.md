@@ -1,6 +1,6 @@
-<p style="font-size: 40px; margin-bottom: 0; line-height:1" align="center">
-  Corum
-</p>
+<h1 align="center">
+  <a href="#">Corum</a> <!-- Update title with Logo that Joe Sutton will be doing -->
+</h1>
 
 <p align="center">
   Democratic, self governing forum software.
