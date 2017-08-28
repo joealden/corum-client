@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="#">Corum</a> <!-- Update title with Logo that Joe Sutton will be doing -->
+  <a href="#">Corum</a> <br><b>TODO</b>: Get logo<!-- Update title with Logo that Joe Sutton will be doing -->
 </p>
 
 <p align="center">
@@ -35,6 +35,8 @@ This is a good thing because:
 * It means that the forum require less maintenance. (Less man power required)
 * The users of the forum are responsible for maintaining it. (More **neutral** and **fair**)
 * The removal of the moderator role keeps code complexity down. (Only 1 type of user account needs to exist)
+
+**TODO**: reason for creation - lower the burden of maintaining a forum + web app type of forum
 
 ## The Investigation
 
@@ -88,13 +90,13 @@ List given by Maria (Add more as seen fit)
 - Current sub-forum (Render selection message with an arrow to nav upon first load/after login)
   - Give user sort selection (**Default**: newest, then most popular)
   - Load first _10/15?_ links/threads from selected sub-forum
-  - Each Link/thread
+  - Each post
     - Current amount of up votes
-    - Title -> links to link/thread
+    - Title -> links to link/post
     - Time posted?
     - User that posted it?
     - Whether it is a link or a thread (in brackets)
-- Selected thread (Fills the space where the sub-forum was)
+- Selected post (Fills the space where the sub-forum was)
   - Title
   - Time Posted
   - User that posted it
@@ -105,37 +107,25 @@ List given by Maria (Add more as seen fit)
 - Login System
   - Account Creation (username, email, password)
   - Require login to post/comment
+- Self governing voting system
+  - Each user gets a single vote (up or down) for each post (like Reddit)
+  - Posts with positive votes rise to the top (popularity sort)
+  - Posts with negative votes go to the bottom (popularity sort)
+  - Posts that get -25 or maybe -1 after 24 hours (due to change) 'votes' are removed from the sub-forum
+    - This point is the key to the self governing system, as the features before it are borrowed from Reddit.
+    - Theoretically, no matter how popular the sub-forum is, if more people like the post that don't, the post will remain. 
+    - If more people dislike a post than like it (within the vote threshold) then it will be removed automatically.
+    - This means, that instead of a sub-forum moderator moderating the sub-forum, the users do it themselves. This comes back to my point for neutrality and fairness, as the sub-forum community as a whole gets to decide what is allowed on the sub-forum.
+
+**TODO**: Clean up and add justifications for decisions
 
 ### Software Requirements and technologies
 
 #### Software Requirements to Run/Develop Corum
-NodeJS
+NodeJS version + npm/yarn (Possibly more if backend plan doesn't pan out)
 
 #### Technologies to Use
-
-### Success Criteria
-stub
-
-### Limitations of the Project
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Technology Stack for Corum
-
-### Front End:
+Front End:
  - **Basis** - create-react-app
 - **View** - React / Preact with compat (Decrease bundle size)
 - **css in js** - Emotion / styled-components
@@ -143,13 +133,13 @@ stub
 - **Client-side Routing** - React-Router
 - **Bundler** - Webpack
 
-### Back End???:
+Back End??? (Possibility of using graphcool / auth0):
 - **Runtime** - Node.js 8.x.x
 - **Data Serving (GraphQL)** - Apollo Server on Express
 - **Database (NoSQL / SQL?)** - MongoDB / PostreSQL
 - **Logger** - Pino
 
-### Full Stack:
+Full Stack:
 - **Language** - ES2017 - maybe ESNext features as well
 - **Package Manager** - Yarn / NPM 5
 - **Unit Testing** - Jest
@@ -157,3 +147,14 @@ stub
 - **Transpiler** - Babel
 - **Type Checker??** - Flow
 - **Configuration Manager** - dotenv
+
+**TODO**: 
+- Clean up and make decisions on software used.
+- specify hardware requirements (e.g. both for forum host and end user)
+
+### Success Criteria
+What determines success for the project?
+
+### Limitations of the Project
+- Account Recovery
+
