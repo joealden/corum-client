@@ -19,7 +19,6 @@ However, unlike these solutions, Corum will be built upon modern technologies an
   - [Focus Groups (The End User)](#focus-groups-the-end-user)
   - [Interviews](#interviews)
   - [Research into Existing Systems](#research-into-existing-systems)
-  - [Observations](#observations)
   - [Computational Methods Required](#computational-methods-required)
 - [The Analysis](#the-analysis)
   - [Essential Features](#essential-features)
