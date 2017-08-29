@@ -1,7 +1,7 @@
 {
   "name": "corum",
   "version": "0.1.0",
-  "description": "Simple forum software built with a modern JavaScript stack.",
+  "description": "Democratic, self governing forum software",
   "private": true,
   "repository": {
     "type": "git",
