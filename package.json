@@ -2,12 +2,12 @@
   "name": "corum",
   "version": "0.1.0",
   "description": "Democratic, self governing forum software",
+  "author": "Joe Alden <joerobertalden@gmail.com> (joealden.com)",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/joealden/corum",
   "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joealden/corum.git"
-  },
-  "author": "Joe Alden <joerobertalden@gmail.com> (joealden.com)",
-  "license": "GPL-3.0",
-  "homepage": "https://joealden.github.io/corum"
+  }
 }
