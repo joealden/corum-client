@@ -1,0 +1,35 @@
+{
+  "editor.tabSize": 2,
+  "editor.fontSize": 15,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.cursorBlinking": "smooth",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+
+  "importCost.smallPackageColor": "#444",
+  "importCost.mediumPackageColor": "#444",
+  "importCost.largePackageColor": "#444",
+
+  "markdown.preview.fontSize": 15,
+  "markdown.preview.fontFamily": "Fire Code",
+  "markdown.extension.preview.autoShowPreviewToSide": true,
+
+  "prettier.eslintIntegration": true,
+  "svgviewer.enableautopreview": true,
+
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.fontLigatures": true,
+
+  "window.title": "Code",
+  "window.zoomLevel": 1.4,
+
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.editor.tabCloseButton": "left",
+  "workbench.sideBar.location": "right",
+  "workbench.tips.enabled": false,
+  "workbench.startupEditor": "none",
+
+  "zenMode.hideActivityBar": false,
+  "zenMode.hideTabs": false
+}
