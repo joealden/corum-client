@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "wmaurer.change-case",
+    "streetsidesoftware.code-spell-checker",
+    "msjsdiag.debugger-for-chrome",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "codezombiech.gitignore",
+    "kumar-harsh.graphql-for-vscode",
+    "wix.vscode-import-cost",
+    "yzhang.markdown-all-in-one",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "chrmarti.regex",
+    "cssho.vscode-svgviewer",
+    "robertohuertasm.vscode-icons"
+  ]
+}
