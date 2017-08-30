@@ -9,6 +9,7 @@
     "codezombiech.gitignore",
     "kumar-harsh.graphql-for-vscode",
     "wix.vscode-import-cost",
+    "Orta.vscode-jest",
     "yzhang.markdown-all-in-one",
     "christian-kohler.npm-intellisense",
     "christian-kohler.path-intellisense",
@@ -16,6 +17,7 @@
     "WallabyJs.quokka-vscode",
     "chrmarti.regex",
     "cssho.vscode-svgviewer",
-    "robertohuertasm.vscode-icons"
+    "robertohuertasm.vscode-icons",
+    "jpoissonnier.vscode-styled-components"
   ]
 }
