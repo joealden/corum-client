@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "build:remove": "rimraf build",
+    "test": "node scripts/test.js --env=jsdom",
+    "reset": "yarn build:remove && rimraf node_modules"
   },
   "dependencies": {
     "react": "^15.6.1",
@@ -51,6 +53,7 @@
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
     "react-dev-utils": "^4.0.0",
+    "rimraf": "^2.6.1",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",
