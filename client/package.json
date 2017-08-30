@@ -19,8 +19,7 @@
     "styled-components": "^2.1.2"
   },
   "babel": {
-    "presets": ["react-app"],
-    "plugins": ["babel-plugin-styled-components"]
+    "presets": ["react-app"]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,7 +38,6 @@
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.1",
-    "babel-plugin-styled-components": "^1.2.0",
     "babel-preset-react-app": "^3.0.2",
     "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
