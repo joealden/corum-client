@@ -37,6 +37,8 @@ This is a good thing because:
 
 **TODO**: reason for creation - lower the burden of maintaining a forum + web app type of forum
 
+[**REDDIT NO LONGER OPEN SOURCE AS OF SEPTEMBER 2017**](https://www.reddit.com/r/programming/comments/6xh3xp/reddits_main_code_is_no_longer_opensource/)
+
 ## The Investigation
 
 ### Focus Groups (The End User)
