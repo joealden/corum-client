@@ -102,21 +102,22 @@ List given by Maria (Add more as seen fit)
 ### Essential Features
 
 #### Page Layout
-- Header (Top of the page, 70-80% page width on desktop)
+- Header (Top of the page)
   - Top left - Logo linking to homepage
-  - Top Right - Login/logout button/link
-- Navigation (Left/right side under Header on desktop, hamburger menu on mobile)
+  - Top Right - Login/logout/sign-up button/link
+- Navigation (Left side under Header on desktop)
   - Sub-forum subscriptions at the top (Called Favorites)
   - All other sub-forums below (Decide on order / if it is a user option or not)
+    - Search bar of all sub-forums??
   - Highlight the currently selected sub-forum in the nav
-- Current sub-forum (Render selection message with an arrow to nav upon first load/after login)
-  - Give user sort selection (**Default**: newest, then most popular)
+- Current sub-forum (Render selection message with an arrow to nav upon first load/after login when no sub-forum is selected)
+  - Give user sort selection (newest / most popular)
   - Load first _10/15?_ links/threads from selected sub-forum
   - Each post
     - Current amount of up votes
     - Title -> links to link/post
-    - Time posted?
-    - User that posted it?
+    - Time posted??
+    - User that posted it??
     - Whether it is a link or a thread (in brackets)
 - Selected post (Fills the space where the sub-forum was)
   - Title
@@ -127,17 +128,17 @@ List given by Maria (Add more as seen fit)
 
 #### General Features
 - Login System
-  - Account Creation (username, email, password)
+  - Account Creation / Sign-up (username, password)
   - Require login to post/comment
 - Self governing voting system
   - Each user gets a single vote (up or down) for each post (like Reddit)
   - Posts with positive votes rise to the top (popularity sort)
   - Posts with negative votes go to the bottom (popularity sort)
-  - Posts that get -25 or maybe -1 after 24 hours (due to change) 'votes' are removed from the sub-forum
+  - Posts that get -25 (due to change) 'votes' are removed from the sub-forum
     - This point is the key to the self governing system, as the features before it are borrowed from Reddit.
     - Theoretically, no matter how popular the sub-forum is, if more people like the post that don't, the post will remain. 
     - If more people dislike a post than like it (within the vote threshold) then it will be removed automatically.
-    - This means, that instead of a sub-forum moderator moderating the sub-forum, the users do it themselves. This comes back to my point for neutrality and fairness, as the sub-forum community as a whole gets to decide what is allowed on the sub-forum.
+    - This means, that instead of a moderator moderating the sub-forum, the users do it themselves. This comes back to the point for neutrality and fairness, as the sub-forum community as a whole gets to decide what is allowed on the sub-forum.
 
 **TODO**: Clean up and add justifications for decisions
 
