@@ -47,24 +47,49 @@ Being open source means that anyone who wants to contribute can. They can easily
 
 This means that ultimately, the users of the forum decide the direction that **Corum** takes in all aspects.
 
+
 ## The Investigation
 
 ### Interviews
-I will be interviewing people that I know are users of forum sites such as Reddit to get an idea of what they like and don't like about a certain forum. This will help me understand what features I should borrow from others, what features I should leave out that are present on other sites, and what features that could be added that don't currently exist.
+I will be interviewing people that I know are users of Reddit to get an idea of what they like and don't like about a certain forum. This will help me understand what features I should borrow from others, what features I should leave out that are present on other sites, and what features that could be added that don't currently exist.
 
 #### Questions
-1. What Forum are we talking about?
-1. What features do you like?
-1. What features do you not like?
-1. What features do you use regularly?
-1. What features do you not use?
-1. What features would like to see in the future? 
+1. What do you like about it?
+1. What don't you like about it?
+1. What do you use regularly on it?
+1. What do you not use on it?
+1. What would like to see in the future on it? 
 
 #### Answers
 
-> test
+##### Interviewee 1
+1. > I like the post voting system and how popular articles raise to the top of each sub-reddit
+1. > I don't like the look of it. I don't think it looks very modern.
+1. > When browsing a sub-reddit and see a post I like, I almost always look what site the link is from.
+1. > I never look at the name of the author of the post on the main sub-reddit.
+1. > I would like a more fluid experience using it. I want it to feel like im using an app.
 
-**----------------------------------------TODO----------------------------------------**
+##### Interviewee 2
+1. > The fact that I can see instantly how popular a post is, which isn't a feature of many forum websites.
+1. > I don't like that a sub-reddit can choose what it looks like, I find it very jarring to my experience when switching to a sub-reddit that looks totally different than the last.
+1. > I use the navigation bar at the top a lot as I am always moving between sub-forums
+1. > I never really look at the information that is on the right side of every sub-forum, I only go to a sub-forum to look at what new has been posted.
+1. > I post quite a lot, so it would be nice if the interface of creating a new post was simpler.
+
+##### Interviewee 3
+1. > I like that I can subscribe to particular sub-forums and have them easily accessible. 
+1. > I think that there is too much information about each post of sub-forums main pages. (time posted etc.)
+1. > I use the sort functionality quite a lot to see whats new, but also what is popular.
+1. > I don't really look at or care about the number of people that are current online on a sub-reddit. I would rather a cleaner interface.
+1. > I would like to see a major redesign of the whole site, it doesn't feel modern at all anymore.
+
+##### Interviewee 4
+1. > I like that other people can comment on posts, with their own opinions.
+1. > I don't like the fact that moderators can remove whatever they please.
+1. > The comment section on each post, it often is of similar value to the actual post.
+1. > I think the profile preference section is way too complicated, and it doesn't need to be.
+1. > For Reddit to open source their code again, I don't like the fact that I cannot see the source code of software I use regularly.
+
 
 ### Focus Groups (The End User)
 In the case of a forum like Reddit, as evident from the [above interviews](#interviews), the end user / audience of a project like this can be wide. For example, on Reddit, there are sub forums ranging from politics to comedy to gaming to programming. Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a Google search. In the following sub sections, I will try and outline what **Corum** should do to try and cater to the needs of average users.
@@ -108,6 +133,7 @@ List given by Maria (Add more as seen fit)
 - Needs to process data in real time.
 - Use of divide and conquer.
 
+
 ## The Analysis
 
 ### Essential Features
@@ -115,32 +141,29 @@ List given by Maria (Add more as seen fit)
 #### Page Layout
 - Header (Top of the page)
   - Top left - Logo linking to homepage
-  - Top Right - Login/logout/sign-up button/link
-- Navigation (Left side under Header on desktop)
-  - Sub-forum subscriptions at the top (Called Favorites)
-  - All other sub-forums below (Decide on order / if it is a user option or not)
-    - Search bar of all sub-forums??
-  - Highlight the currently selected sub-forum in the nav
-- Current sub-forum (Render selection message with an arrow to nav upon first load/after login when no sub-forum is selected)
+  - Top Right - Login/logout/sign-up button/link (Should be very obvious)
+- Navigation (Left side under Header on desktop, think this is better placement than Reddit at the top)
+  - Sub-forum subscriptions at the top (Called Favorites, users can access their favorites first)
+  - All other sub-forums below (Search bar of all sub-forums for easy movement around the site)
+  - Highlight the currently selected sub-forum in the nav (So the user can easily see where they are)
+- Current sub-forum (Render selection message with an arrow to nav upon first load/after login when no sub-forum is selected - gives first time user some instructions on what to do)
   - Give user sort selection (newest / most popular)
   - Load first _10/15?_ links/threads from selected sub-forum
   - Each post
-    - Current amount of up votes
+    - Current amount of up votes (Shows popularity of post)
     - Title -> links to link/post
-    - Time posted??
-    - User that posted it??
-    - Whether it is a link or a thread (in brackets)
+    - Whether it is a link or a thread (in brackets, shows if it is an external link and where to)
 - Selected post (Fills the space where the sub-forum was)
   - Title
   - Time Posted
   - User that posted it
   - Content (None if it is a link)
-  - Comments
+  - Comments (For discussion of the post)
 
 #### General Features
 - Login System
   - Account Creation / Sign-up (username, password)
-  - Require login to post/comment
+  - Require login to post/comment (So that other users know who posted / said what)
 - Self governing voting system
   - Each user gets a single vote (up or down) for each post (like Reddit)
   - Posts with positive votes rise to the top (popularity sort)
@@ -150,8 +173,6 @@ List given by Maria (Add more as seen fit)
     - Theoretically, no matter how popular the sub-forum is, if more people like the post that don't, the post will remain. 
     - If more people dislike a post than like it (within the vote threshold) then it will be removed automatically.
     - This means, that instead of a moderator moderating the sub-forum, the users do it themselves. This comes back to the point for neutrality and fairness, as the sub-forum community as a whole gets to decide what is allowed on the sub-forum.
-
-**TODO**: Clean up and add justifications for decisions
 
 ### GUI Design
 
@@ -197,7 +218,12 @@ As the build process produces static files, the production version of the projec
 Also, with the help of [babel](https://babeljs.io/), I can develop using new JavaScript features that are not in older versions of browsers, but will work perfectly fine in these older browsers after compilation.
 
 ### Success Criteria
-What determines success for the project?
+- Functioning login and sign-up system
+- Ability to create posts
+- Ability to comment on posts
+- Ability to vote on each post and have the self-governing system work
+- Have a fluid UX
+- Have a simple, usable UI.
 
 ### Limitations of the Project
 - Account Recovery
