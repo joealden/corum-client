@@ -155,13 +155,13 @@ List given by Maria (Add more as seen fit)
 
 ### GUI Design
 
-#### Sub-forum not selected
+#### Sub-forum not selected (Logged in)
 ![Sub-forum not selected](/docs/images/sub-forum-not-selected.jpg)
 
-#### Sub-forum selected
+#### Sub-forum selected (Not logged in)
 ![Sub-forum selected](/docs/images/sub-forum-selected.jpg)
 
-#### Post view
+#### Post view (Logged In)
 ![Post view](/docs/images/post-view.jpg)
 
 #### New post
