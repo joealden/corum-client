@@ -155,23 +155,23 @@ List given by Maria (Add more as seen fit)
 
 ### GUI Design
 
+#### Sub-forum not selected
 ![Sub-forum not selected](/docs/images/sub-forum-not-selected.jpg)
-Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
 
+#### Sub-forum selected
 ![Sub-forum selected](/docs/images/sub-forum-selected.jpg)
-Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
 
+#### Post view
 ![Post view](/docs/images/post-view.jpg)
-Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
 
+#### New post
 ![New post](/docs/images/new-post.jpg)
-Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
 
+#### Login Page
 ![Login Page](/docs/images/login.jpg)
-Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
 
+#### Sign-up Page
 ![Sign-up Page](/docs/images/sign-up.jpg)
-Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
 
 ### Software Requirements and technologies
 **ALL** of the code and technologies that are used for this project will be open source.
