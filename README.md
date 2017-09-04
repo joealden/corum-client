@@ -176,7 +176,7 @@ List given by Maria (Add more as seen fit)
 ### Software Requirements and technologies
 **ALL** of the code and technologies that are used for this project will be open source.
 
-- **Language** - [ES6](http://es6-features.org) + some [ES2017](http://node.green/#ES2017)
+- **Language** - [ES6](http://es6-features.org) + some [ES2017](http://node.green/#ES2017) (JavaScript / ECMAScript)
 - **Runtime for development** - [Node.js 8.x.x](https://nodejs.org) and [Chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - **Package Manager** - [Yarn](https://yarnpkg.com)
 - **Task Runner** - [NPM Scripts](https://docs.npmjs.com/misc/scripts)
@@ -189,7 +189,6 @@ List given by Maria (Add more as seen fit)
 - **JS Compiler** - [babel](https://babeljs.io/)
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Unit Testing** - [Jest](https://facebook.github.io/jest/)
-- **(Type Checker)** - [Flow](https://flow.org/)
 
 The project is based on a full JavaScript stack, so it should be able to be developed and test on any OS that Node.js supports. However, development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
 
