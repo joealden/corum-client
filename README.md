@@ -21,6 +21,7 @@ For my Computer Science coursework project, I intend to create an **open, democr
   - [Computational Methods Required](#computational-methods-required)
 - [The Analysis](#the-analysis)
   - [Essential Features](#essential-features)
+  - [GUI Design](#gui-design)
   - [Software Requirements and technologies](#software-requirements-and-technologies)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
@@ -40,7 +41,7 @@ This is a good thing because:
 * The removal of the moderator role keeps code complexity down. (Only one type of user account needs to exist)
 
 ### Being Open
-While it is one thing to keep the platform itself democratic, it is also important that the management and development is kept democratic as well. As of 1st September 2017, after many years of being open source, [Reddit has decided to stop developing in the open ](https://www.reddit.com/r/programming/comments/6xh3xp/reddits_main_code_is_no_longer_opensource/). As an [open source](https://opensource.org/) advocate, I believe that Reddit has made the wrong decision. 
+While it is one thing to keep the platform itself democratic, it is also important that the management and development is kept democratic as well. As of 1st September 2017, after many years of being open source, [Reddit has decided to stop developing in the open](https://www.reddit.com/r/programming/comments/6xh3xp/reddits_main_code_is_no_longer_opensource). As an advocate for open source , I believe that Reddit has made the wrong decision. 
 
 Being open source means that anyone who wants to contribute can. They can easily propose new features, report and/or fix bugs, and freely read the source code knowing that anyone else can too. Developers cannot go hiding things in the source code like unwarranted tracking etc. Every decision made by the project is made _with_ the users, not _for_ the users.
 
@@ -61,6 +62,8 @@ I will be interviewing people that I know are users of forum sites such as Reddi
 
 #### Answers
 
+> test
+
 **----------------------------------------TODO----------------------------------------**
 
 ### Focus Groups (The End User)
@@ -73,12 +76,21 @@ Users of the site will have different interests, which means that **Corum** need
 For users that have never visited or rarely visit the site, the UI and UX shouldn't be too surprising so the this type of user can get whatever information they are looking for quickly and efficiently. Also, the site should work equally as well for returning, regular users. This means that the site should keep a similar structure and look throughout, and should not get in the way.  
 
 ### Research into Existing Systems
-List of systems to research (5 most popular):
-- [phpBB](https://www.phpbb.com/) - GPL
-- [bbPress](https://bbpress.org/) - GPL
-- [MyBB](https://mybb.com/) - LGPL
-- [IPBoard](https://invisioncommunity.com/) - Proprietary
-- [vBulletin](https://www.vbulletin.com/) - Proprietary
+
+#### [Reddit](https://reddit.com) (Proprietary [as of September 2017](#being-open))
+Placeholder.
+
+#### [phpBB](https://www.phpbb.com/) (Open source)
+Placeholder.
+
+#### [MyBB](https://mybb.com/) (Open Source)
+Placeholder.
+
+#### [IPBoard](https://invisioncommunity.com/) (Proprietary) 
+Placeholder.
+
+#### [vBulletin](https://www.vbulletin.com/) (Proprietary)
+Placeholder.
 
 ### Computational Methods Required
 List given by Maria (Add more as seen fit)
@@ -95,7 +107,6 @@ List given by Maria (Add more as seen fit)
 - Uses visualization to solve problems.
 - Needs to process data in real time.
 - Use of divide and conquer.
-
 
 ## The Analysis
 
@@ -141,6 +152,26 @@ List given by Maria (Add more as seen fit)
     - This means, that instead of a moderator moderating the sub-forum, the users do it themselves. This comes back to the point for neutrality and fairness, as the sub-forum community as a whole gets to decide what is allowed on the sub-forum.
 
 **TODO**: Clean up and add justifications for decisions
+
+### GUI Design
+
+![Sub-forum not selected](/docs/images/sub-forum-not-selected.jpg)
+Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
+
+![Sub-forum selected](/docs/images/sub-forum-selected.jpg)
+Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
+
+![Post view](/docs/images/post-view.jpg)
+Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
+
+![New post](/docs/images/new-post.jpg)
+Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
+
+![Login Page](/docs/images/login.jpg)
+Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
+
+![Sign-up Page](/docs/images/sign-up.jpg)
+Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. Test sentence that is about the right length to fit here. 
 
 ### Software Requirements and technologies
 **ALL** of the code and technologies that are used for this project will be open source.
