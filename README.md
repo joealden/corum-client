@@ -8,7 +8,7 @@
 
 ---
 
-For my Computer Science coursework project, I intend to create an **open, democratic, self governing** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
+For my Computer Science coursework project, I intend to create an **open, democratic, self governing, minimalist** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
 
 ## Table of Contents
 - [The Idea](#the-idea)
