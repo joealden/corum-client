@@ -135,9 +135,14 @@ As shown in the [GUI design section](#gui-design), I will attempt to implement s
 Related to the method above, searching will be used into the searchable navigation. Sorting will also be used, as the user will be able to select the order in which they see posts in the sub-forum.
 
 #### Use of Multiple Programming Paradigms
-- **Object Oriented** - 
-- **Declarative** - 
-- **Functional** -
+##### Object Oriented
+Placeholder.
+
+##### Declarative
+Placeholder.
+
+##### Functional
+Placeholder.
 
 #### Real Time Data Processing
 Placeholder.
