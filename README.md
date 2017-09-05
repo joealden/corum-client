@@ -29,9 +29,9 @@ For my Computer Science coursework project, I intend to create an **open, democr
 ## The Idea
 
 ### A Self Governing Democracy
-Being self governed means that those that are being governed, govern themselves and each other. There is no higher authority that makes decisions. In the case of a forum site, it is solely up to the users of the forum as a collective to decide what kind of content belongs on it. **Corum** will be designed and developed from the ground up following this principle.
+Being self governed means that those that are being governed, govern themselves and each other. There is no higher authority that makes decisions. In the case of a forum site, it is solely up to the users of the forum as a collective to decide what kind of content belongs on it. Corum will be designed and developed from the ground up following this principle.
 
-Just like in a real democracy, the users will be given one vote each on every post, and each vote will be treated equally. Up until now, this sounds very similar to [Reddit](https://www.reddit.com/). The way that **Corum** differentiates itself is that the vote that users are given actually means something. If users generally vote positively on a post, then the post will remain. However, if a post gets a mostly negative response, it will be automatically removed from the sub forum that it was posted in. This means that if someone posts something that isn't nice or doesn't belong on the forum, it will be removed by the users themselves, _fairly_, instead of having a moderator remove it based on their own view of the post. 
+Just like in a real democracy, the users will be given one vote each on every post, and each vote will be treated equally. Up until now, this sounds very similar to [Reddit](https://www.reddit.com/). The way that Corum differentiates itself is that the vote that users are given actually means something. If users generally vote positively on a post, then the post will remain. However, if a post gets a mostly negative response, it will be automatically removed from the sub forum that it was posted in. This means that if someone posts something that isn't nice or doesn't belong on the forum, it will be removed by the users themselves, _fairly_, instead of having a moderator remove it based on their own view of the post. 
 
 The idea of having self governing forum software means that the role of forum moderators does not need to exist.
 
@@ -45,7 +45,7 @@ While it is one thing to keep the platform itself democratic, it is also importa
 
 Being open source means that anyone who wants to contribute can. They can easily propose new features, report and/or fix bugs, and freely read the source code knowing that anyone else can too. Developers cannot go hiding things in the source code like unwarranted tracking etc. Every decision made by the project is made _with_ the users, not _for_ the users.
 
-This means that ultimately, the users of the forum decide the direction that **Corum** takes in all aspects.
+This means that ultimately, the users of the forum decide the direction that Corum takes in all aspects.
 
 
 ## The Investigation
@@ -92,10 +92,10 @@ I will be interviewing people that I know are users of Reddit to get an idea of 
 
 
 ### Focus Groups (The End User)
-In the case of a forum like Reddit, as evident from the [above interviews](#interviews), the end user / audience of a project like this can be wide. For example, on Reddit, there are sub forums ranging from politics to comedy to gaming to programming. Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a Google search. In the following sub sections, I will try and outline what **Corum** should do to try and cater to the needs of average users.
+In the case of a forum like Reddit, as evident from the [above interviews](#interviews), the end user / audience of a project like this can be wide. For example, on Reddit, there are sub forums ranging from politics to comedy to gaming to programming. Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a Google search. In the following sub sections, I will try and outline what Corum should do to try and cater to the needs of average users.
  
 #### Users That Have Different Interests
-Users of the site will have different interests, which means that **Corum** needs to work well for all, and the site should not be designed for one type of content. Good computer literacy should not be a given, so the interface should be layed out in a simple manner. Colour should also be kept to a minimal to keep the site looking neutral.
+Users of the site will have different interests, which means that Corum needs to work well for all, and the site should not be designed for one type of content. Good computer literacy should not be a given, so the interface should be layed out in a simple manner. Colour should also be kept to a minimal to keep the site looking neutral.
 
 #### Users That Use the Forum Differently
 For users that have never visited or rarely visit the site, the UI and UX shouldn't be too surprising so the this type of user can get whatever information they are looking for quickly and efficiently. Also, the site should work equally as well for returning, regular users. This means that the site should keep a similar structure and look throughout, and should not get in the way.  
@@ -103,36 +103,46 @@ For users that have never visited or rarely visit the site, the UI and UX should
 ### Research into Existing Systems
 
 #### [Reddit](https://reddit.com) (Proprietary [as of September 2017](#being-open))
-Placeholder.
+**Reddit** is a very popular forum site that is home to a wide range of topics, where people can post links to other websites, or just have discussions actually on the site. Users can up-vote or down-vote posts if they like or dislike them. This is where the inspiration of Corum came from, however I thought that the vote that the user is given on each post could be given more value.
+
+As a regular reddit user, I have had plenty of time to get a grasp of its features and what it feels like to use. As Reddit is a major inspiration for this project, a lot of its features will be borrowed. This is on purpose, as the target audience of Corum will be mainly those who have already experienced Reddit. This will mean that it will feel familiar and it will be easy to get started.
+
+While the idea of Reddit is quite simple, in my opinion and many others (as shown by the [interviews](#interviews) with fellow Reddit users) the user interface is cluttered, with many features that are rarely used such as the amount of people online etc. From my use and further research into the site, Corum will strive to be a simpler version of Reddit.
+
+#### [Hacker News](https://news.ycombinator.com/) (Proprietary)
+**Hacker News** is a similar site to Reddit, however it is a lot simpler. There are no sub-forums, as it is a site dedicated only for computer science related topics such as programming. The user interface is very simple, which means that it doesn't get in the users way. However, I believe that it is too simple.
+
+I believe that there is space in the forum 'business' for a site that is simpler than Reddit, but one with more features than Hacker News (As it is only for developers). This is where Corum could fit in.
 
 #### [phpBB](https://www.phpbb.com/) (Open source)
-Placeholder.
+**phpBB** has different goals than Corum or Reddit. Instead of being a designed to run from one website, it is designed to be used by anyone who wants to setup their own forum. An example of where phpBB is deployed is at [Solus](https://solus-project.com/forums/). This can be seen when looking at the pages footer. 
 
-#### [MyBB](https://mybb.com/) (Open Source)
-Placeholder.
-
-#### [IPBoard](https://invisioncommunity.com/) (Proprietary) 
-Placeholder.
-
-#### [vBulletin](https://www.vbulletin.com/) (Proprietary)
-Placeholder.
+phpBB can be themed so that it can fit the style of any website it is being run on. This means that the look or layout of phpBB isn't really an issue as it can be easily altered. However, as Corum will be a more similar project to Reddit, Corum does not need this extra complexity of being able to change its looks. I like the simplicity of Solus' forum theme, and Corum will take some inspiration from its looks.
 
 ### Computational Methods Required
-List given by Maria (Add more as seen fit)
-- Decomposition
-- Abstraction
-- Complex calculations
-- Pattern matching
-- Sorting and searching
-- Thinking procedurally
-- Needs to analyse large amounts of data to find patterns in it (data mining)
-- Needs large storage that needs to be accessed quickly
-- Uses backtracking (going back in a program to find an alternative solution
-- Uses Heuristics
-- Uses visualization to solve problems.
-- Needs to process data in real time.
-- Use of divide and conquer.
+Here is a list of computational methods that could be used to create Corum, as well as how they will be useful.
 
+#### Decomposition
+By using [React](https://facebook.github.io/react), I will be able to break the UI down into small, reusable components. This allows developers to create large projects while keeping it manageable and maintainable.
+
+#### Abstraction
+Also with the aid of [React](https://facebook.github.io/react), I will be able to compose smaller components into larger components. (For example, creating button components, and then composing multiple button components into a header component) This means that the complexity of each component can be abstracted away when taking a high level view of composite components.
+
+#### Pattern matching
+As shown in the [GUI design section](#gui-design), I will attempt to implement search functionality into the navigation part of the application. This will require pattern matching. Furthermore, as this project will make use of client-side routing with [react-router](https://reacttraining.com/react-router/), pattern matching is required to direct the user to the correct page.
+
+#### Sorting and searching
+Related to the method above, searching will be used into the searchable navigation. Sorting will also be used, as the user will be able to select the order in which they see posts in the sub-forum.
+
+#### Use of Multiple Programming Paradigms
+- **Object Oriented** - 
+- **Declarative** - 
+- **Functional** -
+
+#### Real Time Data Processing
+Placeholder.
+
+**TODO: ADD MORE COMPUTATIONAL METHODS THAT CAN BE USED**
 
 ## The Analysis
 
