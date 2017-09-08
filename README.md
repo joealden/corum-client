@@ -135,14 +135,50 @@ As shown in the [GUI design section](#gui-design), I will attempt to implement s
 Related to the method above, searching will be used into the searchable navigation. Sorting will also be used, as the user will be able to select the order in which they see posts in the sub-forum.
 
 #### Use of Multiple Programming Paradigms
-##### Object Oriented
-Placeholder.
+##### Object Oriented (OO)
+Unlike languages such as Java or C++ that have class based OO, JavaScript uses 
+[prototypical inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain).
+Although JavaScript's prototype chain is more powerful and flexible, it used to be hard for beginners to use that came from a classical OO background. With the introduction of the 
+[class syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 
+in ES2015, which is just syntactic sugar, JavaScript OO is much easier to approach. If and when classes are used in the source code, it will be using the newer ES2015 syntax.
 
+In React, Components that have 
+[state or use life cycle hooks](https://facebook.github.io/react/docs/state-and-lifecycle.html) 
+must use the ES2015 class syntax and extend the base 
+[Component](https://facebook.github.io/react/docs/react-component.html) 
+class that is provided by the library. This takes advantage of the OO paradigm's easy state encapsulation. Also, some libraries that I intend to use such as Apollo Client 
+([As described here](#software-requirements-and-technologies)) 
+use the OO 
+[new](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) 
+keyword to create new instances of objects.
+ 
 ##### Declarative
-Placeholder.
+On Reacts front page, it shows that one of its main selling points is that it allows developers to write declarative UI code. This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model). I just tell React _what_ I want to render.
 
 ##### Functional
-Placeholder.
+Modern JavaScript provides great tools to build software in a functional paradigm, this includes features such as:
+
+- [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) - Allows for concise function declarations and clean [function currying](https://en.wikipedia.org/wiki/Currying). For example:
+
+```javascript
+// Regular function expression - no currying
+const concatRegular = function(string1, string2) {
+  return `${string1} ${string2}`;
+}
+const joinedTextRegular = concatRegular("Hello," "world!"); // "Hello, world!"
+
+// Arrow function expression with currying
+const concatArrow = string1 => string2 => `${string1} ${string2}`;
+const joinedTextArrow = concatArrow("Hello")("world!"); // "Hello, world!"
+```
+
+- [Array.prototype.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [Array.prototype.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 
+and 
+[Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+- [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
+(Not perfect, reference only so objects + arrays can be mutated, use 
+[Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
+(for both objects and arrays) / something like [Immutable.js](http://facebook.github.io/immutable-js/))
 
 #### Real Time Data Processing
 Placeholder.
@@ -212,7 +248,7 @@ Placeholder.
 ### Software Requirements and technologies
 **ALL** of the code and technologies that are used for this project will be open source.
 
-- **Language** - [ES6](http://es6-features.org) + some [ES2017](http://node.green/#ES2017) (JavaScript / ECMAScript)
+- **Language** - [ES2015](http://es6-features.org) + some [ES2017](http://node.green/#ES2017) (JavaScript / ECMAScript)
 - **Runtime for development** - [Node.js 8.x.x](https://nodejs.org) and [Chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - **Package Manager** - [Yarn](https://yarnpkg.com)
 - **Task Runner** - [NPM Scripts](https://docs.npmjs.com/misc/scripts)
