@@ -279,3 +279,4 @@ Also, with the help of [babel](https://babeljs.io/), I can develop using new Jav
 ### Limitations of the Project
 - Account Recovery
 - Creation of new sub-forums?
+- Responsive CSS (Would require quite a bit more work to have it looking nice on mobile devices)
