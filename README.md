@@ -161,13 +161,13 @@ Modern JavaScript provides great tools to build software in a functional paradig
 - [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) - Allows for concise function declarations and clean [function currying](https://en.wikipedia.org/wiki/Currying). For example:
 
 ```javascript
-// Regular function expression - no currying
+// Regular function expression - not curried
 const concatRegular = function(string1, string2) {
   return `${string1} ${string2}`;
 }
 const joinedTextRegular = concatRegular("Hello," "world!"); // "Hello, world!"
 
-// Arrow function expression with currying
+// Arrow function expression - curried
 const concatArrow = string1 => string2 => `${string1} ${string2}`;
 const joinedTextArrow = concatArrow("Hello")("world!"); // "Hello, world!"
 ```
