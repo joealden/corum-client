@@ -248,7 +248,7 @@ Placeholder.
 ### Software Requirements and technologies
 **ALL** of the code and technologies that are used for this project will be open source.
 
-- **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript) with [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html) and [Flow](https://flow.org/) (For static type checking)
+- **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript) with [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)
 - **Runtime for development** - [Node.js 8.x.x](https://nodejs.org) and [Chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - **Package Manager** - [Yarn](https://yarnpkg.com)
 - **Task Runner** - [NPM Scripts](https://docs.npmjs.com/misc/scripts)
