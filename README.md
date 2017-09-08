@@ -29,7 +29,7 @@ For my Computer Science coursework project, I intend to create an **open, democr
 ## The Idea
 
 ### A Self Governing Democracy
-Being self governed means that those that are being governed, govern themselves and each other. There is no higher authority that makes decisions. In the case of a forum site, it is solely up to the users of the forum as a collective to decide what kind of content belongs on it. Corum will be designed and developed from the ground up following this principle.
+Being self governed means that those that are being governed, govern themselves and each other. There is no higher authority that makes decisions. In the case of a forum site, this means that it is solely up to the users of the forum as a collective to decide what content belongs on it. Corum will be designed and developed from the ground up following this principle.
 
 Just like in a real democracy, the users will be given one vote each on every post, and each vote will be treated equally. Up until now, this sounds very similar to [Reddit](https://www.reddit.com/). The way that Corum differentiates itself is that the vote that users are given actually means something. If users generally vote positively on a post, then the post will remain. However, if a post gets a mostly negative response, it will be automatically removed from the sub forum that it was posted in. This means that if someone posts something that isn't nice or doesn't belong on the forum, it will be removed by the users themselves, _fairly_, instead of having a moderator remove it based on their own view of the post. 
 
@@ -248,13 +248,13 @@ Placeholder.
 ### Software Requirements and technologies
 **ALL** of the code and technologies that are used for this project will be open source.
 
-- **Language** - [ES2015](http://es6-features.org) + some [ES2017](http://node.green/#ES2017) (JavaScript / ECMAScript)
+- **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript) with [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html) and [Flow](https://flow.org/) (For static type checking)
 - **Runtime for development** - [Node.js 8.x.x](https://nodejs.org) and [Chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - **Package Manager** - [Yarn](https://yarnpkg.com)
 - **Task Runner** - [NPM Scripts](https://docs.npmjs.com/misc/scripts)
 - **Starting point** - [create-react-app](https://github.com/facebookincubator/create-react-app)
 - **View** - [react](https://facebook.github.io/react)
-- **CSS-in-JS** - [styled-components](https://www.styled-components.com)
+- **CSS-in-JS** - [styled-components](https://www.styled-components.com) (With [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes))
 - **Data Fetching (GraphQL)** - [Apollo Client with React bindings](http://dev.apollodata.com/react/)
 - **Client-side Routing** - [react-router](https://reacttraining.com/react-router/)
 - **Module Bundler** - [webpack](https://webpack.js.org/)
