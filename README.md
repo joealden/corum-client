@@ -268,7 +268,7 @@ Placeholder.
 
 The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports. Development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
 
-To get a copy of this project on your local machine, clone this repo using the following command (Must have [git](https://git-scm.com/) installed):
+To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
 ```bash
 git clone https://github.com/joealden/corum.git
 ```
