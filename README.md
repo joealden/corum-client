@@ -283,7 +283,7 @@ cd client
 yarn
 yarn start
 ```
-This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`. As mentioned above, the page will automatically reload when a change is made to the source code.
+This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
 
 ##### Deployment (Create a Production Build)
 
