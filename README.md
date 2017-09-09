@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/images/logo.png" alt="corum" width="215" style="padding-bottom: 10px">
+  <img src="docs/images/logo.png" alt="corum" width="215" style="padding-bottom: 50px">
 </div>
 <p align="center">
   <i><b>An open, democratic, self governing forum.</b></i>
