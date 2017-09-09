@@ -1,6 +1,6 @@
-<p align="center">
-  <a href="#"><img src="./docs/images/corum-logo.svg" alt="corum" width="200"></a>
-</p>
+<div align="center">
+  <img src="docs/images/corum-logo.svg" alt="corum" width="200">
+</div>
 
 <p align="center">
   <i><b>An open, democratic, self governing forum.</b></i>
