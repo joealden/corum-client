@@ -275,7 +275,7 @@ git clone https://github.com/joealden/corum.git
 
 If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
 
-##### Development (Setting Up Local Development Server)
+##### Development (Setting Up a Local Development Server)
 [create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
 
 ```bash
@@ -285,7 +285,7 @@ yarn start
 ```
 This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
 
-##### Deployment (Create a Production Build)
+##### Deployment (Creating a Production Build)
 
 Production ready files can be produced by running the following commands inside the `corum` directory:
 
