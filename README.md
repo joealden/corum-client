@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="#">Corum</a> <br><b>TODO</b>: Get logo<!-- Update title with Logo that Joe Sutton will be doing -->
+  <a href="#"><img src="./docs/images/corum-logo.svg" alt="corum" width="200"></a>
 </p>
 
 <p align="center">
