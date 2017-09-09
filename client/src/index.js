@@ -8,6 +8,7 @@ import {
 } from "react-apollo";
 
 import registerServiceWorker from "./utils/registerServiceWorker";
+import "normalize.css";
 import "./index.css";
 import App from "./App";
 
