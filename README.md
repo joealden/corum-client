@@ -1,7 +1,6 @@
 <div align="center">
-  <img src="docs/images/corum-logo.svg" alt="corum" width="200">
+  <img src="docs/images/logo.png" alt="corum" width="215">
 </div>
-<br>
 <p align="center">
   <i><b>An open, democratic, self governing forum.</b></i>
 </p>
