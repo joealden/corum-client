@@ -11,6 +11,7 @@
     "reset": "yarn build:remove && rimraf node_modules"
   },
   "dependencies": {
+    "normalize.css": "^7.0.0",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-apollo": "^1.4.15",
