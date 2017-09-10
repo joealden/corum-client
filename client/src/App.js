@@ -141,7 +141,7 @@ const Button = styled.a`
 const SocialMediaCircle = styled.span`
   height: 50px;
   width: 50px;
-  background-color: #999;
+  background-color: black;
   border: 2px solid black;
   border-radius: 50%;
 `;
