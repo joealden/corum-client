@@ -2,46 +2,55 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
-import corumLogo from "./logo.svg";
-import loadingSpinner from "./loading.svg";
+import corumLogo from "./images/logo.svg";
+import loadingSpinner from "./images/loading.svg";
+
+import MobileError from "./components/MobileError";
 
 const App = () => (
-  <GridLayout>
-    <Logo>
-      <a href="/">
-        <img style={{ width: 120 }} src={corumLogo} alt="corum" />
-      </a>
-    </Logo>
-    <Header>
-      <Button href="signup">Sign-Up</Button>
-      <Button href="login">Login</Button>
-    </Header>
-    <Nav>Navigation</Nav>
-    <MainContent>
-      <img src={loadingSpinner} alt="loading" />
-    </MainContent>
-    <FooterLeft>
-      <SocialMediaCircle />
-      <SocialMediaCircle />
-      <SocialMediaCircle />
-    </FooterLeft>
-    <FooterRight>
-      <p>
-        Made by <a href="https://github.com/joealden">joealden</a>
-      </p>
-    </FooterRight>
-  </GridLayout>
+  <div>
+    <MobileError />
+    <GridLayout>
+      <Logo>
+        <a href="/">
+          <img style={{ width: 120 }} src={corumLogo} alt="corum" />
+        </a>
+      </Logo>
+      <Header>
+        <Button href="signup">Sign-Up</Button>
+        <Button href="login">Login</Button>
+      </Header>
+      <Nav>Navigation</Nav>
+      <MainContent>
+        <img src={loadingSpinner} alt="loading" />
+      </MainContent>
+      <FooterLeft>
+        <SocialMediaCircle />
+        <SocialMediaCircle />
+        <SocialMediaCircle />
+      </FooterLeft>
+      <FooterRight>
+        <p>
+          Made by <a href="https://github.com/joealden">joealden</a>
+        </p>
+      </FooterRight>
+    </GridLayout>
+  </div>
 );
 
 const GridLayout = styled.div`
   margin: 0 auto;
-  display: grid;
   height: 100vh;
   width: 100vw;
   text-align: center;
+  display: grid;
   grid-template-rows: 80px auto 80px;
-  grid-template-columns: 330px auto;
+  grid-template-columns: 16em auto;
   grid-template-areas: "logo header" "nav main" "footer-left footer-right";
+
+  @media only screen and (max-width: 1000px) {
+    display: none;
+  }
 
   > header {
     font-size: 25px;
