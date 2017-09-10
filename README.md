@@ -180,8 +180,10 @@ and
 [Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
 (for both objects and arrays) / something like [Immutable.js](http://facebook.github.io/immutable-js/))
 
+As well as the built in functionality modern JavaScript gives us, I am planning to make use of the functional library [Ramda](http://ramdajs.com/). This library adds many extremely useful helper functions that I would have to otherwise write myself, such as [R.compose](http://ramdajs.com/docs/#compose), [R.merge](http://ramdajs.com/docs/#merge), [R.memoize](http://ramdajs.com/docs/#memoize) etc. Unlike other utility libraries like [Lodash](https://lodash.com/), Ramda conforms to functional programming ideas (For example, some Lodash functions mutate instead of returning such as [_.remove](https://lodash.com/docs/4.17.4#remove)), and provides nice extras like auto-currying etc.
+
 #### Real Time Data Processing
-Placeholder.
+Eventually, I will attempt to implement real time search functionality for the navigation, as well as real time sub-forum updates like updating the current amount of votes updates without a page refresh. This will be achieved through the use of [GraphQL Subscriptions](http://dev.apollodata.com/react/subscriptions.html).
 
 **TODO: ADD MORE COMPUTATIONAL METHODS THAT CAN BE USED**
 
