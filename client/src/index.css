@@ -3,3 +3,11 @@
 html {
   font-family: "Open Sans", sans-serif;
 }
+
+/* 
+  Fixes img character text issue
+  https://stackoverflow.com/questions/10844205/html-5-strange-img-always-adds-3px-margin-at-bottom
+*/
+a > img {
+  vertical-align: middle;
+}

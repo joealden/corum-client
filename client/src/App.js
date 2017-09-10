@@ -8,7 +8,9 @@ import loadingSpinner from "./loading.svg";
 const App = () => (
   <GridLayout>
     <Logo>
-      <img style={{ width: 120 }} src={corumLogo} alt="corum" />
+      <a href="/">
+        <img style={{ width: 120 }} src={corumLogo} alt="corum" />
+      </a>
     </Logo>
     <Header>
       <Button href="signup">Sign-Up</Button>
@@ -127,7 +129,7 @@ const Button = styled.a`
   text-transform: uppercase;
 `;
 
-const SocialMediaCircle = styled.div`
+const SocialMediaCircle = styled.span`
   height: 50px;
   width: 50px;
   background-color: #999;
