@@ -185,8 +185,6 @@ As well as the built in functionality modern JavaScript gives us, I am planning 
 #### Real Time Data Processing
 Eventually, I will attempt to implement real time search functionality for the navigation, as well as real time sub-forum updates like updating the current amount of votes updates without a page refresh. This will be achieved through the use of [GraphQL Subscriptions](http://dev.apollodata.com/react/subscriptions.html).
 
-**TODO: ADD MORE COMPUTATIONAL METHODS THAT CAN BE USED**
-
 ## The Analysis
 
 ### Essential Features
