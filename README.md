@@ -10,6 +10,38 @@
 
 For my Computer Science coursework project, I intend to create an **open, democratic, self governing, minimalist** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
 
+### Development and Deployment 
+
+The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports. Development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
+
+To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
+```bash
+git clone https://github.com/joealden/corum.git
+```
+
+If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
+
+#### Development (Setting Up a Local Development Server)
+[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
+
+```bash
+cd client
+yarn
+yarn start
+```
+This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
+
+#### Deployment (Creating a Production Build)
+
+Production ready files can be produced by running the following commands inside the `corum` directory:
+
+```bash
+cd client 
+yarn 
+yarn build
+``` 
+This will produce a `build` directory inside `client`. This folder contains all the files required to deploy the site in production mode. This items can now be hosted on any HTTP server.
+
 ## Table of Contents
 - [The Idea](#the-idea)
   - [A Self Governing Democracy](#a-self-governing-democracy)
@@ -263,38 +295,6 @@ Eventually, I will attempt to implement real time search functionality for the n
 - **JS Compiler** - [babel](https://babeljs.io/)
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Testing** - [Jest](https://facebook.github.io/jest/)
-
-#### Development and Deployment 
-
-The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports. Development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
-
-To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
-```bash
-git clone https://github.com/joealden/corum.git
-```
-
-If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
-
-##### Development (Setting Up a Local Development Server)
-[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
-
-```bash
-cd client
-yarn
-yarn start
-```
-This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
-
-##### Deployment (Creating a Production Build)
-
-Production ready files can be produced by running the following commands inside the `corum` directory:
-
-```bash
-cd client 
-yarn 
-yarn build
-``` 
-This will produce a `build` directory inside `client`. This folder contains all the files required to deploy the site in production mode. This items can now be hosted on any HTTP server.
 
 ### Success Criteria
 - Functioning login and sign-up system
