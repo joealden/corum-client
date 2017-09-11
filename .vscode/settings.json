@@ -1,11 +1,33 @@
 {
-  "editor.tabSize": 2,
+  /* 
+  It is worth noting that these settings are not just workspace
+  settings, I am using this file to share user settings between 
+  my desktop and my laptop. 
+  
+  Feel free to override any user settings!
+  */
+
+  // Workspace Settings
+  "editor.tabSize": 2, // enforced by Prettier
+  "editor.formatOnSave": true, // runs prettier on file save
+  "cSpell.enabledLanguageIds": ["latex", "markdown", "plaintext", "text"], // only runs spell checker on these type of files
+  "cSpell.words": [
+    "Corum",
+    "corum's",
+    "reddit",
+    "solus",
+    "repo",
+    "signup",
+    "subforum",
+    "flexbox"
+  ], // words that are used in the docs that are not recognised, please add if more are used and show warnings.
+
+  // User Settings
   "editor.fontSize": 15,
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
   "editor.cursorBlinking": "smooth",
   "editor.minimap.enabled": false,
-  "editor.formatOnSave": true,
 
   "importCost.smallPackageColor": "#444",
   "importCost.mediumPackageColor": "#444",
@@ -15,7 +37,6 @@
   "markdown.preview.fontFamily": "Fire Code",
   "markdown.extension.preview.autoShowPreviewToSide": true,
 
-  "prettier.eslintIntegration": true,
   "svgviewer.enableautopreview": true,
 
   "terminal.integrated.fontSize": 15,
@@ -31,17 +52,5 @@
   "workbench.startupEditor": "none",
 
   "zenMode.hideActivityBar": false,
-  "zenMode.hideTabs": false,
-
-  "cSpell.enabledLanguageIds": ["latex", "markdown", "plaintext", "text"],
-  "cSpell.words": [
-    "Corum",
-    "corum's",
-    "reddit",
-    "solus",
-    "repo",
-    "signup",
-    "subforum",
-    "flexbox"
-  ]
+  "zenMode.hideTabs": false
 }
