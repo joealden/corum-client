@@ -3,7 +3,7 @@
 </div>
 <br>
 <p align="center">
-  <i><b>An open, democratic & self governing forum.</b></i>
+  <i><b>An open, democratic &amp; self governing forum.</b></i>
 </p>
 
 ---
