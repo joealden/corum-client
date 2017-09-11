@@ -3,46 +3,17 @@
 </div>
 <br>
 <p align="center">
-  <i><b>An open, democratic, self governing forum.</b></i>
+  <i><b>An open, democratic & self governing forum.</b></i>
 </p>
 
 ---
 
-For my Computer Science coursework project, I intend to create an **open, democratic, self governing, minimalist** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
-
-### Development and Deployment 
-
-The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports. Development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
-
-To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
-```bash
-git clone https://github.com/joealden/corum.git
-```
-
-If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
-
-#### Development (Setting Up a Local Development Server)
-[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
-
-```bash
-cd client
-yarn
-yarn start
-```
-This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
-
-#### Deployment (Creating a Production Build)
-
-Production ready files can be produced by running the following commands inside the `corum` directory:
-
-```bash
-cd client 
-yarn 
-yarn build
-``` 
-This will produce a `build` directory inside `client`. This folder contains all the files required to deploy the site in production mode. This items can now be hosted on any HTTP server.
+For my Computer Science coursework project, I intend to create an **open, democratic & self governing** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
 
 ## Table of Contents
+- [Setup (Software Requirements)](#setup-software-requirements)
+  - [Development](#development)
+  - [Deployment](#deployment)
 - [The Idea](#the-idea)
   - [A Self Governing Democracy](#a-self-governing-democracy)
   - [Being Open](#being-open)
@@ -54,9 +25,39 @@ This will produce a `build` directory inside `client`. This folder contains all 
 - [The Analysis](#the-analysis)
   - [Essential Features](#essential-features)
   - [GUI Design](#gui-design)
-  - [Software Requirements and technologies](#software-requirements-and-technologies)
+  - [Libraries / Tools To Be used](#libraries-tools-to-be-used)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
+
+## Setup (Software Requirements)
+The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports. Development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
+
+To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
+```bash
+git clone https://github.com/joealden/corum.git
+```
+
+If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
+
+### Development
+[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
+
+```bash
+cd client
+yarn
+yarn start
+```
+This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
+
+### Deployment
+Production ready files can be produced by running the following commands inside the `corum` directory:
+
+```bash
+cd client 
+yarn 
+yarn build
+``` 
+This will produce a `build` directory inside `client`. This folder contains all the files required to deploy the site in production mode. This items can now be hosted on any HTTP server.
 
 ## The Idea
 
@@ -277,10 +278,9 @@ Eventually, I will attempt to implement real time search functionality for the n
 #### Sign-up Page
 ![Sign-up Page](/docs/images/sign-up.jpg)
 
-### Software Requirements and technologies
-**ALL** of the code and technologies that are used for this project will be open source.
+### Libraries / Tools To Be used
+**ALL** of the code and technologies that will be used for this project are open source.
 
-#### Libraries / Tools To Be used
 - **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript) with [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)
 - **Runtime for development** - [Node.js 8.x.x](https://nodejs.org) and [Chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - **VCS ([Version Control System](https://en.wikipedia.org/wiki/Version_control))** - [Git](https://git-scm.com/) with [Github](https://github.com/joealden/corum)
@@ -303,6 +303,7 @@ Eventually, I will attempt to implement real time search functionality for the n
 - Ability to vote on each post and have the self-governing system work
 - Have a fluid UX
 - Have a simple, usable UI.
+- Make the application real time
 
 ### Limitations of the Project
 - Account Recovery
