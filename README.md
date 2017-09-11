@@ -3,14 +3,17 @@
 </div>
 <br>
 <p align="center">
-  <i><b>An open, democratic, self governing forum.</b></i>
+  <i><b>An open, democratic & self governing forum.</b></i>
 </p>
 
 ---
 
-For my Computer Science coursework project, I intend to create an **open, democratic, self governing, minimalist** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
+For my Computer Science coursework project, I intend to create an **open, democratic & self governing** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
 
 ## Table of Contents
+- [Setup (Software Requirements)](#setup-software-requirements)
+  - [Development](#development)
+  - [Deployment](#deployment)
 - [The Idea](#the-idea)
   - [A Self Governing Democracy](#a-self-governing-democracy)
   - [Being Open](#being-open)
@@ -22,9 +25,42 @@ For my Computer Science coursework project, I intend to create an **open, democr
 - [The Analysis](#the-analysis)
   - [Essential Features](#essential-features)
   - [GUI Design](#gui-design)
-  - [Software Requirements and technologies](#software-requirements-and-technologies)
+  - [Libraries / Tools To Be used](#libraries-tools-to-be-used)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
+
+## Setup (Software Requirements)
+The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports. Development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
+
+To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
+```bash
+git clone https://github.com/joealden/corum.git
+```
+
+If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
+
+#### Browser Compatibility
+**It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.**
+
+### Development
+[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
+
+```bash
+cd client
+yarn
+yarn start
+```
+This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
+
+### Deployment
+Production ready files can be produced by running the following commands inside the `corum` directory:
+
+```bash
+cd client 
+yarn 
+yarn build
+``` 
+This will produce a `build` directory inside `client`. This folder contains all the files required to deploy the site in production mode. This items can now be hosted on any HTTP server.
 
 ## The Idea
 
@@ -156,8 +192,9 @@ keyword to create new instances of objects.
 On Reacts front page, it shows that one of its main selling points is that it allows developers to write declarative UI code. This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model). I just tell React _what_ I want to render.
 
 ##### Functional
-Modern JavaScript provides great tools to build software in a functional paradigm, this includes features such as:
+Programming in a functional style helps improve code maintainability, readability, and [more](https://en.wikipedia.org/wiki/Functional_programming). JavaScript provides great tools to build software in a functional paradigm, this includes features such as:
 
+- [First-class Functions](https://en.wikipedia.org/wiki/First-class_function) - This means that JavaScript treats functions the same as any other variable. Functions can be passed as arguments to functions, returned from functions, assigned to variables and stored in objects and arrays.
 - [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) - Allows for concise function declarations and clean [function currying](https://en.wikipedia.org/wiki/Currying). For example:
 
 ```javascript
@@ -172,18 +209,18 @@ const concatArrow = string1 => string2 => `${string1} ${string2}`;
 const joinedTextArrow = concatArrow("Hello")("world!"); // "Hello, world!"
 ```
 
-- [Array.prototype.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [Array.prototype.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 
+- Functional Array Methods - [Array.prototype.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [Array.prototype.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 
 and 
-[Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-- [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
+[Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
+- Immutability - [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
 (Not perfect, reference only so objects + arrays can be mutated, use 
 [Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
-(for both objects and arrays) / something like [Immutable.js](http://facebook.github.io/immutable-js/))
+(for both objects and arrays) or something like [Immutable.js](http://facebook.github.io/immutable-js/))
+
+As well as the built in functionality modern JavaScript gives us, I am planning to make use of the functional library [Ramda](http://ramdajs.com/). This library adds many useful helper functions that I would have to otherwise write myself, such as [R.compose](http://ramdajs.com/docs/#compose), [R.merge](http://ramdajs.com/docs/#merge), [R.memoize](http://ramdajs.com/docs/#memoize) etc. Unlike other utility libraries like [Lodash](https://lodash.com/), Ramda conforms to functional programming ideas (For example, some Lodash functions mutate instead of returning such as [_.remove](https://lodash.com/docs/4.17.4#remove)), and provides nice extras like auto-currying etc.
 
 #### Real Time Data Processing
-Placeholder.
-
-**TODO: ADD MORE COMPUTATIONAL METHODS THAT CAN BE USED**
+Eventually, I will attempt to implement real time search functionality for the navigation, as well as real time sub-forum updates like updating the current amount of votes updates without a page refresh. This will be achieved through the use of [GraphQL Subscriptions](http://dev.apollodata.com/react/subscriptions.html).
 
 ## The Analysis
 
@@ -245,10 +282,54 @@ Placeholder.
 #### Sign-up Page
 ![Sign-up Page](/docs/images/sign-up.jpg)
 
-### Software Requirements and technologies
-**ALL** of the code and technologies that are used for this project will be open source.
+#### Component Design
+![Component Design](/docs/images/component-design.jpg)
 
-#### Libraries / Tools To Be used
+As I am using [React](http://reactjs.com) to build my UI, I can think of the site being composed of individual components with isolated responsibilities. Here I will define what each of these main component's roles are, and what they will render when.
+
+##### Logo
+This component will have the sole responsibility to render Corum's logo in the top left of the page along side the header component. The logo will be a link to '/' using [react-router's Link component](https://reacttraining.com/react-router/web/api/Link).
+
+##### Header
+This component will have 2 different states. 1 for when the user is logged in, and 1 for when they are not. 
+
+When the user is logged in, the component will render a greeting message and a 'logout' button (As shown [here](#new-post)) The logout button will be a Link component that links to '/logout'. This route will log the user out of the site, then it will redirect them to '/'.
+
+When the user is not logged in, the component will render 2 buttons. The 1st button will be a 'Sign Up' Link component that links to '/signup'. The 2nd button will be a 'Login' Link component that links to '/login'.
+
+Both the 'Sign up' and 'Login' buttons will be a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink). This means that when a user clicks 1 of these buttons and is directed to the corresponding route, the link will give visual feedback to the user, for example changing the color of it.
+
+##### Navigation
+This component will also have 2 different states like the Header component.
+
+When the user is not logged in, only the 'All sub-forums' section will render. (As shown [here](#login-page))  This 'All sub-forums' component will show all of the sub-forums that Corum has with a search bar at the top. If the sub-forum list is longer than the components height, it will scroll independently of the page, with the search bar staying at the top of the navigation.
+
+When the user is logged in, a 'favorites' section will also be rendered above the 'All sub-forums' section. (As shown [here](#new-post)) The 'favorites' section will list the sub-forums that the user has added to their favorites. A user can add a sub-forum to their favorites by clicking on the '+' icon next to the sub-forum in the 'All sub-forums' section. The '+' icon is only rendered if the user is logged in. A user can remove a sub-forum from their favorites by clicking the '-' sign next to the sub-forum they wish to remove. The 'favorites' section will be very similar to the 'All sub-forums' section, however it will not have a search bar.
+
+Each sub-forum in either section will be a Link component (In particular a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink) so that the user knows what sub-forum they are in when looking at the navigation) that will link to a sub-forum in the pattern '/subforum/:subforum'. (For example, '/subforum/programming') 
+
+##### Main Content
+This component will handle nearly all of the client side routing. Whatever action a user takes, such as clicking on a sub-forum, pressing the 'Sign Up' or 'Login' buttons, clicking on a post within a sub-forum etc. (Shown in the [GUI Design section](#gui-design))
+
+This will be achieved by using the library [react-router](https://reacttraining.com/react-router/web) and their [Route component](https://reacttraining.com/react-router/web/api/Route). Along with their [Switch component](https://reacttraining.com/react-router/web/api/Switch) so that routes render exclusively, this means that I can conditionally render components based on the users current path. 
+
+The planned routes are as follows:
+- ['/'](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
+- ['/subforum/:subforum'](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (the ':subforum' variable)
+  - ['/subforum/:subforum/:post'](#post-view-logged-in) - Displays the post selected. (the ':post' variable)
+  - ['/subforum/:subforum/new'](#new-post) - Displays the new post entry fields. (The post will be submitted to ':subforum')
+- ['/login'](#login-page) - Displays a login screen (Username + password)
+- ['/signup'](#sign-up-page) - Displays a sign up screen (Username + password + password)
+
+##### Social Links
+This component will display social links for corum, such as twitter, github, email etc.
+
+##### Footer
+This component will display the credits for corum with a link to my github profile.
+
+### Libraries / Tools To Be used
+**ALL** of the code and technologies that will be used for this project are open source.
+
 - **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript) with [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)
 - **Runtime for development** - [Node.js 8.x.x](https://nodejs.org) and [Chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - **VCS ([Version Control System](https://en.wikipedia.org/wiki/Version_control))** - [Git](https://git-scm.com/) with [Github](https://github.com/joealden/corum)
@@ -264,38 +345,6 @@ Placeholder.
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Testing** - [Jest](https://facebook.github.io/jest/)
 
-#### Development and Deployment 
-
-The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports. Development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
-
-To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
-```bash
-git clone https://github.com/joealden/corum.git
-```
-
-If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
-
-##### Development (Setting Up a Local Development Server)
-[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
-
-```bash
-cd client
-yarn
-yarn start
-```
-This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
-
-##### Deployment (Creating a Production Build)
-
-Production ready files can be produced by running the following commands inside the `corum` directory:
-
-```bash
-cd client 
-yarn 
-yarn build
-``` 
-This will produce a `build` directory inside `client`. This folder contains all the files required to deploy the site in production mode. This items can now be hosted on any HTTP server.
-
 ### Success Criteria
 - Functioning login and sign-up system
 - Ability to create posts
@@ -303,6 +352,7 @@ This will produce a `build` directory inside `client`. This folder contains all 
 - Ability to vote on each post and have the self-governing system work
 - Have a fluid UX
 - Have a simple, usable UI.
+- Make the application real time
 
 ### Limitations of the Project
 - Account Recovery
