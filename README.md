@@ -25,6 +25,7 @@ For my Computer Science coursework project, I intend to create an **open, democr
 - [The Analysis](#the-analysis)
   - [Essential Features](#essential-features)
   - [GUI Design](#gui-design)
+  - [Component Design](#component-design)
   - [Libraries / Tools To Be used](#libraries-tools-to-be-used)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
@@ -270,15 +271,15 @@ Eventually, I will attempt to implement real time search functionality for the n
 #### Sign-up Page
 ![Sign-up Page](/docs/images/sign-up.jpg)
 
-#### Component Design
-![Component Design](/docs/images/component-design.jpg)
-
+### Component Design
 As I am using [React](http://reactjs.com) to build my UI, I can think of the site being composed of individual components with isolated responsibilities. Here I will define what each of these main component's roles are, and what they will render when.
 
-##### Logo
+![Component Design](/docs/images/component-design.jpg)
+
+#### Logo
 This component will have the sole responsibility to render Corum's logo in the top left of the page along side the header component. The logo will be a link to '/' using [react-router's Link component](https://reacttraining.com/react-router/web/api/Link).
 
-##### Header
+#### Header
 This component will have 2 different states. 1 for when the user is logged in, and 1 for when they are not. 
 
 When the user is logged in, the component will render a greeting message and a 'logout' button (As shown [here](#new-post)) The logout button will be a Link component that links to '/logout'. This route will log the user out of the site, then it will redirect them to '/'.
@@ -287,7 +288,7 @@ When the user is not logged in, the component will render 2 buttons. The 1st but
 
 Both the 'Sign up' and 'Login' buttons will be a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink). This means that when a user clicks 1 of these buttons and is directed to the corresponding route, the link will give visual feedback to the user, for example changing the color of it.
 
-##### Navigation
+#### Navigation
 This component will also have 2 different states like the Header component.
 
 When the user is not logged in, only the 'All sub-forums' section will render. (As shown [here](#login-page))  This 'All sub-forums' component will show all of the sub-forums that Corum has with a search bar at the top. If the sub-forum list is longer than the components height, it will scroll independently of the page, with the search bar staying at the top of the navigation.
@@ -296,7 +297,7 @@ When the user is logged in, a 'favorites' section will also be rendered above th
 
 Each sub-forum in either section will be a Link component (In particular a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink) so that the user knows what sub-forum they are in when looking at the navigation) that will link to a sub-forum in the pattern '/subforum/:subforum'. (For example, '/subforum/programming') 
 
-##### Main Content
+#### Main Content
 This component will handle nearly all of the client side routing. Whatever action a user takes, such as clicking on a sub-forum, pressing the 'Sign Up' or 'Login' buttons, clicking on a post within a sub-forum etc. (Shown in the [GUI Design section](#gui-design))
 
 This will be achieved by using the library [react-router](https://reacttraining.com/react-router/web) and their [Route component](https://reacttraining.com/react-router/web/api/Route). Along with their [Switch component](https://reacttraining.com/react-router/web/api/Switch) so that routes render exclusively, this means that I can conditionally render components based on the users current path. 
@@ -309,10 +310,10 @@ The planned routes are as follows:
 - ['/login'](#login-page) - Displays a login screen (Username + password)
 - ['/signup'](#sign-up-page) - Displays a sign up screen (Username + password + password)
 
-##### Social Links
+#### Social Links
 This component will display social links for corum, such as twitter, github, email etc.
 
-##### Footer
+#### Footer
 This component will display the credits for corum with a link to my github profile.
 
 ### Libraries / Tools To Be used
