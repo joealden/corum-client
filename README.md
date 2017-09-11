@@ -297,7 +297,8 @@ Eventually, I will attempt to implement real time search functionality for the n
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Testing** - [Jest](https://facebook.github.io/jest/)
 
-It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to use on the latest version of Chrome or Firefox.
+#### Browser Compatibility
+**It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.**
 
 ### Success Criteria
 - Functioning login and sign-up system
