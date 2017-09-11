@@ -10,7 +10,9 @@
     "repo",
     "signup",
     "subforum",
-    "flexbox"
+    "flexbox",
+    "backend",
+    "graphcool"
   ],
 
   "editor.fontSize": 15,
