@@ -44,7 +44,7 @@ const GridLayout = styled.div`
   width: 100vw;
   text-align: center;
   display: grid;
-  grid-template-rows: 80px auto 80px;
+  grid-template-rows: 80px auto 50px;
   grid-template-columns: 16em auto;
   grid-template-areas: "logo header" "nav main" "footer-left footer-right";
 
@@ -112,7 +112,7 @@ const FooterRight = styled.footer`
   grid-area: footer-right;
   background-color: #c0c0c0;
   border-top: 2px solid black;
-  padding-right: 30px;
+  padding-right: 20px;
 
   > p > a,
   > p > a:visited {
@@ -139,8 +139,8 @@ const Button = styled.a`
 `;
 
 const SocialMediaCircle = styled.span`
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   background-color: black;
   border: 2px solid black;
   border-radius: 50%;
