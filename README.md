@@ -31,13 +31,13 @@ For my Computer Science coursework project, I intend to create an **open, democr
   - [Limitations of the Project](#limitations-of-the-project)
 
 ## Setup (Software Requirements)
-The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports. Development will be happening on [Solus](https://solus-project.com/). (A GNU/Linux distribution)
+The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports.
 
 To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
+
 ```bash
 git clone https://github.com/joealden/corum.git
 ```
-
 If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
 
 #### Browser Compatibility
@@ -83,7 +83,6 @@ While it is one thing to keep the platform itself democratic, it is also importa
 Being open source means that anyone who wants to contribute can. They can easily propose new features, report and/or fix bugs, and freely read the source code knowing that anyone else can too. Developers cannot go hiding things in the source code like unwarranted tracking etc. Every decision made by the project is made _with_ the users, not _for_ the users.
 
 This means that ultimately, the users of the forum decide the direction that Corum takes in all aspects.
-
 
 ## The Investigation
 
@@ -152,7 +151,7 @@ While the idea of Reddit is quite simple, in my opinion and many others (as show
 I believe that there is space in the forum 'business' for a site that is simpler than Reddit, but one with more features than Hacker News (As it is only for developers). This is where Corum could fit in.
 
 #### [phpBB](https://www.phpbb.com/) (Open source)
-**phpBB** has different goals than Corum or Reddit. Instead of being a designed to run from one website, it is designed to be used by anyone who wants to setup their own forum. An example of where phpBB is deployed is at [Solus](https://solus-project.com/forums/). This can be seen when looking at the pages footer. 
+**phpBB** has different goals than Corum or Reddit. Instead of being a designed to run from one website, it is designed to be used by anyone who wants to setup their own forum. An example of where phpBB is deployed is at [Solus' Forum](https://solus-project.com/forums/). This can be seen when looking at the pages footer. 
 
 phpBB can be themed so that it can fit the style of any website it is being run on. This means that the look or layout of phpBB isn't really an issue as it can be easily altered. However, as Corum will be a more similar project to Reddit, Corum does not need this extra complexity of being able to change its looks. I like the simplicity of Solus' forum theme, and Corum will take some inspiration from its looks.
 
@@ -175,7 +174,7 @@ Related to the method above, searching will be used into the searchable navigati
 ##### Object Oriented (OO)
 Unlike languages such as Java or C++ that have class based OO, JavaScript uses [prototypical inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain). Although JavaScript's prototype chain is more powerful and flexible, it used to be hard for beginners to use that came from a classical OO background. With the introduction of the [class syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) in ES2015, which is just syntactic sugar, JavaScript OO is much easier to approach. If and when classes are used in the source code, it will be using the newer ES2015 syntax.
 
-In React, Components that have [state or use life cycle hooks](https://facebook.github.io/react/docs/state-and-lifecycle.html) must use the ES2015 class syntax and extend the base [Component](https://facebook.github.io/react/docs/react-component.html) class that is provided by the library. This takes advantage of the OO paradigm's easy state encapsulation. Also, some libraries that I intend to use such as Apollo Client ([As described here](#software-requirements-and-technologies)) use the OO [new](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) keyword to create new instances of objects.
+In React, Components that have [state or use life cycle hooks](https://facebook.github.io/react/docs/state-and-lifecycle.html) must use the ES2015 class syntax and extend the base [Component](https://facebook.github.io/react/docs/react-component.html) class that is provided by the library. This takes advantage of the OO paradigm's easy state encapsulation. Also, some libraries that I intend to use such as Apollo Client ([As described here](#software-requirements-and-technologies)) use the OO [`new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) keyword to create new instances of objects.
  
 ##### Declarative
 On Reacts front page, it shows that one of its main selling points is that it allows developers to write declarative UI code. This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model). I just tell React _what_ I want to render.
@@ -198,12 +197,12 @@ const concatArrow = string1 => string2 => `${string1} ${string2}`;
 const joinedTextArrow = concatArrow("Hello")("world!"); // "Hello, world!"
 ```
 
-- Functional Array Methods - [Array.prototype.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [Array.prototype.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 
+- Functional Array Methods - [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [`Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 
 and 
-[Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
-- Immutability - [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
+[`Array.prototype.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
+- Immutability - [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
 (Not perfect, reference only so objects + arrays can be mutated, use 
-[Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
+[`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
 (for both objects and arrays) or something like [Immutable.js](http://facebook.github.io/immutable-js/))
 
 As well as the built in functionality modern JavaScript gives us, I am planning to make use of the functional library [Ramda](http://ramdajs.com/). This library adds many useful helper functions that I would have to otherwise write myself, such as [R.compose](http://ramdajs.com/docs/#compose), [R.merge](http://ramdajs.com/docs/#merge), [R.memoize](http://ramdajs.com/docs/#memoize) etc. Unlike other utility libraries like [Lodash](https://lodash.com/), Ramda conforms to functional programming ideas (For example, some Lodash functions mutate instead of returning such as [_.remove](https://lodash.com/docs/4.17.4#remove)), and provides nice extras like auto-currying etc.
@@ -277,38 +276,38 @@ As I am using [React](http://reactjs.com) to build my UI, I can think of the sit
 ![Component Design](/docs/images/component-design.jpg)
 
 #### Logo
-This component will have the sole responsibility to render Corum's logo in the top left of the page along side the header component. The logo will be a link to '/' using [react-router's Link component](https://reacttraining.com/react-router/web/api/Link).
+This component will have the sole responsibility to render Corum's logo in the top left of the page along side the header component. The logo will be a link to `'/'` using [react-router's Link component](https://reacttraining.com/react-router/web/api/Link).
 
 #### Header
 This component will have 2 different states. 1 for when the user is logged in, and 1 for when they are not. 
 
-When the user is logged in, the component will render a greeting message and a 'logout' button (As shown [here](#new-post)) The logout button will be a Link component that links to '/logout'. This route will log the user out of the site, then it will redirect them to '/'.
+When the user is logged in, the component will render a greeting message and a `Logout` button (As shown [here](#new-post)) The logout button will be a Link component that links to '/logout'. This route will log the user out of the site, then it will redirect them to `'/'`.
 
-When the user is not logged in, the component will render 2 buttons. The 1st button will be a 'Sign Up' Link component that links to '/signup'. The 2nd button will be a 'Login' Link component that links to '/login'.
+When the user is not logged in, the component will render 2 buttons. The 1st button will be a `Sign Up` Link component that links to `'/signup'`. The 2nd button will be a `Login` Link component that links to `'/login'`.
 
-Both the 'Sign up' and 'Login' buttons will be a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink). This means that when a user clicks 1 of these buttons and is directed to the corresponding route, the link will give visual feedback to the user, for example changing the color of it.
+Both the `Sign up` and `Login` buttons will be a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink). This means that when a user clicks 1 of these buttons and is directed to the corresponding route, the link will give visual feedback to the user, for example changing the color of it.
 
 #### Navigation
 This component will also have 2 different states like the Header component.
 
-When the user is not logged in, only the 'All sub-forums' section will render. (As shown [here](#login-page))  This 'All sub-forums' component will show all of the sub-forums that Corum has with a search bar at the top. If the sub-forum list is longer than the components height, it will scroll independently of the page, with the search bar staying at the top of the navigation.
+When the user is not logged in, only the `All sub-forums` section will render. (As shown [here](#login-page)) This `All sub-forums` component will show all of the sub-forums that Corum has with a search bar at the top. If the sub-forum list is longer than the components height, it will scroll independently of the page, with the search bar staying at the top of the navigation.
 
-When the user is logged in, a 'favorites' section will also be rendered above the 'All sub-forums' section. (As shown [here](#new-post)) The 'favorites' section will list the sub-forums that the user has added to their favorites. A user can add a sub-forum to their favorites by clicking on the '+' icon next to the sub-forum in the 'All sub-forums' section. The '+' icon is only rendered if the user is logged in. A user can remove a sub-forum from their favorites by clicking the '-' sign next to the sub-forum they wish to remove. The 'favorites' section will be very similar to the 'All sub-forums' section, however it will not have a search bar.
+When the user is logged in, a `favorites` section will also be rendered above the `All sub-forums` section. (As shown [here](#new-post)) The `favorites` section will list the sub-forums that the user has added to their `favorites`. A user can add a sub-forum to their favorites by clicking on the `+` icon next to the sub-forum in the 'All sub-forums' section. The `+` icon is only rendered if the user is logged in. A user can remove a sub-forum from their favorites by clicking the `-` sign next to the sub-forum they wish to remove. The `favorites` section will be very similar to the `All sub-forums` section, however it will not have a search bar.
 
-Each sub-forum in either section will be a Link component (In particular a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink) so that the user knows what sub-forum they are in when looking at the navigation) that will link to a sub-forum in the pattern '/subforum/:subforum'. (For example, '/subforum/programming') 
+Each sub-forum in either section will be a Link component (In particular a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink) so that the user knows what sub-forum they are in when looking at the navigation) that will link to a sub-forum in the pattern `'/subforum/:subforum'`. (For example, `'/subforum/programming'`) 
 
 #### Main Content
-This component will handle nearly all of the client side routing. Whatever action a user takes, such as clicking on a sub-forum, pressing the 'Sign Up' or 'Login' buttons, clicking on a post within a sub-forum etc. (Shown in the [GUI Design section](#gui-design))
+This component will handle nearly all of the client side routing. Whatever action a user takes, such as clicking on a sub-forum, pressing the `Sign Up` or `Login` buttons, clicking on a post within a sub-forum etc. (Shown in the [GUI Design section](#gui-design))
 
 This will be achieved by using the library [react-router](https://reacttraining.com/react-router/web) and their [Route component](https://reacttraining.com/react-router/web/api/Route). Along with their [Switch component](https://reacttraining.com/react-router/web/api/Switch) so that routes render exclusively, this means that I can conditionally render components based on the users current path. 
 
 The planned routes are as follows:
-- ['/'](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
-- ['/subforum/:subforum'](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (the ':subforum' variable)
-  - ['/subforum/:subforum/:post'](#post-view-logged-in) - Displays the post selected. (the ':post' variable)
-  - ['/subforum/:subforum/new'](#new-post) - Displays the new post entry fields. (The post will be submitted to ':subforum')
-- ['/login'](#login-page) - Displays a login screen (Username + password)
-- ['/signup'](#sign-up-page) - Displays a sign up screen (Username + password + password)
+- [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
+- [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
+  - [`'/subforum/:subforum/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
+  - [`'/subforum/:subforum/new'`](#new-post) - Displays the new post entry fields. (The post will be submitted to `:subforum`)
+- [`'/login'`](#login-page) - Displays a login screen (Username + password)
+- [`'/signup'`](#sign-up-page) - Displays a sign up screen (Username + password + password)
 
 #### Social Links
 This component will display social links for corum, such as twitter, github, email etc.
@@ -333,6 +332,10 @@ This component will display the credits for corum with a link to my github profi
 - **JS Compiler** - [babel](https://babeljs.io/)
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Testing** - [Jest](https://facebook.github.io/jest/)
+
+#### My Development Environment
+- **Operating System** - [Solus](https://solus-project.com/) - A GNU/Linux distribution
+- **Code Editor** - [Visual Studio Code](https://code.visualstudio.com/) - The `.vscode` directory at the root of the project is present so that if someone else opens the project in vscode, the editor will be automatically configured with project specific settings, such as tab spacing etc. Also, they will be able to install the extensions used by me for this project under the `extensions > recommended` panel.
 
 ### Success Criteria
 - Functioning login and sign-up system
