@@ -40,7 +40,7 @@ git clone https://github.com/joealden/corum.git
 If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
 
 #### Browser Compatibility
-**It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.**
+It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.
 
 ### Development
 [create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
@@ -172,21 +172,9 @@ Related to the method above, searching will be used into the searchable navigati
 
 #### Use of Multiple Programming Paradigms
 ##### Object Oriented (OO)
-Unlike languages such as Java or C++ that have class based OO, JavaScript uses 
-[prototypical inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain).
-Although JavaScript's prototype chain is more powerful and flexible, it used to be hard for beginners to use that came from a classical OO background. With the introduction of the 
-[class syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 
-in ES2015, which is just syntactic sugar, JavaScript OO is much easier to approach. If and when classes are used in the source code, it will be using the newer ES2015 syntax.
+Unlike languages such as Java or C++ that have class based OO, JavaScript uses [prototypical inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain). Although JavaScript's prototype chain is more powerful and flexible, it used to be hard for beginners to use that came from a classical OO background. With the introduction of the [class syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) in ES2015, which is just syntactic sugar, JavaScript OO is much easier to approach. If and when classes are used in the source code, it will be using the newer ES2015 syntax.
 
-In React, Components that have 
-[state or use life cycle hooks](https://facebook.github.io/react/docs/state-and-lifecycle.html) 
-must use the ES2015 class syntax and extend the base 
-[Component](https://facebook.github.io/react/docs/react-component.html) 
-class that is provided by the library. This takes advantage of the OO paradigm's easy state encapsulation. Also, some libraries that I intend to use such as Apollo Client 
-([As described here](#software-requirements-and-technologies)) 
-use the OO 
-[new](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) 
-keyword to create new instances of objects.
+In React, Components that have [state or use life cycle hooks](https://facebook.github.io/react/docs/state-and-lifecycle.html) must use the ES2015 class syntax and extend the base [Component](https://facebook.github.io/react/docs/react-component.html) class that is provided by the library. This takes advantage of the OO paradigm's easy state encapsulation. Also, some libraries that I intend to use such as Apollo Client ([As described here](#software-requirements-and-technologies)) use the OO [new](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) keyword to create new instances of objects.
  
 ##### Declarative
 On Reacts front page, it shows that one of its main selling points is that it allows developers to write declarative UI code. This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model). I just tell React _what_ I want to render.
