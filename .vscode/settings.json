@@ -31,5 +31,17 @@
   "workbench.startupEditor": "none",
 
   "zenMode.hideActivityBar": false,
-  "zenMode.hideTabs": false
+  "zenMode.hideTabs": false,
+
+  "cSpell.enabledLanguageIds": ["latex", "markdown", "plaintext", "text"],
+  "cSpell.userWords": [
+    "Corum",
+    "corum's",
+    "reddit",
+    "solus",
+    "repo",
+    "signup",
+    "subforum",
+    "flexbox"
+  ]
 }
