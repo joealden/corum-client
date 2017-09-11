@@ -39,6 +39,9 @@ git clone https://github.com/joealden/corum.git
 
 If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
 
+#### Browser Compatibility
+**It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.**
+
 ### Development
 [create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
 
@@ -296,9 +299,6 @@ Eventually, I will attempt to implement real time search functionality for the n
 - **JS Compiler** - [babel](https://babeljs.io/)
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Testing** - [Jest](https://facebook.github.io/jest/)
-
-#### Browser Compatibility
-**It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.**
 
 ### Success Criteria
 - Functioning login and sign-up system
