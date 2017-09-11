@@ -191,7 +191,7 @@ On Reacts front page, it shows that one of its main selling points is that it al
 ##### Functional
 Programming in a functional style helps improve code maintainability, readability, and [more](https://en.wikipedia.org/wiki/Functional_programming). JavaScript provides great tools to build software in a functional paradigm, this includes features such as:
 
-- [First-class Functions](https://en.wikipedia.org/wiki/First-class_function) - This means that JavaScript treats functions the same as any other variable. Functions can be passed as arguments to functions, returned from functions, assigned to variables and stored injoe objects and arrays.
+- [First-class Functions](https://en.wikipedia.org/wiki/First-class_function) - This means that JavaScript treats functions the same as any other variable. Functions can be passed as arguments to functions, returned from functions, assigned to variables and stored in objects and arrays.
 - [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) - Allows for concise function declarations and clean [function currying](https://en.wikipedia.org/wiki/Currying). For example:
 
 ```javascript
