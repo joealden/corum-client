@@ -40,6 +40,11 @@ git clone https://github.com/joealden/corum.git
 ```
 If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
 
+#### Corum's Backend
+I am planning to use [graphcool](https://www.graph.cool/) as my API and user authentication backend. This will allow me to easily develop the client side of the application without needing to worry about the implementation details of the GraphQL backend that it runs on top of. Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
+
+If time permits, I will eventually move away from graphcool when the frontend of the site is complete, so that it will be easier for anyone to setup their own Corum instance.
+
 #### Browser Compatibility
 It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.
 
