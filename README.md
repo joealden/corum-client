@@ -336,6 +336,7 @@ This component will display the credits for corum with a link to my github profi
 #### My Development Environment
 - **Operating System** - [Solus](https://solus-project.com/) - A GNU/Linux distribution
 - **Code Editor** - [Visual Studio Code](https://code.visualstudio.com/) - The `.vscode` directory at the root of the project is present so that if someone else opens the project in vscode, the editor will be automatically configured with project specific settings, such as tab spacing etc. Also, they will be able to install the extensions used by me for this project under the `extensions > recommended` panel.
+- **Web Browser (Testing)** - [Firefox 55](https://www.mozilla.org/en-US/firefox/new/) & [Chrome 61](https://www.google.com/chrome/browser/desktop/index.html)
 
 ### Success Criteria
 - Functioning login and sign-up system
