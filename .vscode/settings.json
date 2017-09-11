@@ -1,16 +1,7 @@
 {
-  /* 
-  It is worth noting that these settings are not just workspace
-  settings, I am using this file to share user settings between 
-  my desktop and my laptop. 
-  
-  Feel free to override any user settings!
-  */
-
-  // Workspace Settings
-  "editor.tabSize": 2, // enforced by Prettier
-  "editor.formatOnSave": true, // runs prettier on file save
-  "cSpell.enabledLanguageIds": ["latex", "markdown", "plaintext", "text"], // only runs spell checker on these type of files
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "cSpell.enabledLanguageIds": ["latex", "markdown", "plaintext", "text"],
   "cSpell.words": [
     "Corum",
     "corum's",
@@ -20,9 +11,8 @@
     "signup",
     "subforum",
     "flexbox"
-  ], // words that are used in the docs that are not recognised, please add if more are used and show warnings.
+  ],
 
-  // User Settings
   "editor.fontSize": 15,
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
