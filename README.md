@@ -282,6 +282,51 @@ Eventually, I will attempt to implement real time search functionality for the n
 #### Sign-up Page
 ![Sign-up Page](/docs/images/sign-up.jpg)
 
+#### Component Design
+![Component Design](/docs/images/component-design.jpg)
+
+As I am using [React](http://reactjs.com) to build my UI, I can think of the site being composed of individual components with isolated responsibilities. Here I will define what each of these main component's roles are, and what they will render when.
+
+##### Logo
+This component will have the sole responsibility to render Corum's logo in the top left of the page along side the header component. The logo will be a link to '/' using [react-router's Link component](https://reacttraining.com/react-router/web/api/Link).
+
+##### Header
+This component will have 2 different states. 1 for when the user is logged in, and 1 for when they are not. 
+
+When the user is logged in, the component will render a greeting message and a 'logout' button (As shown [here](#new-post)) The logout button will be a Link component that links to '/logout'. This route will log the user out of the site, then it will redirect them to '/'.
+
+When the user is not logged in, the component will render 2 buttons. The 1st button will be a 'Sign Up' Link component that links to '/signup'. The 2nd button will be a 'Login' Link component that links to '/login'.
+
+Both the 'Sign up' and 'Login' buttons will be a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink). This means that when a user clicks 1 of these buttons and is directed to the corresponding route, the link will give visual feedback to the user, for example changing the color of it.
+
+##### Navigation
+This component will also have 2 different states like the Header component.
+
+When the user is not logged in, only the 'All sub-forums' section will render. (As shown [here](#login-page))  This 'All sub-forums' component will show all of the sub-forums that Corum has with a search bar at the top. If the sub-forum list is longer than the components height, it will scroll independently of the page, with the search bar staying at the top of the navigation.
+
+When the user is logged in, a 'favorites' section will also be rendered above the 'All sub-forums' section. (As shown [here](#new-post)) The 'favorites' section will list the sub-forums that the user has added to their favorites. A user can add a sub-forum to their favorites by clicking on the '+' icon next to the sub-forum in the 'All sub-forums' section. The '+' icon is only rendered if the user is logged in. A user can remove a sub-forum from their favorites by clicking the '-' sign next to the sub-forum they wish to remove. The 'favorites' section will be very similar to the 'All sub-forums' section, however it will not have a search bar.
+
+Each sub-forum in either section will be a Link component (In particular a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink) so that the user knows what sub-forum they are in when looking at the navigation) that will link to a sub-forum in the pattern '/subforum/:subforum'. (For example, '/subforum/programming') 
+
+##### Main Content
+This component will handle nearly all of the client side routing. Whatever action a user takes, such as clicking on a sub-forum, pressing the 'Sign Up' or 'Login' buttons, clicking on a post within a sub-forum etc. (Shown in the [GUI Design section](#gui-design))
+
+This will be achieved by using the library [react-router](https://reacttraining.com/react-router/web) and their [Route component](https://reacttraining.com/react-router/web/api/Route). Along with their [Switch component](https://reacttraining.com/react-router/web/api/Switch) so that routes render exclusively, this means that I can conditionally render components based on the users current path. 
+
+The planned routes are as follows:
+- ['/'](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
+- ['/subforum/:subforum'](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (the ':subforum' variable)
+  - ['/subforum/:subforum/:post'](#post-view-logged-in) - Displays the post selected. (the ':post' variable)
+  - ['/subforum/:subforum/new'](#new-post) - Displays the new post entry fields. (The post will be submitted to ':subforum')
+- ['/login'](#login-page) - Displays a login screen (Username + password)
+- ['/signup'](#sign-up-page) - Displays a sign up screen (Username + password + password)
+
+##### Social Links
+This component will display social links for corum, such as twitter, github, email etc.
+
+##### Footer
+This component will display the credits for corum with a link to my github profile.
+
 ### Libraries / Tools To Be used
 **ALL** of the code and technologies that will be used for this project are open source.
 
