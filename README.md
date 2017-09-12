@@ -21,11 +21,11 @@ For my Computer Science coursework project, I intend to create an **open, democr
   - [Interviews](#interviews)
   - [Focus Groups (The End User)](#focus-groups-the-end-user)
   - [Research into Existing Systems](#research-into-existing-systems)
-  - [Computational Methods Required](#computational-methods-required)
 - [The Analysis](#the-analysis)
   - [Essential Features](#essential-features)
   - [GUI Design](#gui-design)
   - [Component Design](#component-design)
+  - [Computational Methods Required](#computational-methods-required)
   - [Libraries / Tools To Be used](#libraries-tools-to-be-used)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
@@ -133,7 +133,7 @@ I will be interviewing people that I know are users of Reddit to get an idea of 
 
 
 ### Focus Groups (The End User)
-In the case of a forum like Reddit, as evident from the [above interviews](#interviews), the end user / audience of a project like this can be wide. For example, on Reddit, there are sub forums ranging from politics to comedy to gaming to programming. Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a Google search. In the following sub sections, I will try and outline what Corum should do to try and cater to the needs of average users.
+In the case of a forum like Reddit, as evident from the [above interviews](#interviews), the end user / audience of a project like this can be wide. For example, on Reddit, there are sub forums ranging from politics to comedy to programming. Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a Google search. In the following sub sections, I will try and outline what Corum should do to try and cater to the needs of these two types of users.
  
 #### Users That Have Different Interests
 Users of the site will have different interests, which means that Corum needs to work well for all, and the site should not be designed for one type of content. Good computer literacy should not be a given, so the interface should be layed out in a simple manner. Colour should also be kept to a minimal to keep the site looking neutral.
@@ -159,61 +159,6 @@ I believe that there is space in the forum 'business' for a site that is simpler
 **phpBB** has different goals than Corum or Reddit. Instead of being a designed to run from one website, it is designed to be used by anyone who wants to setup their own forum. An example of where phpBB is deployed is at [Solus' Forum](https://solus-project.com/forums/). This can be seen when looking at the pages footer. 
 
 phpBB can be themed so that it can fit the style of any website it is being run on. This means that the look or layout of phpBB isn't really an issue as it can be easily altered. However, as Corum will be a more similar project to Reddit, Corum does not need this extra complexity of being able to change its looks. I like the simplicity of Solus' forum theme, and Corum will take some inspiration from its looks.
-
-### Computational Methods Required
-Here is a list of computational methods that could be used to create Corum, as well as how they will be useful.
-
-#### Decomposition
-By using [React](https://facebook.github.io/react), I will be able to break the UI down into small, reusable components. This allows developers to create large projects while keeping it manageable and maintainable.
-
-#### Abstraction
-Also with the aid of [React](https://facebook.github.io/react), I will be able to compose smaller components into larger components. (For example, creating button components, and then composing multiple button components into a header component) This means that the complexity of each component can be abstracted away when taking a high level view of composite components.
-
-#### Pattern matching
-As shown in the [GUI design section](#gui-design), I will attempt to implement search functionality into the navigation part of the application. This will require pattern matching. Furthermore, as this project will make use of client-side routing with [react-router](https://reacttraining.com/react-router/), pattern matching is required to direct the user to the correct page.
-
-#### Sorting and searching
-Related to the method above, searching will be used into the searchable navigation. Sorting will also be used, as the user will be able to select the order in which they see posts in the sub-forum.
-
-#### Use of Multiple Programming Paradigms
-##### Object Oriented (OO)
-Unlike languages such as Java or C++ that have class based OO, JavaScript uses [prototypical inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain). Although JavaScript's prototype chain is more powerful and flexible, it used to be hard for beginners to use that came from a classical OO background. With the introduction of the [class syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) in ES2015, which is just syntactic sugar, JavaScript OO is much easier to approach. If and when classes are used in the source code, it will be using the newer ES2015 syntax.
-
-In React, Components that have [state or use life cycle hooks](https://facebook.github.io/react/docs/state-and-lifecycle.html) must use the ES2015 class syntax and extend the base [Component](https://facebook.github.io/react/docs/react-component.html) class that is provided by the library. This takes advantage of the OO paradigm's easy state encapsulation. Also, some libraries that I intend to use such as Apollo Client ([As described here](#software-requirements-and-technologies)) use the OO [`new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) keyword to create new instances of objects.
- 
-##### Declarative
-On Reacts front page, it shows that one of its main selling points is that it allows developers to write declarative UI code. This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model). I just tell React _what_ I want to render.
-
-##### Functional
-Programming in a functional style helps improve code maintainability, readability, and [more](https://en.wikipedia.org/wiki/Functional_programming). JavaScript provides great tools to build software in a functional paradigm, this includes features such as:
-
-- [First-class Functions](https://en.wikipedia.org/wiki/First-class_function) - This means that JavaScript treats functions the same as any other variable. Functions can be passed as arguments to functions, returned from functions, assigned to variables and stored in objects and arrays.
-- [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) - Allows for concise function declarations and clean [function currying](https://en.wikipedia.org/wiki/Currying). For example:
-
-```javascript
-// Regular function expression - not curried
-const concatRegular = function(string1, string2) {
-  return `${string1} ${string2}`;
-}
-const joinedTextRegular = concatRegular("Hello," "world!"); // "Hello, world!"
-
-// Arrow function expression - curried
-const concatArrow = string1 => string2 => `${string1} ${string2}`;
-const joinedTextArrow = concatArrow("Hello")("world!"); // "Hello, world!"
-```
-
-- Functional Array Methods - [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [`Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 
-and 
-[`Array.prototype.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
-- Immutability - [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
-(Not perfect, reference only so objects + arrays can be mutated, use 
-[`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
-(for both objects and arrays) or something like [Immutable.js](http://facebook.github.io/immutable-js/))
-
-As well as the built in functionality modern JavaScript gives us, I am planning to make use of the functional library [Ramda](http://ramdajs.com/). This library adds many useful helper functions that I would have to otherwise write myself, such as [R.compose](http://ramdajs.com/docs/#compose), [R.merge](http://ramdajs.com/docs/#merge), [R.memoize](http://ramdajs.com/docs/#memoize) etc. Unlike other utility libraries like [Lodash](https://lodash.com/), Ramda conforms to functional programming ideas (For example, some Lodash functions mutate instead of returning such as [_.remove](https://lodash.com/docs/4.17.4#remove)), and provides nice extras like auto-currying etc.
-
-#### Real Time Data Processing
-Eventually, I will attempt to implement real time search functionality for the navigation, as well as real time sub-forum updates like updating the current amount of votes updates without a page refresh. This will be achieved through the use of [GraphQL Subscriptions](http://dev.apollodata.com/react/subscriptions.html).
 
 ## The Analysis
 
@@ -320,6 +265,61 @@ This component will display social links for corum, such as twitter, github, ema
 #### Footer
 This component will display the credits for corum with a link to my github profile.
 
+### Computational Methods Required
+Here is a list of computational methods that could be used to create Corum, as well as how they will be useful.
+
+#### Decomposition
+By using [React](https://facebook.github.io/react), I will be able to break the UI down into small, reusable components. This allows developers to create large projects while keeping it manageable and maintainable.
+
+#### Abstraction
+Also with the aid of [React](https://facebook.github.io/react), I will be able to compose smaller components into larger components. (For example, creating button components, and then composing multiple button components into a header component) This means that the complexity of each component can be abstracted away when taking a high level view of composite components.
+
+#### Pattern matching
+As shown in the [GUI design section](#gui-design), I will attempt to implement search functionality into the navigation part of the application. This will require pattern matching. Furthermore, as this project will make use of client-side routing with [react-router](https://reacttraining.com/react-router/), pattern matching is required to direct the user to the correct page.
+
+#### Sorting and searching
+Related to the method above, searching will be used into the searchable navigation. Sorting will also be used, as the user will be able to select the order in which they see posts in the sub-forum.
+
+#### Use of Multiple Programming Paradigms
+##### Object Oriented (OO)
+Unlike languages such as Java or C++ that have class based OO, JavaScript uses [prototypical inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain). Although JavaScript's prototype chain is more powerful and flexible, it used to be hard for beginners to use that came from a classical OO background. With the introduction of the [class syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) in ES2015, which is just syntactic sugar, JavaScript OO is much easier to approach. If and when classes are used in the source code, it will be using the newer ES2015 syntax.
+
+In React, Components that have [state or use life cycle hooks](https://facebook.github.io/react/docs/state-and-lifecycle.html) must use the ES2015 class syntax and extend the base [Component](https://facebook.github.io/react/docs/react-component.html) class that is provided by the library. This takes advantage of the OO paradigm's easy state encapsulation. Also, some libraries that I intend to use such as Apollo Client ([As described here](#software-requirements-and-technologies)) use the OO [`new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) keyword to create new instances of objects.
+ 
+##### Declarative
+On Reacts front page, it shows that one of its main selling points is that it allows developers to write declarative UI code. This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model). I just tell React _what_ I want to render.
+
+##### Functional
+Programming in a functional style helps improve code maintainability, readability, and [more](https://en.wikipedia.org/wiki/Functional_programming). JavaScript provides great tools to build software in a functional paradigm, this includes features such as:
+
+- [First-class Functions](https://en.wikipedia.org/wiki/First-class_function) - This means that JavaScript treats functions the same as any other variable. Functions can be passed as arguments to functions, returned from functions, assigned to variables and stored in objects and arrays.
+- [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) - Allows for concise function declarations and clean [function currying](https://en.wikipedia.org/wiki/Currying). For example:
+
+```javascript
+// Regular function expression - not curried
+const concatRegular = function(string1, string2) {
+  return `${string1} ${string2}`;
+}
+const joinedTextRegular = concatRegular("Hello," "world!"); // "Hello, world!"
+
+// Arrow function expression - curried
+const concatArrow = string1 => string2 => `${string1} ${string2}`;
+const joinedTextArrow = concatArrow("Hello")("world!"); // "Hello, world!"
+```
+
+- Functional Array Methods - [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [`Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 
+and 
+[`Array.prototype.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
+- Immutability - [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
+(Not perfect, reference only so objects + arrays can be mutated, use 
+[`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
+(for both objects and arrays) or something like [Immutable.js](http://facebook.github.io/immutable-js/))
+
+As well as the built in functionality modern JavaScript gives us, I am planning to make use of the functional library [Ramda](http://ramdajs.com/). This library adds many useful helper functions that I would have to otherwise write myself, such as [R.compose](http://ramdajs.com/docs/#compose), [R.merge](http://ramdajs.com/docs/#merge), [R.memoize](http://ramdajs.com/docs/#memoize) etc. Unlike other utility libraries like [Lodash](https://lodash.com/), Ramda conforms to functional programming ideas (For example, some Lodash functions mutate instead of returning such as [_.remove](https://lodash.com/docs/4.17.4#remove)), and provides nice extras like auto-currying etc.
+
+#### Real Time Data Processing
+Eventually, I will attempt to implement real time search functionality for the navigation, as well as real time sub-forum updates like updating the current amount of votes updates without a page refresh. This will be achieved through the use of [GraphQL Subscriptions](http://dev.apollodata.com/react/subscriptions.html).
+
 ### Libraries / Tools To Be used
 **ALL** of the code and technologies that will be used for this project are open source.
 
@@ -344,13 +344,15 @@ This component will display the credits for corum with a link to my github profi
 - **Web Browser (Testing)** - [Firefox 55](https://www.mozilla.org/en-US/firefox/new/) & [Chrome 61](https://www.google.com/chrome/browser/desktop/index.html) (The latest versions)
 
 ### Success Criteria
-- Functioning login and sign-up system
-- Ability to create posts
-- Ability to comment on posts
-- Ability to vote on each post and have the self-governing system work
-- Have a fluid UX
-- Have a simple, usable UI.
-- Make the application real time
+- The UI should resemble the layout seen in the [GUI Design section](#gui-design)
+- Users can click on subforums, and the site displays the subforum's posts.
+- Users can click on posts, and the site displays the content of the post.
+- Users can click on the `signup` button and signup to the site (Details saved to backend)
+- Users can click on the `login` / `logout` button and login to / logout of the site (Check details against the backend)
+- Logged in users can add & remove subforums to their `favorites`
+- Logged in users can vote on posts
+- Logged in users can comment on posts
+- Logged in users can create new posts
 
 ### Limitations of the Project
 - Account Recovery
