@@ -272,7 +272,7 @@ Here is a list of computational methods that could be used to create Corum, as w
 By using [React](https://facebook.github.io/react), I will be able to break the UI down into small, reusable components. This allows developers to create large projects while keeping it manageable and maintainable.
 
 #### Abstraction
-Also with the aid of [React](https://facebook.github.io/react), I will be able to compose smaller components into larger components. (For example, creating button components, and then composing multiple button components into a header component) This means that the complexity of each component can be abstracted away when taking a high level view of composite components.
+Also with the aid of [React](https://facebook.github.io/react), I will be able to compose large components from multiple smaller components. (For example, the `Header` component will be composed of two `Button` components) This means that the complexity of each component can be abstracted away when taking a high level view of composite components.
 
 #### Pattern matching
 As shown in the [GUI design section](#gui-design), I will attempt to implement search functionality into the navigation part of the application. This will require pattern matching. Furthermore, as this project will make use of client-side routing with [react-router](https://reacttraining.com/react-router/), pattern matching is required to direct the user to the correct page.
