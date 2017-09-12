@@ -251,7 +251,7 @@ This component will handle nearly all of the client side routing. Whatever actio
 
 This will be achieved by using the library [react-router](https://reacttraining.com/react-router/web) and their [Route component](https://reacttraining.com/react-router/web/api/Route). Along with their [Switch component](https://reacttraining.com/react-router/web/api/Switch) so that routes render exclusively, this means that I can conditionally render components based on the users current path. 
 
-The planned routes are as follows:
+##### Planned Routes
 - [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
 - [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
   - [`'/subforum/:subforum/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
