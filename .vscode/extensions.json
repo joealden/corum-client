@@ -2,6 +2,7 @@
   "recommendations": [
     "formulahendry.auto-close-tag",
     "formulahendry.auto-rename-tag",
+    "CoenraadS.bracket-pair-colorizer",
     "wmaurer.change-case",
     "msjsdiag.debugger-for-chrome",
     "dbaeumer.vscode-eslint",
@@ -14,6 +15,7 @@
     "christian-kohler.npm-intellisense",
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
+    "alefragnani.project-manager",
     "chrmarti.regex",
     "cssho.vscode-svgviewer",
     "robertohuertasm.vscode-icons",
