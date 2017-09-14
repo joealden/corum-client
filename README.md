@@ -11,13 +11,10 @@
 For my Computer Science coursework project, I intend to create an **open, democratic & self governing** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
 
 ## Table of Contents
-- [Setup (Software Requirements)](#setup-software-requirements)
-  - [Development](#development)
-  - [Deployment](#deployment)
 - [The Idea](#the-idea)
   - [A Reddit Alterative](#a-reddit-alternative)
   - [A Self Governing Democracy](#a-self-governing-democracy)
-  - [Being Open](#being-open)
+  - [An Open Platform](#being-open)`
   - [A Modern & Minimalist Experience](#a-modern-minimalist-experience)
 - [The Investigation](#the-investigation)
   - [Interviews](#interviews)
@@ -28,54 +25,11 @@ For my Computer Science coursework project, I intend to create an **open, democr
   - [GUI Design](#gui-design)
   - [Component Design](#component-design)
   - [Computational Methods Required](#computational-methods-required)
-  - [Libraries / Tools To Be used](#libraries-tools-to-be-used)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
-
-## Setup (Software Requirements)
-The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports.
-
-To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
-
-```bash
-git clone https://github.com/joealden/corum.git
-```
-If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. 
-Now your system is ready to develop or deploy Corum.
-
-#### Corum's Backend
-I am planning to use [graphcool](https://www.graph.cool/) as my API and user authentication backend. 
-This will allow me to easily develop the client side of the application without needing to worry about the implementation details of the GraphQL backend that it runs on top of. 
-Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
-
-If time permits, I will eventually move away from graphcool when the frontend of the site is complete. 
-This is so that it will be easier for anyone to setup their own Corum instance.
-
-#### Browser Compatibility
-It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.
-
-### Development
-[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
-
-```bash
-cd client
-yarn
-yarn start
-```
-This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
-
-### Deployment
-Production ready files can be produced by running the following commands inside the `corum` directory:
-
-```bash
-cd client 
-yarn 
-yarn build
-``` 
-This will produce a `build` directory inside `client`. This folder contains all the files required to deploy the site in production mode. This items can now be hosted on any HTTP server.
+  - [Setup (Software Requirements)](#setup-software-requirements)
 
 ## The Idea
-
 ### A Reddit Alternative
 If you do not already know what [Reddit](https://www.reddit.com/) is, this section will explain the basic premise behind it. 
 Reddit was founded in 2005, and has largely remained the same since its inception. 
@@ -114,7 +68,6 @@ This means that ultimately, the users of the forum decide the direction that Cor
 As mentioned [above](#a-reddit-alternative), Reddit has not changed how it looks or feels very much at all since it was created in 2005. However, the reasoning behind this decision is probably that they do not want to make it feel unfamiliar for returning users. As Corum is yet to be created, it means that it can completely rethink the way a forum should look and feel. With that being said, it is important that the transition from Reddit to Corum is as easy as possible for new users. So, if I keep the basic features of Reddit intact and keep the UI & UX simple, new users should be able to get up and running with Corum quickly. 
 
 ## The Investigation
-
 ### Interviews
 I will be interviewing people that I know are users of Reddit to get an idea of what they like and don't like about a certain forum. This will help me understand what features I should borrow from others, what features I should leave out that are present on other sites, and what features that could be added that don't currently exist.
 
@@ -166,7 +119,6 @@ Users of the site will have different interests, which means that Corum needs to
 For users that have never visited or rarely visit the site, the UI and UX shouldn't be too surprising so the this type of user can get whatever information they are looking for quickly and efficiently. Also, the site should work equally as well for returning, regular users. This means that the site should keep a similar structure and look throughout, and should not get in the way.  
 
 ### Research into Existing Systems
-
 #### [Reddit](https://reddit.com) (Proprietary [as of September 2017](#being-open))
 **Reddit** is a very popular forum site that is home to a wide range of topics, where people can post links to other websites, or just have discussions actually on the site. Users can up-vote or down-vote posts if they like or dislike them. This is where the inspiration of Corum came from, however I thought that the vote that the user is given on each post could be given more value.
 
@@ -185,9 +137,7 @@ I believe that there is space in the forum 'business' for a site that is simpler
 phpBB can be themed so that it can fit the style of any website it is being run on. This means that the look or layout of phpBB isn't really an issue as it can be easily altered. However, as Corum will be a more similar project to Reddit, Corum does not need this extra complexity of being able to change its looks. I like the simplicity of Solus' forum theme, and Corum will take some inspiration from its looks.
 
 ## The Analysis
-
 ### Essential Features
-
 #### Page Layout
 - Header (Top of the page)
   - Top left - Logo linking to homepage
@@ -225,7 +175,6 @@ phpBB can be themed so that it can fit the style of any website it is being run 
     - This means, that instead of a moderator moderating the sub-forum, the users do it themselves. This comes back to the point for neutrality and fairness, as the sub-forum community as a whole gets to decide what is allowed on the sub-forum.
 
 ### GUI Design
-
 #### Sub-forum not selected (Logged in)
 ![Sub-forum not selected](/docs/images/sub-forum-not-selected.jpg)
 
@@ -344,7 +293,65 @@ As well as the built in functionality modern JavaScript gives us, I am planning 
 #### Real Time Data Processing
 Eventually, I will attempt to implement real time search functionality for the navigation, as well as real time sub-forum updates like updating the current amount of votes updates without a page refresh. This will be achieved through the use of [GraphQL Subscriptions](http://dev.apollodata.com/react/subscriptions.html).
 
-### Libraries / Tools To Be used
+### Success Criteria
+- The UI should resemble the layout seen in the [GUI Design section](#gui-design)
+- Users can click on subforums, and the site displays the subforum's posts.
+- Users can click on posts, and the site displays the content of the post.
+- Users can click on the `signup` button and signup to the site (Details saved to backend)
+- Users can click on the `login` / `logout` button and login to / logout of the site (Check details against the backend)
+- Logged in users can add & remove subforums to their `favorites`
+- Logged in users can vote on posts
+- Logged in users can comment on posts
+- Logged in users can create new posts
+
+### Limitations of the Project
+- Account Recovery (If the user losses their email / password, they will not be able to recover it)
+- Creation of new sub-forums?
+- Responsive CSS (Would require quite a bit more work to have it looking nice on mobile devices)
+
+### Setup (Software Requirements)
+The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports.
+
+To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
+
+```bash
+git clone https://github.com/joealden/corum.git
+```
+If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. 
+Now your system is ready to develop or deploy Corum.
+
+#### Corum's Backend
+I am planning to use [graphcool](https://www.graph.cool/) as my API and user authentication backend. 
+This will allow me to easily develop the client side of the application without needing to worry about the implementation details of the GraphQL backend that it runs on top of. 
+Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
+
+If time permits, I will eventually move away from graphcool when the frontend of the site is complete. 
+This is so that it will be easier for anyone to setup their own Corum instance.
+
+#### Browser Compatibility
+It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.
+
+#### Development
+[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser. This dev server also provides an in-browser error overlay, which allows for easier debugging. To start the dev server, run the following commands from the `corum` directory:
+
+```bash
+cd client
+yarn
+yarn start
+```
+This will start the dev server. If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
+
+#### Deployment
+Production ready files can be produced by running the following commands inside the `corum` directory:
+
+```bash
+cd client 
+yarn 
+yarn build
+``` 
+This will produce a `build` directory inside `client`. This folder contains all the files required to deploy the site in production mode. This items can now be hosted on any HTTP server.
+
+#### Libraries / Tools To Be used
 **ALL** of the code and technologies that will be used for this project are open source.
 
 - **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript) with [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)
@@ -366,19 +373,3 @@ Eventually, I will attempt to implement real time search functionality for the n
 - **Operating System** - [Solus](https://solus-project.com/) - A GNU/Linux distribution
 - **Code Editor** - [Visual Studio Code](https://code.visualstudio.com/) - The `.vscode` directory at the root of the project is present so that if someone else opens the project in vscode, the editor will be automatically configured with project specific settings, such as tab spacing etc. Also, they will be able to install the extensions used by me for this project under the `extensions > recommended` panel.
 - **Web Browser (Testing)** - [Firefox 55](https://www.mozilla.org/en-US/firefox/new/) & [Chrome 61](https://www.google.com/chrome/browser/desktop/index.html) (The latest versions)
-
-### Success Criteria
-- The UI should resemble the layout seen in the [GUI Design section](#gui-design)
-- Users can click on subforums, and the site displays the subforum's posts.
-- Users can click on posts, and the site displays the content of the post.
-- Users can click on the `signup` button and signup to the site (Details saved to backend)
-- Users can click on the `login` / `logout` button and login to / logout of the site (Check details against the backend)
-- Logged in users can add & remove subforums to their `favorites`
-- Logged in users can vote on posts
-- Logged in users can comment on posts
-- Logged in users can create new posts
-
-### Limitations of the Project
-- Account Recovery
-- Creation of new sub-forums?
-- Responsive CSS (Would require quite a bit more work to have it looking nice on mobile devices)
