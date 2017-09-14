@@ -15,8 +15,10 @@ For my Computer Science coursework project, I intend to create an **open, democr
   - [Development](#development)
   - [Deployment](#deployment)
 - [The Idea](#the-idea)
+  - [A Reddit Alterative](#a-reddit-alternative)
   - [A Self Governing Democracy](#a-self-governing-democracy)
   - [Being Open](#being-open)
+  - [A Modern & Minimalist Experience](#a-modern-minimalist-experience)
 - [The Investigation](#the-investigation)
   - [Interviews](#interviews)
   - [Focus Groups (The End User)](#focus-groups-the-end-user)
@@ -38,12 +40,16 @@ To get a copy of this project on your local machine, clone this repo using the f
 ```bash
 git clone https://github.com/joealden/corum.git
 ```
-If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. Now your system is ready to develop or deploy Corum.
+If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. 
+Now your system is ready to develop or deploy Corum.
 
 #### Corum's Backend
-I am planning to use [graphcool](https://www.graph.cool/) as my API and user authentication backend. This will allow me to easily develop the client side of the application without needing to worry about the implementation details of the GraphQL backend that it runs on top of. Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
+I am planning to use [graphcool](https://www.graph.cool/) as my API and user authentication backend. 
+This will allow me to easily develop the client side of the application without needing to worry about the implementation details of the GraphQL backend that it runs on top of. 
+Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
 
-If time permits, I will eventually move away from graphcool when the frontend of the site is complete, so that it will be easier for anyone to setup their own Corum instance.
+If time permits, I will eventually move away from graphcool when the frontend of the site is complete. 
+This is so that it will be easier for anyone to setup their own Corum instance.
 
 #### Browser Compatibility
 It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.
@@ -70,6 +76,21 @@ This will produce a `build` directory inside `client`. This folder contains all 
 
 ## The Idea
 
+### A Reddit Alternative
+If you do not already know what [Reddit](https://www.reddit.com/) is, this section will explain the basic premise behind it. 
+Reddit was founded in 2005, and has largely remained the same since its inception. 
+
+As Wikipedia puts it (paraphrased): 
+> Reddit is a **social news aggregation**, **web content rating** and **discussion** website. 
+>   
+> Reddit's registered community members can submit content such as text posts or links. 
+> Registered users can then vote submissions up or down that determines their position on the page. 
+> Submissions with the most up-votes appear on the front page or the top of a category. 
+> Content entries are organized by areas of interest called "subreddits".
+
+Corum will borrow these basic ideas. 
+The reason I wanted to create Corum instead of continuing to use Reddit is explained in the following subsections.
+
 ### A Self Governing Democracy
 Being self governed means that those that are being governed, govern themselves and each other. There is no higher authority that makes decisions. In the case of a forum site, this means that it is solely up to the users of the forum as a collective to decide what content belongs on it. Corum will be designed and developed from the ground up following this principle.
 
@@ -83,11 +104,14 @@ This is a good thing because:
 * The removal of the moderator role keeps code complexity down. (Only one type of user account needs to exist)
 
 ### Being Open
-While it is one thing to keep the platform itself democratic, it is also important that the management and development is kept democratic as well. As of 1st September 2017, after many years of being open source, [Reddit has decided to stop developing in the open](https://www.reddit.com/r/programming/comments/6xh3xp/reddits_main_code_is_no_longer_opensource). As an advocate for open source , I believe that Reddit has made the wrong decision. 
+While it is one thing to keep the platform itself democratic, it is also important that the management and development is kept democratic as well. As of 1st September 2017, after many years of being open source, [Reddit has decided to stop developing in the open](https://www.reddit.com/r/programming/comments/6xh3xp/reddits_main_code_is_no_longer_opensource). As an advocate for open source, I believe that Reddit has made the wrong decision. 
 
 Being open source means that anyone who wants to contribute can. They can easily propose new features, report and/or fix bugs, and freely read the source code knowing that anyone else can too. Developers cannot go hiding things in the source code like unwarranted tracking etc. Every decision made by the project is made _with_ the users, not _for_ the users.
 
-This means that ultimately, the users of the forum decide the direction that Corum takes in all aspects.
+This means that ultimately, the users of the forum decide the direction that Corum takes in _all_ aspects.
+
+### A Modern & Minimalist Experience
+As mentioned [above](#a-reddit-alternative), Reddit has not changed how it looks or feels very much at all since it was created in 2005. However, the reasoning behind this decision is probably that they do not want to make it feel unfamiliar for returning users. As Corum is yet to be created, it means that it can completely rethink the way a forum should look and feel. With that being said, it is important that the transition from Reddit to Corum is as easy as possible for new users. So, if I keep the basic features of Reddit intact and keep the UI & UX simple, new users should be able to get up and running with Corum quickly. 
 
 ## The Investigation
 
