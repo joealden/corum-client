@@ -14,7 +14,7 @@ For my Computer Science coursework project, I intend to create an **open, democr
 - [The Idea](#the-idea)
   - [A Reddit Alterative](#a-reddit-alternative)
   - [A Self Governing Democracy](#a-self-governing-democracy)
-  - [An Open Platform](#being-open)`
+  - [An Open Platform](#being-open)
   - [A Modern & Minimalist Experience](#a-modern-minimalist-experience)
 - [The Investigation](#the-investigation)
   - [Interviews](#interviews)
