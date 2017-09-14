@@ -14,7 +14,7 @@ For my Computer Science coursework project, I intend to create an **open, democr
 - [The Idea](#the-idea)
   - [A Reddit Alterative](#a-reddit-alternative)
   - [A Self Governing Democracy](#a-self-governing-democracy)
-  - [An Open Platform](#being-open)
+  - [An Open Platform](#an-open-platform)
   - [A Modern & Minimalist Experience](#a-modern-minimalist-experience)
 - [The Investigation](#the-investigation)
   - [Interviews](#interviews)
@@ -57,7 +57,7 @@ This is a good thing because:
 * The users of the forum are responsible for maintaining it. (More **neutral** and **fair**)
 * The removal of the moderator role keeps code complexity down. (Only one type of user account needs to exist)
 
-### Being Open
+### An Open Platform
 While it is one thing to keep the platform itself democratic, it is also important that the management and development is kept democratic as well. As of 1st September 2017, after many years of being open source, [Reddit has decided to stop developing in the open](https://www.reddit.com/r/programming/comments/6xh3xp/reddits_main_code_is_no_longer_opensource). As an advocate for open source, I believe that Reddit has made the wrong decision. 
 
 Being open source means that anyone who wants to contribute can. They can easily propose new features, report and/or fix bugs, and freely read the source code knowing that anyone else can too. Developers cannot go hiding things in the source code like unwarranted tracking etc. Every decision made by the project is made _with_ the users, not _for_ the users.
