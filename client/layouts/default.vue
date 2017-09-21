@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'normalize';
+@import '../assets/styles/normalize';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
 html {
