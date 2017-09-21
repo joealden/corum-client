@@ -1,0 +1,28 @@
+<template>
+<header>
+  <nuxt-link to="signup">Sign-up</nuxt-link>
+  <nuxt-link to="login">Login</nuxt-link>
+</header>
+</template>
+
+<style scoped>
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  grid-area: header;
+  background-color: #c0c0c0;
+  border-bottom: 2px solid black;
+}
+
+a {
+  font-size: 1.5em;
+  background: #222;
+  color: white;
+  border-radius: 10px;
+  margin-right: 25px;
+  text-decoration: none;
+  padding: 7px 12px 10px 12px;
+  border: none;
+}
+</style>

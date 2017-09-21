@@ -1,5 +1,5 @@
 <template>
 <section>
-  <p>home page</p>
+  <p>signup page</p>
 </section>
 </template>
