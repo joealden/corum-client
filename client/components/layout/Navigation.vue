@@ -2,7 +2,7 @@
 <nav>
   <ul>
     <li v-for="subforum in subforums" :key="subforum.id">
-      <a :href="'subforum/' + subforum.name">{{ subforum.name }}</a>
+      <nuxt-link :to="'/subforum/' + subforum.name">{{ subforum.name }}</nuxt-link>
     </li>
   </ul>
 </nav>
@@ -62,6 +62,8 @@ a,
 a:visited,
 a:hover {
   text-decoration: none;
+  display: block;
+  padding: 10px;
 }
 
 a,
@@ -83,11 +85,14 @@ li {
   text-transform: capitalize;
   font-size: 1.35rem;
   text-align: left;
-  padding: 10px;
   border-bottom: 1px solid black;
 }
 
 li:last-child {
   border-bottom: none;
+}
+
+li:hover {
+  background-color: #dbd;
 }
 </style>
