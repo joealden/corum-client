@@ -430,20 +430,22 @@ This items can now be hosted on any HTTP server.
 #### Libraries / Tools To Be used
 **ALL** of the code and technologies that will be used for this project are open source.
 
-- **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript) with [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)
+- **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript)
 - **Runtime for development** - [Node.js 8.x.x](https://nodejs.org) and [Chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - **VCS ([Version Control System](https://en.wikipedia.org/wiki/Version_control))** - [Git](https://git-scm.com/) with [Github](https://github.com/joealden/corum)
-- **Package Manager** - [Yarn](https://yarnpkg.com)
+- **Package Manager** - [NPM 5](https://npmjs.com)
 - **Task Runner** - [NPM Scripts](https://docs.npmjs.com/misc/scripts)
-- **Starting point** - [create-react-app](https://github.com/facebookincubator/create-react-app)
-- **View** - [React](https://facebook.github.io/react)
-- **CSS-in-JS** - [styled-components](https://www.styled-components.com) (Using [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) for page layout) 
-- **Data Fetching (GraphQL)** - [Apollo Client with React bindings](http://dev.apollodata.com/react/)
-- **Client-side Routing** - [react-router](https://reacttraining.com/react-router/)
+- **Framework** - [nuxt](https://nuxtjs.org/)
+- **View** - [Vue](https://vuejs.org/)
+- **Data Fetching (GraphQL)** - [Apollo Client](https://github.com/Akryum/vue-apollo)
+- **Client-side Routing** - [nuxt-link (vue-router)](https://nuxtjs.org/api/components-nuxt-link)
 - **Module Bundler** - [webpack](https://webpack.js.org/)
 - **JS Compiler** - [babel](https://babeljs.io/)
 - **JS Linter** - [ESLint](https://eslint.org/)
-- **Testing** - [Jest](https://facebook.github.io/jest/)
+- **Testing** - [Mocha](http://mochajs.org/)
+
+#### TODO: Switch to Vue from React
+placeholder
 
 #### My Development Environment
 - **Operating System** - [Solus](https://solus-project.com/) - A GNU/Linux distribution
