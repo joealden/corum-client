@@ -47,7 +47,7 @@ html {
   width: 100vw;
   text-align: center;
   display: grid;
-  grid-template-rows: 4.5rem auto 3rem;
+  grid-template-rows: 4.5rem auto 3.3rem;
   grid-template-columns: 16em auto;
   grid-template-areas: "logo header" "nav main" "footer-left footer-right";
 }
