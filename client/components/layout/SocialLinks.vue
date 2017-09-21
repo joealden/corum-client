@@ -16,7 +16,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 div {
   display: flex;
   justify-content: space-evenly;

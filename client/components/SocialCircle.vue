@@ -2,7 +2,7 @@
 <span></span>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 span {
   height: 35px;
   width: 35px;

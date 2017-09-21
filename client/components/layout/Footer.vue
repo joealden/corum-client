@@ -4,7 +4,7 @@
 </footer>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 footer {
   display: flex;
   justify-content: flex-end;

@@ -1,12 +1,12 @@
 <template>
 <div>
   <nuxt-link to="/">
-    <img src="~/assets/logo.svg" alt="corum" />
+    <img src="~/assets/images/logo.svg" alt="corum" />
   </nuxt-link>
 </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 div {
   display: flex;
   flex-direction: column;

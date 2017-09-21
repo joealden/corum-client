@@ -4,7 +4,7 @@
 </nav>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 nav {
   display: flex;
   flex-direction: column;
