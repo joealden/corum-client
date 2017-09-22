@@ -37,7 +37,7 @@ section {
   background: white;
   border: 3px solid hsla(0, 0, 0, 0.5);
   border-radius: 10px;
-  width: 40rem;
+  width: 37rem;
   height: 40rem;
 }
 
