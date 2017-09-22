@@ -1,7 +1,7 @@
 <template>
 <header>
-  <nuxt-link to="signup">Sign Up</nuxt-link>
-  <nuxt-link to="login">Login</nuxt-link>
+  <nuxt-link to="/signup">Sign Up</nuxt-link>
+  <nuxt-link to="/login">Login</nuxt-link>
 </header>
 </template>
 
