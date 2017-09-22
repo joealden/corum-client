@@ -3,9 +3,7 @@
   <corum-logo />
   <corum-header />
   <corum-nav />
-  <main>
-    <nuxt />
-  </main>
+  <nuxt />
   <corum-social />
   <corum-footer />
 </div>
@@ -50,13 +48,5 @@ html {
   grid-template-rows: 4.5rem auto 3.3rem;
   grid-template-columns: 16em auto;
   grid-template-areas: "logo header" "nav main" "footer-left footer-right";
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  grid-area: main;
-  background-color: #ededed;
 }
 </style>
