@@ -3,7 +3,7 @@
   <section>
     <img src="~/assets/images/logo.svg" alt="corum">
     <form>
-      <input type="text" placeholder="Username">
+      <input type="text" placeholder="Username" autofocus>
       <input type="password" placeholder="Password">
       <input type="password" placeholder="Re-enter Password">
       <input type="submit" value="Sign Up" @click.prevent>
