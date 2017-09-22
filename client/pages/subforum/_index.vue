@@ -1,7 +1,8 @@
 <template>
-<section>
+<main>
+  <h1>Currently Selected Subforum</h1>
   <p>{{ $route.params.index }}</p>
-</section>
+</main>
 </template>
 
 <script>
@@ -15,7 +16,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  text-decoration: underline;
+  font-size: 2.5rem;
+}
+
 p {
   font-size: 30px;
+  text-transform: capitalize;
 }
 </style>
