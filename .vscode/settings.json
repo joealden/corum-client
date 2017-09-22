@@ -1,6 +1,10 @@
 {
   "editor.tabSize": 2,
-  "editor.formatOnSave": true,
+
+  "prettier.cssEnable": ["css", "less", "scss", "vue"],
+  "prettier.javascriptEnable": ["javascript", "javascriptreact", "vue"],
+  "prettier.singleQuote": true,
+
   "cSpell.enabledLanguageIds": ["latex", "markdown", "plaintext", "text"],
   "cSpell.words": [
     "Corum",
