@@ -4,6 +4,16 @@
 </section>
 </template>
 
+<script>
+export default {
+  head() {
+    return {
+      title: 'Sign Up'
+    };
+  }
+};
+</script>
+
 <style lang="scss" scoped>
 p {
   font-size: 30px;
