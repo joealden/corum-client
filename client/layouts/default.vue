@@ -29,10 +29,10 @@ export default {
 
 <style lang="scss">
 @import '../assets/styles/normalize';
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 html {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   margin: 0;
   padding: 0;
