@@ -6,7 +6,9 @@
       :key="subforum.id"
       :class="subforum.id % 2 === 0 ? 'even-item' : ''"
     >
-      <nuxt-link :to="'/subforum/' + subforum.name">{{ subforum.name }}</nuxt-link>
+      <nuxt-link :to="'/subforum/' + subforum.name">
+        {{ subforum.name }}
+      </nuxt-link>
     </li>
   </ul>
 </nav>
