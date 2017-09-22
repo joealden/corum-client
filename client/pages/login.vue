@@ -1,7 +1,14 @@
 <template>
-<section>
-  <p>login page</p>
-</section>
+<main>
+  <section>
+    <form action="">
+      <label>
+        Test
+        <input type="text">
+      </label>
+    </form>
+  </section>
+</main>
 </template>
 
 <script>
@@ -15,7 +22,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-p {
-  font-size: 30px;
-}
+
 </style>
