@@ -22,8 +22,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  grid-area: main;
-  background-color: white;
 }
 
 img {
