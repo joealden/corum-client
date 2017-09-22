@@ -39,14 +39,17 @@ html {
 }
 
 #grid {
-  background-color: #EEE;
-  margin: 0 auto;
   height: 100vh;
   width: 100vw;
-  text-align: center;
   display: grid;
   grid-template-rows: 4.5rem auto 3.3rem;
   grid-template-columns: 16em auto;
   grid-template-areas: "logo header" "nav main" "footer-left footer-right";
+}
+
+main {
+  grid-area: main;
+  background-color: white;
+  text-align: center;
 }
 </style>
