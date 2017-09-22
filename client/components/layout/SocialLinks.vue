@@ -22,7 +22,6 @@ div {
   justify-content: space-evenly;
   align-items: center;
   grid-area: footer-left;
-  background-color: #c0c0c0;
-  border-top: 2px solid black;
+  background-color: #ccc;
 }
 </style>

@@ -1,7 +1,9 @@
 <template>
 <main>
-  <img src="~/assets/images/logo.svg" alt="corum">
-  <p>Please Select a Subforum!</p>
+  <section>
+    <img src="~/assets/images/logo.svg" alt="corum">
+    <p>Please Select a Subforum!</p>
+  </section>
 </main>
 </template>
 
@@ -15,14 +17,13 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   grid-area: main;
-  background-color: #eee;
+  background-color: white;
 }
 
 img {

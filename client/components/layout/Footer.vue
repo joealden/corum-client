@@ -10,8 +10,7 @@ footer {
   justify-content: flex-end;
   align-items: center;
   grid-area: footer-right;
-  background-color: #c0c0c0;
-  border-top: 2px solid black;
+  background-color: #ccc;
   padding-right: 20px;
 }
 

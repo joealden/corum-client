@@ -1,7 +1,11 @@
 <template>
 <nav>
   <ul>
-    <li v-for="subforum in subforums" :key="subforum.id">
+    <li 
+      v-for="subforum in subforums" 
+      :key="subforum.id"
+      :class="subforum.id % 2 === 0 ? 'even-item' : ''"
+    >
       <nuxt-link :to="'/subforum/' + subforum.name">{{ subforum.name }}</nuxt-link>
     </li>
   </ul>
@@ -49,13 +53,27 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 nav {
   grid-area: nav;
-  background-color: #dbdbdb;
-  border-right: 2px solid black;
+  background-color: #eee;
   overflow: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  text-transform: capitalize;
+  font-size: 1.35rem;
+  text-align: right;
+}
+
+li:hover {
+  background-color: #dbd;
 }
 
 a, 
@@ -75,24 +93,7 @@ a:hover {
   color: #222;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style: none;
-  text-transform: capitalize;
-  font-size: 1.35rem;
-  text-align: left;
-  border-bottom: 1px solid black;
-}
-
-li:last-child {
-  border-bottom: none;
-}
-
-li:hover {
-  background-color: #dbd;
+.even-item {
+  background-color: rgb(229, 229, 229);
 }
 </style>

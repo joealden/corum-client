@@ -13,8 +13,7 @@ div {
   justify-content: center;
   align-items: center;
   grid-area: logo;
-  background-color: #c0c0c0;
-  border-bottom: 2px solid black;
+  background-color: #ccc;
 }
 
 img {
