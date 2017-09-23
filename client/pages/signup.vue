@@ -24,5 +24,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/accounts';
+@import '../assets/styles/accountPages';
 </style>
