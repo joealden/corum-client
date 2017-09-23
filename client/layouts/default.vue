@@ -21,17 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../assets/styles/normalize';
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
-html {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-}
-
+<style lang="scss" scoped>
 #grid {
   height: 100vh;
   width: 100vw;
