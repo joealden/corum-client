@@ -1,7 +1,7 @@
 <template>
 <header>
   <nuxt-link to="/signup">Sign Up</nuxt-link>
-  <nuxt-link to="/login">Log In</nuxt-link>
+  <nuxt-link to="/login">Login</nuxt-link>
 </header>
 </template>
 
@@ -16,9 +16,9 @@ header {
 
 a {
   font-size: 1.5em;
-  background: #222;
+  background: black;
   color: white;
-  border-radius: 10px;
+  border-radius: 7px 7px 0 7px;
   margin-right: 25px;
   text-decoration: none;
   padding: 7px 12px 10px 12px;
