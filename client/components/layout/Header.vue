@@ -11,7 +11,7 @@ header {
   justify-content: flex-end;
   align-items: center;
   grid-area: header;
-  background-color: #ccc;;;
+  background-color: #ccc;
 }
 
 a {
