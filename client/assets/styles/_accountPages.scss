@@ -8,7 +8,6 @@ main {
 section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background: white;
   border: 3px solid hsla(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -22,6 +21,12 @@ form {
   width: 28rem;
   border: 3px solid hsla(0, 0, 0, 0.35);
   border-radius: 5px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  text-decoration: underline;
+  margin: 0.5rem 0 1.1rem 0;
 }
 
 input {
@@ -51,6 +56,10 @@ input[type='submit'] {
   width: 13.5rem;
   height: 3.4rem;
   margin-bottom: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 p {
