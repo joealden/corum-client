@@ -1,8 +1,7 @@
 # TODO
 
-- Social media links
-- Login + signup pages (Fix css spacing + backend thought)
+- Login + signup pages (backend thought)
 - page transitions
 - Subforum data structure
 - post data structure
-- vue-apollo
+- vue-apollo (Nuxt Apollo module)
