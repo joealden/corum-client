@@ -13,6 +13,8 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
   },
+  // CSS globals
+  css: ['normalize.css', '~/assets/styles/globals.scss'],
   // Customize the progress bar color
   loading: { color: 'black' },
   // Build configuration
