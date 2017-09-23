@@ -1,32 +1,31 @@
 main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 section {
+  width: 34rem;
+  padding: 4rem 0;
   display: flex;
   flex-direction: column;
   background: white;
   border: 3px solid hsla(0, 0, 0, 0.5);
   border-radius: 10px;
-  width: 34rem;
-  padding: 4rem 0;
 }
 
 form {
+  width: 28rem;
   margin: 1.5rem auto;
   padding: 0.8rem;
-  width: 28rem;
   border: 3px solid hsla(0, 0, 0, 0.35);
   border-radius: 5px;
 }
 
 h1 {
   font-size: 2.2rem;
-  text-decoration: underline;
   margin: 0.5rem 0 1.1rem 0;
+  text-decoration: underline;
 }
 
 input {
@@ -37,7 +36,6 @@ input {
   text-align: center;
   border: 2px solid hsla(0, 0, 0, 0.35);
   border-radius: 5px;
-  box-sizing: content-box;
 }
 
 input[type='text'],
@@ -51,11 +49,11 @@ input[type='password'] {
 }
 
 input[type='submit'] {
-  color: white;
-  background-color: black;
-  width: 13.5rem;
-  height: 3.4rem;
+  width: 14rem;
+  height: 4rem;
   margin-bottom: 0;
+  background-color: black;
+  color: white;
 
   &:hover {
     cursor: pointer;
@@ -64,12 +62,9 @@ input[type='submit'] {
 
 p {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
 
-  a,
-  a:hover,
-  a:visited {
-    text-decoration: none;
+  a {
     color: grey;
   }
 }
