@@ -68,38 +68,29 @@ ul {
 }
 
 li {
-  list-style: none;
-  text-transform: capitalize;
   font-size: 1.35rem;
+  list-style: none;
   text-align: right;
 }
 
 li:hover {
-  background-color: black;
-  
+  background-color: #444;
   a {
     color: white;
   }
 }
 
-a, 
-a:visited,
-a:hover {
-  text-decoration: none;
+a {
   display: block;
   padding: 10px;
 }
 
-a,
-a:visited {
-  color: #555;
-}
-
-a:hover {
-  color: #222;
-}
-
 .even-item {
   background-color: rgb(229, 229, 229);
+}
+
+.nuxt-link-active {
+  background-color: black;
+  color: white;
 }
 </style>

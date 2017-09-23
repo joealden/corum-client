@@ -8,16 +8,15 @@
 
 <style lang="scss" scoped>
 div {
+  grid-area: logo;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  grid-area: logo;
   background-color: #ccc;
 }
 
 img {
-  width: 120px;
+  height: 3.5rem;
   vertical-align: middle;
 }
 </style>

@@ -7,21 +7,21 @@
 
 <style lang="scss" scoped>
 header {
+  grid-area: header;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  grid-area: header;
   background-color: #ccc;
 }
 
 a {
   font-size: 1.5em;
+  margin-right: 1.5rem;
+  padding: 0.8rem;
   background: black;
   color: white;
-  border-radius: 7px 7px 0 7px;
-  margin-right: 25px;
-  text-decoration: none;
-  padding: 7px 12px 10px 12px;
   border: none;
+  border-radius: 7px 7px 0 7px;
+  text-decoration: none;
 }
 </style>
