@@ -16,7 +16,7 @@ header {
 }
 
 a {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   margin-right: 1.5rem;
   padding: 0.8rem;
   background: black;
@@ -24,5 +24,13 @@ a {
   border: none;
   border-radius: 7px 7px 0 7px;
   text-decoration: none;
+
+  &:hover {
+    background-color: #333;
+  }
+}
+
+.nuxt-link-active {
+  background-color: #333;
 }
 </style>
