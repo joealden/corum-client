@@ -48,7 +48,15 @@ export default {
         { id: 27, name: 'create-react-app' },
         { id: 28, name: 'styled-components' },
         { id: 29, name: 'css' },
-        { id: 30, name: 'postcss' }
+        { id: 30, name: 'postcss' },
+        { id: 31, name: 'postcss' },
+        { id: 32, name: 'postcss' },
+        { id: 33, name: 'postcss' },
+        { id: 34, name: 'postcss' },
+        { id: 35, name: 'postcss' },
+        { id: 36, name: 'postcss' },
+        { id: 37, name: 'postcss' },
+        { id: 38, name: 'postcss' }
       ]
     };
   }
