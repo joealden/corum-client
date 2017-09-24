@@ -283,8 +283,9 @@ Along with their [Switch component](https://reacttraining.com/react-router/web/a
 ##### Planned Routes
 - [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
 - [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
-  - [`'/subforum/:subforum/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
-  - [`'/subforum/:subforum/new'`](#new-post) - Displays the new post entry fields. (The post will be submitted to `:subforum`)
+- [`'/post/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
+- [`'/new/post'`](#new-post) - Displays the new post entry fields. (The post will be submitted to the subforum that the link came from?)
+- [`'/new/subforum'`??]()
 - [`'/login'`](#login-page) - Displays a login screen (Username + password)
 - [`'/signup'`](#sign-up-page) - Displays a sign up screen (Username + password + password)
 
