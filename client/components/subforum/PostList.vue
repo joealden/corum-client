@@ -2,10 +2,10 @@
 <ul id="post-list">
   <li v-for="post in posts" :key="post.id">
     <nuxt-link :to="'/post/' + post.id" class="post">
-      <div class="vote-count">{{ post.voteCount }}</div>
-      <div>
-        {{ post.title }}
-      </div>  
+      <div>{{ post.title }}</div>
+      <div v-if="post.voteCount < 0" class="negative">{{ post.voteCount }}</div>
+      <div v-if="post.voteCount === 0" class="neutral">{{ post.voteCount }}</div>
+      <div v-if="post.voteCount > 0" class="positive">{{ post.voteCount }}</div>
     </nuxt-link> 
   </li>
 </ul>
@@ -52,10 +52,10 @@ export default {
 <style lang="scss" scoped>
 #post-list {
   margin: 0 auto;
-  padding: 1rem 1.5rem 0.6rem 1.5rem;
+  padding-left: 0;
+  width: 93%;
   height: 100%;
   overflow: auto;
-  width: 93%;
   background-color: white;
   border-left: 2px solid black;
   border-right: 2px solid black;
@@ -69,6 +69,24 @@ li {
   list-style: none;
 }
 
+li:nth-child(even) {
+  background-color: #eee;
+}
+
+li:hover {
+  background-color: #222;
+  a > div {
+    color: white;
+  }
+}
+
+li:active {
+  background-color: black;
+  a > div {
+    color: white;
+  }
+}
+
 .post {
   list-style: none;
   display: flex;
@@ -76,5 +94,11 @@ li {
   font-size: 1.6rem;
   padding: 1rem;
 }
+
+
+
+.negative { color: DarkRed }
+.neutral { color: black }
+.positive { color: MediumSeaGreen }
 </style>
 

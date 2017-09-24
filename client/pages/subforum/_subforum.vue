@@ -41,7 +41,7 @@ h1 {
   font-size: 2rem;
   text-transform: capitalize;
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 0;
   background-color: black;
   color: white;
   width: 93%;
@@ -55,7 +55,7 @@ h1 {
 
 #toolbar {
   margin: 0 auto;
-  padding: 0.5em 1.5rem;
+  padding: 0.5rem 0;
   font-size: 1.4rem;
   display: flex;
   justify-content: space-between;
@@ -71,6 +71,7 @@ h1 {
   }
 
   form {
+    margin-left: 0.5rem;
     label[for="popular"] {
       padding-right: 0.7rem;
     }
@@ -80,7 +81,8 @@ h1 {
   }
 
   a {
-    padding: 1rem;
+    padding: 0.6rem 0.6rem 0.4rem 0.6rem;
+    margin-right: 0.5rem;
     border: none;
     color: white;
     background-color: black;
