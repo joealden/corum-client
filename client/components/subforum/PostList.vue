@@ -2,10 +2,10 @@
 <ul id="post-list">
   <li v-for="post in posts" :key="post.id">
     <nuxt-link :to="'/post/' + post.id" class="post">
-      <div>{{ post.title }}</div>
-      <div v-if="post.voteCount < 0" class="negative">{{ post.voteCount }}</div>
-      <div v-if="post.voteCount === 0" class="neutral">{{ post.voteCount }}</div>
-      <div v-if="post.voteCount > 0" class="positive">{{ post.voteCount }}</div>
+      <div class="post-title">{{ post.title }}</div>
+      <div v-if="post.voteCount < 0" class="negative post-vote-count">{{ post.voteCount }}</div>
+      <div v-if="post.voteCount === 0" class="neutral post-vote-count">{{ post.voteCount }}</div>
+      <div v-if="post.voteCount > 0" class="positive post-vote-count">{{ post.voteCount }}</div>
     </nuxt-link> 
   </li>
 </ul>
@@ -36,13 +36,13 @@ export default {
         { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
         { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
         { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
-        { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
-        { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
-        { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
-        { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
-        { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
-        { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 },
-        { id: 'g', title: 'Test 7 this is a test sentence', voteCount: -43 }
+        { id: 'g', title: 'Test 7 this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence', voteCount: -43 },
+        { id: 'g', title: 'Test 7 this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence', voteCount: -43 },
+        { id: 'g', title: 'Test 7 this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence', voteCount: -43 },
+        { id: 'g', title: 'Test 7 this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence', voteCount: -43 },
+        { id: 'g', title: 'Test 7 this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence', voteCount: -43 },
+        { id: 'g', title: 'Test 7 this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence', voteCount: -43 },
+        { id: 'g', title: 'Test 7 this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence this is a test sentence', voteCount: -43 }
       ]
     };
   }
@@ -95,10 +95,16 @@ li:active {
   padding: 1rem;
 }
 
+.post-title {
+  text-align: left;
+  margin-right: 2rem;
+}
 
+.post-vote-count {
+  margin: auto 0;
+}
 
 .negative { color: DarkRed }
 .neutral { color: black }
 .positive { color: MediumSeaGreen }
 </style>
-
