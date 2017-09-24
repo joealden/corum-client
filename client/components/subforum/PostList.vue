@@ -51,10 +51,10 @@ export default {
 
 <style lang="scss" scoped>
 #post-list {
-  margin: 0 auto;
-  padding-left: 0;
   width: 93%;
   height: 100%;
+  margin: 0 auto;
+  padding-left: 0;
   overflow: auto;
   background-color: white;
   border-left: 2px solid black;
@@ -67,23 +67,24 @@ export default {
 
 li {
   list-style: none;
-}
 
-li:nth-child(even) {
-  background-color: #eee;
-}
-
-li:hover {
-  background-color: #222;
-  a > div {
-    color: white;
+  &:nth-child(even) {
+    background-color: #eee;
   }
-}
 
-li:active {
-  background-color: black;
-  a > div {
-    color: white;
+  &:hover, 
+  &:active {
+    a > div {
+      color: white;
+    }
+  }
+
+  &:hover {
+    background-color: #222;
+  }
+
+  &:active {
+    background-color: black;
   }
 }
 
@@ -108,3 +109,4 @@ li:active {
 .neutral { color: black }
 .positive { color: MediumSeaGreen }
 </style>
+
