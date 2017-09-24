@@ -1,7 +1,7 @@
 <template>
 <main>
   <h1>Currently Selected Subforum</h1>
-  <p>{{ $route.params.index }}</p>
+  <p>{{ $route.params.subforum }}</p>
 </main>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   head() {
     return {
-      title: 'Subforum'
+      title: 'Subforum' // TODO: wire up to subforum name
     };
   }
 };
