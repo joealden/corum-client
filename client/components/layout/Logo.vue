@@ -13,6 +13,7 @@ div {
   justify-content: center;
   align-items: center;
   background-color: #ccc;
+  border-bottom: 2px solid black;
 }
 
 img {

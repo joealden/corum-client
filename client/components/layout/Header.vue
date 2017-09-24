@@ -12,6 +12,7 @@ header {
   justify-content: flex-end;
   align-items: center;
   background-color: #ccc;
+  border-bottom: 2px solid black;
 }
 
 a {

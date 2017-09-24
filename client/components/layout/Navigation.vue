@@ -60,6 +60,7 @@ nav {
   grid-area: nav;
   background-color: #eee;
   overflow: auto;
+  border-right: 2px solid black;
 }
 
 ul {
