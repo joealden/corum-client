@@ -1,11 +1,9 @@
 <template>
 <nav>
+  <h1>Subforums</h1>
+  <input type="search" placeholder="Search...">
   <ul>
-    <li 
-      v-for="subforum in subforums" 
-      :key="subforum.id"
-      :class="subforum.id % 2 === 0 ? 'even-item' : ''"
-    >
+    <li v-for="subforum in subforums" :key="subforum.id">
       <nuxt-link :to="'/subforum/' + subforum.name">
         {{ subforum.name }}
       </nuxt-link>
@@ -66,26 +64,50 @@ export default {
 <style lang="scss" scoped>
 nav {
   grid-area: nav;
-  background-color: #eee;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   border-right: 2px solid black;
+}
+
+h1 {
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 1.75rem;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.4rem;
+  border: none;
+  border-bottom: 2px solid black;
 }
 
 ul {
   margin: 0;
   padding: 0;
+  background-color: #eee;
+  overflow: auto;
 }
 
 li {
   font-size: 1.35rem;
   list-style: none;
   text-align: right;
-}
 
-li:hover {
-  background-color: #444;
-  a {
-    color: white;
+  &:nth-child(even) {
+    background-color:white;
+  }
+
+  &:hover {
+    background-color: #444;
+    a {
+      color: white;
+    }
   }
 }
 
