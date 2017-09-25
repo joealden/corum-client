@@ -1,6 +1,6 @@
 <template>
 <main>
-  <h1>{{ $route.params.subforum }}</h1>
+  <h1>{{ $route.params.subforum }}</h1> <!-- Use actual title instead -->
   <div id="toolbar">
     <form>
       <input type="radio" id="popular" name="sort" value="popular" checked>
@@ -26,10 +26,12 @@
 <script>
 import allPosts from '~/apollo/queries/allPosts.gql';
 
-export default { // $route.params.subforum
+export default {
   apollo: {
     allPosts: {
       query: allPosts,
+      fetchPolicy: 'cache-and-network',
+      // pollInterval: 10000, // If subscriptions are too difficult to use efficently
       variables() {
         return {
           subforumUrl: this.$route.params.subforum

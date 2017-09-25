@@ -3,5 +3,8 @@ query allPosts($subforumUrl: String!) {
     id
     title
     voteCount
+    subforum {
+      name
+    }
   }
 }
