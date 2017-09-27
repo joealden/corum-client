@@ -1,7 +1,7 @@
 <template>
 <div>
   <nuxt-link to="/">
-    <img src="~/assets/images/logo.svg" alt="corum" />
+    <img src="~/assets/images/logo-light.svg" alt="corum" />
   </nuxt-link>
 </div>
 </template>
@@ -10,14 +10,14 @@
 div {
   grid-area: logo;
   display: flex;
-  justify-content: center;
+  justify-content: left;
+  padding-left: 2rem;
   align-items: center;
-  background-color: #ccc;
-  border-bottom: 2px solid black;
+  background-color: #101218;
 }
 
 img {
-  height: 3.5rem;
+  height: 4rem;
   vertical-align: middle;
 }
 </style>

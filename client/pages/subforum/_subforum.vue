@@ -52,37 +52,37 @@ main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: #eee;
+  background-color: #e3e4e8;
+  padding: 5rem;
 }
 
 h1,
 #toolbar {
-  width: 93%;
   margin: 0 auto;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-
-  @media screen and (min-width: 1800px) {
-    width: 1500px;
-  }
+  border-left: 2px solid #d0d2db;
+  border-right: 2px solid #d0d2db;
 }
 
 h1 {
+  width: 93%;
   padding: 0.75rem 0;
   font-size: 2rem;
   text-transform: capitalize;
-  background-color: black;
-  color: white;
+  background-color: white;
+  border-top: 2px solid #d0d2db;
+  border-bottom: 2px solid #d0d2db;
+  border-radius: 10px 10px 0 0;
 }
 
 #toolbar {
+  width: 93%;
   padding: 0.5rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.4rem;
-  background-color: #ddd;
-  border-bottom: 2px solid black;
+  background-color: white;
+  border-bottom: 2px solid #d0d2db;
 
   form {
     margin-left: 0.5rem;
@@ -97,12 +97,15 @@ h1 {
   }
 
   a {
+    font-size: 1.2rem;
     margin-right: 0.5rem;
-    padding: 0.6rem 0.6rem 0.4rem 0.6rem;
-    background-color: black;
+    padding: 0.8rem 1.6rem;
+    background: #18191E;
     color: white;
     border: none;
-    border-radius: 7px 7px 0 7px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
 
     &:hover {
       background-color: #333;
@@ -117,12 +120,10 @@ h1 {
   padding-left: 0;
   overflow: auto;
   background-color: white;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-
-  @media screen and (min-width: 1800px) {
-    width: 1500px;
-  }
+  border-left: 2px solid #d0d2db;
+  border-right: 2px solid #d0d2db;
+  border-bottom: 2px solid #d0d2db;
+  border-radius: 0 0 10px 10px;
 }
 
 li {

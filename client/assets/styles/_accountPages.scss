@@ -2,47 +2,39 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #e3e4e8;
+}
+
+img {
+  height: 6rem;
+  margin: 2.5rem;
 }
 
 section {
-  width: 34rem;
-  padding: 4rem 0;
   display: flex;
   flex-direction: column;
   background: white;
-  border: 3px solid hsla(0, 0, 0, 0.5);
-  border-radius: 5px;
-  background-color: #eee;
+  background-color: #101218;
 }
 
 form {
   width: 28rem;
-  margin: 1.5rem auto;
-  padding: 0.8rem;
-  border: 3px solid hsla(0, 0, 0, 0.35);
-  border-radius: 5px;
+  margin: 0 auto;
   background-color: white;
 }
 
-h1 {
-  font-size: 2.2rem;
-  margin: 0.5rem 0 1.1rem 0;
-}
-
 input {
-  width: 98%;
-  height: 4rem;
+  width: 28rem;
   font-size: 1.65rem;
-  margin-bottom: 0.7rem;
+  padding: 1.5rem 0;
   text-align: center;
-  border: 2px solid hsla(0, 0, 0, 0.35);
-  border-radius: 5px;
+  border: none;
 }
 
 input[type='text'],
 input[type='password'] {
-  background-color: rgb(245, 245, 245);
-
+  background-color: white;
+  border-bottom: 1px solid #d0d2db;
   &:hover,
   &:focus {
     background-color: white;
@@ -50,26 +42,20 @@ input[type='password'] {
 }
 
 input[type='submit'] {
-  width: 14rem;
-  height: 3.75rem;
-  margin-bottom: 0;
-  background-color: black;
+  width: 28rem;
+  text-transform: uppercase;
+  background-color: #101218;
   color: white;
-
   &:hover {
     cursor: pointer;
   }
 }
 
 p {
-  margin: 0;
+  margin: 1rem;
   font-size: 1.2rem;
 
   a {
     color: MediumSeaGreen;
   }
-}
-
-img {
-  height: 6rem;
 }

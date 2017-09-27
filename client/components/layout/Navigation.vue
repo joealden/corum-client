@@ -1,14 +1,16 @@
 <template>
 <nav>
-  <h1>Subforums</h1>
-  <input type="search" placeholder="Search...">
-  <ul>
-    <li v-for="subforum in allSubforums" :key="subforum.id">
-      <nuxt-link :to="`/subforum/${subforum.url}`">
-        {{ subforum.name }}
-      </nuxt-link>
-    </li>
-  </ul>
+  <div>
+    <h1>Subforums</h1>
+    <input type="search" placeholder="Search...">
+    <ul>
+      <li v-for="subforum in allSubforums" :key="subforum.id">
+        <nuxt-link :to="`/subforum/${subforum.url}`">
+          {{ subforum.name }}
+        </nuxt-link>
+      </li>
+    </ul>
+  </div>
 </nav>
 </template>
 
@@ -30,45 +32,54 @@ nav {
   grid-area: nav;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
-  border-right: 2px solid black;
+  background-color: #101218;
 }
 
 h1 {
   margin: 0;
-  padding: 0.5rem;
-  font-size: 1.75rem;
-  background-color: black;
+  padding: 20px 0.5rem 20px 2rem;
+  font-size: 1.5rem;
+  background-color: #0a0b10;
   color: white;
-  text-align: center;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 input[type="search"] {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1.4rem;
+  padding: 10px 2rem;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
   border: none;
-  border-bottom: 2px solid black;
+  background-color: #2b2d38;
+  color: white;
+  width: 100%;
 }
 
 ul {
   margin: 0;
   padding: 0;
-  background-color: #eee;
   overflow: auto;
 }
 
 li {
   font-size: 1.35rem;
   list-style: none;
-  text-align: right;
-
-  &:nth-child(even) {
-    background-color:white;
+  text-align: left;
+  padding-left: 1.5rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+  a {
+    color: #bfc1c9;
+    font-weight: 600;
   }
 
   &:hover {
-    background-color: #444;
+    background-color: #282E37;
+    border-left: 0.3rem solid white;
+    padding-left: 1.2rem;
     a {
       color: white;
     }
@@ -80,12 +91,10 @@ a {
   padding: 10px;
 }
 
-.even-item {
-  background-color: rgb(229, 229, 229);
-}
-
 .nuxt-link-active {
-  background-color: black;
-  color: white;
+  & {
+    background-color: black;
+    color: white;
+  }
 }
 </style>

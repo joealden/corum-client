@@ -11,19 +11,21 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: #ccc;
-  border-bottom: 2px solid black;
+  background-color: white;
+  margin-right: 3rem;
 }
 
 a {
   font-size: 1.5rem;
   margin-right: 1.5rem;
-  padding: 0.8rem;
-  background: black;
+  padding: 0.8rem 1.6rem;
+  background: #18191E;
   color: white;
   border: none;
-  border-radius: 7px 7px 0 7px;
+  border-radius: 5px;
   text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
 
   &:hover {
     background-color: #333;
