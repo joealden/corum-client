@@ -1,3 +1,5 @@
+<!-- TODO: FIX SCROLL ISSUE (SECTION SCROLLS - IT SHOULDNT) -->
+
 <template>
 <section>
   <h1>{{ $route.params.subforum }}</h1> <!-- Use actual title instead -->
@@ -55,6 +57,7 @@ export default {
 @import '../../assets/styles/variables';
 
 section {
+  overflow: auto;
   margin: 3rem;
   font-size: 1.5rem;
   height: 100%;
@@ -82,16 +85,19 @@ h1 {
   form > label {
     text-transform: uppercase;
     font-size: 1.4rem;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      color: $nav-hover;
+    }
   }
 
   form > label:first-child {
-    margin-right: 0.75rem;
+    margin-left: 0.25rem;
+    margin-right: 1rem;
   }
-
-  form > label > input {
-    margin-right: -2px;
-  }
-
+  
   a {
     font-size: 1.2rem;
     padding: 0.8rem 1.6rem;

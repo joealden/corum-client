@@ -14,7 +14,7 @@ section {
 
 img {
   height: 6rem;
-  margin: 3rem;
+  margin: 3rem 3rem 2rem 3rem;
 }
 
 form {
@@ -26,10 +26,10 @@ form {
 }
 
 input {
-  width: 24.5rem;
   height: 4rem;
-  font-size: 1.65rem;
+  width: 24.5rem;
   margin: 0.4rem 0;
+  font-size: 1.65rem;
   text-align: center;
   border: none;
   border-radius: 5px;
@@ -38,11 +38,12 @@ input {
 
 input[type='text'],
 input[type='password'] {
-  background-color: $border;
+  background-color: #eee;
 
   &:hover,
   &:focus {
-    background-color: #eee;
+    transform: scale(1.02);
+    background-color: $border;
   }
 }
 
@@ -56,6 +57,7 @@ input[type='submit'] {
     background-color: $nav-hover;
     color: $nav-text-hover;
     border-color: $nav-hover;
+    transform: scale(1.02);
   }
 }
 
