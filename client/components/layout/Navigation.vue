@@ -1,16 +1,14 @@
 <template>
 <nav>
-  <div>
-    <h1>Subforums</h1>
-    <input type="search" placeholder="Search...">
-    <ul>
-      <li v-for="subforum in allSubforums" :key="subforum.id">
-        <nuxt-link :to="`/subforum/${subforum.url}`">
-          {{ subforum.name }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </div>
+  <h1>Subforums</h1>
+  <input type="search" placeholder="Search...">
+  <ul>
+    <li v-for="subforum in allSubforums" :key="subforum.id">
+      <nuxt-link :to="`/subforum/${subforum.url}`">
+        {{ subforum.name }}
+      </nuxt-link>
+    </li>
+  </ul>
 </nav>
 </template>
 
@@ -50,7 +48,6 @@ h1 {
 
 input[type="search"] {
   width: 100%;
-  margin-bottom: 0.5rem;
   padding: 0.5rem 1.5rem;
   font-size: 1.5rem;
   border: none;
@@ -64,7 +61,7 @@ ul {
 
 li {
   list-style: none;
-  margin: 0.75rem 0;
+  margin: 0;
   
   a {
     font-size: 1.3rem;

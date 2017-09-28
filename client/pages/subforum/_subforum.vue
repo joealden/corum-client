@@ -1,32 +1,30 @@
 <template>
-<main>
-  <section>
-    <h1>{{ $route.params.subforum }}</h1> <!-- Use actual title instead -->
-    <div id="toolbar">
-      <form>
-        <label>
-          <input type="radio" id="popular" name="sort" value="popular" checked>
-          Most Popular
-        </label>
-        <label>
-          <input type="radio" id="new" name="sort" value="new">
-          Newest
-        </label>
-      </form>
-      <nuxt-link to="/new/post">New Post</nuxt-link>
-    </div>
-    <ul id="post-list">
-      <li v-for="post in allPosts" :key="post.id">
-        <nuxt-link :to="'/post/' + post.id">
-          <div class="post-title">{{ post.title }}</div>
-          <div v-if="post.voteCount < 0" class="negative post-vote-count">{{ post.voteCount }}</div>
-          <div v-if="post.voteCount === 0" class="neutral post-vote-count">{{ post.voteCount }}</div>
-          <div v-if="post.voteCount > 0" class="positive post-vote-count">{{ post.voteCount }}</div>
-        </nuxt-link> 
-      </li>
-    </ul>
-  </section>
-</main>
+<section>
+  <h1>{{ $route.params.subforum }}</h1> <!-- Use actual title instead -->
+  <div id="toolbar">
+    <form>
+      <label>
+        <input type="radio" id="popular" name="sort" value="popular" checked>
+        Most Popular
+      </label>
+      <label>
+        <input type="radio" id="new" name="sort" value="new">
+        Newest
+      </label>
+    </form>
+    <nuxt-link to="/new/post">New Post</nuxt-link>
+  </div>
+  <ul id="post-list">
+    <li v-for="post in allPosts" :key="post.id">
+      <nuxt-link :to="'/post/' + post.id">
+        <div class="post-title">{{ post.title }}</div>
+        <div v-if="post.voteCount < 0" class="negative post-vote-count">{{ post.voteCount }}</div>
+        <div v-if="post.voteCount === 0" class="neutral post-vote-count">{{ post.voteCount }}</div>
+        <div v-if="post.voteCount > 0" class="positive post-vote-count">{{ post.voteCount }}</div>
+      </nuxt-link> 
+    </li>
+  </ul>
+</section>
 </template>
 
 <script>
@@ -56,23 +54,17 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/styles/variables';
 
-main {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 2.5rem;
-}
-
 section {
-  overflow: hidden;
+  margin: 3rem;
   font-size: 1.5rem;
   height: 100%;
-  border: 2px solid $primary-blue;
-  border-radius: 0.5rem;
   background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 10px 10px 25px #999;
 }
 
 h1 {
+  border-radius: 0.5rem 0.5rem 0 0;
   font-size: 2.5rem;
   margin: 0;
   padding: 0.75rem;
@@ -85,8 +77,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $border;
 
   form > label:first-child {
     margin-right: 0.75rem;
@@ -99,7 +90,7 @@ h1 {
   a {
     font-size: 1.2rem;
     padding: 0.8rem 1.6rem;
-    background: #18191E;
+    background: $primary-blue;
     color: white;
     border-radius: 5px;
     text-decoration: none;

@@ -3,9 +3,9 @@
   <corum-logo />
   <corum-header />
   <corum-nav />
-  <div id="test">
+  <main>
     <nuxt />
-  </div>
+  </main>
 </div>
 </template>
 
