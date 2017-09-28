@@ -106,7 +106,7 @@ h1 {
     &:hover {
       transform: translateY(-0.2rem); 
       box-shadow: 0 4px 10px #999;
-      background-color: $hover-blue
+      background-color: $nav-hover
     }
   }
 }
@@ -114,8 +114,7 @@ h1 {
 ul {
   overflow: auto;
   padding: 0;
-  margin: 0;
-  border: none;  
+  margin: 0; 
 }
 
 li {

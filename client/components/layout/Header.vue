@@ -39,6 +39,6 @@ a {
 }
 
 .nuxt-link-active {
-  background-color: $nav-active;
+  background-color: $nav-hover;
 }
 </style>
