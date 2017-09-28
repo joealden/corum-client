@@ -86,7 +86,7 @@ h1 {
   margin: 0;
   padding: 0.75rem;
   background-color: $primary-blue;
-  color: $nav-hover;
+  color: white;
 }
 
 #toolbar {
