@@ -5,7 +5,7 @@
     <form>
       <label>
         <input type="radio" id="popular" name="sort" value="popular" checked>
-        Most Popular
+        Popular
       </label>
       <label>
         <input type="radio" id="new" name="sort" value="new">
@@ -14,7 +14,7 @@
     </form>
     <nuxt-link to="/new/post">New Post</nuxt-link>
   </div>
-  <ul id="post-list">
+  <ul>
     <li v-for="post in allPosts" :key="post.id">
       <nuxt-link :to="'/post/' + post.id">
         <div class="post-title">{{ post.title }}</div>
@@ -73,11 +73,16 @@ h1 {
 }
 
 #toolbar {
-  padding: 0.6rem;
+  padding: 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid $border;
+
+  form > label {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+  }
 
   form > label:first-child {
     margin-right: 0.75rem;
@@ -96,42 +101,36 @@ h1 {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 600;
+    transition: 0.2s ease-in-out;
 
     &:hover {
-      background-color: #333;
+      transform: translateY(-0.2rem); 
+      box-shadow: 0 4px 10px #999;
+      background-color: $hover-blue
     }
   }
 }
 
-#post-list {
+ul {
   overflow: auto;
   padding: 0;
   margin: 0;
+  border: none;  
 }
 
 li {
   list-style: none;
 
-  &:hover,
-  &:active {
-    a > div {
-      color: white;
+  a {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    transition: 0.3s ease-in;
+
+    &:hover {
+      background-color: $border;
     }
   }
-
-  &:hover {
-    background-color: #222;
-  }
-
-  &:active {
-    background-color: black;
-  }
-}
-
-.post {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.6rem;
 }
 
 .negative { color: DarkRed }

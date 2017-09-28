@@ -1,8 +1,8 @@
 <template>
-<main>
+<section>
   <h1>Currently Selected Post</h1>
   <p>{{ $route.params.post }}</p>
-</main>
+</section>
 </template>
 
 <script>
@@ -16,12 +16,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 h1 {
   text-decoration: underline;
   font-size: 2.5rem;

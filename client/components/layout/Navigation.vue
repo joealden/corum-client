@@ -48,7 +48,7 @@ h1 {
 
 input[type="search"] {
   width: 100%;
-  padding: 0.5rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   font-size: 1.5rem;
   border: none;
 }
@@ -69,11 +69,11 @@ li {
     padding: 1.25rem 1.5rem;
     color: $nav-text;
     font-weight: 600;
+    transition: 0.3s ease-in-out;
 
     &:hover {
       background-color: $hover-blue;
       color: $nav-text-hover;
-      padding-left: 1.2rem;
       border-left: 0.3rem solid $nav-hover;
     }
   }
@@ -82,7 +82,7 @@ li {
 .nuxt-link-active {
   background-color: $secondary-blue;
   color: white;
-  padding-left: 1.2rem;
+  padding-left: 1.75rem;
   border-left: 0.3rem solid $nav-active;
 }
 </style>

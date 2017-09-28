@@ -25,17 +25,20 @@ a {
   border-radius: 5px;
   text-transform: uppercase;
   font-weight: 600;
+  transition: 0.15s ease-in-out;
 
   &:first-child {
     margin-right: 1.5rem;
   }
 
   &:hover {
-    background-color: $hover-blue;
+    transform: translateY(-0.2rem); 
+    box-shadow: 0 4px 10px #999;
+    background-color: $nav-hover
   }
 }
 
 .nuxt-link-active {
-  background-color: $hover-blue;
+  background-color: $nav-active;
 }
 </style>

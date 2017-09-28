@@ -33,15 +33,16 @@ input {
   text-align: center;
   border: none;
   border-radius: 5px;
+  transition: 0.2s ease-in-out;
 }
 
 input[type='text'],
 input[type='password'] {
-  background-color: #eee;
+  background-color: $border;
 
   &:hover,
   &:focus {
-    background-color: white;
+    background-color: #eee;
   }
 }
 

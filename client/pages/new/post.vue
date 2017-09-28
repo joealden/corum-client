@@ -1,7 +1,7 @@
 <template>
-<main>
+<section>
   <h1>New Post Page Stub</h1>
-</main>
+</section>
 </template>
 
 <script>
@@ -15,12 +15,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 h1 {
   text-decoration: underline;
   font-size: 2.5rem;
