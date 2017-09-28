@@ -26,66 +26,63 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/styles/variables';
+
 nav {
   grid-area: nav;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
-  border-right: 2px solid black;
+  background-color: $primary-blue;
 }
 
 h1 {
   margin: 0;
-  padding: 0.5rem;
-  font-size: 1.75rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
   background-color: black;
-  color: white;
-  text-align: center;
+  color: $nav-hover;
+  text-transform: uppercase;
 }
 
 input[type="search"] {
   width: 100%;
-  padding: 0.5rem;
-  font-size: 1.4rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.5rem;
   border: none;
-  border-bottom: 2px solid black;
 }
 
 ul {
   margin: 0;
   padding: 0;
-  background-color: #eee;
   overflow: auto;
 }
 
 li {
-  font-size: 1.35rem;
   list-style: none;
-  text-align: right;
+  margin: 0;
+  
+  a {
+    font-size: 1.3rem;
+    display: block;
+    padding: 1.25rem 1.5rem;
+    color: $nav-text;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
 
-  &:nth-child(even) {
-    background-color:white;
-  }
-
-  &:hover {
-    background-color: #444;
-    a {
-      color: white;
+    &:hover {
+      background-color: $hover-blue;
+      color: $nav-text-hover;
+      border-left: 0.3rem solid $nav-hover;
     }
   }
 }
 
-a {
-  display: block;
-  padding: 10px;
-}
-
-.even-item {
-  background-color: rgb(229, 229, 229);
-}
-
 .nuxt-link-active {
-  background-color: black;
+  background-color: #000;
   color: white;
+  padding-left: 1.75rem;
+  border-left: 0.3rem solid $nav-hover;
 }
 </style>

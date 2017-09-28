@@ -6,31 +6,41 @@
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/styles/variables';
+
 header {
   grid-area: header;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: #ccc;
-  border-bottom: 2px solid black;
+  background-color: white;
+  margin-right: 3rem;
 }
 
 a {
   font-size: 1.5rem;
-  margin-right: 1.5rem;
-  padding: 0.8rem;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 7px 7px 0 7px;
-  text-decoration: none;
+  padding: 0.8rem 1.6rem;
+  background: $primary-blue;
+  color: $nav-hover;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: 0.15s ease-in-out;
+
+  &:first-child {
+    margin-right: 1.5rem;
+  }
 
   &:hover {
-    background-color: #333;
+    transform: translateY(-0.2rem); 
+    box-shadow: 0 4px 10px #999;
+    background-color: $nav-hover;
+    color: white;
   }
 }
 
 .nuxt-link-active {
-  background-color: #333;
+  background-color: $nav-hover;
+  color: white;
 }
 </style>

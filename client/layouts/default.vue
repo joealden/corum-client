@@ -3,7 +3,9 @@
   <corum-logo />
   <corum-header />
   <corum-nav />
-  <nuxt />
+  <main>
+    <nuxt />
+  </main>
 </div>
 </template>
 
@@ -22,18 +24,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#grid {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-rows: 4.9rem auto;
-  grid-template-columns: 16em auto;
-  grid-template-areas: "logo header" "nav main";
-}
-
-main {
-  grid-area: main;
-  background-color: white;
-  text-align: center;
-}
+@import '../assets/styles/layouts';
 </style>

@@ -16,7 +16,7 @@ module.exports = {
   // CSS globals
   css: ['normalize.css', '~/assets/styles/globals.scss'],
   // Customize the progress bar color
-  loading: { color: 'black' },
+  loading: { color: '#53c556' }, // $nav-hover
   // Build configuration
   build: {
     // Run ESLint on save

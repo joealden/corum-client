@@ -1,16 +1,13 @@
 <template>
-<main>
-  <section>
-    <img src="~/assets/images/logo.svg" alt="corum">
-    <form>
-      <h1>Login</h1>
-      <input type="text" placeholder="Username" autofocus>
-      <input type="password" placeholder="Password">
-      <input type="submit" value="Log In" @click.prevent>
-    </form>
-    <p>Don't have an account? <nuxt-link to="/signup">Sign Up</nuxt-link></p>
-  </section>
-</main>
+<section>
+  <img src="~/assets/images/logo-light.svg" alt="corum">
+  <form>
+    <input type="text" placeholder="Email Address" autofocus>
+    <input type="password" placeholder="Password">
+    <input type="submit" value="Login" @click.prevent>
+  </form>
+  <p>Don't have an account? <nuxt-link to="/signup">Sign Up</nuxt-link></p>
+</section>
 </template>
 
 <script>

@@ -1,7 +1,6 @@
 # TODO
 
 - Redo README.md (React --> Vue)
-- Move from sass to postcss
 - page transitions (Vue's `transition` component)
 - vue-apollo (Nuxt Apollo module)
 - Login + signup pages (backend thought)
