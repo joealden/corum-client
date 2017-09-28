@@ -1,0 +1,28 @@
+#grid {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 8rem auto;
+  grid-template-columns: 25em auto;
+  grid-template-areas: 'logo header' 'nav main';
+}
+
+#test {
+  background-color: #e3e4e8;
+  border-top: 2px solid #d0d2db;
+}
+
+main {
+  grid-area: main;
+  text-align: center;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.2s ease-out;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+  transform-origin: 50% 50%;
+}

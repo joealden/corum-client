@@ -11,7 +11,7 @@ div {
   grid-area: logo;
   display: flex;
   justify-content: left;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
   align-items: center;
   background-color: #101218;
 }

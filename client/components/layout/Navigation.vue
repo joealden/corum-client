@@ -28,33 +28,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/styles/variables';
+
 nav {
   grid-area: nav;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  background-color: #101218;
+  background-color: $primary-blue;
 }
 
 h1 {
   margin: 0;
-  padding: 20px 0.5rem 20px 2rem;
+  padding: 1rem 1.5rem;
   font-size: 1.5rem;
-  background-color: #0a0b10;
+  background-color: $secondary-blue;
   color: white;
-  text-align: left;
   text-transform: uppercase;
 }
 
 input[type="search"] {
-  padding: 10px 2rem;
-  margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1.5rem;
   font-size: 1.5rem;
   border: none;
-  background-color: #2b2d38;
-  color: white;
-  width: 100%;
 }
 
 ul {
@@ -64,37 +63,29 @@ ul {
 }
 
 li {
-  font-size: 1.35rem;
   list-style: none;
-  text-align: left;
-  padding-left: 1.5rem;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin: 0.75rem 0;
   
   a {
-    color: #bfc1c9;
+    font-size: 1.3rem;
+    display: block;
+    padding: 1.25rem 1.5rem;
+    color: $nav-text;
     font-weight: 600;
-  }
 
-  &:hover {
-    background-color: #282E37;
-    border-left: 0.3rem solid white;
-    padding-left: 1.2rem;
-    a {
-      color: white;
+    &:hover {
+      background-color: $hover-blue;
+      color: $nav-text-hover;
+      padding-left: 1.2rem;
+      border-left: 0.3rem solid $nav-hover;
     }
   }
 }
 
-a {
-  display: block;
-  padding: 10px;
-}
-
 .nuxt-link-active {
-  & {
-    background-color: black;
-    color: white;
-  }
+  background-color: $secondary-blue;
+  color: white;
+  padding-left: 1.2rem;
+  border-left: 0.3rem solid $nav-active;
 }
 </style>
