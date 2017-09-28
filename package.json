@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Democratic, self governing forum software",
   "author": "Joe Alden <joerobertalden@gmail.com> (joealden.com)",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "homepage": "https://github.com/joealden/corum",
   "private": true,
   "repository": {
