@@ -14,14 +14,14 @@ header {
   justify-content: flex-end;
   align-items: center;
   background-color: white;
-  margin-right: 2.5rem;
+  margin-right: 3rem;
 }
 
 a {
   font-size: 1.5rem;
   padding: 0.8rem 1.6rem;
   background: $primary-blue;
-  color: white;
+  color: $nav-hover;
   border-radius: 5px;
   text-transform: uppercase;
   font-weight: 600;
@@ -34,11 +34,13 @@ a {
   &:hover {
     transform: translateY(-0.2rem); 
     box-shadow: 0 4px 10px #999;
-    background-color: $nav-hover
+    background-color: $nav-hover;
+    color: white;
   }
 }
 
 .nuxt-link-active {
   background-color: $nav-hover;
+  color: white;
 }
 </style>

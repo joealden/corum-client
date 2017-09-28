@@ -2,7 +2,7 @@
 
 <template>
 <section>
-  <h1>{{ $route.params.subforum }}</h1> <!-- Use actual title instead -->
+  <h1>{{ Subforum.name }}</h1> <!-- Use actual title instead -->
   <div id="toolbar">
     <form>
       <label>
@@ -31,9 +31,23 @@
 
 <script>
 import allPosts from '~/apollo/queries/allPosts.gql';
+import subforumName from '~/apollo/queries/subforumName.gql';
 
 export default {
+  data() {
+    return {
+      Subforum: ''
+    };
+  },
   apollo: {
+    Subforum: {
+      query: subforumName,
+      variables() {
+        return {
+          url: this.$route.params.subforum
+        };
+      }
+    },
     allPosts: {
       query: allPosts,
       fetchPolicy: 'cache-and-network',
@@ -72,7 +86,7 @@ h1 {
   margin: 0;
   padding: 0.75rem;
   background-color: $primary-blue;
-  color: white;
+  color: $nav-hover;
 }
 
 #toolbar {
@@ -100,9 +114,9 @@ h1 {
   
   a {
     font-size: 1.2rem;
-    padding: 0.8rem 1.6rem;
+    padding: 0.8rem 1.2rem;
     background: $primary-blue;
-    color: white;
+    color: $nav-hover;
     border-radius: 5px;
     text-decoration: none;
     text-transform: uppercase;
@@ -112,7 +126,8 @@ h1 {
     &:hover {
       transform: translateY(-0.2rem); 
       box-shadow: 0 4px 10px #999;
-      background-color: $nav-hover
+      background-color: $nav-hover;
+      color: white;
     }
   }
 }

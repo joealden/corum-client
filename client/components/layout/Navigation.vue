@@ -41,8 +41,8 @@ h1 {
   margin: 0;
   padding: 1rem 1.5rem;
   font-size: 1.5rem;
-  background-color: $secondary-blue;
-  color: white;
+  background-color: black;
+  color: $nav-hover;
   text-transform: uppercase;
 }
 
@@ -80,9 +80,9 @@ li {
 }
 
 .nuxt-link-active {
-  background-color: $secondary-blue;
+  background-color: #000;
   color: white;
   padding-left: 1.75rem;
-  border-left: 0.3rem solid $nav-active;
+  border-left: 0.3rem solid $nav-hover;
 }
 </style>

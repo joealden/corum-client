@@ -4,7 +4,7 @@
   <form>
     <input type="text" placeholder="Email Address" autofocus>
     <input type="password" placeholder="Password">
-    <input type="submit" value="Log In" @click.prevent>
+    <input type="submit" value="Login" @click.prevent>
   </form>
   <p>Don't have an account? <nuxt-link to="/signup">Sign Up</nuxt-link></p>
 </section>

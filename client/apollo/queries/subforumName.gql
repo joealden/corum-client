@@ -1,0 +1,5 @@
+query Subforum($url: String!) {
+  Subforum(url: $url) {
+    name
+  }
+}
