@@ -69,11 +69,11 @@ li {
     padding: 1.25rem 1.5rem;
     color: $nav-text;
     font-weight: 600;
-    transition: 0.3s ease-in-out;
 
     &:hover {
       background-color: $hover-blue;
-      color: $nav-text-hover;
+      color: white;
+      padding-left: 1.2rem;
       border-left: 0.3rem solid $nav-hover;
     }
   }
@@ -82,7 +82,7 @@ li {
 .nuxt-link-active {
   background-color: #000;
   color: white;
-  padding-left: 1.75rem;
+  padding-left: 1.2rem;
   border-left: 0.3rem solid $nav-hover;
 }
 </style>
