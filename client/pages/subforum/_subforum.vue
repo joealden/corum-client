@@ -16,7 +16,7 @@
         Newest
       </label>
     </form>
-    <nuxt-link to="/new/post">New Post</nuxt-link>
+    <nuxt-link to="/new/post"><i class="fa fa-plus" aria-hidden="true"></i>New Post</nuxt-link>
   </div>
   <ul>
     <li v-for="post in allPosts" :key="post.id">
@@ -123,7 +123,7 @@ h1 {
   
   a {
     font-size: 1.2rem;
-    padding: 0.8rem 1.2rem;
+    padding: 0.8rem 1.1rem;
     background: $primary-blue;
     color: white;
     border-radius: 5px;
@@ -132,10 +132,19 @@ h1 {
     font-weight: 600;
     transition: 0.15s ease-in-out;
 
+    i {
+      margin-right: 0.4rem;
+      color: $nav-hover;
+    }
+
     &:hover {
       transform: translateY(-0.2rem); 
       box-shadow: 0 4px 10px #999;
       background-color: $nav-hover;
+
+      i {
+        color: white;
+      }
     }
   }
 }

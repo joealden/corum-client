@@ -1,7 +1,7 @@
 <template>
 <header>
-  <nuxt-link to="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</nuxt-link>
-  <nuxt-link to="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</nuxt-link>
+  <nuxt-link to="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</nuxt-link>
+  <nuxt-link to="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</nuxt-link>
 </header>
 </template>
 
@@ -17,9 +17,7 @@ header {
   margin-right: 3rem;
 }
 
-i {
-  color: $nav-hover;
-}
+
 
 a {
   font-size: 1.5rem;
@@ -30,6 +28,11 @@ a {
   text-transform: uppercase;
   font-weight: 600;
   transition: 0.15s ease-in-out;
+
+  i {
+    color: $nav-hover;
+    margin-right: 0.4rem;
+  }
 
   &:first-child {
     margin-right: 1.5rem;
