@@ -21,7 +21,7 @@ a {
   font-size: 1.5rem;
   padding: 0.8rem 1.6rem;
   background: $primary-blue;
-  color: $nav-hover;
+  color: white;
   border-radius: 5px;
   text-transform: uppercase;
   font-weight: 600;
@@ -35,8 +35,7 @@ a {
     transform: translateY(-0.2rem); 
     box-shadow: 0 4px 10px #999;
     background-color: $nav-hover;
-    color: white;
-  }
+  } 
 }
 
 .nuxt-link-active {

@@ -2,11 +2,11 @@
 <section>
   <img src="~/assets/images/logo-light.svg" alt="corum">
   <form>
-    <input type="text" placeholder="Email Address" autofocus>
+    <input type="text" placeholder="Email Address">
     <input type="password" placeholder="Password">
     <input type="submit" value="Login" @click.prevent>
   </form>
-  <p>Don't have an account? <nuxt-link to="/signup">Sign Up</nuxt-link></p>
+  <p>Don't have an account?<br><nuxt-link to="/signup">Sign Up</nuxt-link></p>
 </section>
 </template>
 

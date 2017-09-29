@@ -2,7 +2,7 @@
 
 <template>
 <section>
-  <h1>{{ Subforum.name }}</h1> <!-- Use actual title instead -->
+  <h1>{{ Subforum.name }}</h1>
   <div id="toolbar">
     <form>
       <label>
@@ -116,18 +116,17 @@ h1 {
     font-size: 1.2rem;
     padding: 0.8rem 1.2rem;
     background: $primary-blue;
-    color: $nav-hover;
+    color: white;
     border-radius: 5px;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 600;
-    transition: 0.2s ease-in-out;
+    transition: 0.15s ease-in-out;
 
     &:hover {
       transform: translateY(-0.2rem); 
       box-shadow: 0 4px 10px #999;
       background-color: $nav-hover;
-      color: white;
     }
   }
 }
