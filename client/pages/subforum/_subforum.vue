@@ -2,7 +2,9 @@
 
 <template>
 <section>
-  <h1>{{ Subforum.name }}</h1>
+  <div id="title-wrapper">
+    <h1>{{ Subforum.name }}</h1>
+  </div>
   <div id="toolbar">
     <form>
       <label>
@@ -36,7 +38,7 @@ import subforumName from '~/apollo/queries/subforumName.gql';
 export default {
   data() {
     return {
-      Subforum: ''
+      Subforum: {}
     };
   },
   apollo: {
@@ -80,13 +82,20 @@ section {
   box-shadow: 10px 10px 25px #999;
 }
 
-h1 {
+#title-wrapper {
+  display: block;
   border-radius: 0.5rem 0.5rem 0 0;
-  font-size: 2.5rem;
+  height: 3rem;
   margin: 0;
   padding: 0.75rem;
   background-color: $primary-blue;
   color: white;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 2.5rem;
 }
 
 #toolbar {
