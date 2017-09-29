@@ -51,6 +51,7 @@ input[type="search"] {
   padding: 0.6rem 1.5rem;
   font-size: 1.5rem;
   border: none;
+  outline: none;
 }
 
 ul {
