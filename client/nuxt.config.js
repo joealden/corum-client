@@ -31,7 +31,7 @@ module.exports = {
       }
     }
   },
-  modules: ['@nuxtjs/apollo'],
+  modules: ['@nuxtjs/apollo', '@nuxtjs/font-awesome'],
   apollo: {
     networkInterfaces: {
       default: '~/apollo/network-interfaces/default.js'
