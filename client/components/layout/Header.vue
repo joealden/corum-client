@@ -1,7 +1,7 @@
 <template>
 <header>
-  <nuxt-link to="/signup">Sign Up</nuxt-link>
-  <nuxt-link to="/login">Login</nuxt-link>
+  <nuxt-link to="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</nuxt-link>
+  <nuxt-link to="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</nuxt-link>
 </header>
 </template>
 
@@ -15,6 +15,10 @@ header {
   align-items: center;
   background-color: white;
   margin-right: 3rem;
+}
+
+i {
+  color: $nav-hover;
 }
 
 a {
@@ -35,11 +39,19 @@ a {
     transform: translateY(-0.2rem); 
     box-shadow: 0 4px 10px #999;
     background-color: $nav-hover;
+
+    i {
+      color: white;
+    }
   } 
 }
 
 .nuxt-link-active {
   background-color: $nav-hover;
   color: white;
+
+  i {
+    color: white;
+  }
 }
 </style>
