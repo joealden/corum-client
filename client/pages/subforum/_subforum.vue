@@ -170,7 +170,7 @@ li {
   }
 }
 
-.negative { color: DarkRed }
+.negative { color: red }
 .neutral { color: black }
-.positive { color: MediumSeaGreen }
+.positive { color: $nav-hover }
 </style>
