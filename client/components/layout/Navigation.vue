@@ -74,7 +74,7 @@ li {
       background-color: $hover-blue;
       color: white;
       padding-left: 1.2rem;
-      border-left: 0.3rem solid $nav-hover;
+      border-left: 0.4rem solid $nav-hover;
     }
   }
 }
@@ -83,6 +83,6 @@ li {
   background-color: #000;
   color: white;
   padding-left: 1.2rem;
-  border-left: 0.3rem solid $nav-hover;
+  border-left: 0.4rem solid $nav-hover;
 }
 </style>
