@@ -3,7 +3,7 @@
   <div id="title-wrapper">
       <h1>{{ Post.title }}</h1>
   </div>
-  <div id="wrapper">
+  <div id="main-content-wrapper">
     <div id="author-created">
       <div>Author: <span>{{ Post.author }}</span></div>
       <div>Created At: <span>{{ formatedTime }}</span></div>
@@ -18,7 +18,25 @@
         <button><i class="fa fa-angle-down" aria-hidden="true"></i></button>
       </div>
     </div>
+    <div id="comments-wrapper">
+      <h2>Comments</h2>
+      <div v-if="postHasComments">
+        <ul>
+          <li v-for="comment in Post.comments" :key="comment.id">
+            <div>{{ comment.content }}</div>
+            <div>{{ comment.author }}</div>
+          </li>
+        </ul>
+      </div>
+      <div v-else id="no-comments">
+        <p>There aren't any comments yet!</p>
+      </div>
+    </div>
   </div>
+  <form id="add-comment">
+    <textarea name="comment-field" rows="3" placeholder="Comment"></textarea>
+    <button @click.prevent><i class="fa fa-plus" aria-hidden="true"></i>Post Comment</button>
+  </form>
 </section>
 </template>
 
@@ -32,6 +50,7 @@ export default {
     };
   },
   computed: {
+    // Graph.cool returns unformatted date
     formatedTime() {
       const time = new Date(this.Post.createdAt);
       const day = time.getDate();
@@ -46,6 +65,16 @@ export default {
       }
 
       return ` ${hours}:${minutes} - ${day}/${month}/${year} `;
+    },
+    // TODO: tidy up function
+    postHasComments() {
+      if (this.Post.comments) {
+        if (this.Post.comments.length === 0) {
+          return false;
+        }
+        return true;
+      }
+      return true;
     }
   },
   apollo: {
@@ -73,6 +102,8 @@ section {
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 10px 10px 25px #999;
+  display: flex;
+  flex-direction: column;
 }
 
 #title-wrapper {
@@ -91,8 +122,11 @@ section {
   }
 }
 
-#wrapper {
+#main-content-wrapper {
   margin: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #author-created {
@@ -124,7 +158,7 @@ section {
 
 #post-content {
   width: 100%;
-  background-color: #ddd;
+  background-color: #eee;
   margin-right: 1.5rem;
   border-radius: 0.5rem;
   display: flex;
@@ -145,6 +179,7 @@ section {
     border: none;
     border-radius: 0.3rem;
     transition: 0.15s ease-in-out;
+    outline: none;
 
     &:hover:first-child {
       background-color: $nav-hover;
@@ -162,5 +197,68 @@ section {
   }
 }
 
+#comments-wrapper {
+  background-color: #eee;
+  border-radius: 0.5rem;
+  margin-top: 1.5rem;
+  flex-grow: 1; //make comments fill rest of available space
 
+  h2 {
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: $primary-blue;
+    color: white;
+  }
+}
+
+#no-comments {
+  padding: 1.5rem;
+  color: grey;
+}
+
+#add-comment {
+  margin-top: auto; // make element stick to bottom of the page
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: $primary-blue;
+  color: white;
+
+  textarea {
+    flex-grow: 1;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    padding: 1.25rem;
+    resize: none;
+    outline: none;
+    border-radius: 0.5rem;
+    vertical-align: middle;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.1rem;
+    background: $hover-blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: 0.15s ease-in-out;
+
+    i {
+      margin-right: 0.5rem;
+      color: white;
+    }
+
+    &:hover {
+      background-color: $nav-hover;
+    }
+  }
+}
 </style>
