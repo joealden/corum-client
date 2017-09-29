@@ -165,7 +165,7 @@ li {
     transition: 0.3s ease-in;
 
     &:hover {
-      background-color: $border;
+      background-color: #eee;
     }
   }
 }
