@@ -1,17 +1,22 @@
 <template>
 <section>
   <div id="title-wrapper">
-    <h1>{{ Post.title }}</h1>
+      <h1>{{ Post.title }}</h1>
   </div>
-  <div id="post-details">
+  <div id="wrapper">
     <div id="author-created">
-      <span>Created By: {{ Post.author }}</span>
-      <span>Created At: {{ formatedTime }}</span>
+      <div>Author: <span>{{ Post.author }}</span></div>
+      <div>Created At: <span>{{ formatedTime }}</span></div>
     </div>
-    <div id="vote-count">
-      <button>Up</button>
-      <span>{{ Post.voteCount }}</span>
-      <button>Down</button>
+    <div id="post-details">
+      <div id="post-content">
+        <p>{{ Post.content }}</p>
+      </div>
+      <div id="vote-count">
+        <button><i class="fa fa-angle-up" aria-hidden="true"></i></button>
+        <span>{{ Post.voteCount }}</span>
+        <button><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+      </div>
     </div>
   </div>
 </section>
@@ -33,25 +38,26 @@ export default {
       const month = time.getMonth();
       const year = time.getFullYear();
       const hours = time.getHours();
-      const minutes = time.getMinutes();
 
-      return `${day}/${month}/${year} ${hours}:${minutes}`;
+      // make the output of time.getMinutes() padded
+      let minutes = time.getMinutes();
+      if (minutes < 10) {
+        minutes = `0${minutes}`;
+      }
+
+      return ` ${hours}:${minutes} - ${day}/${month}/${year} `;
     }
   },
   apollo: {
     Post: {
       query: post,
       variables() {
-        return {
-          id: this.$route.params.post
-        };
+        return { id: this.$route.params.post };
       }
     }
   },
   head() {
-    return {
-      title: 'Post' // TODO: wire up to post title
-    };
+    return { title: this.Post.title };
   }
 };
 </script>
@@ -77,29 +83,84 @@ section {
   padding: 0.75rem;
   background-color: $primary-blue;
   color: white;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.5rem;
+  }
 }
 
-h1 {
-  margin: 0;
-  padding: 0;
-  font-size: 2.5rem;
+#wrapper {
+  margin: 1.5rem;
+}
+
+#author-created {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  background-color: $primary-blue;
+  color: white;
+  padding: 1rem 1.2rem;
+  border-radius: 0.5rem;
+
+  div {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  div > span {
+    color: $nav-hover;
+    text-transform: lowercase;
+    font-weight: normal;
+    margin-left: 0.2rem;
+  }
 }
 
 #post-details {
-  padding: 1.5rem;
   display: flex;
   justify-content: space-between;
 }
 
-#author-created {
- text-align: left;
+#post-content {
+  width: 100%;
+  background-color: #ddd;
+  margin-right: 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-span {
-  display: block;
+#vote-count {
+  padding: 0.75rem;
+  background-color: $primary-blue;
+  color: white;
+  border-radius: 0.5rem;
+
+  button {
+    padding: 0.8rem 1rem;
+    background-color: $hover-blue;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    transition: 0.15s ease-in-out;
+
+    &:hover:first-child {
+      background-color: $nav-hover;
+    }
+
+    &:hover:last-child {
+      background-color: red;
+    }
+  }
+
+  span {
+    display: block;
+    font-size: 2rem;
+    padding: 0.5rem;
+  }
 }
 
-button {
-  text-transform: uppercase;
-}
+
 </style>
