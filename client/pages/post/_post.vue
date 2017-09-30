@@ -19,7 +19,7 @@
       </div>
     </div>
     <div id="comments-wrapper">
-      <h2>Comments</h2>
+      <h2><i class="fa fa-comments" aria-hidden="true"></i>Comments</h2>
       <div v-if="postHasComments">
         <ul>
           <li v-for="comment in Post.comments" :key="comment.id">
@@ -35,7 +35,7 @@
   </div>
   <form id="add-comment">
     <textarea name="comment-field" rows="3" placeholder="Comment"></textarea>
-    <button @click.prevent><i class="fa fa-plus" aria-hidden="true"></i>Post Comment</button>
+    <button @click.prevent><i class="fa fa-paper-plane" aria-hidden="true"></i></i>Post Comment</button>
   </form>
 </section>
 </template>
@@ -212,6 +212,11 @@ section {
     font-weight: 600;
     background-color: $primary-blue;
     color: white;
+
+    i {
+      margin-right: 0.5rem;
+      color: $nav-hover;
+    }
   }
 }
 
@@ -253,11 +258,16 @@ section {
 
     i {
       margin-right: 0.5rem;
-      color: white;
+      color: $nav-hover;
+      transition: 0.15s ease-in-out;
     }
 
     &:hover {
       background-color: $nav-hover;
+      
+      i {
+        color: white;
+      }
     }
   }
 }
