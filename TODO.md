@@ -3,7 +3,7 @@
 - Redo README.md (React --> Vue)
 - Login + signup pages (backend thought)
 - Finish DATA.md (TODOs on mutations and subscriptions)
-- Make max lengths for info:
+- Make max lengths for info (characters):
   - usernames (50)
   - passwords (50)
   - titles (100 / 150)
