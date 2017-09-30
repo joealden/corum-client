@@ -255,6 +255,7 @@ section {
     text-transform: uppercase;
     font-weight: 600;
     transition: 0.15s ease-in-out;
+    outline: none;
 
     i {
       margin-right: 0.5rem;
