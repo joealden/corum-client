@@ -1,8 +1,8 @@
 <template>
-  <section>
-    <img src="~/assets/images/logo.svg" alt="corum">
-    <p>Please Select a Subforum!</p>
-  </section>
+<section>
+  <img src="~/assets/images/logo.svg" alt="corum">
+  <p>Please Select a Subforum!</p>
+</section>
 </template>
 
 <script>

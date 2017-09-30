@@ -1,10 +1,8 @@
 <template>
-  <header>
-    <nuxt-link to="/signup">
-      <i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</nuxt-link>
-    <nuxt-link to="/login">
-      <i class="fa fa-sign-in" aria-hidden="true"></i>Login</nuxt-link>
-  </header>
+<header>
+  <nuxt-link to="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</nuxt-link>
+  <nuxt-link to="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</nuxt-link>
+</header>
 </template>
 
 <style lang="scss" scoped>
@@ -41,14 +39,14 @@ a {
   }
 
   &:hover {
-    transform: translateY(-0.2rem);
+    transform: translateY(-0.2rem); 
     box-shadow: 0 4px 10px #999;
     background-color: $nav-hover;
 
     i {
       color: white;
     }
-  }
+  } 
 }
 
 .nuxt-link-active {

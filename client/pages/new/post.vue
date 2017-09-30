@@ -1,7 +1,7 @@
 <template>
-  <section>
-    <h1>New Post Page Stub</h1>
-  </section>
+<section>
+  <h1>New Post Page Stub</h1>
+</section>
 </template>
 
 <script>

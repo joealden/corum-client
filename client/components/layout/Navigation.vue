@@ -1,15 +1,15 @@
 <template>
-  <nav>
-    <h1>Subforums</h1>
-    <input type="search" placeholder="Search..." spellcheck="false">
-    <ul>
-      <li v-for="subforum in allSubforums" :key="subforum.id">
-        <nuxt-link :to="`/subforum/${subforum.url}`">
-          {{ subforum.name }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </nav>
+<nav>
+  <h1>Subforums</h1>
+  <input type="search" placeholder="Search..." spellcheck="false">
+  <ul>
+    <li v-for="subforum in allSubforums" :key="subforum.id">
+      <nuxt-link :to="`/subforum/${subforum.url}`">
+        {{ subforum.name }}
+      </nuxt-link>
+    </li>
+  </ul>
+</nav>
 </template>
 
 <script>
@@ -63,7 +63,7 @@ ul {
 li {
   list-style: none;
   margin: 0;
-
+  
   a {
     font-size: 1.3rem;
     display: block;

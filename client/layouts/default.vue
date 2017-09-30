@@ -1,12 +1,12 @@
 <template>
-  <div id="grid">
-    <corum-logo />
-    <corum-header />
-    <corum-nav />
-    <main>
-      <nuxt />
-    </main>
-  </div>
+<div id="grid">
+  <corum-logo />
+  <corum-header />
+  <corum-nav />
+  <main>
+    <nuxt />
+  </main>
+</div>
 </template>
 
 <script>

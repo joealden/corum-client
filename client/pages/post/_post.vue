@@ -1,54 +1,43 @@
 <template>
-  <section>
-    <div id="title-wrapper">
+<section>
+  <div id="title-wrapper">
       <h1>{{ Post.title }}</h1>
+  </div>
+  <div id="main-content-wrapper">
+    <div id="author-created">
+      <div>Author: <span>{{ Post.author }}</span></div>
+      <div>Created At: <span>{{ formatedTime }}</span></div>
     </div>
-    <div id="main-content-wrapper">
-      <div id="author-created">
-        <div>Author:
-          <span>{{ Post.author }}</span>
-        </div>
-        <div>Created At:
-          <span>{{ formatedTime }}</span>
-        </div>
+    <div id="post-details">
+      <div id="post-content">
+        <p>{{ Post.content }}</p>
       </div>
-      <div id="post-details">
-        <div id="post-content">
-          <p>{{ Post.content }}</p>
-        </div>
-        <div id="vote-count">
-          <button>
-            <i class="fa fa-angle-up" aria-hidden="true"></i>
-          </button>
-          <span>{{ Post.voteCount }}</span>
-          <button>
-            <i class="fa fa-angle-down" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-      <div id="comments-wrapper">
-        <h2>
-          <i class="fa fa-comments" aria-hidden="true"></i>Comments</h2>
-        <div v-if="postHasComments">
-          <ul>
-            <li v-for="comment in Post.comments" :key="comment.id">
-              <div>{{ comment.content }}</div>
-              <div>{{ comment.author }}</div>
-            </li>
-          </ul>
-        </div>
-        <div v-else id="no-comments">
-          <p>There aren't any comments yet!</p>
-        </div>
+      <div id="vote-count">
+        <button><i class="fa fa-angle-up" aria-hidden="true"></i></button>
+        <span>{{ Post.voteCount }}</span>
+        <button><i class="fa fa-angle-down" aria-hidden="true"></i></button>
       </div>
     </div>
-    <form id="add-comment">
-      <textarea name="comment-field" rows="3" placeholder="Comment"></textarea>
-      <button @click.prevent>
-        <i class="fa fa-paper-plane" aria-hidden="true"></i>
-        </i>Post Comment</button>
-    </form>
-  </section>
+    <div id="comments-wrapper">
+      <h2><i class="fa fa-comments" aria-hidden="true"></i>Comments</h2>
+      <div v-if="postHasComments">
+        <ul>
+          <li v-for="comment in Post.comments" :key="comment.id">
+            <div>{{ comment.content }}</div>
+            <div>{{ comment.author }}</div>
+          </li>
+        </ul>
+      </div>
+      <div v-else id="no-comments">
+        <p>There aren't any comments yet!</p>
+      </div>
+    </div>
+  </div>
+  <form id="add-comment">
+    <textarea name="comment-field" rows="3" placeholder="Comment"></textarea>
+    <button @click.prevent><i class="fa fa-paper-plane" aria-hidden="true"></i></i>Post Comment</button>
+  </form>
+</section>
 </template>
 
 <script>
@@ -154,7 +143,7 @@ section {
     font-weight: 600;
   }
 
-  div>span {
+  div > span {
     color: $nav-hover;
     text-transform: lowercase;
     font-weight: normal;
@@ -213,6 +202,7 @@ section {
   border-radius: 0.5rem;
   margin-top: 1.5rem;
   flex-grow: 1; //make comments fill rest of available space
+
   h2 {
     margin: 0;
     padding: 1rem;
@@ -275,7 +265,7 @@ section {
 
     &:hover {
       background-color: $nav-hover;
-
+      
       i {
         color: white;
       }

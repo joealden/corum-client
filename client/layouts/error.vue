@@ -1,16 +1,16 @@
 <template>
-  <div id="grid">
-    <corum-logo />
-    <corum-header />
-    <corum-nav />
-    <main>
-      <section>
-        <img src="~/assets/images/logo.svg" alt="corum">
-        <h1>{{ error.statusCode }}</h1>
-        <p class="error-message">{{ error.message }}</p>
-      </section>
-    </main>
-  </div>
+<div id="grid">
+  <corum-logo />
+  <corum-header />
+  <corum-nav />
+  <main>
+    <section>
+      <img src="~/assets/images/logo.svg" alt="corum">
+      <h1>{{ error.statusCode }}</h1>
+      <p class="error-message">{{ error.message }}</p>
+    </section>
+  </main>
+</div>
 </template>
 
 <script>
