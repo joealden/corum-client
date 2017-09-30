@@ -1,7 +1,7 @@
 <template>
 <nav>
   <h1>Subforums</h1>
-  <input type="search" placeholder="Search...">
+  <input type="search" placeholder="Search..." spellcheck="false">
   <ul>
     <li v-for="subforum in allSubforums" :key="subforum.id">
       <nuxt-link :to="`/subforum/${subforum.url}`">
@@ -70,8 +70,10 @@ li {
     padding: 1.5rem;
     color: $nav-text;
     font-weight: 600;
+    outline: none;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $hover-blue;
       color: white;
       padding-left: 1.1rem;
