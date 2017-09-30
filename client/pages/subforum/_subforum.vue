@@ -36,11 +36,6 @@ import allPosts from '~/apollo/queries/allPosts.gql';
 import subforumName from '~/apollo/queries/subforumName.gql';
 
 export default {
-  data() {
-    return {
-      Subforum: {}
-    };
-  },
   apollo: {
     Subforum: {
       query: subforumName,
@@ -61,10 +56,12 @@ export default {
       }
     }
   },
+  data: () => ({ Subforum: {} }),
   head() {
-    return {
-      title: 'Subforum' // TODO: wire up to subforum name
-    };
+    if (this.Subforum.name) {
+      return { title: this.Subforum.name };
+    }
+    return { title: 'Loading...' };
   }
 };
 </script>

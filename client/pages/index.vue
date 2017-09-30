@@ -6,13 +6,7 @@
 </template>
 
 <script>
-export default {
-  head() {
-    return {
-      title: 'Home'
-    };
-  }
-};
+export default { head: () => ({ title: 'Home' }) };
 </script>
 
 <style lang="scss" scoped>

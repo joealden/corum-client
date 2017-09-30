@@ -5,13 +5,7 @@
 </template>
 
 <script>
-export default {
-  head() {
-    return {
-      title: 'New Post'
-    };
-  }
-};
+export default { head: () => ({ title: 'New Post' }) };
 </script>
 
 <style lang="scss" scoped>

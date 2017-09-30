@@ -11,13 +11,7 @@
 </template>
 
 <script>
-export default {
-  head() {
-    return {
-      title: 'Log In'
-    };
-  }
-};
+export default { head: () => ({ title: 'Login' }) };
 </script>
 
 <style lang="scss" scoped>

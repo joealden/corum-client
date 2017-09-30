@@ -20,16 +20,16 @@
     </div>
     <div id="comments-wrapper">
       <h2><i class="fa fa-comments" aria-hidden="true"></i>Comments</h2>
-      <div v-if="postHasComments">
+      <div v-if="!Post.comments || Post.comments.length === 0" id="no-comments">
+        <p>There aren't any comments yet!</p>
+      </div>
+      <div v-else >
         <ul>
           <li v-for="comment in Post.comments" :key="comment.id">
             <div>{{ comment.content }}</div>
             <div>{{ comment.author }}</div>
           </li>
         </ul>
-      </div>
-      <div v-else id="no-comments">
-        <p>There aren't any comments yet!</p>
       </div>
     </div>
   </div>
@@ -44,10 +44,13 @@
 import post from '~/apollo/queries/post.gql';
 
 export default {
-  data() {
-    return {
-      Post: {}
-    };
+  apollo: {
+    Post: {
+      query: post,
+      variables() {
+        return { id: this.$route.params.post };
+      }
+    }
   },
   computed: {
     // Graph.cool returns unformatted date
@@ -63,28 +66,10 @@ export default {
       if (minutes < 10) {
         minutes = `0${minutes}`;
       }
-
       return ` ${hours}:${minutes} - ${day}/${month}/${year} `;
-    },
-    // TODO: tidy up function
-    postHasComments() {
-      if (this.Post.comments) {
-        if (this.Post.comments.length === 0) {
-          return false;
-        }
-        return true;
-      }
-      return true;
     }
   },
-  apollo: {
-    Post: {
-      query: post,
-      variables() {
-        return { id: this.$route.params.post };
-      }
-    }
-  },
+  data: () => ({ Post: {} }),
   head() {
     return { title: this.Post.title };
   }

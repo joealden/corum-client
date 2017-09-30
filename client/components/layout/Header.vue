@@ -17,8 +17,6 @@ header {
   margin-right: 3rem;
 }
 
-
-
 a {
   font-size: 1.5rem;
   padding: 0.8rem 1.6rem;

@@ -19,18 +19,14 @@ import Header from '~/components/layout/Header.vue';
 import Navigation from '~/components/layout/Navigation.vue';
 
 export default {
-  name: 'nuxt-error',
-  props: ['error'],
   components: {
     corumLogo: Logo,
     corumHeader: Header,
     corumNav: Navigation
   },
-  head() {
-    return {
-      title: 'Error'
-    };
-  }
+  head: () => ({ title: 'Error' }),
+  name: 'nuxt-error',
+  props: ['error']
 };
 </script>
 

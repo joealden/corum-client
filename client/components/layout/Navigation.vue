@@ -15,14 +15,7 @@
 <script>
 import allSubforums from '~/apollo/queries/allSubforums.gql';
 
-export default {
-  apollo: {
-    allSubforums: {
-      prefetch: true,
-      query: allSubforums
-    }
-  }
-};
+export default { apollo: { allSubforums } };
 </script>
 
 <style lang="scss" scoped>
