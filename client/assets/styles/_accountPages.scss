@@ -43,7 +43,7 @@ input {
   }
 }
 
-input[type='text'],
+input[type='email'],
 input[type='password'] {
   background-color: #eee;
   font-size: 1.5rem;
@@ -61,6 +61,10 @@ input[type='submit'] {
     cursor: pointer;
     background-color: $nav-hover;
   }
+
+  &:focus {
+    background-color: $nav-hover;
+  }
 }
 
 p {
@@ -69,7 +73,13 @@ p {
   color: white;
   margin-top: 1.5rem;
   margin-bottom: 3rem;
+
   a {
     color: $nav-hover;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 }

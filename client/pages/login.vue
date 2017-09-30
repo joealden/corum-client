@@ -2,7 +2,7 @@
 <section>
   <img src="~/assets/images/logo-light.svg" alt="corum">
   <form>
-    <input type="text" placeholder="Email Address">
+    <input type="email" placeholder="Email Address" autocapitalize="off" spellcheck="false">
     <input type="password" placeholder="Password">
     <input type="submit" value="Login" @click.prevent>
   </form>
