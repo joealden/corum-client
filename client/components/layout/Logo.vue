@@ -1,9 +1,9 @@
 <template>
-<div>
-  <nuxt-link to="/">
-    <img src="~/assets/images/logo-light.svg" alt="corum" />
-  </nuxt-link>
-</div>
+  <div>
+    <nuxt-link to="/">
+      <img src="~/assets/images/logo-light.svg" alt="corum" />
+    </nuxt-link>
+  </div>
 </template>
 
 <style lang="scss" scoped>
