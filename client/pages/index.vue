@@ -1,6 +1,6 @@
 <template>
 <section>
-  <img src="~/assets/images/logo.svg" alt="corum">
+  <img src="~/assets/images/logo-dark.svg" alt="corum">
   <p>Please Select a Subforum!</p>
 </section>
 </template>

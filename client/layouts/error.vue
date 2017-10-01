@@ -5,7 +5,7 @@
   <corum-nav />
   <main>
     <section>
-      <img src="~/assets/images/logo.svg" alt="corum">
+      <img src="~/assets/images/logo-dark.svg" alt="corum">
       <h1>{{ error.statusCode }}</h1>
       <p class="error-message">{{ error.message }}</p>
     </section>
