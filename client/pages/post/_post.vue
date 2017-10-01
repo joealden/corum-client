@@ -24,17 +24,16 @@
       </div>
       <div id="comments-wrapper">
         <h2><i class="fa fa-comments" aria-hidden="true"></i>Comments</h2>
-        <div v-if="!Post.comments || Post.comments.length === 0" id="no-comments">
+        <div v-if="Post.comments.length === 0" id="no-comments">
           <p>There aren't any comments yet!</p>
         </div>
-        <div v-else>
-          <ul>
-            <li v-for="comment in Post.comments" :key="comment.id">
-              <div>{{ comment.content }}</div>
-              <div>{{ comment.author }}</div>
-            </li>
-          </ul>
-        </div>
+        <ul v-else>
+          <li v-for="comment in Post.comments" :key="comment.id">
+            <div>{{ comment.content }}</div>
+            <div v-if="comment.author === Post.author" class="author-comment">{{ comment.author }}</div>
+            <div v-else class="non-author-comment">{{ comment.author }}</div>
+          </li>
+        </ul>
       </div>
     </div>
     <form id="add-comment">
@@ -216,6 +215,45 @@ section {
       color: $nav-hover;
     }
   }
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      background-color: $border;
+
+      div:first-child {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        width: 100%;
+        margin-right: 0.75rem;
+        text-align: left;
+      }
+
+      div:last-child {
+        background-color: $primary-blue;
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+    }
+  }
+}
+
+.author-comment {
+  color: $nav-hover;
+}
+
+.non-author-comment {
+  color: white;
 }
 
 #no-comments {
