@@ -12,7 +12,9 @@
       </div>
       <div id="post-details">
         <div id="post-content">
-          <p>{{ Post.content }}</p>
+          <div>
+            <p>{{ Post.content }}</p>
+          </div>
         </div>
         <div id="vote-count">
           <button><i class="fa fa-angle-up" aria-hidden="true"></i></button>
@@ -146,6 +148,7 @@ section {
 #post-details {
   display: flex;
   justify-content: space-between;
+  max-height: 35%;
 }
 
 #post-content {
@@ -154,8 +157,17 @@ section {
   margin-right: 1.5rem;
   border-radius: 0.5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  padding: 2rem 1rem;
+
+  div {
+    overflow: auto;
+    p {
+      padding: 0 1rem;
+      margin: 0;
+      text-align: left;
+    }
+  }
 }
 
 #vote-count {
@@ -163,6 +175,7 @@ section {
   background-color: $primary-blue;
   color: white;
   border-radius: 0.5rem;
+  height: 10rem; // keep vote count the same height
 
   button {
     padding: 0.8rem 1rem;
