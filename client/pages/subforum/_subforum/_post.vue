@@ -54,6 +54,7 @@ export default {
     Post: {
       query: post,
       variables() { return { id: this.$route.params.post }; },
+      fetchPolicy: 'cache-and-network',
       loadingKey: 'loading'
     }
   },
@@ -85,8 +86,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/styles/variables';
-@import '../../assets/styles/fadeTransition';
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fadeTransition';
 
 section {
   overflow: auto;

@@ -27,7 +27,7 @@
     </div>
     <ul v-else>
       <li v-for="post in allPosts" :key="post.id">
-        <nuxt-link :to="'/post/' + post.id">
+        <nuxt-link :to="`/subforum/${$route.params.subforum}/${post.id}`">
           <div class="post-title">{{ post.title }}</div>
           <div v-if="post.voteCount < 0" class="negative">{{ post.voteCount }}</div>
           <div v-else-if="post.voteCount > 0" class="positive">{{ post.voteCount }}</div>
@@ -71,8 +71,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/styles/variables';
-@import '../../assets/styles/fadeTransition';
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fadeTransition';
 
 section {
   height: 100%;
