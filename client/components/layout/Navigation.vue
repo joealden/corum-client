@@ -1,11 +1,11 @@
 <template>
 <nav>
   <h1>Subforums</h1>
-  <input type="search" placeholder="Search..." spellcheck="false">
+  <input v-model.trim="search" type="search" placeholder="Search..." spellcheck="false">
   <transition name="fadeIn">
     <div v-if="loading"></div>
     <ul v-else>
-      <li v-for="subforum in allSubforums" :key="subforum.id">
+      <li v-for="subforum in subforumSearch" :key="subforum.id">
         <nuxt-link :to="`/subforum/${subforum.url}`">
           {{ subforum.name }}
         </nuxt-link>
@@ -26,10 +26,18 @@ export default {
       loadingKey: 'loading'
     }
   },
+  computed: {
+    subforumSearch() { // change to use simpler regex
+      return this.allSubforums.filter(subforum => (
+        subforum.name.toLowerCase().includes(this.search.toLowerCase())
+      ));
+    }
+  },
   data() {
     return {
       allSubforums: '',
-      loading: 0
+      loading: 0,
+      search: ''
     };
   }
 };
@@ -43,7 +51,6 @@ nav {
   grid-area: nav;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow: hidden;
   background-color: $primary-blue;
 }
