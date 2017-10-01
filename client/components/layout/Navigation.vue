@@ -2,20 +2,39 @@
 <nav>
   <h1>Subforums</h1>
   <input type="search" placeholder="Search..." spellcheck="false">
-  <ul>
-    <li v-for="subforum in allSubforums" :key="subforum.id">
-      <nuxt-link :to="`/subforum/${subforum.url}`">
-        {{ subforum.name }}
-      </nuxt-link>
-    </li>
-  </ul>
+  <div v-if="loading">
+    <img src="~/assets/images/loading-light.svg" alt="loading" />
+  </div>
+  <transition name="fade">
+    <ul v-if="!loading">
+      <li v-for="subforum in allSubforums" :key="subforum.id">
+        <nuxt-link :to="`/subforum/${subforum.url}`">
+          {{ subforum.name }}
+        </nuxt-link>
+      </li>
+    </ul>
+  </transition>
 </nav>
 </template>
 
 <script>
 import allSubforums from '~/apollo/queries/allSubforums.gql';
 
-export default { apollo: { allSubforums } };
+export default {
+  apollo: {
+    allSubforums: {
+      query: allSubforums,
+      prefetch: true,
+      loadingKey: 'loading'
+    }
+  },
+  data() {
+    return {
+      allSubforums: '',
+      loading: 0
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -46,6 +65,23 @@ input[type="search"] {
   border: none;
   outline: none;
 }
+
+div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fade-enter-active {
+  transition: all 0.7s;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
 
 ul {
   margin: 0;
