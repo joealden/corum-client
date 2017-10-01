@@ -1,5 +1,3 @@
-<!-- TODO: FIX SCROLL ISSUE (SECTION SCROLLS - IT SHOULDNT) -->
-
 <template>
 <transition name="fadeIn">
   <div v-if="loading"></div>
@@ -20,7 +18,14 @@
       </form>
       <nuxt-link to="/new/post"><i class="fa fa-plus" aria-hidden="true"></i>New Post</nuxt-link>
     </div>
-    <ul>
+    <div id="row-titles">
+      <span>Post Title</span>
+      <span>Vote Count</span>
+    </div>
+    <div v-if="allPosts.length === 0" id="no-posts">
+      <p>It looks like there aren't any posts here yet!</p>
+    </div>
+    <ul v-else>
       <li v-for="post in allPosts" :key="post.id">
         <nuxt-link :to="'/post/' + post.id">
           <div class="post-title">{{ post.title }}</div>
@@ -29,7 +34,7 @@
           <div v-else class="neutral">{{ post.voteCount }}</div>
         </nuxt-link> 
       </li>
-    </ul>    
+    </ul>  
   </section>
 </transition>
 </template>
@@ -70,13 +75,15 @@ export default {
 @import '../../assets/styles/fadeTransition';
 
 section {
-  overflow: auto;
-  margin: 3rem;
-  font-size: 1.5rem;
   height: 100%;
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 10px 10px 25px #999;
+
 }
 
 #title-wrapper {
@@ -99,7 +106,6 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid $border;
 
   form > label {
     text-transform: uppercase;
@@ -145,7 +151,31 @@ h1 {
   }
 }
 
+#row-titles {
+  padding: 0.75rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primary-blue;
+  color: white;
+
+  span {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+#no-posts {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+
 ul {
+  flex-grow: 1;
   overflow: auto;
   padding: 0;
   margin: 0; 
@@ -157,7 +187,7 @@ li {
   a {
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
+    padding: 1.75rem;
     transition: 0.3s ease-in;
 
     &:hover {
