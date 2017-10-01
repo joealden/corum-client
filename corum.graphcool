@@ -1,0 +1,46 @@
+# project: corum
+# version: 19
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  email: String @isUnique
+  password: String
+}
+
+type Subforum implements Node {
+  id: ID! @isUnique
+  url: String! @isUnique
+  name: String!
+  posts: [Post!]! @relation(name: "Subforum")
+}
+
+type Comment implements Node {
+  id: ID! @isUnique
+  post: Post! @relation(name: "Comment")
+  author: String!
+  content: String!
+}
+
+type Post implements Node {
+  id: ID! @isUnique
+  subforum: Subforum! @relation(name: "Subforum")
+  title: String!
+  author: String!
+  content: String!
+  voteCount: Int
+  createdAt: DateTime!
+  comments: [Comment!]! @relation(name: "Comment")
+}
