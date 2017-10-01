@@ -165,6 +165,7 @@ section {
     p {
       padding: 0 1rem;
       margin: 0;
+      overflow: hidden;
       text-align: left;
     }
   }
