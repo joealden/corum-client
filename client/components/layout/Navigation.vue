@@ -2,11 +2,9 @@
 <nav>
   <h1>Subforums</h1>
   <input type="search" placeholder="Search..." spellcheck="false">
-  <div v-if="loading">
-    <img src="~/assets/images/loading-light.svg" alt="loading" />
-  </div>
-  <transition name="fade">
-    <ul v-if="!loading">
+  <transition name="fadeIn">
+    <div v-if="loading"></div>
+    <ul v-else>
       <li v-for="subforum in allSubforums" :key="subforum.id">
         <nuxt-link :to="`/subforum/${subforum.url}`">
           {{ subforum.name }}
@@ -39,6 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/styles/variables';
+@import '../../assets/styles/fadeTransition';
 
 nav {
   grid-area: nav;
@@ -68,20 +67,7 @@ input[type="search"] {
 
 div {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-
-.fade-enter-active {
-  transition: all 0.7s;
-}
-
-.fade-enter {
-  opacity: 0;
-}
-
 
 ul {
   margin: 0;

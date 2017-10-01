@@ -1,45 +1,48 @@
 <template>
-<section>
-  <div id="title-wrapper">
-      <h1>{{ Post.title }}</h1>
-  </div>
-  <div id="main-content-wrapper">
-    <div id="author-created">
-      <div>Author: <span>{{ Post.author }}</span></div>
-      <div>Created At: <span>{{ formatedTime }}</span></div>
+<transition name="fadeIn">
+  <div v-if="loading"></div>
+  <section v-else>
+    <div id="title-wrapper">
+        <h1>{{ Post.title }}</h1>
     </div>
-    <div id="post-details">
-      <div id="post-content">
-        <p>{{ Post.content }}</p>
+    <div id="main-content-wrapper">
+      <div id="author-created">
+        <div>Author: <span>{{ Post.author }}</span></div>
+        <div>Created At: <span>{{ formatedTime }}</span></div>
       </div>
-      <div id="vote-count">
-        <button><i class="fa fa-angle-up" aria-hidden="true"></i></button>
-        <span v-if="Post.voteCount < 0" class="negative">{{ Post.voteCount }}</span>
-        <span v-else-if="Post.voteCount > 0" class="positive">{{ Post.voteCount }}</span>
-        <span v-else class="neutral">{{ Post.voteCount }}</span>
-        <button><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+      <div id="post-details">
+        <div id="post-content">
+          <p>{{ Post.content }}</p>
+        </div>
+        <div id="vote-count">
+          <button><i class="fa fa-angle-up" aria-hidden="true"></i></button>
+          <span v-if="Post.voteCount < 0" class="negative">{{ Post.voteCount }}</span>
+          <span v-else-if="Post.voteCount > 0" class="positive">{{ Post.voteCount }}</span>
+          <span v-else class="neutral">{{ Post.voteCount }}</span>
+          <button><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div id="comments-wrapper">
+        <h2><i class="fa fa-comments" aria-hidden="true"></i>Comments</h2>
+        <div v-if="!Post.comments || Post.comments.length === 0" id="no-comments">
+          <p>There aren't any comments yet!</p>
+        </div>
+        <div v-else>
+          <ul>
+            <li v-for="comment in Post.comments" :key="comment.id">
+              <div>{{ comment.content }}</div>
+              <div>{{ comment.author }}</div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div id="comments-wrapper">
-      <h2><i class="fa fa-comments" aria-hidden="true"></i>Comments</h2>
-      <div v-if="!Post.comments || Post.comments.length === 0" id="no-comments">
-        <p>There aren't any comments yet!</p>
-      </div>
-      <div v-else >
-        <ul>
-          <li v-for="comment in Post.comments" :key="comment.id">
-            <div>{{ comment.content }}</div>
-            <div>{{ comment.author }}</div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <form id="add-comment">
-    <textarea name="comment-field" rows="3" placeholder="Comment"></textarea>
-    <button @click.prevent><i class="fa fa-paper-plane" aria-hidden="true"></i></i>Post Comment</button>
-  </form>
-</section>
+    <form id="add-comment">
+      <textarea name="comment-field" rows="3" placeholder="Comment"></textarea>
+      <button @click.prevent><i class="fa fa-paper-plane" aria-hidden="true"></i></i>Post Comment</button>
+    </form>  
+  </section>
+</transition>  
 </template>
 
 <script>
@@ -49,9 +52,8 @@ export default {
   apollo: {
     Post: {
       query: post,
-      variables() {
-        return { id: this.$route.params.post };
-      }
+      variables() { return { id: this.$route.params.post }; },
+      loadingKey: 'loading'
     }
   },
   computed: {
@@ -71,7 +73,10 @@ export default {
       return ` ${hours}:${minutes} - ${day}/${month}/${year} `;
     }
   },
-  data: () => ({ Post: {} }),
+  data: () => ({
+    Post: '',
+    loading: 0
+  }),
   head() {
     return { title: this.Post.title };
   }
@@ -80,6 +85,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/styles/variables';
+@import '../../assets/styles/fadeTransition';
 
 section {
   overflow: auto;

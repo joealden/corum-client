@@ -1,34 +1,37 @@
 <!-- TODO: FIX SCROLL ISSUE (SECTION SCROLLS - IT SHOULDNT) -->
 
 <template>
-<section>
-  <div id="title-wrapper">
-    <h1>{{ Subforum.name }}</h1>
-  </div>
-  <div id="toolbar">
-    <form>
-      <label>
-        <input type="radio" id="popular" name="sort" value="popular" checked>
-        Popular
-      </label>
-      <label>
-        <input type="radio" id="new" name="sort" value="new">
-        Newest
-      </label>
-    </form>
-    <nuxt-link to="/new/post"><i class="fa fa-plus" aria-hidden="true"></i>New Post</nuxt-link>
-  </div>
-  <ul>
-    <li v-for="post in allPosts" :key="post.id">
-      <nuxt-link :to="'/post/' + post.id">
-        <div class="post-title">{{ post.title }}</div>
-        <div v-if="post.voteCount < 0" class="negative">{{ post.voteCount }}</div>
-        <div v-else-if="post.voteCount > 0" class="positive">{{ post.voteCount }}</div>
-        <div v-else class="neutral">{{ post.voteCount }}</div>
-      </nuxt-link> 
-    </li>
-  </ul>
-</section>
+<transition name="fadeIn">
+  <div v-if="loading"></div>
+  <section v-else>
+    <div id="title-wrapper">
+      <h1>{{ Subforum.name }}</h1>
+    </div>
+    <div id="toolbar">
+      <form>
+        <label>
+          <input type="radio" id="popular" name="sort" value="popular" checked>
+          Popular
+        </label>
+        <label>
+          <input type="radio" id="new" name="sort" value="new">
+          Newest
+        </label>
+      </form>
+      <nuxt-link to="/new/post"><i class="fa fa-plus" aria-hidden="true"></i>New Post</nuxt-link>
+    </div>
+    <ul>
+      <li v-for="post in allPosts" :key="post.id">
+        <nuxt-link :to="'/post/' + post.id">
+          <div class="post-title">{{ post.title }}</div>
+          <div v-if="post.voteCount < 0" class="negative">{{ post.voteCount }}</div>
+          <div v-else-if="post.voteCount > 0" class="positive">{{ post.voteCount }}</div>
+          <div v-else class="neutral">{{ post.voteCount }}</div>
+        </nuxt-link> 
+      </li>
+    </ul>    
+  </section>
+</transition>
 </template>
 
 <script>
@@ -39,24 +42,20 @@ export default {
   apollo: {
     Subforum: {
       query: subforumName,
-      variables() {
-        return {
-          url: this.$route.params.subforum
-        };
-      }
+      variables() { return { url: this.$route.params.subforum }; },
+      loadingKey: 'loading'
     },
     allPosts: {
       query: allPosts,
-      fetchPolicy: 'cache-and-network',
-      // pollInterval: 10000, // If subscriptions are too difficult to use efficently
-      variables() {
-        return {
-          subforumUrl: this.$route.params.subforum
-        };
-      }
+      fetchPolicy: 'cache-and-network', // fetch new posts when going to same subforum
+      variables() { return { subforumUrl: this.$route.params.subforum }; },
+      loadingKey: 'loading'
     }
   },
-  data: () => ({ Subforum: {} }),
+  data: () => ({
+    Subforum: '',
+    loading: 0
+  }),
   head() {
     if (this.Subforum.name) {
       return { title: this.Subforum.name };
@@ -68,6 +67,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/styles/variables';
+@import '../../assets/styles/fadeTransition';
 
 section {
   overflow: auto;
@@ -82,7 +82,6 @@ section {
 #title-wrapper {
   display: block;
   border-radius: 0.5rem 0.5rem 0 0;
-  height: 3rem;
   margin: 0;
   padding: 0.75rem;
   background-color: $primary-blue;
