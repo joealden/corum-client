@@ -14,7 +14,9 @@
       </div>
       <div id="vote-count">
         <button><i class="fa fa-angle-up" aria-hidden="true"></i></button>
-        <span>{{ Post.voteCount }}</span>
+        <span v-if="Post.voteCount < 0" class="negative">{{ Post.voteCount }}</span>
+        <span v-else-if="Post.voteCount > 0" class="positive">{{ Post.voteCount }}</span>
+        <span v-else class="neutral">{{ Post.voteCount }}</span>
         <button><i class="fa fa-angle-down" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -165,6 +167,7 @@ section {
     border-radius: 0.3rem;
     transition: 0.15s ease-in-out;
     outline: none;
+    width: 100%;
 
     &:hover:first-child {
       background-color: $nav-hover;
@@ -181,6 +184,10 @@ section {
     padding: 0.5rem;
   }
 }
+
+.negative { color: red }
+.neutral { color: white }
+.positive { color: $nav-hover }
 
 #comments-wrapper {
   background-color: #eee;
