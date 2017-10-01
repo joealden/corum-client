@@ -198,7 +198,9 @@ section {
   background-color: #eee;
   border-radius: 0.5rem;
   margin-top: 1.5rem;
-  flex-grow: 1; //make comments fill rest of available space
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     margin: 0;
@@ -248,17 +250,21 @@ section {
   }
 }
 
+#no-comments {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+
 .author-comment {
   color: $nav-hover;
 }
 
 .non-author-comment {
   color: white;
-}
-
-#no-comments {
-  padding: 1.5rem;
-  color: grey;
 }
 
 #add-comment {
