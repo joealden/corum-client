@@ -8,14 +8,13 @@ module.exports = {
     browser: true,
     node: true
   },
-  extends: 'airbnb-base',
+  extends: 'standard',
   // required to lint *.vue files
   plugins: ['html'],
   // add your custom rules here
   rules: {
-    // don't require .vue extension when importing
-    'comma-dangle': ['error', 'never'],
-    'import/no-unresolved': 0,
+    'semi': 0,
+    'space-before-function-paren': 0,
     // allow optionalDependencies
     'import/no-extraneous-dependencies': [
       'error',
