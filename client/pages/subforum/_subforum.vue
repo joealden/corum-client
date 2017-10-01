@@ -22,9 +22,9 @@
     <li v-for="post in allPosts" :key="post.id">
       <nuxt-link :to="'/post/' + post.id">
         <div class="post-title">{{ post.title }}</div>
-        <div v-if="post.voteCount < 0" class="negative post-vote-count">{{ post.voteCount }}</div>
-        <div v-if="post.voteCount === 0" class="neutral post-vote-count">{{ post.voteCount }}</div>
-        <div v-if="post.voteCount > 0" class="positive post-vote-count">{{ post.voteCount }}</div>
+        <div v-if="post.voteCount < 0" class="negative">{{ post.voteCount }}</div>
+        <div v-else-if="post.voteCount > 0" class="positive">{{ post.voteCount }}</div>
+        <div v-else class="neutral">{{ post.voteCount }}</div>
       </nuxt-link> 
     </li>
   </ul>
