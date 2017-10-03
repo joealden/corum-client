@@ -87,7 +87,7 @@ So, if I keep the basic features of Reddit intact and keep the UI & UX simple, n
 
 ## The Investigation
 ### Interviews
-I will be interviewing people that I know are users of Reddit to get an idea of what they like and don't like about a certain forum.
+I have interviewed people that I know are users of Reddit to get an idea of what they like and don't like about it in particular.
 This will help me understand what features I should borrow, leave out, as well those that could be added that don't currently exist.
 
 #### Questions
@@ -445,7 +445,7 @@ This items can now be hosted on any HTTP server.
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Testing** - [Mocha](http://mochajs.org/)
 
-#### TODO: Switch to Vue from React
+#### TODO: Why I decided to use Vue + Nuxtjs
 placeholder
 
 #### My Development Environment
