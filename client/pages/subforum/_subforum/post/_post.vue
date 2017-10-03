@@ -17,30 +17,53 @@
           </div>
         </div>
         <div id="vote-count">
-          <button><i class="fa fa-angle-up" aria-hidden="true"></i></button>
-          <span v-if="Post.voteCount < 0" class="negative">{{ Post.voteCount }}</span>
-          <span v-else-if="Post.voteCount > 0" class="positive">{{ Post.voteCount }}</span>
-          <span v-else class="neutral">{{ Post.voteCount }}</span>
-          <button><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+          <button>
+            <i class="fa fa-angle-up" aria-hidden="true"/>
+          </button>
+          <span v-if="Post.voteCount < 0" class="negative">
+            {{ Post.voteCount }}
+          </span>
+          <span v-else-if="Post.voteCount > 0" class="positive">
+            {{ Post.voteCount }}
+          </span>
+          <span v-else class="neutral">
+            {{ Post.voteCount }}
+          </span>
+          <button>
+            <i class="fa fa-angle-down" aria-hidden="true"/>
+          </button>
         </div>
       </div>
       <div id="comments-wrapper">
-        <h2><i class="fa fa-comments" aria-hidden="true"></i>Comments</h2>
+        <h2>
+          <i class="fa fa-comments" aria-hidden="true"/>Comments
+        </h2>
         <div v-if="Post.comments.length === 0" id="no-comments">
           <p>There aren't any comments yet!</p>
         </div>
         <ul v-else>
           <li v-for="comment in Post.comments" :key="comment.id">
             <div>{{ comment.content }}</div>
-            <div v-if="comment.author === Post.author" class="author-comment">{{ comment.author }}</div>
-            <div v-else class="non-author-comment">{{ comment.author }}</div>
+            <div v-if="comment.author === Post.author" class="author-comment">
+              {{ comment.author }}
+            </div>
+            <div v-else class="non-author-comment">
+              {{ comment.author }}
+            </div>
           </li>
         </ul>
       </div>
     </div>
     <form id="add-comment">
-      <textarea name="comment-field" rows="3" placeholder="Comment" />
-      <button @click.prevent><i class="fa fa-paper-plane" aria-hidden="true"></i></i>Post Comment</button>
+      <textarea 
+        name="comment-field"
+        placeholder="New Comment..."
+        onfocus="this.placeholder=''" 
+        onblur="this.placeholder='New Comment...'"
+      />
+      <button @click.prevent>
+        <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
+      </button>
     </form>
   </section>
 </transition>  
