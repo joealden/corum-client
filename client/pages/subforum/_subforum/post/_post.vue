@@ -39,9 +39,9 @@
       </div>
     </div>
     <form id="add-comment">
-      <textarea name="comment-field" rows="3" placeholder="Comment"></textarea>
+      <textarea name="comment-field" rows="3" placeholder="Comment" />
       <button @click.prevent><i class="fa fa-paper-plane" aria-hidden="true"></i></i>Post Comment</button>
-    </form>  
+    </form>
   </section>
 </transition>  
 </template>
