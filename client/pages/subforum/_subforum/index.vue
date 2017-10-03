@@ -8,15 +8,28 @@
     <div id="toolbar">
       <form>
         <label>
-          <input type="radio" id="popular" name="sort" value="popular" checked>
-          Popular
+          <input 
+            type="radio" 
+            id="popular"
+            name="sort"
+            value="popular"
+            checked
+          >
+          Most Popular
         </label>
         <label>
-          <input type="radio" id="new" name="sort" value="new">
+          <input
+            type="radio"
+            id="new"
+            name="sort"
+            value="new"
+          >
           Newest
         </label>
       </form>
-      <nuxt-link :to="`/subforum/${$route.params.subforum}/new`"><i class="fa fa-plus" aria-hidden="true"></i>New Post</nuxt-link>
+      <nuxt-link :to="`/subforum/${$route.params.subforum}/new`">
+        <i class="fa fa-plus" aria-hidden="true"></i>New Post
+      </nuxt-link>
     </div>
     <div id="row-titles">
       <span>Post Title</span>
@@ -28,10 +41,18 @@
     <ul v-else>
       <li v-for="post in allPosts" :key="post.id">
         <nuxt-link :to="`/subforum/${$route.params.subforum}/post/${post.id}`">
-          <div class="post-title">{{ post.title }}</div>
-          <div v-if="post.voteCount < 0" class="negative">{{ post.voteCount }}</div>
-          <div v-else-if="post.voteCount > 0" class="positive">{{ post.voteCount }}</div>
-          <div v-else class="neutral">{{ post.voteCount }}</div>
+          <div class="post-title">
+            {{ post.title }}
+          </div>
+          <div v-if="post.voteCount < 0" class="negative">
+            {{ post.voteCount }}
+          </div>
+          <div v-else-if="post.voteCount > 0" class="positive">
+            {{ post.voteCount }}
+          </div>
+          <div v-else class="neutral">
+            {{ post.voteCount }}
+          </div>
         </nuxt-link> 
       </li>
     </ul>  
@@ -59,6 +80,7 @@ export default {
   },
   data: () => ({
     Subforum: '',
+    allPosts: '',
     loading: 0
   }),
   head() {

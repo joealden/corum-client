@@ -1,7 +1,12 @@
 <template>
 <nav>
   <h1>Subforums</h1>
-  <input v-model.trim="search" type="search" placeholder="Search..." spellcheck="false">
+  <input 
+    v-model.trim="search" 
+    type="search" 
+    placeholder="Search..."
+    spellcheck="false"
+  >
   <transition name="fadeIn">
     <div v-if="loading"></div>
     <ul v-else>

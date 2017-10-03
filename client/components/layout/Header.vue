@@ -1,7 +1,11 @@
 <template>
 <header>
-  <nuxt-link to="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</nuxt-link>
-  <nuxt-link to="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</nuxt-link>
+  <nuxt-link to="/signup">
+    <i class="fa fa-user-plus" aria-hidden="true"/>Sign Up
+  </nuxt-link>
+  <nuxt-link to="/login">
+    <i class="fa fa-sign-in" aria-hidden="true"/>Login
+  </nuxt-link>
 </header>
 </template>
 

@@ -25,7 +25,9 @@
       @click.prevent="login"
     >
   </form>
-  <p>Don't have an account?<br><nuxt-link to="/signup">Sign Up</nuxt-link></p>
+  <p>
+    Don't have an account?<br><nuxt-link to="/signup">Sign Up</nuxt-link>
+  </p>
 </section>
 </template>
 
