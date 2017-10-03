@@ -16,7 +16,7 @@
           Newest
         </label>
       </form>
-      <nuxt-link to="/new/post"><i class="fa fa-plus" aria-hidden="true"></i>New Post</nuxt-link>
+      <nuxt-link :to="`/subforum/${$route.params.subforum}/new`"><i class="fa fa-plus" aria-hidden="true"></i>New Post</nuxt-link>
     </div>
     <div id="row-titles">
       <span>Post Title</span>
