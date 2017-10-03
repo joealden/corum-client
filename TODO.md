@@ -9,3 +9,5 @@
   - titles (100 / 150)
   - content (500ish)
   - comments (250ish)
+
+- Fix padding collapse issue when post list is scrollable (subforum/index)
