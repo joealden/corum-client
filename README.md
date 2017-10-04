@@ -43,51 +43,51 @@ As Wikipedia puts it (paraphrased):
 > Content entries are organized by areas of interest called "subreddits".
 
 Corum will borrow these basic ideas. 
-The reason I wanted to create Corum instead of continuing to use Reddit is explained in the following subsections.
+The reason I wanted to create Corum, instead of continuing to use Reddit, is explained in the following subsections.
 
 ### A Self Governing Democracy
 Being self governed means that those that are being governed, govern themselves and each other. 
 There is no higher authority that makes decisions. 
 In the case of a forum site, this means that it is solely up to the users of the forum as a collective to decide what content belongs on it. 
-Corum will be designed and developed from the ground up following this principle.
+Corum will be designed and developed from the ground up to strictly follow this principle.
 
 Just like in a real democracy, the users will be given one vote each on every post, and each vote will be treated equally. 
 Up until now, this sounds very similar to [Reddit](https://www.reddit.com/). 
-The way that Corum differentiates itself is that the vote that users are given actually means something. 
+The way that Corum differentiates itself from existing solutions like Reddit is by making the vote that users are given actually mean something. 
 If users generally vote positively on a post, then the post will remain. 
 However, if a post gets a mostly negative response, it will be automatically removed from the sub forum that it was posted in. 
 This means that if someone posts something that doesn't belong on the forum, it will be removed by the users themselves _fairly_. 
-This is instead of having a moderator remove it based on their own opinion of the post, which could be biased. 
+This is instead of having a moderator remove it based on their own opinion of the post, which could be biased.
 
-The idea of having self governing forum software means that the role of forum moderators does not need to exist.
+The idea of having self governing forum software means that the role of the forum moderator not longer needs to exist.
 
 This is a good thing because:
 * It means that the forum require less maintenance. (Less man power required)
 * The users of the forum are responsible for maintaining it. (More **neutral** and **fair**)
-* The removal of the moderator role keeps code complexity down. (Only one type of user account needs to exist)
+* The removal of the moderator role keeps code complexity down. (Only one type of user account needs to exist, and no 'admin control panel' is required)
 
 ### An Open Platform
 While it is one thing to keep the platform itself democratic, it is also important that the management and development is kept democratic as well.
 As of 1st September 2017, after many years of being open source, [Reddit has decided to stop developing in the open](https://www.reddit.com/r/programming/comments/6xh3xp/reddits_main_code_is_no_longer_opensource).
-As an advocate for open source, I believe that Reddit has made the wrong decision. 
+As an advocate for open source, I believe that Reddit has made the wrong decision here. 
 
 Being open source means that anyone who wants to contribute can. 
 They can easily propose new features, report and/or fix bugs, and freely read the source code knowing that anyone else can too. 
-Developers cannot go hiding things in the source code like unwarranted tracking etc. 
-Every decision made by the project is made _with_ the users, not _for_ the users.
+Developers cannot go hiding things in the source code like unnecessary tracking etc. 
+Every decision made by the project is made by the users.
 
 This means that ultimately, the users of the forum decide the direction that Corum takes in _all_ aspects.
 
 ### A Modern and Minimalist Experience
 As mentioned [above](#a-reddit-alternative), Reddit has not changed how it looks or feels very much at all since it was created in 2005.
 However, the reasoning behind this decision is probably that they do not want to make it feel unfamiliar for returning users.
-As Corum is yet to be created, it means that it can completely rethink the way a forum should look and feel.
+For Corum, this means that I can completely rethink the way a forum should look, feel and function, as it is a new project.
 With that being said, it is important that the transition from Reddit to Corum is as easy as possible for new users.
 So, if I keep the basic features of Reddit intact and keep the UI & UX simple, new users should be able to get up and running with Corum quickly. 
 
 ## The Investigation
 ### Interviews
-I have interviewed people that I know are users of Reddit to get an idea of what they like and don't like about it in particular.
+I will be interviewing people that I know are users of Reddit to get an idea of what they like and don't like about Reddit.
 This will help me understand what features I should borrow, leave out, as well those that could be added that don't currently exist.
 
 #### Questions
@@ -130,19 +130,19 @@ This will help me understand what features I should borrow, leave out, as well t
 
 ### Focus Groups (The End User)
 In the case of a forum like Reddit, as evident from the [above interviews](#interviews), the end user / audience of a project like this can be wide.
-For example, on Reddit, there are sub forums ranging from politics to comedy to programming. 
-Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a Google search. 
-In the following sub sections, I will try and outline what Corum should do to try and cater to the needs of these two types of users.
+For example, on Reddit, there are sub forums ranging from politics to comedy to programming.
+Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a search engine. 
+In the following sub sections, I will outline what Corum should do to try and cater to the needs of these two types of users.
  
 #### Users That Have Different Interests
 Users of the site will have different interests, which means that Corum needs to work well for all, and the site should not be designed for one type of content. 
 Good computer literacy should not be a given, so the interface should be layed out in a simple manner. 
-Colour should also be kept to a minimal to keep the site looking neutral.
+Colour should also be kept to a minimum to keep the site looking neutral.
 
 #### Users That Use the Forum Differently
-For users that have never visited or rarely visit the site, the UI and UX shouldn't be too surprising so the this type of user can get whatever information they are looking for quickly and efficiently. 
+For users that have never visited or rarely visit the site, the UI and UX shouldn't be surprising so the this type of user can get whatever information they are looking for quickly and efficiently. 
 Also, the site should work equally as well for returning, regular users. 
-This means that the site should keep a similar structure and look throughout, and should not get in the way.  
+This means that the site should keep a similar structure and look throughout, and should not get in the way of the user.  
 
 ### Research into Existing Systems
 #### [Reddit](https://reddit.com) (Proprietary [as of September 2017](#being-open))
@@ -152,23 +152,22 @@ This is where the inspiration of Corum came from, however I thought that the vot
 
 As a regular reddit user, I have had plenty of time to get a grasp of its features and what it feels like to use.
 As Reddit is a major inspiration for this project, a lot of its features will be borrowed.
-This is on purpose, as the target audience of Corum will be mainly those who have already experienced Reddit.
+This is on purpose, as the target audience of Corum will be mainly those who have already had experience with Reddit.
 This will mean that it will feel familiar and it will be easy to get started.
 
-While the idea of Reddit is quite simple, in my opinion and many others (as shown by the [interviews](#interviews) with fellow Reddit users) the user interface is cluttered, with many features that are rarely used such as the amount of people online etc. 
-From my use and further research into the site, Corum will strive to be a simpler version of Reddit.
+While the idea of Reddit is quite simple, in my opinion, and others (as shown by the [interviews](#interviews) with fellow Reddit users), the user interface is cluttered, with many features that are rarely used such as the amount of people online etc. 
+Corum will strive to be a simpler version of Reddit.
 
 #### [Hacker News](https://news.ycombinator.com/) (Proprietary)
 **Hacker News** is a similar site to Reddit, however it is a lot simpler.
 There are no sub-forums, as it is a site dedicated only for computer science related topics such as programming.
-The user interface is very simple (and quite dated), which means that it doesn't get in the users way. However, I believe that it is too simple.
+The user interface is very simple (and quite dated in my opinion), which means that it doesn't get in the users way. However, I believe that it is too simple, and too niche (As it is only for programmers).
 
-I believe that there is space in the forum 'business' for a site that is simpler than Reddit, but one with more features than Hacker News (As it is only for developers). 
-This is where Corum could fit in.
+I believe that there is space in the forum software landscape for a site that is simpler than Reddit, but one with more features than Hacker News. This is where Corum could fit in.
 
 #### [phpBB](https://www.phpbb.com/) (Open source)
-**phpBB** has different goals than Corum or Reddit. 
-Instead of being a designed to run from one website, it is designed to be used by anyone who wants to setup their own forum.
+**phpBB** has different goals than Corum, Reddit and Hacker News. 
+Instead of being designed to run from one website, it is designed to be used by anyone who wants to setup their own forum.
 An example of where phpBB is deployed is at [Solus' Forum](https://solus-project.com/forums/). 
 This can be seen when looking at the pages footer. 
 
@@ -182,24 +181,24 @@ I like the simplicity of Solus' forum theme, and Corum will take some inspiratio
 #### Page Layout
 - Header (Top of the page)
   - Top left - Logo linking to homepage
-  - Top Right - Login/logout/sign-up button/link (Should be very obvious)
-- Navigation (Left side under Header on desktop, think this is better placement than Reddit at the top)
+  - Top Right - Login/logout/sign-up button/link
+- Navigation (Left side under Header, think this is better placement than Reddit at the top)
   - Sub-forum subscriptions at the top (Called Favorites, users can access their favorites first)
   - All other sub-forums below (Search bar of all sub-forums for easy movement around the site)
   - Highlight the currently selected sub-forum in the nav (So the user can easily see where they are)
-- Current sub-forum (Render selection message with an arrow to nav upon first load/after login when no sub-forum is selected - gives first time user some instructions on what to do)
+- Current sub-forum (Render selection message upon first load/after login when no sub-forum is selected - gives first time user some instructions on what to do)
   - Give user sort selection (newest / most popular)
-  - Load first _10/15?_ links/threads from selected sub-forum
+  - Eventually make it so posts are loaded in dynamically (paginated)
   - Each post
     - Current amount of up votes (Shows popularity of post)
     - Title -> links to link/post
-    - Whether it is a link or a thread (in brackets, shows if it is an external link and where to)
 - Selected post (Fills the space where the sub-forum was)
   - Title
   - Time Posted
   - User that posted it
-  - Content (None if it is a link)
-  - Comments (For discussion of the post)
+  - Amount of votes
+  - Content
+  - Comments (For discussion of the post, show message if empty)
 
 #### General Features
 - Login System
@@ -214,47 +213,49 @@ I like the simplicity of Solus' forum theme, and Corum will take some inspiratio
     - Theoretically, no matter how popular the sub-forum is, if more people like the post that don't, the post will remain. 
     - If more people dislike a post than like it (within the vote threshold) then it will be removed automatically.
     - This means, that instead of a moderator moderating the sub-forum, the users do it themselves. This comes back to the point for neutrality and fairness, as the sub-forum community as a whole gets to decide what is allowed on the sub-forum.
+- API
+  - Use GraphQL
+  - Setup the backend on graph.cool to start, possibly create a standalone server if time permits.
 
 ### GUI Design
 #### Sub-forum not selected (Logged in)
-![Sub-forum not selected](/docs/images/sub-forum-not-selected.jpg)
+![Sub-forum not selected](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sub-forum-not-selected.jpg) 
 
 #### Sub-forum selected (Not logged in)
-![Sub-forum selected](/docs/images/sub-forum-selected.jpg)
+![Sub-forum selected](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sub-forum-selected.jpg)
+
 
 #### Post view (Logged In)
-![Post view](/docs/images/post-view.jpg)
+![Post view](https://raw.githubusercontent.com/joealden/corum/master/docs/images/post-view.jpg)
 
 #### New post
-![New post](/docs/images/new-post.jpg)
+![New post](https://raw.githubusercontent.com/joealden/corum/master/docs/images/new-post.jpg)
 
 #### Login Page
-![Login Page](/docs/images/login.jpg)
+![Login Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/login.jpg)
 
 #### Sign-up Page
-![Sign-up Page](/docs/images/sign-up.jpg)
+![Sign-up Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sign-up.jpg)
 
 ### Component Design
-As I am using [React](http://reactjs.com) to build my UI, I can think of the site being composed of individual components with isolated responsibilities. 
+As I am using [Vue](http://vuejs.org) to build my UI, I can think of the site being composed of individual components with isolated responsibilities. 
 Here I will define what each of these main component's roles are, and what they will render when.
 
-![Component Design](/docs/images/component-design.jpg)
+![Component Design](https://raw.githubusercontent.com/joealden/corum/master/docs/images/component-design.jpg)
 
 #### Logo
 This component will have the sole responsibility to render Corum's logo in the top left of the page along side the header component. 
-The logo will be a link to `'/'` using [react-router's Link component](https://reacttraining.com/react-router/web/api/Link).
+The logo will be a link to `'/'` using [vue-router's Link component (nuxt-link)](https://nuxtjs.org/api/components-nuxt-link).
 
 #### Header
 This component will have 2 different states. 
 1 for when the user is logged in, and 1 for when they are not. 
 
-When the user is logged in, the component will render a greeting message and a `Logout` button. (As shown [here](#new-post)) 
+When the user is logged in, the component will render a `Logout` button. (As shown [here](#new-post)) 
 The logout button will be a Link component that links to '/logout'. 
 This route will log the user out of the site, then it will redirect them to `'/'`.
 
 When the user is not logged in, the component will render 2 buttons. The 1st button will be a `Sign Up` Link component that links to `'/signup'`. The 2nd button will be a `Login` Link component that links to `'/login'`.
-
-Both the `Sign up` and `Login` buttons will be a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink). This means that when a user clicks 1 of these buttons and is directed to the corresponding route, the link will give visual feedback to the user, for example changing the color of it.
 
 #### Navigation
 This component will also have 2 different states like the Header component.
@@ -270,65 +271,48 @@ The `+` icon is only rendered if the user is logged in.
 A user can remove a sub-forum from their favorites by clicking the `-` sign next to the sub-forum they wish to remove.
 The `favorites` section will be very similar to the `All sub-forums` section, however it will not have a search bar.
 
-Each sub-forum in either section will be a Link component. (In particular a [NavLink component](https://reacttraining.com/react-router/web/api/NavLink) so that the user knows what sub-forum they are in when looking at the navigation)
+Each sub-forum in either section will be a Link component.
 They will link to a sub-forum in the pattern `'/subforum/:subforum'`. (For example, `'/subforum/programming'`) 
 
 #### Main Content
 This component will handle nearly all of the client side routing.
 Whatever action a user takes, such as clicking on a sub-forum, pressing the `Sign Up` or `Login` buttons, clicking on a post within a sub-forum etc. (Shown in the [GUI Design section](#gui-design))
 
-This will be achieved by using the library [react-router](https://reacttraining.com/react-router/web) and their [Route component](https://reacttraining.com/react-router/web/api/Route).
-Along with their [Switch component](https://reacttraining.com/react-router/web/api/Switch) so that routes render exclusively, this means that I can conditionally render components based on the users current path. 
-
 ##### Planned Routes
 - [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
 - [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
-- [`'/post/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
-- [`'/new/post'`](#new-post) - Displays the new post entry fields. (The post will be submitted to the subforum that the link came from?)
-- [`'/new/subforum'`??]()
+- [`'/subforum/:subforum/post/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
+- [`'/subforum/:subforum/new'`](#new-post) - Displays the new post entry fields.
 - [`'/login'`](#login-page) - Displays a login screen (Username + password)
 - [`'/signup'`](#sign-up-page) - Displays a sign up screen (Username + password + password)
 
-#### Social Links
-This component will display social links for corum, such as twitter, github, email etc.
-
-#### Footer
-This component will display the credits for corum with a link to my github profile.
+#### Social Links + Footer
+_These two components have since been removed from the sites design, as I thought it didn't have much of a benefit to the user._
 
 ### Computational Methods Required
 Here is a list of computational methods that could be used to create Corum, as well as how they will be useful.
 
 #### Decomposition
-By using [React](https://facebook.github.io/react), I will be able to break the UI down into small, reusable components. 
+By using [Vue](https://vuejs.org/), I will be able to break the UI down into small, reusable components. 
 This allows developers to create large projects while keeping it manageable and maintainable.
 
 #### Abstraction
-Also with the aid of [React](https://facebook.github.io/react), I will be able to compose large components from multiple smaller components. (For example, the `Header` component will be composed of two `Button` components) 
-This means that the complexity of each component can be abstracted away when taking a high level view of composite components.
+Also with the aid of [Vue](https://vuejs.org/), I will be able to compose large components from multiple smaller components.
+This means that the complexity of each component can be abstracted away when taking a high level view of the composite components.
 
 #### Pattern matching
 As shown in the [GUI design section](#gui-design), I will attempt to implement search functionality into the navigation part of the application. 
 This will require pattern matching. 
-Furthermore, as this project will make use of client-side routing with [react-router](https://reacttraining.com/react-router/), pattern matching is required to direct the user to the correct page.
+Furthermore, as this project will make use of client-side routing with [vue-router](https://nuxtjs.org/api/components-nuxt-link), pattern matching is required to direct the user to the correct page.
 
 #### Sorting and searching
-Related to the method above, searching will be used into the searchable navigation.
+Related to the method above, searching will be used as the subforum navigation will be searchable.
 Sorting will also be used, as the user will be able to select the order in which they see posts in the sub-forum.
 
 #### Use of Multiple Programming Paradigms
-##### Object Oriented (OO)
-Unlike languages such as Java or C++ that have class based OO, JavaScript uses [prototypical inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain). 
-Although JavaScript's prototype chain is more powerful and flexible, it used to be hard for beginners to use that came from a classical OO background. 
-With the introduction of the [class syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) in ES2015, which is just syntactic sugar, JavaScript OO is much easier to approach. 
-If and when classes are used in the source code, it will be using the newer ES2015 syntax.
-
-In React, Components that have [state or use life cycle hooks](https://facebook.github.io/react/docs/state-and-lifecycle.html) must use the ES2015 class syntax and extend the base [Component](https://facebook.github.io/react/docs/react-component.html) class that is provided by the library.
-This takes advantage of the OO paradigm's easy state encapsulation.
-Also, some libraries that I intend to use such as Apollo Client ([As described here](#software-requirements-and-technologies)) use the OO [`new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) keyword to create new instances of objects.
- 
 ##### Declarative
-On Reacts front page, it shows that one of its main selling points is that it allows developers to write declarative UI code.
-This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model), I just tell React _what_ I want to render.
+Vue allow me to develop components as [SFCs (Single File Components)](https://vuejs.org/v2/guide/single-file-components.html)
+This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model), I just tell Vue _what_ I want to render, and Vue will figure out the most efficient way to do so.
 
 ##### Functional
 Programming in a functional style helps improve code maintainability, readability, and [more](https://en.wikipedia.org/wiki/Functional_programming).
@@ -362,8 +346,8 @@ This library adds many useful helper functions that I would have to otherwise wr
 Unlike other utility libraries like [Lodash](https://lodash.com/), Ramda conforms to functional programming ideas (For example, some Lodash functions mutate instead of returning such as [_.remove](https://lodash.com/docs/4.17.4#remove)), and provides nice extras like auto-currying etc.
 
 #### Real Time Data Processing
-Eventually, I will attempt to implement real time search functionality for the navigation, as well as real time sub-forum updates like updating the current amount of votes updates without a page refresh. 
-This will be achieved through the use of [GraphQL Subscriptions](http://dev.apollodata.com/react/subscriptions.html).
+I will implement real time search functionality for the navigation, as well as possibly real time sub-forum updates like updating the current amount of votes updates without a page refresh. 
+This will be achieved through the use of [GraphQL Subscriptions](https://www.howtographql.com/vue-apollo/8-subscriptions/).
 
 ### Success Criteria
 - The UI should resemble the layout seen in the [GUI Design section](#gui-design)
@@ -379,7 +363,7 @@ This will be achieved through the use of [GraphQL Subscriptions](http://dev.apol
 ### Limitations of the Project
 - Account Recovery (If the user losses their email / password, they will not be able to recover it)
 - Creation of new sub-forums?
-- Responsive CSS (Would require quite a bit more work to have it looking nice on mobile devices)
+- Responsive CSS (It would require quite a bit more work to have it looking nice on mobile devices)
 
 ### Setup (Software Requirements)
 The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports.
@@ -389,7 +373,7 @@ To get a copy of this project on your local machine, clone this repo using the f
 ```bash
 git clone https://github.com/joealden/corum.git
 ```
-If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and Yarn [here](https://yarnpkg.com/en/docs/install) then install them both. 
+If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and install it. This will give access to Node and NPM.
 Now your system is ready to develop or deploy Corum.
 
 #### Corum's Backend
@@ -398,35 +382,38 @@ This will allow me to easily develop the client side of the application without 
 Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
 
 If time permits, I will eventually move away from graphcool when the frontend of the site is complete. 
-This is so that it will be easier for anyone to setup their own Corum instance.
+This is so that it will be easier for anyone to setup their own Corum instance, as they will not have to use graph.cool.
 
 #### Browser Compatibility
-It is Important to note, because I am using quite new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is supposed to look and function.
+It is Important to note, because I am using reasonably new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is intended.
 
 #### Development
-[create-react-app](https://github.com/facebookincubator/create-react-app) provides a pre-configured hot reloading dev server, which means I can save a file and see the resulting change instantly on my browser.
+[Nuxt](https://nuxtjs.org/) provides a pre-configured hot reloading dev server (Using webpack-dev-server under the hood), which means I can save a file and see the resulting change instantly in my browser.
 This dev server also provides an in-browser error overlay, which allows for easier debugging. 
-To start the dev server, run the following commands from the `corum` directory:
+To start the dev server, run the following commands from the `client` directory:
 
 ```bash
-cd client
-yarn
-yarn start
+npm install
+npm run dev
 ```
 This will start the dev server. 
-If your browser does not automatically open up a new browser window at the servers address, it can be located at `http://localhost:3000`.
+To view the site, navigate to `http://localhost:3000` in your browser.
 
 #### Deployment
-Production ready files can be produced by running the following commands inside the `corum` directory:
+Production ready files can be produced by running the following commands inside the `client` directory:
 
 ```bash
-cd client 
-yarn 
-yarn build
+npm install
+npm run build
 ``` 
-This will produce a `build` directory inside `client`.
-This folder contains all the files required to deploy the site in production mode.
-This items can now be hosted on any HTTP server.
+
+To deploy the site once the files have been built, run the following commands inside the `client` directory:
+
+```bash
+npm run start
+```
+
+This will start the production server.
 
 #### Libraries / Tools To Be used
 **ALL** of the code and technologies that will be used for this project are open source.
@@ -444,9 +431,6 @@ This items can now be hosted on any HTTP server.
 - **JS Compiler** - [babel](https://babeljs.io/)
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Testing** - [Mocha](http://mochajs.org/)
-
-#### TODO: Why I decided to use Vue + Nuxtjs
-placeholder
 
 #### My Development Environment
 - **Operating System** - [Solus](https://solus-project.com/) - A GNU/Linux distribution
