@@ -390,7 +390,7 @@ It is Important to note, because I am using reasonably new features such as [CSS
 #### Development
 [Nuxt](https://nuxtjs.org/) provides a pre-configured hot reloading dev server (Using webpack-dev-server under the hood), which means I can save a file and see the resulting change instantly in my browser.
 This dev server also provides an in-browser error overlay, which allows for easier debugging. 
-To start the dev server, run the following commands from the `client` directory:
+To start the dev server, run the following commands from the `src` directory:
 
 ```bash
 npm install
@@ -400,14 +400,14 @@ This will start the dev server.
 To view the site, navigate to `http://localhost:3000` in your browser.
 
 #### Deployment
-Production ready files can be produced by running the following commands inside the `client` directory:
+Production ready files can be produced by running the following commands inside the `src` directory:
 
 ```bash
 npm install
 npm run build
 ``` 
 
-To deploy the site once the files have been built, run the following commands inside the `client` directory:
+To deploy the site once the files have been built, run the following commands inside the `src` directory:
 
 ```bash
 npm run start
