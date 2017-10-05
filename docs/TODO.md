@@ -10,3 +10,4 @@
   - comments (250ish)
 
 - Fix padding collapse issue when post list is scrollable (subforum/index)
+- Take src/package.json + others to root of project
