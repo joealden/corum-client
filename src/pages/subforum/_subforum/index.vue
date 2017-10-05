@@ -124,7 +124,8 @@ h1 {
 }
 
 #toolbar {
-  padding: 0.75rem;
+  padding: 0 0.75rem;
+  min-height: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
