@@ -10,4 +10,6 @@
   - comments (250ish)
 
 - Fix padding collapse issue when post list is scrollable (subforum/index)
-- Take src/package.json + others to root of project
+- Show error page when user goes to:
+  - `/subforum/:NOT_FOUND`
+  - `/subforum/:subforum/post/:NOT_FOUND`
