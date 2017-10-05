@@ -8,6 +8,8 @@
 
 ---
 
+**If you are not viewing this file on github, for the best experience (So that all links work etc.), visit this file online at [https://github.com/joealden/corum](https://github.com/joealden/corum)**
+
 For my Computer Science coursework project, I intend to create an **open, democratic & self governing** alternative to the forum site [Reddit](https://www.reddit.com/) called **Corum**. 
 
 ## Table of Contents
