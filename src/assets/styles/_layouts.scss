@@ -5,7 +5,7 @@
   width: 100vw;
   display: grid;
   grid-template-rows: 8rem auto;
-  grid-template-columns: 25em auto;
+  grid-template-columns: 23em auto;
   grid-template-areas: 'logo header' 'nav main';
 }
 
@@ -28,5 +28,4 @@ main {
 .page-enter,
 .page-leave-active {
   opacity: 0;
-  transform-origin: 50% 50%;
 }
