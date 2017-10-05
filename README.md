@@ -140,7 +140,7 @@ Good computer literacy should not be a given, so the interface should be layed o
 Colour should also be kept to a minimum to keep the site looking neutral.
 
 #### Users That Use the Forum Differently
-For users that have never visited or rarely visit the site, the UI and UX shouldn't be surprising so the this type of user can get whatever information they are looking for quickly and efficiently. 
+For users that have never visited or rarely visit the site, the UI and UX shouldn't be surprising so that this type of user can get whatever information they are looking for quickly and efficiently. 
 Also, the site should work equally as well for returning, regular users. 
 This means that the site should keep a similar structure and look throughout, and should not get in the way of the user.  
 
