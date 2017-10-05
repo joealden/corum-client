@@ -14,9 +14,7 @@
     "dev": "nuxt --hostname 0.0.0.0",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "deploy": "npm run build; npm run start"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^2.1.1",
