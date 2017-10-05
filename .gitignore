@@ -6,7 +6,7 @@ node_modules
 README.pdf
 
 # client
-client/node_modules
-client/npm-debug.log
-client/.nuxt
-client/dist
+src/node_modules
+src/npm-debug.log
+src/.nuxt
+src/dist
