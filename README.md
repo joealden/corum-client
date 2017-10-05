@@ -27,7 +27,7 @@ For my Computer Science coursework project, I intend to create an **open, democr
   - [Computational Methods Required](#computational-methods-required)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
-  - [Setup (Software Requirements)](#setup-software-requirements)
+  - [Software Requirements](#software-requirements)
 
 ## The Idea
 ### A Reddit Alternative
@@ -365,7 +365,7 @@ This will be achieved through the use of [GraphQL Subscriptions](https://www.how
 - Creation of new sub-forums?
 - Responsive CSS (It would require quite a bit more work to have it looking nice on mobile devices)
 
-### Setup (Software Requirements)
+### Software Requirements
 The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports.
 
 To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
