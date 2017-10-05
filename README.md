@@ -393,7 +393,7 @@ It is Important to note, because I am using reasonably new features such as [CSS
 [Nuxt](https://nuxtjs.org/) provides a pre-configured hot reloading dev server (Using webpack-dev-server under the hood), which means I can save a file and see the resulting change instantly in my browser.
 This dev server also provides an in-browser error overlay, which allows for easier debugging.
 
-To start the dev server, run the following commands from the `src` directory:
+To start the dev server, run the following commands:
 
 ```bash
 npm install
@@ -403,20 +403,12 @@ This will start the dev server.
 To view the site, navigate to `http://localhost:3000` in your browser.
 
 #### Deployment
-Production ready files can be produced by running the following commands inside the `src` directory:
+To start the production server, run the following commands:
 
 ```bash
 npm install
-npm run build
+npm run deploy
 ``` 
-
-To deploy the site once the files have been built, run the following commands inside the `src` directory:
-
-```bash
-npm run start
-```
-
-This will start the production server.
 
 #### Libraries / Tools To Be used
 **ALL** of the code and technologies that will be used for this project are open source.
