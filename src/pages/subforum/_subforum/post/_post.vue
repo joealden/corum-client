@@ -114,7 +114,7 @@ export default {
 
 section {
   overflow: auto;
-  margin: 3rem;
+  margin: 2rem;
   font-size: 1.5rem;
   height: 100%;
   background-color: white;

@@ -32,8 +32,8 @@ export default { head: () => 'New Post' };
 @import '../../../assets/styles/variables';
 
 section {
-  height: 100%;
-  margin: 3rem;
+  flex-grow: 1;
+  margin: 2rem;
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
