@@ -1,13 +1,43 @@
 {
   "name": "corum",
   "version": "0.1.0",
-  "description": "An open, democratic & self governing forum",
+  "description": "An open, democratic & self governing forum.",
   "author": "Joe Alden <joerobertalden@gmail.com> (joealden.com)",
   "license": "MIT",
-  "homepage": "https://github.com/joealden/corum",
   "private": true,
+  "homepage": "https://github.com/joealden/corum",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joealden/corum.git"
+  },
+  "scripts": {
+    "dev": "nuxt --hostname 0.0.0.0",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/apollo": "^2.1.1",
+    "@nuxtjs/font-awesome": "^1.0.2",
+    "lodash.debounce": "^4.0.8",
+    "marked": "^0.3.6",
+    "normalize.css": "^7.0.0",
+    "nuxt": "^1.0.0-rc9"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.7.2",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6"
   }
 }
