@@ -5,7 +5,7 @@ yarn-error.log
 node_modules
 
 # client
-src/node_modules
-src/npm-debug.log
-src/.nuxt
-src/dist
+client/node_modules
+client/npm-debug.log
+client/.nuxt
+client/dist
