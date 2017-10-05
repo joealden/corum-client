@@ -163,8 +163,6 @@ h1 {
     }
 
     &:hover {
-      transform: translateY(-0.2rem); 
-      box-shadow: 0 4px 10px #999;
       background-color: $nav-hover;
 
       i {

@@ -35,12 +35,6 @@ input {
   border-radius: 5px;
   transition: 0.2s ease-in-out;
   outline: none;
-
-  &:hover,
-  &:focus {
-    transform: translateY(-0.1rem);
-    box-shadow: 0 4px 10px #999;
-  }
 }
 
 input[type='email'],
