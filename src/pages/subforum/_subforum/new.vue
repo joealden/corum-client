@@ -10,12 +10,17 @@
       onfocus="this.placeholder=''" 
       onblur="this.placeholder='Post Title'"
     >
-    <textarea
-      placeholder="Post Content" 
-      onfocus="this.placeholder=''" 
-      onblur="this.placeholder='Post Content'"
-    />
-    <div>
+    <div id="content-editor">
+      <textarea
+        placeholder="Post Content" 
+        onfocus="this.placeholder=''" 
+        onblur="this.placeholder='Post Content'"
+        @input="update"
+      />
+      <div id="content-preview" v-html="compiledMarkdown"></div>
+    </div>
+
+    <div id="create-post-wrapper">
       <button @click.prevent>
         <i class="fa fa-plus" aria-hidden="true"/>Create Post
       </button>
@@ -25,7 +30,23 @@
 </template>
 
 <script>
-export default { head: () => 'New Post' };
+import marked from 'marked';
+import debounce from 'lodash.debounce';
+
+export default {
+  head: () => 'New Post',
+  computed: {
+    compiledMarkdown: function () {
+      return marked(this.input, { sanitize: true })
+    }
+  },
+  data: () => ({ input: '' }),
+  methods: {
+    update: debounce(function (e) {
+      this.input = e.target.value
+    }, 100) // change this value to speed up / slow down debounce
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -50,12 +71,12 @@ section {
   padding: 0.75rem;
   background-color: $primary-blue;
   color: white;
-}
 
-h1 {
-  margin: 0;
-  padding: 0;
-  font-size: 2.5rem;
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.5rem;
+  }
 }
 
 form {
@@ -63,35 +84,44 @@ form {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-}
 
-input, textarea {
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  font-size: 1.65rem;
-  border: none;
-  border-radius: 5px;
-  transition: 0.2s ease-in-out;
-  outline: none;
-  background-color: #eee;
-  font-size: 1.5rem;
+  input, 
+  div > textarea {
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    font-size: 1.65rem;
+    border: none;
+    border-radius: 0.5rem;
+    outline: none;
+    background-color: #eee;
+    font-size: 1.5rem;
+  }
 
-  &:hover,
-  &:focus {
-    transform: translateY(-0.1rem);
-    box-shadow: 0 4px 10px #999;
+  #content-editor {
+    flex-grow: 1;
+    display: flex;
+
+    textarea {
+      padding: 1.25rem;
+      resize: none;
+      outline: none;
+      border-radius: 0.5rem;
+      flex-grow: 1;
+      margin-right: 1rem;
+    }
+
+    #content-preview {
+      background-color: #eee;
+      font-size: 1.5rem;      
+      border-radius: 0.5rem;
+      flex-grow: 1;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
   }
 }
 
-textarea {
-  flex-grow: 1;
-  padding: 1.25rem;
-  resize: none;
-  outline: none;
-  border-radius: 0.5rem;
-}
-
-div {
+#create-post-wrapper {
   display: flex;
   flex-direction: row-reverse;
 
