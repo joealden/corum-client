@@ -2,7 +2,6 @@
 
 - Redo README.md (React --> Vue)
 - Change styling of comments on post pages
-- Remove some hover box shadow effects (New Post page)
 - add faint loading message on slow data loads
 - extract out components from largers SFCs
 - Login + signup pages (backend thought)
