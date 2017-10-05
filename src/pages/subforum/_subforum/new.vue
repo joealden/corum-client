@@ -19,7 +19,6 @@
       />
       <div id="content-preview" v-html="compiledMarkdown"></div>
     </div>
-
     <div id="create-post-wrapper">
       <button @click.prevent>
         <i class="fa fa-plus" aria-hidden="true"/>Create Post
@@ -44,7 +43,7 @@ export default {
   methods: {
     update: debounce(function (e) {
       this.input = e.target.value
-    }, 100) // change this value to speed up / slow down debounce
+    }, 300)
   }
 };
 </script>
@@ -61,7 +60,6 @@ section {
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 10px 10px 25px #999;
-
 }
 
 #title-wrapper {
@@ -92,9 +90,9 @@ form {
     font-size: 1.65rem;
     border: none;
     border-radius: 0.5rem;
-    outline: none;
     background-color: #eee;
     font-size: 1.5rem;
+    outline: none;
   }
 
   #content-editor {
@@ -104,7 +102,6 @@ form {
     textarea {
       padding: 1.25rem;
       resize: none;
-      outline: none;
       border-radius: 0.5rem;
       flex-grow: 1;
       margin-right: 1rem;
