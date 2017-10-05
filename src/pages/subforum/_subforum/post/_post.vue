@@ -141,8 +141,8 @@ section {
 }
 
 #main-content-wrapper {
-  margin: 1.5rem;
-  height: 100%;
+  margin: 1rem;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -150,7 +150,9 @@ section {
 #author-created {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  align-items: center;
+  min-height: 2rem;
+  margin-bottom: 1rem;
   background-color: $primary-blue;
   color: white;
   padding: 1rem 1.2rem;
@@ -172,22 +174,21 @@ section {
 #post-details {
   display: flex;
   justify-content: space-between;
-  max-height: 35%;
 }
 
 #post-content {
   width: 100%;
   background-color: #eee;
-  margin-right: 1.5rem;
+  margin-right: 1rem;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
+  padding: 1.5rem 0;
 
   div {
     overflow: auto;
     p {
-      padding: 0 1rem;
+      padding: 0 1.5rem;
       margin: 0;
       overflow: hidden;
       text-align: left;
@@ -235,7 +236,7 @@ section {
 #comments-wrapper {
   background-color: #eee;
   border-radius: 0.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -257,32 +258,35 @@ section {
   }
 
   ul {
-    margin: 0;
+    margin: 1rem 0;
     padding: 0;
+    overflow: auto;
 
     li {
       list-style: none;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: stretch;
       margin: 1rem;
-      padding: 0.75rem;
-      border-radius: 0.5rem;
-      background-color: $border;
+
+      &:first-child { margin-top: 0 }
+      &:last-child { margin-bottom: 0 }
 
       div:first-child {
         background-color: white;
         padding: 1rem;
-        border-radius: 0.5rem;
-        width: 100%;
-        margin-right: 0.75rem;
+        border-radius: 0.5rem 0 0 0.5rem;
+        flex-grow: 1;
         text-align: left;
       }
 
       div:last-child {
-        background-color: $primary-blue;
         padding: 1rem;
-        border-radius: 0.5rem;
+        background-color: $primary-blue;
+        border-radius: 0 0.5rem 0.5rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
