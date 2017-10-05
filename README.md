@@ -51,7 +51,7 @@ There is no higher authority that makes decisions.
 In the case of a forum site, this means that it is solely up to the users of the forum as a collective to decide what content belongs on it. 
 Corum will be designed and developed from the ground up to strictly follow this principle.
 
-Just like in a real democracy, the users will be given one vote each on every post, and each vote will be treated equally. 
+Users will be given one vote each on every post, and each vote will be treated equally. 
 Up until now, this sounds very similar to [Reddit](https://www.reddit.com/). 
 The way that Corum differentiates itself from existing solutions like Reddit is by making the vote that users are given actually mean something. 
 If users generally vote positively on a post, then the post will remain. 
