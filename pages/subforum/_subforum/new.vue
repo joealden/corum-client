@@ -4,23 +4,35 @@
     <h1>New Post</h1>
   </div>
   <form>
-    <input 
+    <!-- Test trim -->
+    <input
+      v-model.trim="postTitle" 
       type="text" 
       placeholder="Post Title" 
       onfocus="this.placeholder=''" 
       onblur="this.placeholder='Post Title'"
-    >
-    <div id="content-editor">
-      <textarea
-        placeholder="Post Content" 
-        onfocus="this.placeholder=''" 
-        onblur="this.placeholder='Post Content'"
-        @input="update"
-      />
-      <div id="content-preview" v-html="compiledMarkdown"></div>
-    </div>
+    />
+    <!-- Test trim -->
+    <textarea
+      v-model.trim="postContent"
+      placeholder="Post Content" 
+      onfocus="this.placeholder=''" 
+      onblur="this.placeholder='Post Content'"
+    />
     <div id="create-post-wrapper">
-      <button @click.prevent>
+      <button
+        v-if="postTitle !== '' && postContent !== ''"
+        @click.prevent="submitPost"
+        id="enabled-button"
+      >
+        <i class="fa fa-plus" aria-hidden="true"/>Create Post
+      </button>
+      <button 
+        v-else
+        disabled
+        id="disabled-button" 
+        title="Both the post title and post content sections are required" 
+      >
         <i class="fa fa-plus" aria-hidden="true"/>Create Post
       </button>
     </div>
@@ -29,23 +41,23 @@
 </template>
 
 <script>
-import marked from 'marked';
-import debounce from 'lodash.debounce';
-
 export default {
-  head: () => 'New Post',
-  computed: {
-    compiledMarkdown: function () {
-      return marked(this.input, { sanitize: true })
+  data() {
+    return {
+      postTitle: '',
+      postContent: ''
     }
   },
-  data: () => ({ input: '' }),
   methods: {
-    update: debounce(function (e) {
-      this.input = e.target.value
-    }, 300)
-  }
-};
+    submitPost() {
+      const { postTitle, postContent } = this;
+      if (postTitle !== '' && postContent !== '') {
+        console.log(`${postTitle}\n${postContent}`);
+      }
+    }
+  },
+  head: () => 'New Post'
+}
 </script>
 
 <style lang="scss" scoped>
@@ -84,7 +96,7 @@ form {
   flex-direction: column;
 
   input, 
-  div > textarea {
+  textarea {
     padding: 1.25rem;
     margin-bottom: 1rem;
     font-size: 1.65rem;
@@ -95,26 +107,11 @@ form {
     outline: none;
   }
 
-  #content-editor {
+  textarea {
+    padding: 1.25rem;
+    resize: none;
+    border-radius: 0.5rem;
     flex-grow: 1;
-    display: flex;
-
-    textarea {
-      padding: 1.25rem;
-      resize: none;
-      border-radius: 0.5rem;
-      flex-grow: 1;
-      margin-right: 1rem;
-    }
-
-    #content-preview {
-      background-color: #eee;
-      font-size: 1.5rem;      
-      border-radius: 0.5rem;
-      flex-grow: 1;
-      margin-bottom: 1rem;
-      text-align: left;
-    }
   }
 }
 
@@ -126,28 +123,44 @@ form {
     font-size: 1.2rem;
     width: 15rem;
     padding: 1rem;
-    background: $primary-blue;
-    color: white;
     border: none;
     border-radius: 5px;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 600;
-    transition: 0.15s ease-in-out;
     outline: none;
+    transition: 0.15s ease-in-out;
 
     i {
       margin-right: 0.5rem;
-      color: $nav-hover;
       transition: 0.15s ease-in-out;
     }
+  }
+}
 
-    &:hover {
-      background-color: $nav-hover;
+#disabled-button {
+  color: white;
+  background-color: grey;
+  cursor: not-allowed;
 
-      i {
-        color: white;
-      }
+  i {
+    color: white;
+  }
+}
+
+#enabled-button {
+  background: $primary-blue;
+  color: white;
+
+  i {
+    color: $nav-hover;
+  }
+
+  &:hover {
+    background-color: $nav-hover;
+
+    i {
+      color: white;
     }
   }
 }
