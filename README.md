@@ -29,7 +29,7 @@ For my Computer Science coursework project, I intend to create an **open, democr
   - [Computational Methods Required](#computational-methods-required)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
-  - [Software Requirements](#software-requirements)
+  - [Hardware and Software Requirements](#hardware-and-software-requirements)
 
 ## The Idea
 ### A Reddit Alternative
@@ -367,29 +367,21 @@ This will be achieved through the use of [GraphQL Subscriptions](https://www.how
 - Creation of new sub-forums?
 - Responsive CSS (It would require quite a bit more work to have it looking nice on mobile devices)
 
-### Software Requirements
-The project is based on a full JavaScript stack, so it should be able to be developed and deployed on any OS that Node.js supports.
+### Hardware and Software Requirements
+In the following subsections, I will explain both how to host and view the site. 
+These two use cases will require different software and hardware.
 
-To get a copy of this project on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
+#### Hosting the Site
+The project is based on a full JavaScript stack, so it is able to be developed and deployed on any OS that Node.js supports.
+If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and install it. This will give access to Node and NPM (Node Package Manager).
+Now your system is ready to develop and / or deploy Corum.
 
+To get a copy of Corum on your local machine, clone this repo using the following command ([Git](https://git-scm.com/) must be installed):
 ```bash
 git clone https://github.com/joealden/corum.git
 ```
-If you haven't already, download Node Version 8+ [here](https://nodejs.org/en/download/current/) and install it. This will give access to Node and NPM.
-Now your system is ready to develop or deploy Corum.
 
-#### Corum's Backend
-I am planning to use [graphcool](https://www.graph.cool/) as my API and user authentication backend. 
-This will allow me to easily develop the client side of the application without needing to worry about the implementation details of the GraphQL backend that it runs on top of. 
-Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
-
-If time permits, I will eventually move away from graphcool when the frontend of the site is complete. 
-This is so that it will be easier for anyone to setup their own Corum instance, as they will not have to use graph.cool.
-
-#### Browser Compatibility
-It is Important to note, because I am using reasonably new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to browse on the latest version of Chrome or Firefox to experience how Corum is intended.
-
-#### Development
+##### Development
 [Nuxt](https://nuxtjs.org/) provides a pre-configured hot reloading dev server (Using webpack-dev-server under the hood), which means I can save a file and see the resulting change instantly in my browser.
 This dev server also provides an in-browser error overlay, which allows for easier debugging.
 
@@ -399,18 +391,37 @@ To start the dev server, run the following commands:
 npm install
 npm run dev
 ```
-This will start the dev server. 
 To view the site, navigate to `http://localhost:3000` in your browser.
 
-#### Deployment
+##### Deployment
 To start the production server, run the following commands:
 
 ```bash
 npm install
 npm run deploy
-``` 
+```
 
-#### Libraries / Tools To Be used
+#### Viewing the Site
+##### Hardware
+As mentioned in the section talking about the projects limitations, Corum will be actively made compatible with mobile devices (Such as tablets and smartphones), as it would require extra work that wouldn't get me any extra marks because it is only a visual problem. For this reason, it is recommended that Corum is viewed on a desktop or laptop.
+
+##### Software
+As Corum is a website, any modern browser on any modern Operating System will work.
+As I am using reasonably new features such as [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), it is recommended to view the site on the most up to date versions of Chrome, Opera, Firefox or Edge. The reason I have chosen not to support older browsers is because it would make the user experience of those using modern browsers worse, as well as making it a lot harder to develop.  
+
+#### Other Software Information about the Project
+
+##### Corum's Backend
+I am planning to use [graphcool](https://www.graph.cool/) as my API and user authentication backend.
+Graphcool is a BaaS (Backend as a service) that combines 'serverless' (A service like AWS Lambda) and GraphQL (An API query language).
+
+This will allow me to easily develop the client side of the application without needing to worry about the implementation details of the GraphQL backend that it fetches data from. 
+Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
+
+If time permits, I will possibly move away from graphcool when the frontend of the site is complete.
+This will make the site more reusable, as someone who wants to host a Corum instance of their own, they will not have to use graphcool.
+
+##### Libraries / Tools To Be used
 **ALL** of the code and technologies that will be used for this project are open source.
 
 - **Language** - [ES2015](http://es6-features.org) + [ES2017](http://node.green/#ES2017) (JavaScript)
@@ -426,8 +437,3 @@ npm run deploy
 - **JS Compiler** - [babel](https://babeljs.io/)
 - **JS Linter** - [ESLint](https://eslint.org/)
 - **Testing** - [Mocha](http://mochajs.org/)
-
-#### My Development Environment
-- **Operating System** - [Solus](https://solus-project.com/) - A GNU/Linux distribution
-- **Code Editor** - [Visual Studio Code](https://code.visualstudio.com/) - The `.vscode` directory at the root of the project is present so that if someone else opens the project in vscode, the editor will be automatically configured with project specific settings, such as tab spacing etc. Also, they will be able to install the extensions used by me for this project under the `extensions > recommended` panel.
-- **Web Browser (Testing)** - [Firefox 55](https://www.mozilla.org/en-US/firefox/new/) & [Chrome 61](https://www.google.com/chrome/browser/desktop/index.html) (The latest versions)
