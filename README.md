@@ -403,7 +403,7 @@ npm run deploy
 
 #### Viewing the Site
 ##### Hardware
-As mentioned in the section talking about the projects limitations, Corum will be actively made compatible with mobile devices (Such as tablets and smartphones), as it would require extra work that wouldn't get me any extra marks because it is only a visual problem. For this reason, it is recommended that Corum is viewed on a desktop or laptop.
+As mentioned in the section talking about the projects limitations, Corum will be actively made compatible with mobile devices (Such as tablets and smartphones), as it is currently only a prototype version. In the future, Corum could be made to work on mobile devices as well. For this reason, it is recommended that Corum is viewed on a desktop or laptop.
 
 ##### Software
 As Corum is a website, any modern browser on any modern Operating System will work.
