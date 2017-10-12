@@ -67,12 +67,18 @@ export default {
 
       this.$apollo.mutate({
         mutation: createPost,
-        variables() { return { author, title, content, id } },
-        update ({ id }) { return id }
+        variables: {
+          author,
+          title,
+          content,
+          id
+        }
       }).then(data => {
-        this.$router.push(`/subforum/${this.$route.params.subforum}/post/${data.id}`)
-      }).catch(() => {
-        // this.$router.push(`/error`)
+        const { subforum } = this.$route.params
+        const { id } = data.data.createPost
+        this.$router.push(`/subforum/${subforum}/post/${id}`)
+      }).catch(error => {
+        console.error(error)
       });
     }
   },
