@@ -3,13 +3,11 @@
   <div v-if="loading"></div>
   <section v-else>
     <div id="title-wrapper">
-        <h1>{{ Post.title }}</h1>
+      <div>Author: <span>{{ Post.author }}</span></div>
+      <h1>{{ Post.title }}</h1>
+      <div>Created At: <span>{{ formatedTime }}</span></div>
     </div>
     <div id="main-content-wrapper">
-      <div id="author-created">
-        <div>Author: <span>{{ Post.author }}</span></div>
-        <div>Created At: <span>{{ formatedTime }}</span></div>
-      </div>
       <div id="post-details">
         <div id="post-content">
           <div>
@@ -125,17 +123,42 @@ section {
 }
 
 #title-wrapper {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-radius: 0.5rem 0.5rem 0 0;
-  height: 3rem;
-  margin: 0;
-  padding: 0.75rem;
+  padding: 1rem 1.5rem;
   background-color: $primary-blue;
   color: white;
+  min-height: 2.5rem;
+
+  div {
+    text-transform: uppercase;
+    font-weight: 600;
+
+    // Hack to get post title centered
+    width: 25%;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+    // --------------------------------
+
+    span {
+      color: $nav-hover;
+      text-transform: lowercase;
+      font-weight: normal;
+      margin-left: 0.2rem;
+      white-space: nowrap;
+    }
+  }
 
   h1 {
     margin: 0;
-    padding: 0;
     font-size: 2.5rem;
   }
 }
@@ -145,30 +168,6 @@ section {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-}
-
-#author-created {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 2rem;
-  margin-bottom: 1rem;
-  background-color: $primary-blue;
-  color: white;
-  padding: 1rem 1.2rem;
-  border-radius: 0.5rem;
-
-  div {
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
-  div > span {
-    color: $nav-hover;
-    text-transform: lowercase;
-    font-weight: normal;
-    margin-left: 0.2rem;
-  }
 }
 
 #post-details {
@@ -184,6 +183,7 @@ section {
   display: flex;
   flex-direction: column;
   padding: 1.5rem 0;
+  white-space: pre-wrap;
 
   div {
     overflow: auto;
