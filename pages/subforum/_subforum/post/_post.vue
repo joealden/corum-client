@@ -54,12 +54,13 @@
     </div>
     <form id="add-comment">
       <textarea 
+        v-model.trim="comment"
         name="comment-field"
         placeholder="New Comment..."
         onfocus="this.placeholder=''" 
         onblur="this.placeholder='New Comment...'"
       />
-      <button @click.prevent>
+      <button @click.prevent="submitComment">
         <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
       </button>
     </form>
@@ -68,19 +69,22 @@
 </template>
 
 <script>
-import post from '~/apollo/queries/post.gql';
+import post from '~/apollo/queries/post.gql'
+import createComment from '~/apollo/mutations/createComment.gql'
 
 export default {
   apollo: {
     Post: {
       query: post,
-      variables() { return { id: this.$route.params.post }; },
+      variables() { return { id: this.$route.params.post } },
       fetchPolicy: 'cache-and-network',
       loadingKey: 'loading'
     }
   },
   computed: {
-    // Graph.cool returns unformatted date
+    // TODO: use graphcool serverside function to do same
+    //       functionality but as an extra string field.
+    // Graph.cool returns unformatted date.
     formatedTime() {
       const time = new Date(this.Post.createdAt)
       const day = time.getDate()
@@ -98,12 +102,61 @@ export default {
   },
   data: () => ({
     Post: '',
+    comment: '',
     loading: 0
   }),
   head() {
     return { title: this.Post.title }
+  },
+  methods: {
+    submitComment() {
+      const author = 'test' // TODO: change when login works
+      const { comment: content } = this
+      const id = this.$route.params.post
+
+      this.comment = ''; // Clear user input from textarea
+
+      this.$apollo.mutate({
+        mutation: createComment,
+        variables: {
+          author,
+          content,
+          id
+        },
+        update(store, { data: { createComment: commentData } }) {
+          const data = store.readQuery({
+            query: post,
+            variables: { id }
+          })
+          const newComment = {
+            __typename: 'Comment',
+            id: commentData.id,
+            author: commentData.author,
+            content: commentData.content
+          }
+          data.Post.comments.push(newComment);
+          store.writeQuery({
+            query: post,
+            variables: { id },
+            data
+          })
+        },
+        optimisticResponse: {
+          __typename: 'Mutation',
+          createComment: {
+            __typename: 'Comment',
+            id: 'cj8p00akh4pbd0142xbz6vje1',
+            author,
+            content
+          }
+        }
+      }).catch(error => {
+        console.error(error);
+        this.$router.push(`/error`)
+      })
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
