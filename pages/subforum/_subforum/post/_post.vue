@@ -84,18 +84,18 @@ export default {
   computed: {
     // Graph.cool returns unformatted date
     formatedTime() {
-      const time = new Date(this.Post.createdAt);
-      const day = time.getDate();
-      const month = time.getMonth();
-      const year = time.getFullYear();
-      const hours = time.getHours();
+      const time = new Date(this.Post.createdAt)
+      const day = time.getDate()
+      const month = time.getMonth()
+      const year = time.getFullYear()
+      const hours = time.getHours()
 
       // make the output of time.getMinutes() padded
-      let minutes = time.getMinutes();
+      let minutes = time.getMinutes()
       if (minutes < 10) {
-        minutes = `0${minutes}`;
+        minutes = `0${minutes}`
       }
-      return ` ${hours}:${minutes} - ${day}/${month}/${year} `;
+      return `${hours}:${minutes} - ${day}/${month}/${year}`
     }
   },
   data: () => ({
@@ -103,7 +103,7 @@ export default {
     loading: 0
   }),
   head() {
-    return { title: this.Post.title };
+    return { title: this.Post.title }
   }
 };
 </script>

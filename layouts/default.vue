@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import Logo from '~/components/layout/Logo.vue';
-import Header from '~/components/layout/Header.vue';
-import Navigation from '~/components/layout/Navigation.vue';
+import Logo from '~/components/layout/Logo.vue'
+import Header from '~/components/layout/Header.vue'
+import Navigation from '~/components/layout/Navigation.vue'
 
 export default {
   components: {
@@ -20,7 +20,7 @@ export default {
     corumHeader: Header,
     corumNav: Navigation
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

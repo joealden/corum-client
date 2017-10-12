@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import Logo from '~/components/layout/Logo.vue';
-import Header from '~/components/layout/Header.vue';
-import Navigation from '~/components/layout/Navigation.vue';
+import Logo from '~/components/layout/Logo.vue'
+import Header from '~/components/layout/Header.vue'
+import Navigation from '~/components/layout/Navigation.vue'
 
 export default {
   components: {
@@ -27,7 +27,7 @@ export default {
   head: () => ({ title: 'Error' }),
   name: 'nuxt-error',
   props: ['error']
-};
+}
 </script>
 
 <style lang="scss" scoped>

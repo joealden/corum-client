@@ -37,7 +37,7 @@
 </template>
 
 <script>
-export default { head: () => ({ title: 'Sign Up' }) };
+export default { head: () => ({ title: 'Sign Up' }) }
 </script>
 
 <style lang="scss" scoped>

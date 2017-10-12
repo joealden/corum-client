@@ -35,11 +35,11 @@
 export default {
   methods: {
     login() {
-      // placeholder
+      console.log('test') // placeholder
     }
   },
   head: () => ({ title: 'Login' })
-};
+}
 </script>
 
 <style lang="scss" scoped>

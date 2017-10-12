@@ -68,13 +68,13 @@ export default {
   apollo: {
     Subforum: {
       query: subforumName,
-      variables() { return { url: this.$route.params.subforum }; },
+      variables() { return { url: this.$route.params.subforum } },
       loadingKey: 'loading'
     },
     allPosts: {
       query: allPosts,
       fetchPolicy: 'cache-and-network', // fetch new posts when going to same subforum
-      variables() { return { subforumUrl: this.$route.params.subforum }; },
+      variables() { return { subforumUrl: this.$route.params.subforum } },
       loadingKey: 'loading'
     }
   },
@@ -85,11 +85,11 @@ export default {
   }),
   head() {
     if (this.Subforum.name) {
-      return { title: this.Subforum.name };
+      return { title: this.Subforum.name }
     }
-    return { title: 'Loading...' };
+    return { title: 'Loading...' }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

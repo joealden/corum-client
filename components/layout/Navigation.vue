@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import allSubforums from '~/apollo/queries/allSubforums.gql';
+import allSubforums from '~/apollo/queries/allSubforums.gql'
 
 export default {
   apollo: {
@@ -43,9 +43,9 @@ export default {
       allSubforums: '',
       loading: 0,
       search: ''
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
