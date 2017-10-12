@@ -1,0 +1,15 @@
+mutation createPost(
+  $author: String!
+  $title: String!
+  $content: String!
+  $id: ID!
+) {
+  createPost(
+    author: $author
+    title: $title
+    content: $content
+    subforumId: $id
+  ) {
+    id
+  }
+}

@@ -4,7 +4,6 @@
     <h1>New Post</h1>
   </div>
   <form>
-    <!-- Test trim -->
     <input
       v-model.trim="postTitle" 
       type="text" 
@@ -12,7 +11,6 @@
       onfocus="this.placeholder=''" 
       onblur="this.placeholder='Post Title'"
     />
-    <!-- Test trim -->
     <textarea
       v-model.trim="postContent"
       placeholder="Post Content" 
@@ -41,19 +39,41 @@
 </template>
 
 <script>
+import subforumId from '~/apollo/queries/subforumId.gql'
+import createPost from '~/apollo/mutations/createPost.gql'
+
 export default {
+  apollo: {
+    Subforum: {
+      query: subforumId,
+      variables() { return { url: this.$route.params.subforum } }
+    }
+  },
   data() {
     return {
       postTitle: '',
-      postContent: ''
+      postContent: '',
+      Subforum: {}
     }
   },
   methods: {
     submitPost() {
-      const { postTitle, postContent } = this;
-      if (postTitle !== '' && postContent !== '') {
-        console.log(`${postTitle}\n${postContent}`);
-      }
+      const author = 'test' // TODO: change when login works
+      const {
+        postTitle: title,
+        postContent: content,
+        Subforum: { id }
+      } = this
+
+      this.$apollo.mutate({
+        mutation: createPost,
+        variables() { return { author, title, content, id } },
+        update ({ id }) { return id }
+      }).then(data => {
+        this.$router.push(`/subforum/${this.$route.params.subforum}/post/${data.id}`)
+      }).catch(() => {
+        // this.$router.push(`/error`)
+      });
     }
   },
   head: () => 'New Post'
