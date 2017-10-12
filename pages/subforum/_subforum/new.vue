@@ -56,6 +56,7 @@ export default {
       Subforum: {}
     }
   },
+  head: () => 'New Post',
   methods: {
     submitPost() {
       const author = 'test' // TODO: change when login works
@@ -79,10 +80,10 @@ export default {
         this.$router.push(`/subforum/${subforum}/post/${id}`)
       }).catch(error => {
         console.error(error)
+        this.$router.push(`/error`) // TODO: create actual error page
       });
     }
-  },
-  head: () => 'New Post'
+  }
 }
 </script>
 
