@@ -77,6 +77,7 @@ export default {
           order: this.order
         }
       }
+      // TODO: Fix loading UX
     },
 
     Subforum: {
