@@ -14,6 +14,7 @@
             name="sort"
             value="popular"
             checked
+            @click="order = 'voteCount_DESC'"
           >
           Most Popular
         </label>
@@ -23,6 +24,7 @@
             id="new"
             name="sort"
             value="new"
+            @click="order = 'createdAt_DESC'"
           >
           Newest
         </label>
@@ -55,7 +57,7 @@
           </div>
         </nuxt-link> 
       </li>
-    </ul>  
+    </ul> 
   </section>
 </transition>
 </template>
@@ -71,10 +73,10 @@ export default {
       fetchPolicy: 'cache-and-network', // fetch new posts on different visits
       variables() {
         return {
-          url: this.$route.params.subforum
+          url: this.$route.params.subforum,
+          order: this.order
         }
-      },
-      loadingKey: 'loading'
+      }
     },
 
     Subforum: {
@@ -91,6 +93,7 @@ export default {
   data: () => ({
     Subforum: '',
     allPosts: '',
+    order: 'voteCount_DESC',
     loading: 0
   }),
 

@@ -1,5 +1,5 @@
-query allPosts($url: String!) {
-  allPosts(filter: { subforum: { url: $url } }, orderBy: voteCount_DESC) {
+query allPosts($url: String!, $order: PostOrderBy!) {
+  allPosts(filter: { subforum: { url: $url } }, orderBy: $order) {
     id
     title
     voteCount
