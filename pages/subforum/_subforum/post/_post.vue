@@ -60,7 +60,19 @@
         onfocus="this.placeholder=''" 
         onblur="this.placeholder='New Comment...'"
       />
-      <button @click.prevent="submitComment">
+      <button 
+        v-if="comment !== ''"
+        @click.prevent="submitComment"
+        id="enabled-button"
+      >
+        <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
+      </button>
+      <button
+        v-else
+        id="disabled-button"
+        title="The comment must not be empty"
+        @click.prevent
+      > 
         <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
       </button>
     </form>
@@ -81,6 +93,7 @@ export default {
       loadingKey: 'loading'
     }
   },
+  
   computed: {
     // TODO: use graphcool serverside function to do same
     //       functionality but as an extra string field.
@@ -100,14 +113,17 @@ export default {
       return `${hours}:${minutes} - ${day}/${month}/${year}`
     }
   },
+
   data: () => ({
     Post: '',
     comment: '',
     loading: 0
   }),
+
   head() {
     return { title: this.Post.title }
   },
+
   methods: {
     submitComment() {
       const author = 'test' // TODO: change when login works
@@ -385,8 +401,6 @@ section {
   button {
     font-size: 1.2rem;
     padding: 0.8rem 1.1rem;
-    background: $hover-blue;
-    color: white;
     border: none;
     border-radius: 5px;
     text-decoration: none;
@@ -397,16 +411,35 @@ section {
 
     i {
       margin-right: 0.5rem;
-      color: $nav-hover;
       transition: 0.15s ease-in-out;
     }
+  }
+}
 
-    &:hover {
-      background-color: $nav-hover;
-      
-      i {
-        color: white;
-      }
+#disabled-button {
+  color: white;
+  background-color: grey;
+  cursor: not-allowed;
+
+  i {
+    color: white;
+  }
+}
+
+#enabled-button {
+  background: $hover-blue;
+  color: white;
+  cursor: pointer;
+
+  i {
+    color: $nav-hover;
+  }
+
+  &:hover {
+    background-color: $nav-hover;
+
+    i {
+      color: white;
     }
   }
 }
