@@ -71,6 +71,7 @@ export default {
       variables() { return { url: this.$route.params.subforum } },
       loadingKey: 'loading'
     },
+
     allPosts: {
       query: allPosts,
       fetchPolicy: 'cache-and-network', // fetch new posts when going to same subforum
@@ -78,11 +79,13 @@ export default {
       loadingKey: 'loading'
     }
   },
+
   data: () => ({
     Subforum: '',
     allPosts: '',
     loading: 0
   }),
+
   head() {
     if (this.Subforum.name) {
       return { title: this.Subforum.name }
