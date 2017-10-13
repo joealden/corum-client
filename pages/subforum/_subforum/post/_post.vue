@@ -331,6 +331,7 @@ section {
         border-radius: 0.5rem 0 0 0.5rem;
         flex-grow: 1;
         text-align: left;
+        white-space: pre-wrap;
       }
 
       div:last-child {
