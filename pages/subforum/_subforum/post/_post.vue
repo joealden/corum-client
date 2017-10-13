@@ -34,7 +34,7 @@
       </div>
       <div id="comments-wrapper">
         <h2>
-          <i class="fa fa-comments" aria-hidden="true"/>Comments
+          <i class="fa fa-comments" aria-hidden="true"/>Comments ({{ Post.comments.length }})
         </h2>
         <div v-if="Post.comments.length === 0" id="no-comments">
           <p>There aren't any comments yet!</p>
@@ -88,12 +88,14 @@ export default {
   apollo: {
     Post: {
       query: post,
-      variables() { return { id: this.$route.params.post } },
+      variables() {
+        return { id: this.$route.params.post }
+      },
       fetchPolicy: 'cache-and-network',
       loadingKey: 'loading'
     }
   },
-  
+
   computed: {
     // TODO: use graphcool serverside function to do same
     //       functionality but as an extra string field.
@@ -161,7 +163,7 @@ export default {
           __typename: 'Mutation',
           createComment: {
             __typename: 'Comment',
-            id: 'cj8p00akh4pbd0142xbz6vje1',
+            id: 'loading',
             author,
             content
           }
@@ -242,6 +244,7 @@ section {
 #post-details {
   display: flex;
   justify-content: space-between;
+  min-height: 11.5rem; //hack
 }
 
 #post-content {
@@ -382,6 +385,7 @@ section {
 #add-comment {
   margin-top: auto; // make element stick to bottom of the page
   padding: 1rem;
+  min-height: 6rem; // hack
   display: flex;
   justify-content: space-between;
   background-color: $primary-blue;
