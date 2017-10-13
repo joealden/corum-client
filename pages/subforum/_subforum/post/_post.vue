@@ -63,13 +63,13 @@
       <button 
         v-if="comment !== ''"
         @click.prevent="submitComment"
-        id="enabled-button"
+        class="enabled-button"
       >
         <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
       </button>
       <button
         v-else
-        id="disabled-button"
+        class="disabled-button"
         title="The comment must not be empty"
         @click.prevent
       > 
@@ -180,6 +180,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../assets/styles/variables';
 @import '../../../../assets/styles/fadeTransition';
+@import '../../../../assets/styles/buttons';
 
 section {
   overflow: auto;
@@ -416,34 +417,6 @@ section {
     i {
       margin-right: 0.5rem;
       transition: 0.15s ease-in-out;
-    }
-  }
-}
-
-#disabled-button {
-  color: white;
-  background-color: grey;
-  cursor: not-allowed;
-
-  i {
-    color: white;
-  }
-}
-
-#enabled-button {
-  background: $hover-blue;
-  color: white;
-  cursor: pointer;
-
-  i {
-    color: $nav-hover;
-  }
-
-  &:hover {
-    background-color: $nav-hover;
-
-    i {
-      color: white;
     }
   }
 }

@@ -21,14 +21,14 @@
       <button
         v-if="postTitle !== '' && postContent !== ''"
         @click.prevent="submitPost"
-        id="enabled-button"
+        class="enabled-button"
       >
         <i class="fa fa-plus" aria-hidden="true"/>Create Post
       </button>
       <button 
         v-else
         disabled
-        id="disabled-button" 
+        class="disabled-button" 
         title="Both the post title and post content sections are required" 
       >
         <i class="fa fa-plus" aria-hidden="true"/>Create Post
@@ -49,6 +49,7 @@ export default {
       variables() { return { url: this.$route.params.subforum } }
     }
   },
+
   data() {
     return {
       postTitle: '',
@@ -56,7 +57,9 @@ export default {
       Subforum: {}
     }
   },
+
   head: () => 'New Post',
+
   methods: {
     submitPost() {
       const author = 'test' // TODO: change when login works
@@ -89,6 +92,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../assets/styles/variables';
+@import '../../../assets/styles/buttons';
 
 section {
   flex-grow: 1;
@@ -164,32 +168,4 @@ form {
     }
   }
 }
-
-#disabled-button {
-  color: white;
-  background-color: grey;
-  cursor: not-allowed;
-
-  i {
-    color: white;
-  }
-}
-
-#enabled-button {
-  background: $primary-blue;
-  color: white;
-
-  i {
-    color: $nav-hover;
-  }
-
-  &:hover {
-    background-color: $nav-hover;
-
-    i {
-      color: white;
-    }
-  }
-}
-
 </style>
