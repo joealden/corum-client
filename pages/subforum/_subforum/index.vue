@@ -120,7 +120,6 @@ section {
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 10px 10px 25px #999;
-
 }
 
 #title-wrapper {
