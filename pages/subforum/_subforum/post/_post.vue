@@ -313,6 +313,7 @@ section {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  min-height: 25rem;
 
   h2 {
     margin: 0;
