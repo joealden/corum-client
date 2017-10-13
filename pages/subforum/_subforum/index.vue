@@ -61,21 +61,29 @@
 </template>
 
 <script>
-import allPosts from '~/apollo/queries/allPosts.gql';
-import subforumName from '~/apollo/queries/subforumName.gql';
+import allPosts from '~/apollo/queries/allPosts.gql'
+import subforumName from '~/apollo/queries/subforumName.gql'
 
 export default {
   apollo: {
-    Subforum: {
-      query: subforumName,
-      variables() { return { url: this.$route.params.subforum } },
+    allPosts: {
+      query: allPosts,
+      fetchPolicy: 'cache-and-network', // fetch new posts on different visits
+      variables() {
+        return {
+          url: this.$route.params.subforum
+        }
+      },
       loadingKey: 'loading'
     },
 
-    allPosts: {
-      query: allPosts,
-      fetchPolicy: 'cache-and-network', // fetch new posts when going to same subforum
-      variables() { return { subforumUrl: this.$route.params.subforum } },
+    Subforum: {
+      query: subforumName,
+      variables() {
+        return {
+          url: this.$route.params.subforum
+        }
+      },
       loadingKey: 'loading'
     }
   },
