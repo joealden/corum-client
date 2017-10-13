@@ -1,7 +1,7 @@
 {
-  allSubforums {
-    id
-    url
-    name
-  }
+	allSubforums(orderBy: name_ASC) {
+		id
+		url
+		name
+	}
 }
