@@ -168,8 +168,7 @@ export default {
             content
           }
         }
-      }).catch(error => {
-        console.error(error);
+      }).catch(() => { // TODO: implement autoscroll to bottom when comment is posted
         this.$router.push(`/error`)
       })
     }
@@ -236,16 +235,12 @@ section {
 }
 
 #main-content-wrapper {
-  margin: 1rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  padding: 1rem;
+  overflow: auto;
 }
 
 #post-details {
   display: flex;
-  justify-content: space-between;
-  min-height: 11.5rem; //hack
 }
 
 #post-content {
@@ -289,7 +284,6 @@ section {
     &:hover:first-child {
       background-color: $nav-hover;
     }
-
     &:hover:last-child {
       background-color: red;
     }
@@ -310,10 +304,8 @@ section {
   background-color: #eee;
   border-radius: 0.5rem;
   margin-top: 1rem;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  min-height: 25rem;
 
   h2 {
     margin: 0;
@@ -376,20 +368,14 @@ section {
   color: grey;
 }
 
-.author-comment {
-  color: $nav-hover;
-}
-
-.non-author-comment {
-  color: white;
-}
+.author-comment { color: $nav-hover }
+.non-author-comment { color: white }
 
 #add-comment {
   margin-top: auto; // make element stick to bottom of the page
   padding: 1rem;
-  min-height: 6rem; // hack
+  min-height: 6rem;
   display: flex;
-  justify-content: space-between;
   background-color: $primary-blue;
   color: white;
 
@@ -401,7 +387,6 @@ section {
     resize: none;
     outline: none;
     border-radius: 0.5rem;
-    vertical-align: middle;
   }
 
   button {
