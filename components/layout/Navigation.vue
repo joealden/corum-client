@@ -1,22 +1,37 @@
 <template>
 <nav>
-  <h1>Subforums</h1>
-  <input 
-    v-model.trim="search" 
-    type="search" 
-    placeholder="Search..."
-    spellcheck="false"
-  >
-  <transition name="fadeIn">
-    <div v-if="loading"></div>
-    <ul v-else>
-      <li v-for="subforum in subforumSearch" :key="subforum.id">
-        <nuxt-link :to="`/subforum/${subforum.url}`">
-          {{ subforum.name }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </transition>
+  <div id="favourites" v-if="$store.state.userId">
+    <h1>Favourites</h1>
+    <transition name="fadeIn">
+      <div id="loading" v-if="loading"></div>
+      <ul v-else>
+        <li>
+          <nuxt-link to="test">
+            test
+          </nuxt-link>
+        </li>
+      </ul>
+    </transition>
+  </div>
+  <div id="all-subforums">
+    <h1>All Subforums</h1>
+    <input 
+      v-model.trim="search" 
+      type="search" 
+      placeholder="Search..."
+      spellcheck="false"
+    >
+    <transition name="fadeIn">
+      <div id="loading" v-if="loading"></div>
+      <ul v-else>
+        <li v-for="subforum in subforumSearch" :key="subforum.id">
+          <nuxt-link :to="`/subforum/${subforum.url}`">
+            {{ subforum.name }}
+          </nuxt-link>
+        </li>
+      </ul>
+    </transition>
+  </div>
 </nav>
 </template>
 
@@ -77,7 +92,7 @@ input[type="search"] {
   outline: none;
 }
 
-div {
+#loading {
   height: 100%;
 }
 
@@ -110,7 +125,7 @@ li {
 }
 
 .nuxt-link-active {
-  background-color: #000;
+  background-color: $hover-blue;
   color: white;
   padding-left: 1.1rem;
   border-left: 0.4rem solid $nav-hover;
