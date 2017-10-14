@@ -6,7 +6,7 @@
   >
   <form>
     <input
-      v-model="email"
+      v-model.trim="email"
       type="email"
       placeholder="Email Address"
       onfocus="this.placeholder=''" 
@@ -15,19 +15,18 @@
       spellcheck="false"
     >
     <input
-      v-model="password1"
+      v-model.trim="password1"
       type="password"
       placeholder="Password"
       onfocus="this.placeholder=''" 
       onblur="this.placeholder='Password'"
     >
     <input
-      v-model="password2"
+      v-model.trim="password2"
       type="password"
       placeholder="Confirm Password"
       onfocus="this.placeholder=''" 
       onblur="this.placeholder='Confirm Password'"
-      onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"
     >
     <input
       v-if="correctDetails"
