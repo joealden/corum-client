@@ -183,7 +183,7 @@ export default {
 @import '../../../../assets/styles/buttons';
 
 section {
-  overflow: auto;
+  overflow: hidden;
   margin: 2rem;
   font-size: 1.5rem;
   height: 100%;
