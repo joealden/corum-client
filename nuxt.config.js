@@ -11,12 +11,23 @@ module.exports = {
         content: 'An open, democratic & self governing forum.'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
+    link: [{ rel: 'icon', type: 'image/png', href: 'favicon.png' }]
   },
+
   // CSS globals
   css: ['normalize.css', '~/assets/styles/globals.scss'],
+
   // Customize the progress bar color
-  loading: { color: '#53c556' }, // $nav-hover
+  loading: { color: '#53c556' }, // $nav-hover,
+
+  // Get around localStorage issue - No SSR
+  mode: 'spa',
+  loadingIndicator: {
+    name: 'circle',
+    color: '#53c556',
+    background: 'white'
+  },
+
   // Build configuration
   build: {
     // Run ESLint on save
@@ -27,14 +38,16 @@ module.exports = {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
-        });
+        })
       }
     }
   },
+
   modules: ['@nuxtjs/apollo', '@nuxtjs/font-awesome'],
+
   apollo: {
     networkInterfaces: {
       default: '~/apollo/network-interfaces/default.js'
     }
   }
-};
+}

@@ -1,11 +1,18 @@
 <template>
-<header>
-  <nuxt-link to="/signup">
-    <i class="fa fa-user-plus" aria-hidden="true"/>Sign Up
-  </nuxt-link>
-  <nuxt-link to="/login">
-    <i class="fa fa-sign-in" aria-hidden="true"/>Login
-  </nuxt-link>
+<header >
+  <div v-if="$store.state.userId">
+    <a @click="$store.commit('logout')">
+      <i class="fa fa-sign-out" aria-hidden="true"/>Logout
+    </a>
+  </div>
+  <div v-else>
+    <nuxt-link to="/signup" exact>
+      <i class="fa fa-user-plus" aria-hidden="true"/>Sign Up
+    </nuxt-link>
+    <nuxt-link to="/login" exact>
+      <i class="fa fa-sign-in" aria-hidden="true"/>Login
+    </nuxt-link>
+  </div>
 </header>
 </template>
 
@@ -18,10 +25,11 @@ header {
   justify-content: flex-end;
   align-items: center;
   background-color: white;
-  margin-right: 3rem;
+  margin-right: 1.5rem;
 }
 
 a {
+  cursor: pointer;
   font-size: 1.5rem;
   padding: 0.8rem 1.6rem;
   background: $primary-blue;
@@ -30,14 +38,11 @@ a {
   text-transform: uppercase;
   font-weight: 600;
   transition: 0.15s ease-in-out;
+  margin-right: 1.5rem;
 
   i {
     color: $nav-hover;
     margin-right: 0.4rem;
-  }
-
-  &:first-child {
-    margin-right: 1.5rem;
   }
 
   &:hover {

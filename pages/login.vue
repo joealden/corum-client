@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import signinUser from '~/apollo/mutations/signinUser.gql'
+
 export default {
   head: () => ({ title: 'Login' }),
 
@@ -56,7 +58,30 @@ export default {
 
   methods: {
     login() {
-      console.log('test') // placeholder
+      const { email, password } = this
+      this.$apollo.mutate({
+        mutation: signinUser,
+        variables: {
+          email,
+          password
+        }
+      }).then(({ data: { signinUser } }) => {
+        const id = signinUser.user.id
+        const token = signinUser.token
+        this.$store.commit('saveUserData', { id, token })
+        this.$router.push({path: '/'})
+      }).catch(({ message }) => {
+        const colonIndex = message.indexOf(':')
+        const cleanedMessage = message.substring(colonIndex + 2, message.length)
+        alert(`Error: ${cleanedMessage}`)
+      })
+    }
+  },
+
+  // Redirect already logged in users that visit '/login' to '/'
+  beforeCreate() {
+    if (this.$store.state.userId) {
+      this.$router.push({path: '/'})
     }
   }
 }
