@@ -1,6 +1,6 @@
 <template>
 <transition name="fadeIn">
-  <div v-if="loading"></div>
+  <div v-if="!Subforum || !allPosts">loading...</div>
   <section v-else>
     <div id="title-wrapper">
       <h1>{{ Subforum.name }}</h1>
@@ -77,7 +77,6 @@ export default {
           order: this.order
         }
       }
-      // TODO: Fix loading UX
     },
 
     Subforum: {
@@ -86,16 +85,14 @@ export default {
         return {
           url: this.$route.params.subforum
         }
-      },
-      loadingKey: 'loading'
+      }
     }
   },
 
   data: () => ({
     Subforum: '',
     allPosts: '',
-    order: 'voteCount_DESC',
-    loading: 0
+    order: 'voteCount_DESC'
   }),
 
   head() {
