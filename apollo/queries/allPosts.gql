@@ -1,10 +1,11 @@
 query allPosts($url: String!, $order: PostOrderBy!) {
-  allPosts(filter: { subforum: { url: $url } }, orderBy: $order) {
-    id
-    title
-    voteCount
-    subforum {
-      name
-    }
-  }
+	allPosts(filter: { subforum: { url: $url } }, orderBy: $order) {
+		id
+		title
+		voteCount
+		createdAt
+		subforum {
+			name
+		}
+	}
 }

@@ -37,7 +37,10 @@
     </div>
     <div id="row-titles">
       <span>Post Title</span>
-      <span>Vote Count</span>
+      <div>
+        <span>Time Posted</span>
+        <span>Vote Count</span>
+      </div>
     </div>
     <div v-if="allPosts.length === 0" id="no-posts">
       <p>It looks like there aren't any posts here yet!</p>
@@ -48,14 +51,19 @@
           <div class="post-title">
             {{ post.title }}
           </div>
-          <div v-if="post.voteCount < 0" class="negative">
-            {{ post.voteCount }}
-          </div>
-          <div v-else-if="post.voteCount > 0" class="positive">
-            {{ post.voteCount }}
-          </div>
-          <div v-else class="neutral">
-            {{ post.voteCount }}
+          <div class="time-and-vote">
+            <div>
+              {{ post.createdAt | formatDate }}
+            </div>
+            <div v-if="post.voteCount < 0" class="negative">
+              {{ post.voteCount }}
+            </div>
+            <div v-else-if="post.voteCount > 0" class="positive">
+              {{ post.voteCount }}
+            </div>
+            <div v-else class="neutral">
+              {{ post.voteCount }}
+            </div>            
           </div>
         </nuxt-link> 
       </li>
@@ -102,6 +110,23 @@ export default {
     allPosts: '',
     order: 'voteCount_DESC'
   }),
+
+  filters: {
+    formatDate(date) {
+      const time = new Date(date)
+      const day = time.getDate()
+      const month = time.getMonth()
+      const year = time.getFullYear()
+      const hours = time.getHours()
+
+      // make the output of time.getMinutes() padded
+      let minutes = time.getMinutes()
+      if (minutes < 10) {
+        minutes = `0${minutes}`
+      }
+      return `${hours}:${minutes} - ${day}/${month}/${year}`
+    }
+  },
 
   head() {
     if (this.Subforum.name) {
@@ -202,6 +227,20 @@ h1 {
   span {
     font-weight: 600;
     text-transform: uppercase;
+  }
+
+  div > span:first-child {
+    margin-right: 4rem;
+  }
+}
+
+.time-and-vote {
+  display: flex;
+  
+  div:last-child {
+    width: 8rem;
+    text-align: right;
+    margin-left: 3rem;
   }
 }
 

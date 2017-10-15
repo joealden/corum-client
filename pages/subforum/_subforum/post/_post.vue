@@ -7,7 +7,7 @@
     <div id="title-wrapper">
       <div>Author: <span>{{ Post.author }}</span></div>
       <h1>{{ Post.title }}</h1>
-      <div>Created At: <span>{{ formatedTime }}</span></div>
+      <div>Created At: <span>{{ formattedTime }}</span></div>
     </div>
     <div id="main-content-wrapper">
       <div id="post-details">
@@ -99,7 +99,7 @@ export default {
 
   computed: {
     // Graph.cool returns unformatted date.
-    formatedTime() {
+    formattedTime() {
       const time = new Date(this.Post.createdAt)
       const day = time.getDate()
       const month = time.getMonth()

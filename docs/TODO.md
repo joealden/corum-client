@@ -1,9 +1,7 @@
 # TODO
 
 ## Needs Attention
-- Make it so only logged in users can (Different UI's):
-  - Create posts (Don't show 'new post' button + redirect '/new/post' -> '/login')
-  - Post comments (Don't show new comment section at bottom of post)
+- Use CSS Grid on post list page to align things properly
 - Make max lengths for info (characters):
   - usernames (50)
   - passwords (50)
