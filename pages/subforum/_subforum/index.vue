@@ -38,7 +38,7 @@
     <div id="row-titles">
       <span>Post Title</span>
       <div>
-        <span>Time Posted</span>
+        <span>Created At</span>
         <span>Vote Count</span>
       </div>
     </div>
