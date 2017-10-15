@@ -3,7 +3,7 @@
   <div id="title-wrapper">
     <h1>New Post</h1>
   </div>
-  <form>
+  <form v-if="userId">
     <input
       v-model.trim="postTitle" 
       type="text" 
@@ -35,6 +35,15 @@
       </button>
     </div>
   </form>
+  <div v-else id="not-logged-in">
+    <p>You are not logged in!</p>
+    <p>
+      If you want to create a post, please
+      <nuxt-link to="/login">Login</nuxt-link>
+      or
+      <nuxt-link to="/signup">Sign Up</nuxt-link>.
+    </p>
+  </div>
 </section>
 </template>
 
@@ -47,6 +56,12 @@ export default {
     Subforum: {
       query: subforumId,
       variables() { return { url: this.$route.params.subforum } }
+    }
+  },
+
+  computed: {
+    userId() {
+      return this.$store.state.userId
     }
   },
 
@@ -165,6 +180,23 @@ form {
     i {
       margin-right: 0.5rem;
       transition: 0.15s ease-in-out;
+    }
+  }
+}
+
+#not-logged-in {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 2rem;
+    margin: 1rem;
+
+    a {
+      color: $nav-hover;
     }
   }
 }
