@@ -25,7 +25,7 @@ module.exports = {
   loadingIndicator: {
     name: 'circle',
     color: '#53c556',
-    background: 'white'
+    background: '#e3e4e8'
   },
 
   // Build configuration
