@@ -1,36 +1,35 @@
 <template>
 <nav>
-  <div id="favourites" v-if="$store.state.userId">
-    <h1>Favourites</h1>
-    <transition name="fadeIn">
-      <div id="loading" v-if="loading"></div>
-      <ul v-else>
+  <div v-if="!allSubforums" id="loading">
+    <img src="~/assets/images/loading-light.svg" alt="loading">
+  </div>
+  <div v-else>
+    <div v-if="userId" id="favourites">
+      <h1>Favourites</h1>
+      <ul>
         <li>
           <nuxt-link to="test">
             test
           </nuxt-link>
         </li>
       </ul>
-    </transition>
-  </div>
-  <div id="all-subforums">
-    <h1>All Subforums</h1>
-    <input 
-      v-model.trim="search" 
-      type="search" 
-      placeholder="Search..."
-      spellcheck="false"
-    >
-    <transition name="fadeIn">
-      <div id="loading" v-if="loading"></div>
-      <ul v-else>
+    </div>
+    <div id="all-subforums">
+      <h1>All Subforums</h1>
+      <input 
+        v-model.trim="search" 
+        type="search" 
+        placeholder="Search..."
+        spellcheck="false"
+      >
+      <ul>
         <li v-for="subforum in subforumSearch" :key="subforum.id">
           <nuxt-link :to="`/subforum/${subforum.url}`">
             {{ subforum.name }}
           </nuxt-link>
         </li>
       </ul>
-    </transition>
+    </div>  
   </div>
 </nav>
 </template>
@@ -38,25 +37,27 @@
 <script>
 import allSubforums from '~/apollo/queries/allSubforums.gql'
 
+// TODO: Fix nav scrolling (Favourites + All should be independent)
 export default {
   apollo: {
-    allSubforums: {
-      query: allSubforums,
-      prefetch: true,
-      loadingKey: 'loading'
-    }
+    allSubforums
   },
+
   computed: {
-    subforumSearch() { // change to use simpler regex
+    subforumSearch() {
       return this.allSubforums.filter(subforum => (
         subforum.name.toLowerCase().includes(this.search.toLowerCase())
       ));
+    },
+
+    userId() {
+      return this.$store.state.userId
     }
   },
+
   data() {
     return {
       allSubforums: '',
-      loading: 0,
       search: ''
     }
   }
@@ -69,10 +70,14 @@ export default {
 
 nav {
   grid-area: nav;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
   background-color: $primary-blue;
+  overflow: auto;
+}
+
+#loading {
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
@@ -92,14 +97,9 @@ input[type="search"] {
   outline: none;
 }
 
-#loading {
-  height: 100%;
-}
-
 ul {
   margin: 0;
   padding: 0;
-  overflow: auto;
 }
 
 li {

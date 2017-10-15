@@ -1,8 +1,5 @@
 # TODO
 
-## Urgent
-- Fix localStorage SSR (SPA workaround not working on server subforum visits)
-
 ## Needs Attention
 - Make it so only logged in users can (Different UI's):
   - Create posts (Don't show 'new post' button + redirect '/new/post' -> '/login')

@@ -20,14 +20,6 @@ module.exports = {
   // Customize the progress bar color
   loading: { color: '#53c556' }, // $nav-hover,
 
-  // Get around localStorage issue - No SSR
-  mode: 'spa',
-  loadingIndicator: {
-    name: 'circle',
-    color: '#53c556',
-    background: '#e3e4e8'
-  },
-
   // Build configuration
   build: {
     // Run ESLint on save

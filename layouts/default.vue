@@ -19,6 +19,11 @@ export default {
     corumLogo: Logo,
     corumHeader: Header,
     corumNav: Navigation
+  },
+
+  // Fetch userid from localStorage after SSR
+  mounted() {
+    this.$store.commit('updateUserId')
   }
 }
 </script>

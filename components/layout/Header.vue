@@ -1,7 +1,7 @@
 <template>
-<header >
-  <div v-if="$store.state.userId">
-    <a @click="$store.commit('logout')">
+<header>
+  <div v-if="userId">
+    <a @click="logout">
       <i class="fa fa-sign-out" aria-hidden="true"/>Logout
     </a>
   </div>
@@ -15,6 +15,22 @@
   </div>
 </header>
 </template>
+
+<script>
+export default {
+  computed: {
+    userId() {
+      return this.$store.state.userId
+    }
+  },
+
+  methods: {
+    logout() {
+      this.$store.commit('logout')
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 @import '../../assets/styles/variables';
