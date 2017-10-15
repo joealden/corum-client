@@ -1,6 +1,8 @@
 <template>
 <transition name="fadeIn">
-  <div v-if="loading"></div>
+  <div v-if="!Post">
+    <img src="~/assets/images/loading-dark.svg" alt="loading">
+  </div>
   <section v-else>
     <div id="title-wrapper">
       <div>Author: <span>{{ Post.author }}</span></div>
@@ -91,8 +93,7 @@ export default {
       variables() {
         return { id: this.$route.params.post }
       },
-      fetchPolicy: 'cache-and-network',
-      loadingKey: 'loading'
+      fetchPolicy: 'cache-and-network'
     }
   },
 

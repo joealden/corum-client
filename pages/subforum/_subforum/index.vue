@@ -1,6 +1,8 @@
 <template>
 <transition name="fadeIn">
-  <div v-if="!Subforum || !allPosts">loading...</div>
+  <div v-if="!Subforum || !allPosts">
+    <img src="~/assets/images/loading-dark.svg" alt="loading">
+  </div>
   <section v-else>
     <div id="title-wrapper">
       <h1>{{ Subforum.name }}</h1>
