@@ -69,7 +69,7 @@ export default {
         const id = signinUser.user.id
         const token = signinUser.token
         this.$store.commit('saveUserData', { id, token })
-        this.$router.push({path: '/'})
+        this.$router.back() // Returns the user to the page they were on before
       }).catch(({ message }) => {
         const colonIndex = message.indexOf(':')
         const cleanedMessage = message.substring(colonIndex + 2, message.length)
