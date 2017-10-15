@@ -31,7 +31,7 @@
           Newest
         </label>
       </form>
-      <nuxt-link :to="`/subforum/${$route.params.subforum}/new`">
+      <nuxt-link v-if="userId" :to="`/subforum/${$route.params.subforum}/new`">
         <i class="fa fa-plus" aria-hidden="true"></i>New Post
       </nuxt-link>
     </div>
@@ -88,6 +88,12 @@ export default {
           url: this.$route.params.subforum
         }
       }
+    }
+  },
+
+  computed: {
+    userId() {
+      return this.$store.state.userId
     }
   },
 
