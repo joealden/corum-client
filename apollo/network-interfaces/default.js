@@ -14,7 +14,11 @@ const authMiddleware = {
     if (!req.options.headers) {
       req.options.headers = {}
     }
-    const token = localStorage.getItem('graphcool-auth-token')
+    // Test effect process.browser shim
+    let token
+    if (process.browser) {
+      token = localStorage.getItem('graphcool-auth-token')
+    }
     req.options.headers['authorization'] = token ? `Bearer ${token}` : null
     next()
   }
