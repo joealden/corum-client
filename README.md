@@ -61,10 +61,10 @@ However, if a post gets a mostly negative response, it will be automatically rem
 This means that if someone posts something that doesn't belong on the forum, it will be removed by the users themselves _fairly_. 
 This is instead of having a moderator remove it based on their own opinion of the post, which could be biased.
 
-The idea of having self governing forum software means that the role of the forum moderator not longer needs to exist.
+The idea of having self governing forum software means that the role of the forum moderator no longer needs to exist.
 
 This is a good thing because:
-* It means that the forum require less maintenance. (Less man power required)
+* It means that the forum requires less maintenance. (Less man power required)
 * The users of the forum are responsible for maintaining it. (More **neutral** and **fair**)
 * The removal of the moderator role keeps code complexity down. (Only one type of user account needs to exist, and no 'admin control panel' is required)
 
