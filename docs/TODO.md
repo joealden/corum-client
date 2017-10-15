@@ -1,6 +1,14 @@
 # TODO
 
-## Next
+## Docs
+- Figure out a way to format printed document better (move over to odt   PDF?) (Maria said font was too large)
+- Include screenshots of points about reddit + hackernews + Solus' forum
+- Talk about searches and sorts considered (Say about Graphcool)
+- Clean up computational methods (paradigms etc.)
+- Who am I using to test + give feedback, discuss how they will help
+- Relate essential features to research
+
+## Next to Implement
 - Create voting functionality
   - Can only vote once (+1 or -1)
   - Persist vote across post visits
