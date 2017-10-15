@@ -23,7 +23,7 @@ export default {
 
   // Fetch userid from localStorage after SSR
   mounted() {
-    this.$store.commit('updateUserId')
+    this.$store.commit('updateUserState')
   }
 }
 </script>

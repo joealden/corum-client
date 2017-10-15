@@ -13,6 +13,7 @@ mutation CreateUserMutation(
 		token
 		user {
 			id
+			username
 		}
 	}
 }

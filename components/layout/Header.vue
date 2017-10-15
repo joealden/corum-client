@@ -1,6 +1,7 @@
 <template>
 <header>
-  <div v-if="userId">
+  <div v-if="userId" id="logged-in">
+    <p>Hi, <span>{{ $store.state.username }}</span>!</p>
     <a @click="logout">
       <i class="fa fa-sign-out" aria-hidden="true"/>Logout
     </a>
@@ -42,6 +43,21 @@ header {
   align-items: center;
   background-color: white;
   margin-right: 1.5rem;
+}
+
+#logged-in {
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 1.5rem;
+    margin: 0;
+    margin-right: 1.5rem;
+
+    span {
+      color: $nav-hover;
+    }
+  }
 }
 
 a {

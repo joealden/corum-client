@@ -8,24 +8,27 @@ const createStore = () => {
   return new Vuex.Store({
     strict: true,
     state: {
-      userId: undefined
+      userId: undefined,
+      username: undefined
     },
 
     mutations: {
       logout(state) {
-        localStorage.removeItem('graphcool-user-id')
-        localStorage.removeItem('graphcool-auth-token')
-        Vue.set(state, 'userId', localStorage.getItem('graphcool-user-id'))
+        localStorage.removeItem('user-id')
+        localStorage.removeItem('auth-token')
+        Vue.set(state, 'userId', localStorage.getItem('user-id'))
       },
 
-      saveUserData(state, { id, token }) {
-        localStorage.setItem('graphcool-user-id', id)
-        localStorage.setItem('graphcool-auth-token', token)
-        Vue.set(state, 'userId', localStorage.getItem('graphcool-user-id'))
+      saveUserData(state, { id, username, token }) {
+        localStorage.setItem('user-id', id)
+        localStorage.setItem('username', username)
+        localStorage.setItem('auth-token', token)
+        Vue.set(state, 'userId', localStorage.getItem('user-id'))
       },
 
-      updateUserId(state) {
-        Vue.set(state, 'userId', localStorage.getItem('graphcool-user-id'))
+      updateUserState(state) {
+        Vue.set(state, 'userId', localStorage.getItem('user-id'))
+        Vue.set(state, 'username', localStorage.getItem('username'))
       }
     }
   })

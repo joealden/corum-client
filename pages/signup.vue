@@ -116,9 +116,9 @@ export default {
           password
         }
       }).then(({ data: { signinUser } }) => {
-        const id = signinUser.user.id
+        const { id, username } = signinUser.user
         const token = signinUser.token
-        this.$store.commit('saveUserData', { id, token })
+        this.$store.commit('saveUserData', { id, username, token })
         this.$router.back() // Returns the user to the page they were on before
       }).catch(({ message }) => {
         const colonIndex = message.indexOf(':')
