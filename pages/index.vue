@@ -18,5 +18,6 @@ img {
 
 p {
   font-size: 1.7rem;
+  font-weight: bold;
 }
 </style>
