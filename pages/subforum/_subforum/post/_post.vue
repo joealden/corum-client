@@ -54,7 +54,7 @@
         </ul>
       </div>
     </div>
-    <form id="add-comment">
+    <form v-if="userId" id="add-comment">
       <textarea 
         v-model.trim="comment"
         name="comment-field"
@@ -98,8 +98,6 @@ export default {
   },
 
   computed: {
-    // TODO: use graphcool serverside function to do same
-    //       functionality but as an extra string field.
     // Graph.cool returns unformatted date.
     formatedTime() {
       const time = new Date(this.Post.createdAt)
@@ -114,6 +112,10 @@ export default {
         minutes = `0${minutes}`
       }
       return `${hours}:${minutes} - ${day}/${month}/${year}`
+    },
+
+    userId() {
+      return this.$store.state.userId
     }
   },
 
