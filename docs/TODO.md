@@ -19,6 +19,8 @@
   - Place - and + to the right of subforums
   - Stored in an array of favorites
   - Create add and remove mutations
+- Move from SCSS to stylus
+- Update ESLint config (Make it not error on style linting, like create-react-app)
 
 ## Needs Attention
 - Separate favorites and all subforums scroll
