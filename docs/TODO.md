@@ -19,6 +19,7 @@
   - Place - and + to the right of subforums
   - Stored in an array of favorites
   - Create add and remove mutations
+- Change post and post list loading state (display header, sort etc.)
 - Move from SCSS to stylus
 - Update ESLint config (Make it not error on style linting, like create-react-app)
 
