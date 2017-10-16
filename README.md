@@ -195,6 +195,8 @@ I like the simplicity of Solus' forum theme, and Corum will take some inspiratio
 
 ## The Analysis
 ### Essential Features
+From my research into existing systems, as well as the interviews I have done, I believe this to be a good set of basic features that Corum needs.
+
 #### Page Layout
 - Header (Top of the page)
   - Top left - Logo linking to homepage
