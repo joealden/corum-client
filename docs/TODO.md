@@ -1,8 +1,5 @@
 # TODO
 
-## Docs
-- Relate essential features to research
-
 ## Next to Implement
 - Create voting functionality
   - Can only vote once (+1 or -1)
