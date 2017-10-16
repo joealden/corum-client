@@ -1,7 +1,9 @@
 <template>
-<div v-if="!Post">
-  <img src="~/assets/images/loading-dark.svg" alt="loading">
-</div>
+<section v-if="!Post" id="loading">
+  <div>
+    <img src="~/assets/images/loading-dark.svg" alt="loading">
+  </div>
+</section>
 <section v-else>
   <div id="title-wrapper">
     <div>Author: <span>{{ Post.author }}</span></div>
@@ -192,6 +194,12 @@ section {
   box-shadow: 10px 10px 25px #999;
   display: flex;
   flex-direction: column;
+}
+
+#loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #title-wrapper {
