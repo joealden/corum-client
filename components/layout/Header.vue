@@ -37,45 +37,45 @@ export default {
 @require '../../assets/styles/variables'
 
 header
-  grid-area: header
-  display: flex
-  justify-content: flex-end
-  align-items: center
-  background-color: white
-  margin-right: 1.5rem
+  grid-area header
+  display flex
+  justify-content flex-end
+  align-items center
+  background-color white
+  margin-right 1.5rem
 
 #logged-in
-  display: flex
-  align-items: center
+  display flex
+  align-items center
   p
-    font-size: 1.5rem
-    margin: 0
-    margin-right: 1.5rem
+    font-size 1.5rem
+    margin 0
+    margin-right 1.5rem
     span 
-      color: $nav-hover
+      color $nav-hover
 
 a
-  cursor: pointer
-  font-size: 1.5rem
-  padding: 0.8rem 1.6rem
-  background: $primary-blue
-  color: white
-  border-radius: 5px
-  text-transform: uppercase
-  font-weight: 600
-  transition: 0.15s ease-in-out
-  margin-right: 1.5rem
+  cursor pointer
+  font-size 1.5rem
+  padding 0.8rem 1.6rem
+  background $primary-blue
+  color white
+  border-radius 5px
+  text-transform uppercase
+  font-weight 600
+  transition 0.15s ease-in-out
+  margin-right 1.5rem
   i
-    color: $nav-hover
-    margin-right: 0.4rem
+    color $nav-hover
+    margin-right 0.4rem
   &:hover
-    background-color: $nav-hover
+    background-color $nav-hover
     i
-      color: white
+      color white
 
 .nuxt-link-active
-  background-color: $nav-hover
-  color: white
+  background-color $nav-hover
+  color white
   i
-    color: white
+    color white
 </style>

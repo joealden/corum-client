@@ -141,122 +141,122 @@ export default {
 @require '../../../assets/styles/variables'
 
 section
-  flex-grow: 1
-  margin: 2rem
-  display: flex
-  flex-direction: column
-  font-size: 1.5rem
-  background-color: white
-  border-radius: 0.5rem
-  box-shadow: 10px 10px 25px #999
+  flex-grow 1
+  margin 2rem
+  display flex
+  flex-direction column
+  font-size 1.5rem
+  background-color white
+  border-radius 0.5rem
+  box-shadow 10px 10px 25px #999
 
 #loading
-  display: flex
-  flex-direction: column
-  justify-content: center
+  display flex
+  flex-direction column
+  justify-content center
 
 #title-wrapper
-  display: block
-  border-radius: 0.5rem 0.5rem 0 0
-  margin: 0
-  padding: 0.75rem
-  background-color: $primary-blue
-  color: white
+  display block
+  border-radius 0.5rem 0.5rem 0 0
+  margin 0
+  padding 0.75rem
+  background-color $primary-blue
+  color white
 
 h1
-  margin: 0
-  padding: 0
-  font-size: 2.5rem
+  margin 0
+  padding 0
+  font-size 2.5rem
 
 #toolbar
-  padding: 0 0.75rem
-  min-height: 4rem
-  display: flex
-  justify-content: space-between
-  align-items: center
+  padding 0 0.75rem
+  min-height 4rem
+  display flex
+  justify-content space-between
+  align-items center
 
   form > label
-    text-transform: uppercase
-    font-size: 1.4rem
-    font-weight: 600
-    transition: 0.2s ease-in-out
+    text-transform uppercase
+    font-size 1.4rem
+    font-weight 600
+    transition 0.2s ease-in-out
 
     &:hover
-      color: $nav-hover
+      color $nav-hover
     &:first-child
-      margin-left: 0.25rem
-      margin-right: 1rem
+      margin-left 0.25rem
+      margin-right 1rem
 
   a
-    font-size: 1.2rem
-    padding: 0.8rem 1.1rem
-    background: $primary-blue
-    color: white
-    border-radius: 5px
-    text-decoration: none
-    text-transform: uppercase
-    font-weight: 600
-    transition: 0.15s ease-in-out
+    font-size 1.2rem
+    padding 0.8rem 1.1rem
+    background $primary-blue
+    color white
+    border-radius 5px
+    text-decoration none
+    text-transform uppercase
+    font-weight 600
+    transition 0.15s ease-in-out
 
     i
-      margin-right: 0.4rem
-      color: $nav-hover
+      margin-right 0.4rem
+      color $nav-hover
     &:hover 
-      background-color: $nav-hover
+      background-color $nav-hover
       i 
-        color: white
+        color white
 
 #row-titles
-  padding: 0.75rem 1.75rem
-  display: flex
-  justify-content: space-between
-  align-items: center
-  background-color: $primary-blue
-  color: white
+  padding 0.75rem 1.75rem
+  display flex
+  justify-content space-between
+  align-items center
+  background-color $primary-blue
+  color white
 
   span
-    font-weight: 600
-    text-transform: uppercase
+    font-weight 600
+    text-transform uppercase
   div > span
     &:first-child
-      margin-right: 4rem
+      margin-right 4rem
 
 .time-and-vote
-  display: flex
+  display flex
 
   div
     &:last-child
-      width: 8rem
-      text-align: right
-      margin-left: 3rem
+      width 8rem
+      text-align right
+      margin-left 3rem
 
 #no-posts
-  flex-grow: 1
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  color: grey
+  flex-grow 1
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  color grey
 
 ul
-  flex-grow: 1
-  overflow: auto
-  padding: 0
-  margin: 0
+  flex-grow 1
+  overflow auto
+  padding 0
+  margin 0
 
 li
-  list-style: none
+  list-style none
   a
-    display: flex
-    justify-content: space-between
-    padding: 1.75rem
+    display flex
+    justify-content space-between
+    padding 1.75rem
     &:hover
-      background-color: #eee
+      background-color #eee
 
 .negative 
-  color: red
+  color red
 .neutral
-  color: black
+  color black
 .positive
-  color: $nav-hover
+  color $nav-hover
 </style>

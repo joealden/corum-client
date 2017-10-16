@@ -34,19 +34,19 @@ export default {
 @require '../assets/styles/layouts'
 
 main
-  display: flex
-  flex-direction: column
-  justify-content: center
+  display flex
+  flex-direction column
+  justify-content center
 
 img
-  height: 6rem
+  height 6rem
 
 h1
-  margin-top: 2rem
-  margin-bottom: 0.4rem
-  font-size: 2.5rem
+  margin-top 2rem
+  margin-bottom 0.4rem
+  font-size 2.5rem
 
 p 
-  margin: 0
-  font-size: 1.5rem
+  margin 0
+  font-size 1.5rem
 </style>

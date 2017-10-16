@@ -190,208 +190,208 @@ export default {
 @require '../../../../assets/styles/buttons'
 
 section
-  overflow: hidden
-  margin: 2rem
-  font-size: 1.5rem
-  height: 100%
-  background-color: white
-  border-radius: 0.5rem
-  box-shadow: 10px 10px 25px #999
-  display: flex
-  flex-direction: column
+  overflow hidden
+  margin 2rem
+  font-size 1.5rem
+  height 100%
+  background-color white
+  border-radius 0.5rem
+  box-shadow 10px 10px 25px #999
+  display flex
+  flex-direction column
 
 #loading
-  display: flex
-  flex-direction: column
-  justify-content: center
+  display flex
+  flex-direction column
+  justify-content center
 
 #title-wrapper
-  display: flex
-  justify-content: space-between
-  align-items: center
-  border-radius: 0.5rem 0.5rem 0 0
-  padding: 1rem 1.5rem
-  background-color: $primary-blue
-  color: white
-  min-height: 2.5rem
+  display flex
+  justify-content space-between
+  align-items center
+  border-radius 0.5rem 0.5rem 0 0
+  padding 1rem 1.5rem
+  background-color $primary-blue
+  color white
+  min-height 2.5rem
 
   div
-    text-transform: uppercase
-    font-weight: 600
+    text-transform uppercase
+    font-weight 600
 
     // Hack to get post title centered
-    width: 25%
+    width 25%
     &:first-child
-      text-align: left
+      text-align left
     &:last-child
-      text-align: right
+      text-align right
 
     span
-      color: $nav-hover
-      text-transform: lowercase
-      font-weight: normal
-      margin-left: 0.2rem
-      white-space: nowrap
+      color $nav-hover
+      text-transform lowercase
+      font-weight normal
+      margin-left 0.2rem
+      white-space nowrap
 
   h1
-    margin: 0
-    font-size: 2.5rem
+    margin 0
+    font-size 2.5rem
 
 #main-content-wrapper
-  padding: 1rem
-  overflow: auto
+  padding 1rem
+  overflow auto
 
 #post-details
-  display: flex
+  display flex
 
 #post-content
-  width: 100%
-  background-color: #eee
-  margin-right: 1rem
-  border-radius: 0.5rem
-  display: flex
-  flex-direction: column
-  padding: 1.5rem 0
-  white-space: pre-wrap
+  width 100%
+  background-color #eee
+  margin-right 1rem
+  border-radius 0.5rem
+  display flex
+  flex-direction column
+  padding 1.5rem 0
+  white-space pre-wrap
 
   div
-    overflow: auto
+    overflow auto
     p
-      padding: 0 1.5rem
-      margin: 0
-      overflow: hidden
-      text-align: left
+      padding 0 1.5rem
+      margin 0
+      overflow hidden
+      text-align left
 
 #vote-count
-  padding: 0.75rem;
-  background-color: $primary-blue
-  color: white
-  border-radius: 0.5rem
-  height: 10rem // keep vote count the same height
+  padding 0.75rem
+  background-color $primary-blue
+  color white
+  border-radius 0.5rem
+  height 10rem // keep vote count the same height
 
   button
-    padding: 0.8rem 1rem
-    background-color: $hover-blue
-    color: white
-    border: none
-    border-radius: 0.3rem
-    transition: 0.15s ease-in-out
-    outline: none
-    width: 100%
+    padding 0.8rem 1rem
+    background-color $hover-blue
+    color white
+    border none
+    border-radius 0.3rem
+    transition 0.15s ease-in-out
+    outline none
+    width 100%
 
     &:hover:first-child
-      background-color: $nav-hover
+      background-color $nav-hover
     &:hover:last-child 
-      background-color: red
+      background-color red
 
   span
-    display: block
-    font-size: 2rem
-    padding: 0.5rem
+    display block
+    font-size 2rem
+    padding 0.5rem
 
 .negative
-  color: red
+  color red
 .neutral
-  color: white
+  color white
 .positive
-  color: $nav-hover
+  color $nav-hover
 
 #comments-wrapper
-  background-color: #eee
-  border-radius: 0.5rem
-  margin-top: 1rem
-  display: flex
-  flex-direction: column
+  background-color #eee
+  border-radius 0.5rem
+  margin-top 1rem
+  display flex
+  flex-direction column
 
   h2
-    margin: 0
-    padding: 1rem
-    border-radius: 0.5rem 0.5rem 0 0
-    font-size: 1.75rem
-    text-transform: uppercase
-    font-weight: 600
-    background-color: $primary-blue
-    color: white
+    margin 0
+    padding 1rem
+    border-radius 0.5rem 0.5rem 0 0
+    font-size 1.75rem
+    text-transform uppercase
+    font-weight 600
+    background-color $primary-blue
+    color white
 
     i
-      margin-right: 0.5rem
-      color: $nav-hover
+      margin-right 0.5rem
+      color $nav-hover
 
   ul
-    margin: 1rem 0
-    padding: 0
-    overflow: auto
+    margin 1rem 0
+    padding 0
+    overflow auto
 
     li
-      list-style: none
-      display: flex
-      justify-content: space-between
-      align-items: stretch
-      margin: 1rem
+      list-style none
+      display flex
+      justify-content space-between
+      align-items stretch
+      margin 1rem
 
       &:first-child
-        margin-top: 0
+        margin-top 0
       &:last-child
-        margin-bottom: 0
+        margin-bottom 0
 
       div
         &:first-child
-          background-color: white
-          padding: 1rem
-          border-radius: 0.5rem 0 0 0.5rem
-          flex-grow: 1
-          text-align: left
-          white-space: pre-wrap
+          background-color white
+          padding 1rem
+          border-radius 0.5rem 0 0 0.5rem
+          flex-grow 1
+          text-align left
+          white-space pre-wrap
         &:last-child
-          padding: 1rem
-          background-color: $primary-blue
-          border-radius: 0 0.5rem 0.5rem 0
-          display: flex
-          justify-content: center
-          align-items: center
+          padding 1rem
+          background-color $primary-blue
+          border-radius 0 0.5rem 0.5rem 0
+          display flex
+          justify-content center
+          align-items center
 
 #no-comments
-  display: flex
-  flex-grow: 1
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  color: grey
+  display flex
+  flex-grow 1
+  flex-direction column
+  justify-content center
+  align-items center
+  color grey
 
 .author-comment
-  color: $nav-hover
+  color $nav-hover
 .non-author-comment
-  color: white
+  color white
 
 #add-comment
-  margin-top: auto // make element stick to bottom of the page
-  padding: 1rem
-  min-height: 6rem
-  display: flex
-  background-color: $primary-blue
-  color: white
+  margin-top auto // make element stick to bottom of the page
+  padding 1rem
+  min-height 6rem
+  display flex
+  background-color $primary-blue
+  color white
 
   textarea
-    flex-grow: 1
-    margin-right: 1rem
-    font-size: 1.5rem
-    padding: 1.25rem
-    resize: none
-    outline: none
-    border-radius: 0.5rem
+    flex-grow 1
+    margin-right 1rem
+    font-size 1.5rem
+    padding 1.25rem
+    resize none
+    outline none
+    border-radius 0.5rem
 
   button
-    font-size: 1.2rem
-    padding: 0.8rem 1.1rem
-    border: none
-    border-radius: 5px
-    text-decoration: none
-    text-transform: uppercase
-    font-weight: 600
-    transition: 0.15s ease-in-out
-    outline: none
+    font-size 1.2rem
+    padding 0.8rem 1.1rem
+    border none
+    border-radius 5px
+    text-decoration none
+    text-transform uppercase
+    font-weight 600
+    transition 0.15s ease-in-out
+    outline none
 
     i
-      margin-right: 0.5rem
-      transition: 0.15s ease-in-out
+      margin-right 0.5rem
+      transition 0.15s ease-in-out
 </style>

@@ -112,79 +112,79 @@ export default {
 @require '../../../assets/styles/buttons'
 
 section
-  flex-grow: 1
-  margin: 2rem
-  display: flex
-  flex-direction: column
-  font-size: 1.5rem
-  background-color: white
-  border-radius: 0.5rem
-  box-shadow: 10px 10px 25px #999
+  flex-grow 1
+  margin 2rem
+  display flex
+  flex-direction column
+  font-size 1.5rem
+  background-color white
+  border-radius 0.5rem
+  box-shadow 10px 10px 25px #999
 
 #title-wrapper
-  display: block
-  border-radius: 0.5rem 0.5rem 0 0
-  margin: 0
-  padding: 0.75rem
-  background-color: $primary-blue
-  color: white
+  display block
+  border-radius 0.5rem 0.5rem 0 0
+  margin 0
+  padding 0.75rem
+  background-color $primary-blue
+  color white
 
   h1
-    margin: 0
-    padding: 0
-    font-size: 2.5rem
+    margin 0
+    padding 0
+    font-size 2.5rem
 
 form
-  flex-grow: 1
-  padding: 1.5rem
-  display: flex
-  flex-direction: column
+  flex-grow 1
+  padding 1.5rem
+  display flex
+  flex-direction column
 
   input
   textarea 
-    padding: 1.25rem
-    margin-bottom: 1rem
-    font-size: 1.65rem
-    border: none
-    border-radius: 0.5rem
-    background-color: #eee
-    font-size: 1.5rem
-    outline: none
+    padding 1.25rem
+    margin-bottom 1rem
+    font-size 1.65rem
+    border none
+    border-radius 0.5rem
+    background-color #eee
+    font-size 1.5rem
+    outline none
 
   textarea
-    padding: 1.25rem
-    resize: none
-    border-radius: 0.5rem
-    flex-grow: 1
+    padding 1.25rem
+    resize none
+    border-radius 0.5rem
+    flex-grow 1
 
 #create-post-wrapper
-  display: flex
-  flex-direction: row-reverse
+  display flex
+  flex-direction row-reverse
 
   button
-    font-size: 1.2rem
-    width: 15rem
-    padding: 1rem
-    border: none
-    border-radius: 5px
-    text-decoration: none
-    text-transform: uppercase
-    font-weight: 600
-    outline: none
-    transition: 0.15s ease-in-out
+    font-size 1.2rem
+    width 15rem
+    padding 1rem
+    border none
+    border-radius 5px
+    text-decoration none
+    text-transform uppercase
+    font-weight 600
+    outline none
+    transition 0.15s ease-in-out
     i
-      margin-right: 0.5rem
-      transition: 0.15s ease-in-out
+      margin-right 0.5rem
+      transition 0.15s ease-in-out
 
 #not-logged-in
-  flex-grow: 1
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
+  flex-grow 1
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
   p
-    font-size: 2rem
-    margin: 1rem
+    font-size 2rem
+    margin 1rem
     a
-      color: $nav-hover
+      color $nav-hover
 </style>
