@@ -20,7 +20,8 @@ For my Computer Science coursework project, I intend to create an **open, democr
   - [A Modern and Minimalist Experience](#a-modern-and-minimalist-experience)
 - [The Investigation](#the-investigation)
   - [Interviews](#interviews)
-  - [Focus Groups (The End User)](#focus-groups-the-end-user)
+  - [The End User](#the-end-user)
+  - [The Focus Group](#the-focus-group)
   - [Research into Existing Systems](#research-into-existing-systems)
 - [The Analysis](#the-analysis)
   - [Essential Features](#essential-features)
@@ -130,7 +131,7 @@ This will help me understand what features I should borrow, leave out, as well t
 1. > For Reddit to open source their code again, I don't like the fact that I cannot see the source code of software I use regularly.
 
 
-### Focus Groups (The End User)
+### The End User
 In the case of a forum like Reddit, as evident from the [above interviews](#interviews), the end user / audience of a project like this can be wide.
 For example, on Reddit, there are sub forums ranging from politics to comedy to programming.
 Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a search engine. 
@@ -144,10 +145,18 @@ Colour should also be kept to a minimum to keep the site looking neutral.
 #### Users That Use the Forum Differently
 For users that have never visited or rarely visit the site, the UI and UX shouldn't be surprising so that this type of user can get whatever information they are looking for quickly and efficiently. 
 Also, the site should work equally as well for returning, regular users. 
-This means that the site should keep a similar structure and look throughout, and should not get in the way of the user.  
+This means that the site should keep a similar structure and look throughout, and should not get in the way of the user.
+
+### The Focus Group
+The focus group will consist of people I know that both regularly use sites such as reddit, and of those that only use such sites for information gathering. 
+This means that the focus group will contains the two possible types of end users as mentioned in the previous section. I will use this group for testing and feedback on Corum as it develops.
+The group will contains people of a wide age range, to most accurately represent the end users, as my project is not aimed at any particular age group.
 
 ### Research into Existing Systems
 #### [Reddit](https://reddit.com) (Proprietary [as of September 2017](#being-open))
+
+![Reddit Front Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/reddit.png)
+
 **Reddit** is a very popular forum site that is home to a wide range of topics, where people can post links to other websites, or just have discussions actually on the site. 
 Users can up-vote or down-vote posts if they like or dislike them. 
 This is where the inspiration of Corum came from, however I thought that the vote that the user is given on each post could be given more value.
@@ -161,6 +170,9 @@ While the idea of Reddit is quite simple, in my opinion, and others (as shown by
 Corum will strive to be a simpler version of Reddit.
 
 #### [Hacker News](https://news.ycombinator.com/) (Proprietary)
+
+![Hacker News Front Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/hackernews.png)
+
 **Hacker News** is a similar site to Reddit, however it is a lot simpler.
 There are no sub-forums, as it is a site dedicated only for computer science related topics such as programming.
 The user interface is very simple (and quite dated in my opinion), which means that it doesn't get in the users way. However, I believe that it is too simple, and too niche (As it is only for programmers).
@@ -168,6 +180,9 @@ The user interface is very simple (and quite dated in my opinion), which means t
 I believe that there is space in the forum software landscape for a site that is simpler than Reddit, but one with more features than Hacker News. This is where Corum could fit in.
 
 #### [phpBB](https://www.phpbb.com/) (Open source)
+
+![Solus' Forum Front Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/solusforum.png)
+
 **phpBB** has different goals than Corum, Reddit and Hacker News. 
 Instead of being designed to run from one website, it is designed to be used by anyone who wants to setup their own forum.
 An example of where phpBB is deployed is at [Solus' Forum](https://solus-project.com/forums/). 
@@ -309,12 +324,15 @@ Furthermore, as this project will make use of client-side routing with [vue-rout
 
 #### Sorting and searching
 Related to the method above, searching will be used as the subforum navigation will be searchable.
+This will most likely be achieved by using a regex (Regular expression), or a composition of built in javascript string methods.
 Sorting will also be used, as the user will be able to select the order in which they see posts in the sub-forum.
+This will most likely be handled on the server side, as in the end, I will want the subforum post list to be paginated. This means that a sort would require a re-fetch from the server, as the client will not have all the data at once. Graphcool provides a 'orderBy' parameter in their queries, so it should not be too complex to implement. 
 
 #### Use of Multiple Programming Paradigms
 ##### Declarative
 Vue allow me to develop components as [SFCs (Single File Components)](https://vuejs.org/v2/guide/single-file-components.html)
-This means that when I am developing, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model), I just tell Vue _what_ I want to render, and Vue will figure out the most efficient way to do so.
+This allows me to create my components declaratively and encapsulated, as the HTML, JavaScript and CSS for that particular component will all be contained within the single file.
+Also, as I am using Vue, I do not have to worry about _how_ my components will get rendered to the [DOM (Document Object Model)](https://en.wikipedia.org/wiki/Document_Object_Model), I just tell Vue _what_ I want to render, and Vue will figure out the most efficient way to do so.
 
 ##### Functional
 Programming in a functional style helps improve code maintainability, readability, and [more](https://en.wikipedia.org/wiki/Functional_programming).
@@ -328,7 +346,7 @@ JavaScript provides great tools to build software in a functional paradigm, this
 const concatRegular = function(string1, string2) {
   return `${string1} ${string2}`;
 }
-const joinedTextRegular = concatRegular("Hello," "world!"); // "Hello, world!"
+const joinedTextRegular = concatRegular("Hello,", "world!"); // "Hello, world!"
 
 // Arrow function expression - curried
 const concatArrow = string1 => string2 => `${string1} ${string2}`;
@@ -342,10 +360,6 @@ and
 (Not perfect, reference only so objects + arrays can be mutated, use 
 [`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
 (for both objects and arrays) or something like [Immutable.js](http://facebook.github.io/immutable-js/))
-
-As well as the built in functionality modern JavaScript gives us, I am planning to make use of the functional library [Ramda](http://ramdajs.com/).
-This library adds many useful helper functions that I would have to otherwise write myself, such as [R.compose](http://ramdajs.com/docs/#compose), [R.merge](http://ramdajs.com/docs/#merge), [R.memoize](http://ramdajs.com/docs/#memoize) etc.
-Unlike other utility libraries like [Lodash](https://lodash.com/), Ramda conforms to functional programming ideas (For example, some Lodash functions mutate instead of returning such as [_.remove](https://lodash.com/docs/4.17.4#remove)), and provides nice extras like auto-currying etc.
 
 #### Real Time Data Processing
 I will implement real time search functionality for the navigation, as well as possibly real time sub-forum updates like updating the current amount of votes updates without a page refresh. 
