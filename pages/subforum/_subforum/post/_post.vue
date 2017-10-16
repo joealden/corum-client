@@ -135,7 +135,8 @@ export default {
       const { comment: content } = this
       const id = this.$route.params.post
 
-      this.comment = '' // Clear user input from textarea
+      // Clear user input from textarea
+      this.comment = ''
 
       this.$apollo.mutate({
         mutation: createComment,
@@ -149,18 +150,25 @@ export default {
             query: post,
             variables: { id }
           })
+
           const newComment = {
             __typename: 'Comment',
             id: commentData.id,
             author: commentData.author,
-            content: commentData.content
+            content:
+             commentData.content
           }
+
           data.Post.comments.push(newComment);
           store.writeQuery({
             query: post,
             variables: { id },
             data
           })
+
+          // scroll to bottom of page when comment is inserted
+          const main = document.getElementById('main-content-wrapper')
+          main.scrollTop = main.scrollHeight
         },
         optimisticResponse: {
           __typename: 'Mutation',
@@ -171,10 +179,7 @@ export default {
             content
           }
         }
-      }).catch(() => {
-        // TODO: implement autoscroll to bottom when comment is posted
-        this.$router.push(`/error`)
-      })
+      }).catch(() => this.$router.push(`/error`))
     }
   }
 }
