@@ -1,7 +1,7 @@
 # project: corum
-# version: 19
+# version: 77
 
-type File implements Node {
+type File @model {
   contentType: String!
   createdAt: DateTime!
   id: ID! @isUnique
@@ -12,29 +12,30 @@ type File implements Node {
   url: String! @isUnique
 }
 
-type User implements Node {
+type User @model {
   createdAt: DateTime!
   id: ID! @isUnique
   updatedAt: DateTime!
+  username: String!
   email: String @isUnique
   password: String
 }
 
-type Subforum implements Node {
+type Subforum @model {
   id: ID! @isUnique
   url: String! @isUnique
   name: String!
   posts: [Post!]! @relation(name: "Subforum")
 }
 
-type Comment implements Node {
+type Comment @model {
   id: ID! @isUnique
   post: Post! @relation(name: "Comment")
   author: String!
   content: String!
 }
 
-type Post implements Node {
+type Post @model {
   id: ID! @isUnique
   subforum: Subforum! @relation(name: "Subforum")
   title: String!
