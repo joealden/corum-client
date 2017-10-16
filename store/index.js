@@ -15,8 +15,10 @@ const createStore = () => {
     mutations: {
       logout(state) {
         localStorage.removeItem('user-id')
+        localStorage.removeItem('username')
         localStorage.removeItem('auth-token')
         Vue.set(state, 'userId', localStorage.getItem('user-id'))
+        Vue.set(state, 'username', localStorage.getItem('username'))
       },
 
       saveUserData(state, { id, username, token }) {
@@ -24,6 +26,7 @@ const createStore = () => {
         localStorage.setItem('username', username)
         localStorage.setItem('auth-token', token)
         Vue.set(state, 'userId', localStorage.getItem('user-id'))
+        Vue.set(state, 'username', localStorage.getItem('username'))
       },
 
       updateUserState(state) {
