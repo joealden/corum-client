@@ -217,7 +217,7 @@ section
 
   div
     text-transform uppercase
-    font-weight 600
+    font-weight bold
 
     // Hack to get post title centered
     width 25%
@@ -309,7 +309,7 @@ section
     border-radius 0.5rem 0.5rem 0 0
     font-size 1.75rem
     text-transform uppercase
-    font-weight 600
+    font-weight bold
     background-color $primary-blue
     color white
 
@@ -387,7 +387,7 @@ section
     border-radius 5px
     text-decoration none
     text-transform uppercase
-    font-weight 600
+    font-weight bold
     transition 0.15s ease-in-out
     outline none
 

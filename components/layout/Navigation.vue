@@ -104,7 +104,7 @@ li
     display block
     padding 1.5rem
     color $nav-text
-    font-weight 600
+    font-weight bold
     outline none
 
     &:hover

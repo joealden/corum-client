@@ -169,7 +169,7 @@ form
     border-radius 5px
     text-decoration none
     text-transform uppercase
-    font-weight 600
+    font-weight bold
     outline none
     transition 0.15s ease-in-out
     i

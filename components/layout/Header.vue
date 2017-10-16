@@ -62,7 +62,7 @@ a
   color white
   border-radius 5px
   text-transform uppercase
-  font-weight 600
+  font-weight bold
   transition 0.15s ease-in-out
   margin-right 1.5rem
   i

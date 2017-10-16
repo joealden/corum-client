@@ -178,7 +178,7 @@ h1
   form > label
     text-transform uppercase
     font-size 1.4rem
-    font-weight 600
+    font-weight bold
     transition 0.2s ease-in-out
 
     &:hover
@@ -195,7 +195,7 @@ h1
     border-radius 5px
     text-decoration none
     text-transform uppercase
-    font-weight 600
+    font-weight bold
     transition 0.15s ease-in-out
 
     i
@@ -215,7 +215,7 @@ h1
   color white
 
   span
-    font-weight 600
+    font-weight bold
     text-transform uppercase
   div > span
     &:first-child
