@@ -22,6 +22,7 @@
 - Change post and post list loading state (display header, sort etc.)
 - Move from SCSS to stylus
 - Update ESLint config (Make it not error on style linting, like create-react-app)
+- Unit Tests (Possibly integration + e2e as well)
 
 ## Needs Attention
 - Separate favorites and all subforums scroll
