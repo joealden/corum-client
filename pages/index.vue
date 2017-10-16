@@ -11,13 +11,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-img {
-  height: 6rem;
-}
-
-p {
-  font-size: 1.7rem;
-  font-weight: bold;
-}
+<style lang="stylus" scoped>
+img
+  height: 6rem
+p
+  font-size: 1.7rem
+  font-weight: bold
 </style>

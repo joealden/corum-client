@@ -130,6 +130,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../assets/styles/accountPages';
+<style lang="stylus" scoped>
+@require '../assets/styles/accountPages'
 </style>

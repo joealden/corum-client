@@ -137,149 +137,126 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../../../assets/styles/variables';
+<style lang="stylus" scoped>
+@require '../../../assets/styles/variables'
 
-section {
-  flex-grow: 1;
-  margin: 2rem;
-  display: flex;
-  flex-direction: column;
-  font-size: 1.5rem;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 10px 10px 25px #999;
-}
+section
+  flex-grow: 1
+  margin: 2rem
+  display: flex
+  flex-direction: column
+  font-size: 1.5rem
+  background-color: white
+  border-radius: 0.5rem
+  box-shadow: 10px 10px 25px #999
 
-#loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+#loading
+  display: flex
+  flex-direction: column
+  justify-content: center
 
-#title-wrapper {
-  display: block;
-  border-radius: 0.5rem 0.5rem 0 0;
-  margin: 0;
-  padding: 0.75rem;
-  background-color: $primary-blue;
-  color: white;
-}
+#title-wrapper
+  display: block
+  border-radius: 0.5rem 0.5rem 0 0
+  margin: 0
+  padding: 0.75rem
+  background-color: $primary-blue
+  color: white
 
-h1 {
-  margin: 0;
-  padding: 0;
-  font-size: 2.5rem;
-}
+h1
+  margin: 0
+  padding: 0
+  font-size: 2.5rem
 
-#toolbar {
-  padding: 0 0.75rem;
-  min-height: 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+#toolbar
+  padding: 0 0.75rem
+  min-height: 4rem
+  display: flex
+  justify-content: space-between
+  align-items: center
 
-  form > label {
-    text-transform: uppercase;
-    font-size: 1.4rem;
-    font-weight: 600;
-    transition: 0.2s ease-in-out;
+  form > label
+    text-transform: uppercase
+    font-size: 1.4rem
+    font-weight: 600
+    transition: 0.2s ease-in-out
 
-    &:hover {
-      color: $nav-hover;
-    }
-  }
+    &:hover
+      color: $nav-hover
+    &:first-child
+      margin-left: 0.25rem
+      margin-right: 1rem
 
-  form > label:first-child {
-    margin-left: 0.25rem;
-    margin-right: 1rem;
-  }
-  
-  a {
-    font-size: 1.2rem;
-    padding: 0.8rem 1.1rem;
-    background: $primary-blue;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 600;
-    transition: 0.15s ease-in-out;
+  a
+    font-size: 1.2rem
+    padding: 0.8rem 1.1rem
+    background: $primary-blue
+    color: white
+    border-radius: 5px
+    text-decoration: none
+    text-transform: uppercase
+    font-weight: 600
+    transition: 0.15s ease-in-out
 
-    i {
-      margin-right: 0.4rem;
-      color: $nav-hover;
-    }
+    i
+      margin-right: 0.4rem
+      color: $nav-hover
+    &:hover 
+      background-color: $nav-hover
+      i 
+        color: white
 
-    &:hover {
-      background-color: $nav-hover;
+#row-titles
+  padding: 0.75rem 1.75rem
+  display: flex
+  justify-content: space-between
+  align-items: center
+  background-color: $primary-blue
+  color: white
 
-      i {
-        color: white;
-      }
-    }
-  }
-}
+  span
+    font-weight: 600
+    text-transform: uppercase
+  div > span
+    &:first-child
+      margin-right: 4rem
 
-#row-titles {
-  padding: 0.75rem 1.75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: $primary-blue;
-  color: white;
+.time-and-vote
+  display: flex
 
-  span {
-    font-weight: 600;
-    text-transform: uppercase;
-  }
+  div
+    &:last-child
+      width: 8rem
+      text-align: right
+      margin-left: 3rem
 
-  div > span:first-child {
-    margin-right: 4rem;
-  }
-}
+#no-posts
+  flex-grow: 1
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  color: grey
 
-.time-and-vote {
-  display: flex;
-  
-  div:last-child {
-    width: 8rem;
-    text-align: right;
-    margin-left: 3rem;
-  }
-}
+ul
+  flex-grow: 1
+  overflow: auto
+  padding: 0
+  margin: 0
 
-#no-posts {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: grey;
-}
+li
+  list-style: none
+  a
+    display: flex
+    justify-content: space-between
+    padding: 1.75rem
+    &:hover
+      background-color: #eee
 
-ul {
-  flex-grow: 1;
-  overflow: auto;
-  padding: 0;
-  margin: 0; 
-}
-
-li {
-  list-style: none;
-
-  a {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.75rem;
-
-    &:hover {
-      background-color: #eee;
-    }
-  }
-}
-
-.negative { color: red }
-.neutral { color: black }
-.positive { color: $nav-hover }
+.negative 
+  color: red
+.neutral
+  color: black
+.positive
+  color: $nav-hover
 </style>

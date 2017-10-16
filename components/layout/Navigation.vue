@@ -64,69 +64,59 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../../assets/styles/variables';
+<style lang="stylus" scoped>
+@require '../../assets/styles/variables'
 
-nav {
-  grid-area: nav;
-  background-color: $primary-blue;
-  overflow: auto;
-}
+nav
+  grid-area: nav
+  background-color: $primary-blue
+  overflow: auto
 
-#loading {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
+#loading
+  height: 100%
+  display: flex
+  justify-content: center
 
-h1 {
-  margin: 0;
-  padding: 1rem 1.5rem;
-  font-size: 1.5rem;
-  background-color: black;
-  color: white;
-  text-transform: uppercase;
-}
+h1
+  margin: 0
+  padding: 1rem 1.5rem
+  font-size: 1.5rem
+  background-color: black
+  color: white
+  text-transform: uppercase
 
-input[type="search"] {
-  width: 100%;
-  padding: 0.6rem 1.5rem;
-  font-size: 1.5rem;
-  border: none;
-  outline: none;
-}
+input[type="search"]
+  width: 100%
+  padding: 0.6rem 1.5rem
+  font-size: 1.5rem
+  border: none
+  outline: none
 
-ul {
-  margin: 0;
-  padding: 0;
-}
+ul
+  margin: 0
+  padding: 0
 
-li {
-  list-style: none;
-  margin: 0;
-  
-  a {
-    font-size: 1.3rem;
-    display: block;
-    padding: 1.5rem;
-    color: $nav-text;
-    font-weight: 600;
-    outline: none;
+li
+  list-style: none
+  margin: 0
+  a
+    font-size: 1.3rem
+    display: block
+    padding: 1.5rem
+    color: $nav-text
+    font-weight: 600
+    outline: none
 
-    &:hover,
-    &:focus {
-      background-color: $hover-blue;
-      color: white;
-      padding-left: 1.1rem;
-      border-left: 0.4rem solid $nav-hover;
-    }
-  }
-}
+    &:hover
+    &:focus
+      background-color: $hover-blue
+      color: white
+      padding-left: 1.1rem
+      border-left: 0.4rem solid $nav-hover
 
-.nuxt-link-active {
-  background-color: $hover-blue;
-  color: white;
-  padding-left: 1.1rem;
-  border-left: 0.4rem solid $nav-hover;
-}
+.nuxt-link-active
+  background-color: $hover-blue
+  color: white
+  padding-left: 1.1rem
+  border-left: 0.4rem solid $nav-hover
 </style>

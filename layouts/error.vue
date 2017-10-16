@@ -30,27 +30,23 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../assets/styles/layouts';
+<style lang="stylus" scoped>
+@require '../assets/styles/layouts'
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+main
+  display: flex
+  flex-direction: column
+  justify-content: center
 
-img {
-  height: 6rem;
-}
+img
+  height: 6rem
 
-h1 {
-  margin-top: 2rem;
-  margin-bottom: 0.4rem;
-  font-size: 2.5rem;
-}
+h1
+  margin-top: 2rem
+  margin-bottom: 0.4rem
+  font-size: 2.5rem
 
-p {
-  margin: 0;
-  font-size: 1.5rem;
-}
+p 
+  margin: 0
+  font-size: 1.5rem
 </style>

@@ -28,6 +28,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../assets/styles/layouts';
+<style lang="stylus" scoped>
+@require '../assets/styles/layouts'
 </style>

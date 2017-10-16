@@ -18,14 +18,12 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-img {
-  height: 6rem;
-}
+<style lang="stylus" scoped>
+img
+  height: 6rem
 
-p {
-  font-size: 1.7rem;
-  margin-bottom: -1rem;
-  font-weight: bold;
-}
+p
+  font-size: 1.7rem
+  margin-bottom: -1rem
+  font-weight: bold
 </style>

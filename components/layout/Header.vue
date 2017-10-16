@@ -33,65 +33,49 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../../assets/styles/variables';
+<style lang="stylus" scoped>
+@require '../../assets/styles/variables'
 
-header {
-  grid-area: header;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: white;
-  margin-right: 1.5rem;
-}
+header
+  grid-area: header
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  background-color: white
+  margin-right: 1.5rem
 
-#logged-in {
-  display: flex;
-  align-items: center;
+#logged-in
+  display: flex
+  align-items: center
+  p
+    font-size: 1.5rem
+    margin: 0
+    margin-right: 1.5rem
+    span 
+      color: $nav-hover
 
-  p {
-    font-size: 1.5rem;
-    margin: 0;
-    margin-right: 1.5rem;
+a
+  cursor: pointer
+  font-size: 1.5rem
+  padding: 0.8rem 1.6rem
+  background: $primary-blue
+  color: white
+  border-radius: 5px
+  text-transform: uppercase
+  font-weight: 600
+  transition: 0.15s ease-in-out
+  margin-right: 1.5rem
+  i
+    color: $nav-hover
+    margin-right: 0.4rem
+  &:hover
+    background-color: $nav-hover
+    i
+      color: white
 
-    span {
-      color: $nav-hover;
-    }
-  }
-}
-
-a {
-  cursor: pointer;
-  font-size: 1.5rem;
-  padding: 0.8rem 1.6rem;
-  background: $primary-blue;
-  color: white;
-  border-radius: 5px;
-  text-transform: uppercase;
-  font-weight: 600;
-  transition: 0.15s ease-in-out;
-  margin-right: 1.5rem;
-
-  i {
-    color: $nav-hover;
-    margin-right: 0.4rem;
-  }
-
-  &:hover {
-    background-color: $nav-hover;
-
-    i {
-      color: white;
-    }
-  } 
-}
-
-.nuxt-link-active {
-  background-color: $nav-hover;
-  color: white;
-
-  i {
-    color: white;
-  }
-}
+.nuxt-link-active
+  background-color: $nav-hover
+  color: white
+  i
+    color: white
 </style>
