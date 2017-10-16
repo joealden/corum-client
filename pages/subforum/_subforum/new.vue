@@ -55,7 +55,9 @@ export default {
   apollo: {
     Subforum: {
       query: subforumId,
-      variables() { return { url: this.$route.params.subforum } }
+      variables() {
+        return { url: this.$route.params.subforum }
+      }
     }
   },
 
@@ -73,11 +75,11 @@ export default {
     }
   },
 
-  head: () => 'New Post',
+  head: () => ({ title: 'New Post' }),
 
   methods: {
     submitPost() {
-      const author = 'test' // TODO: change when login works
+      const author = this.$store.state.username
       const {
         postTitle: title,
         postContent: content,

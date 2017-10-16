@@ -131,11 +131,11 @@ export default {
 
   methods: {
     submitComment() {
-      const author = 'test' // TODO: change when login works
+      const author = this.$store.state.username
       const { comment: content } = this
       const id = this.$route.params.post
 
-      this.comment = ''; // Clear user input from textarea
+      this.comment = '' // Clear user input from textarea
 
       this.$apollo.mutate({
         mutation: createComment,
@@ -171,7 +171,8 @@ export default {
             content
           }
         }
-      }).catch(() => { // TODO: implement autoscroll to bottom when comment is posted
+      }).catch(error => {
+        // TODO: implement autoscroll to bottom when comment is posted
         this.$router.push(`/error`)
       })
     }
