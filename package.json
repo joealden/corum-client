@@ -19,8 +19,6 @@
   "dependencies": {
     "@nuxtjs/apollo": "^2.1.1",
     "@nuxtjs/font-awesome": "^1.0.2",
-    "lodash.debounce": "^4.0.8",
-    "marked": "^0.3.6",
     "normalize.css": "^7.0.0",
     "nuxt": "^1.0.0-rc9"
   },
