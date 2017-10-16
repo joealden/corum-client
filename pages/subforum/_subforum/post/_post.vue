@@ -1,85 +1,83 @@
 <template>
-<transition name="fadeIn">
-  <div v-if="!Post">
-    <img src="~/assets/images/loading-dark.svg" alt="loading">
+<div v-if="!Post">
+  <img src="~/assets/images/loading-dark.svg" alt="loading">
+</div>
+<section v-else>
+  <div id="title-wrapper">
+    <div>Author: <span>{{ Post.author }}</span></div>
+    <h1>{{ Post.title }}</h1>
+    <div>Created At: <span>{{ formattedTime }}</span></div>
   </div>
-  <section v-else>
-    <div id="title-wrapper">
-      <div>Author: <span>{{ Post.author }}</span></div>
-      <h1>{{ Post.title }}</h1>
-      <div>Created At: <span>{{ formattedTime }}</span></div>
+  <div id="main-content-wrapper">
+    <div id="post-details">
+      <div id="post-content">
+        <div>
+          <p>{{ Post.content }}</p>
+        </div>
+      </div>
+      <div id="vote-count">
+        <button>
+          <i class="fa fa-angle-up" aria-hidden="true"/>
+        </button>
+        <span v-if="Post.voteCount < 0" class="negative">
+          {{ Post.voteCount }}
+        </span>
+        <span v-else-if="Post.voteCount > 0" class="positive">
+          {{ Post.voteCount }}
+        </span>
+        <span v-else class="neutral">
+          {{ Post.voteCount }}
+        </span>
+        <button>
+          <i class="fa fa-angle-down" aria-hidden="true"/>
+        </button>
+      </div>
     </div>
-    <div id="main-content-wrapper">
-      <div id="post-details">
-        <div id="post-content">
-          <div>
-            <p>{{ Post.content }}</p>
+    <div id="comments-wrapper">
+      <h2>
+        <i class="fa fa-comments" aria-hidden="true"/>Comments ({{ Post.comments.length }})
+      </h2>
+      <div v-if="Post.comments.length === 0" id="no-comments">
+        <p>There aren't any comments yet!</p>
+      </div>
+      <ul v-else>
+        <li v-for="comment in Post.comments" :key="comment.id">
+          <div>{{ comment.content }}</div>
+          <div v-if="comment.author === Post.author" class="author-comment">
+            {{ comment.author }}
           </div>
-        </div>
-        <div id="vote-count">
-          <button>
-            <i class="fa fa-angle-up" aria-hidden="true"/>
-          </button>
-          <span v-if="Post.voteCount < 0" class="negative">
-            {{ Post.voteCount }}
-          </span>
-          <span v-else-if="Post.voteCount > 0" class="positive">
-            {{ Post.voteCount }}
-          </span>
-          <span v-else class="neutral">
-            {{ Post.voteCount }}
-          </span>
-          <button>
-            <i class="fa fa-angle-down" aria-hidden="true"/>
-          </button>
-        </div>
-      </div>
-      <div id="comments-wrapper">
-        <h2>
-          <i class="fa fa-comments" aria-hidden="true"/>Comments ({{ Post.comments.length }})
-        </h2>
-        <div v-if="Post.comments.length === 0" id="no-comments">
-          <p>There aren't any comments yet!</p>
-        </div>
-        <ul v-else>
-          <li v-for="comment in Post.comments" :key="comment.id">
-            <div>{{ comment.content }}</div>
-            <div v-if="comment.author === Post.author" class="author-comment">
-              {{ comment.author }}
-            </div>
-            <div v-else class="non-author-comment">
-              {{ comment.author }}
-            </div>
-          </li>
-        </ul>
-      </div>
+          <div v-else class="non-author-comment">
+            {{ comment.author }}
+          </div>
+        </li>
+      </ul>
     </div>
-    <form v-if="userId" id="add-comment">
-      <textarea 
-        v-model.trim="comment"
-        name="comment-field"
-        placeholder="New Comment..."
-        onfocus="this.placeholder=''" 
-        onblur="this.placeholder='New Comment...'"
-      />
-      <button 
-        v-if="comment !== ''"
-        @click.prevent="submitComment"
-        class="enabled-button"
-      >
-        <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
-      </button>
-      <button
-        v-else
-        class="disabled-button"
-        title="The comment must not be empty"
-        @click.prevent
-      > 
-        <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
-      </button>
-    </form>
-  </section>
-</transition>  
+  </div>
+  <form v-if="userId" id="add-comment">
+    <textarea 
+      v-model.trim="comment"
+      name="comment-field"
+      placeholder="New Comment..."
+      onfocus="this.placeholder=''" 
+      onblur="this.placeholder='New Comment...'"
+    />
+    <button 
+      v-if="comment !== ''"
+      @click.prevent="submitComment"
+      class="enabled-button"
+    >
+      <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
+    </button>
+    <button
+      v-else
+      class="disabled-button"
+      title="The comment must not be empty"
+      @click.prevent
+    > 
+      <i class="fa fa-paper-plane" aria-hidden="true"/>Post Comment
+    </button>
+  </form>
+</section>
 </template>
 
 <script>
@@ -171,7 +169,7 @@ export default {
             content
           }
         }
-      }).catch(error => {
+      }).catch(() => {
         // TODO: implement autoscroll to bottom when comment is posted
         this.$router.push(`/error`)
       })
@@ -182,7 +180,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../../assets/styles/variables';
-@import '../../../../assets/styles/fadeTransition';
 @import '../../../../assets/styles/buttons';
 
 section {

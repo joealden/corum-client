@@ -1,31 +1,22 @@
 @import 'variables';
 
 #grid {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-rows: 8rem auto;
-  grid-template-columns: 23em auto;
-  grid-template-areas: 'logo header' 'nav main';
+	height: 100vh;
+	width: 100vw;
+	display: grid;
+	grid-template-rows: 8rem auto;
+	grid-template-columns: 23em auto;
+	grid-template-areas: 'logo header' 'nav main';
 }
 
 main {
-  grid-area: main;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  background-color: #e3e4e8;
-  box-shadow: 10px 10px 30px #999 inset;
-  overflow: auto;
-}
-
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.25s ease-out;
-}
-.page-enter,
-.page-leave-active {
-  opacity: 0;
+	grid-area: main;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	background-color: #e3e4e8;
+	box-shadow: 10px 10px 30px #999 inset;
+	overflow: auto;
 }

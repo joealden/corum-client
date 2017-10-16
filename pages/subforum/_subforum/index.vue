@@ -1,75 +1,75 @@
 <template>
-<transition name="fadeIn">
-  <div v-if="!Subforum || !allPosts">
+<section v-if="!Subforum || !allPosts" id="loading">
+  <div>
     <img src="~/assets/images/loading-dark.svg" alt="loading">
   </div>
-  <section v-else>
-    <div id="title-wrapper">
-      <h1>{{ Subforum.name }}</h1>
+</section>
+<section v-else>
+  <div id="title-wrapper">
+    <h1>{{ Subforum.name }}</h1>
+  </div>
+  <div id="toolbar">
+    <form>
+      <label>
+        <input 
+          type="radio" 
+          id="popular"
+          name="sort"
+          value="popular"
+          checked
+          @click="order = 'voteCount_DESC'"
+        >
+        Most Popular
+      </label>
+      <label>
+        <input
+          type="radio"
+          id="new"
+          name="sort"
+          value="new"
+          @click="order = 'createdAt_DESC'"
+        >
+        Newest
+      </label>
+    </form>
+    <nuxt-link v-if="userId" :to="`/subforum/${$route.params.subforum}/new`">
+      <i class="fa fa-plus" aria-hidden="true"></i>New Post
+    </nuxt-link>
+  </div>
+  <div id="row-titles">
+    <span>Post Title</span>
+    <div>
+      <span>Created At</span>
+      <span>Vote Count</span>
     </div>
-    <div id="toolbar">
-      <form>
-        <label>
-          <input 
-            type="radio" 
-            id="popular"
-            name="sort"
-            value="popular"
-            checked
-            @click="order = 'voteCount_DESC'"
-          >
-          Most Popular
-        </label>
-        <label>
-          <input
-            type="radio"
-            id="new"
-            name="sort"
-            value="new"
-            @click="order = 'createdAt_DESC'"
-          >
-          Newest
-        </label>
-      </form>
-      <nuxt-link v-if="userId" :to="`/subforum/${$route.params.subforum}/new`">
-        <i class="fa fa-plus" aria-hidden="true"></i>New Post
-      </nuxt-link>
-    </div>
-    <div id="row-titles">
-      <span>Post Title</span>
-      <div>
-        <span>Created At</span>
-        <span>Vote Count</span>
-      </div>
-    </div>
-    <div v-if="allPosts.length === 0" id="no-posts">
-      <p>It looks like there aren't any posts here yet!</p>
-    </div>
-    <ul v-else>
-      <li v-for="post in allPosts" :key="post.id">
-        <nuxt-link :to="`/subforum/${$route.params.subforum}/post/${post.id}`">
-          <div class="post-title">
-            {{ post.title }}
+  </div>
+  <div v-if="allPosts.length === 0" id="no-posts">
+    <p>It looks like there aren't any posts here yet!</p>
+  </div>
+  <ul v-else>
+    <li v-for="post in allPosts" :key="post.id">
+      <nuxt-link :to="`/subforum/${$route.params.subforum}/post/${post.id}`">
+        <div class="post-title">
+          {{ post.title }}
+        </div>
+        <div class="time-and-vote">
+          <div>
+            {{ post.createdAt | formatDate }}
           </div>
-          <div class="time-and-vote">
-            <div>
-              {{ post.createdAt | formatDate }}
-            </div>
-            <div v-if="post.voteCount < 0" class="negative">
-              {{ post.voteCount }}
-            </div>
-            <div v-else-if="post.voteCount > 0" class="positive">
-              {{ post.voteCount }}
-            </div>
-            <div v-else class="neutral">
-              {{ post.voteCount }}
-            </div>            
+          <div v-if="post.voteCount < 0" class="negative">
+            {{ post.voteCount }}
           </div>
-        </nuxt-link> 
-      </li>
-    </ul> 
-  </section>
-</transition>
+          <div v-else-if="post.voteCount > 0" class="positive">
+            {{ post.voteCount }}
+          </div>
+          <div v-else class="neutral">
+            {{ post.voteCount }}
+          </div>            
+        </div>
+      </nuxt-link> 
+    </li>
+  </ul> 
+</section>
 </template>
 
 <script>
@@ -139,7 +139,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../assets/styles/variables';
-@import '../../../assets/styles/fadeTransition';
 
 section {
   flex-grow: 1;
@@ -150,6 +149,12 @@ section {
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 10px 10px 25px #999;
+}
+
+#loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #title-wrapper {
@@ -267,7 +272,6 @@ li {
     display: flex;
     justify-content: space-between;
     padding: 1.75rem;
-    transition: 0.3s ease-in;
 
     &:hover {
       background-color: #eee;
