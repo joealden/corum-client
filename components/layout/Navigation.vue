@@ -8,7 +8,7 @@
       <h1>Favourites</h1>
       <ul>
         <li>
-          <nuxt-link to="test">
+          <nuxt-link to="/subforum/css">
             test
           </nuxt-link>
         </li>
