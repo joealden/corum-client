@@ -1,12 +1,16 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Vuex from 'vuex'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Vue from 'vue'
+// ESlint is not happy about nuxt injecting deps
+/* eslint-disable */
 
-// Vue.set used to get around Vue's inability to detect the state change
-const createStore = () => {
-  return new Vuex.Store({
+import { Store } from 'vuex'
+import { set } from 'vue'
+
+/* eslint-enable */
+// Vue.set() used to get around Vue's inability to detect the state change
+
+export default () => {
+  return new Store({
     strict: true,
+
     state: {
       userId: undefined,
       username: undefined
@@ -17,24 +21,22 @@ const createStore = () => {
         localStorage.removeItem('user-id')
         localStorage.removeItem('username')
         localStorage.removeItem('auth-token')
-        Vue.set(state, 'userId', localStorage.getItem('user-id'))
-        Vue.set(state, 'username', localStorage.getItem('username'))
+        set(state, 'userId', localStorage.getItem('user-id'))
+        set(state, 'username', localStorage.getItem('username'))
       },
 
       saveUserData(state, { id, username, token }) {
         localStorage.setItem('user-id', id)
         localStorage.setItem('username', username)
         localStorage.setItem('auth-token', token)
-        Vue.set(state, 'userId', localStorage.getItem('user-id'))
-        Vue.set(state, 'username', localStorage.getItem('username'))
+        set(state, 'userId', localStorage.getItem('user-id'))
+        set(state, 'username', localStorage.getItem('username'))
       },
 
       updateUserState(state) {
-        Vue.set(state, 'userId', localStorage.getItem('user-id'))
-        Vue.set(state, 'username', localStorage.getItem('username'))
+        set(state, 'userId', localStorage.getItem('user-id'))
+        set(state, 'username', localStorage.getItem('username'))
       }
     }
   })
 }
-
-export default createStore

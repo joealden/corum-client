@@ -1,29 +1,29 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// ESlint is not happy about nuxt injecting deps
+/* eslint-disable */
+
 import {
-  createBatchingNetworkInterface, // eslint-disable-next-line no-unused-vars
+  createBatchingNetworkInterface,
   applyBatchMiddleware
 } from 'apollo-client'
 
-// endpoint that points to the corum GraphQL backend on graph.cool
-const networkInterface = createBatchingNetworkInterface({
-  uri: 'https://api.graph.cool/simple/v1/cj7gqa4hb0iuj0114abl8ewcs'
-})
+/* eslint-enable */
 
 const authMiddleware = {
   applyBatchMiddleware(req, next) {
     if (!req.options.headers) {
       req.options.headers = {}
     }
-    // Test effect process.browser shim
-    let token
-    if (process.browser) {
-      token = localStorage.getItem('auth-token')
-    }
-    req.options.headers['authorization'] = token ? `Bearer ${token}` : null
+    const token = process.browser
+      ? localStorage.getItem('auth-token')
+      : undefined
+    req.options.headers['authorization'] = token ? `Bearer ${token}` : undefined
     next()
   }
 }
 
+const networkInterface = createBatchingNetworkInterface({
+  uri: 'https://api.graph.cool/simple/v1/cj7gqa4hb0iuj0114abl8ewcs'
+})
 networkInterface.use([authMiddleware])
 
 export default () => networkInterface
