@@ -19,7 +19,6 @@
   "dependencies": {
     "@nuxtjs/apollo": "^2.1.1",
     "@nuxtjs/font-awesome": "^1.0.2",
-    "normalize.css": "^7.0.0",
     "nuxt": "^1.0.0-rc9"
   },
   "devDependencies": {

@@ -273,7 +273,7 @@ section
   height 10rem // keep vote count the same height
 
   button
-    padding 0.8rem 1rem
+    padding 1rem
     background-color $hover-blue
     color white
     border none

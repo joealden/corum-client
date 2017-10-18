@@ -15,7 +15,7 @@ module.exports = {
   },
 
   // CSS globals
-  css: ['normalize.css', '~/assets/styles/globals.styl'],
+  css: ['~/assets/styles/globals.styl'],
 
   // Customize the progress bar color
   loading: { color: '#53c556' }, // $nav-hover,
