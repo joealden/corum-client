@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import subforumId from '~/apollo/queries/subforumId.gql'
-import createPost from '~/apollo/mutations/createPost.gql'
+import subforumId from '~/apollo/queries/subforumId'
+import createPost from '~/apollo/mutations/createPost'
 
 export default {
   apollo: {

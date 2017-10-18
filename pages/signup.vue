@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import LoggedIn from '~/components/LoggedIn.vue'
-import createUser from '~/apollo/mutations/createUser.gql'
+import LoggedIn from '~/components/LoggedIn'
+import createUser from '~/apollo/mutations/createUser'
 
 export default {
   components: {

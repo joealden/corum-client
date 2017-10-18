@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import allSubforums from '~/apollo/queries/allSubforums.gql'
+import allSubforums from '~/apollo/queries/allSubforums'
 
 // TODO: Fix nav scrolling (Favourites + All should be independent)
 export default {

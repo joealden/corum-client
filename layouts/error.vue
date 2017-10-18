@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import Logo from '~/components/layout/Logo.vue'
-import Header from '~/components/layout/Header.vue'
-import Navigation from '~/components/layout/Navigation.vue'
+import Logo from '~/components/layout/Logo'
+import Header from '~/components/layout/Header'
+import Navigation from '~/components/layout/Navigation'
 
 export default {
   components: {

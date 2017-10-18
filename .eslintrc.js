@@ -20,7 +20,7 @@ module.exports = {
     'space-before-function-paren': 0,
     // allow optionalDependencies
     'import/no-extraneous-dependencies': [
-      'error',
+      0,
       {
         optionalDependencies: ['test/unit/index.js']
       }

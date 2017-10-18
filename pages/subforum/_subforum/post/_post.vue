@@ -83,8 +83,8 @@
 </template>
 
 <script>
-import post from '~/apollo/queries/post.gql'
-import createComment from '~/apollo/mutations/createComment.gql'
+import post from '~/apollo/queries/post'
+import createComment from '~/apollo/mutations/createComment'
 
 export default {
   apollo: {

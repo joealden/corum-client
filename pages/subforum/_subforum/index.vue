@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import allPosts from '~/apollo/queries/allPosts.gql'
-import subforumName from '~/apollo/queries/subforumName.gql'
+import allPosts from '~/apollo/queries/allPosts'
+import subforumName from '~/apollo/queries/subforumName'
 
 export default {
   apollo: {

@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import LoggedIn from '~/components/LoggedIn.vue'
-import signinUser from '~/apollo/mutations/signinUser.gql'
+import LoggedIn from '~/components/LoggedIn'
+import signinUser from '~/apollo/mutations/signinUser'
 
 export default {
   components: {
