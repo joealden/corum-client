@@ -6,9 +6,9 @@
 </section>
 <section v-else>
   <div id="title-wrapper">
-    <div>Author: <span>{{ Post.author }}</span></div>
+    <div><i class="fa fa-user-circle" aria-hidden="true"/> Author: <span>{{ Post.author }}</span></div>
     <h1>{{ Post.title }}</h1>
-    <div>Created At: <span>{{ formattedTime }}</span></div>
+    <div><i class="fa fa-calendar" aria-hidden="true"/> Created At: <span>{{ formattedTime }}</span></div>
   </div>
   <div id="main-content-wrapper">
     <div id="post-details">
@@ -19,7 +19,7 @@
       </div>
       <div id="vote-count">
         <button>
-          <i class="fa fa-angle-up" aria-hidden="true"/>
+          <i class="fa fa-chevron-up" aria-hidden="true"/>
         </button>
         <span v-if="Post.voteCount < 0" class="negative">
           {{ Post.voteCount }}
@@ -31,7 +31,7 @@
           {{ Post.voteCount }}
         </span>
         <button>
-          <i class="fa fa-angle-down" aria-hidden="true"/>
+          <i class="fa fa-chevron-down" aria-hidden="true"/>
         </button>
       </div>
     </div>
@@ -214,6 +214,9 @@ section
   background-color $primary-blue
   color white
   min-height 2.5rem
+
+  i
+    margin-right 0.2rem
 
   div
     text-transform uppercase

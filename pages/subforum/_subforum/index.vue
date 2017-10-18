@@ -10,8 +10,9 @@
   </div>
   <div id="toolbar">
     <form>
-      <label>
-        <input 
+      <i class="fa fa-sort" aria-hidden="true"/>
+      <span>Sort By:</span>
+      <input 
           type="radio" 
           id="popular"
           name="sort"
@@ -19,18 +20,15 @@
           checked
           @click="order = 'voteCount_DESC'"
         >
-        Most Popular
-      </label>
-      <label>
-        <input
-          type="radio"
-          id="new"
-          name="sort"
-          value="new"
-          @click="order = 'createdAt_DESC'"
-        >
-        Newest
-      </label>
+      <label for="popular">Most Popular</label>
+      <input
+        type="radio"
+        id="new"
+        name="sort"
+        value="new"
+        @click="order = 'createdAt_DESC'"
+      >
+      <label for="new">Newest</label>
     </form>
     <nuxt-link v-if="userId" :to="`/subforum/${$route.params.subforum}/new`">
       <i class="fa fa-plus" aria-hidden="true"></i>New Post
@@ -175,17 +173,20 @@ h1
   justify-content space-between
   align-items center
 
-  form > label
+  form
     text-transform uppercase
-    font-size 1.4rem
-    font-weight bold
-    transition 0.2s ease-in-out
-
-    &:hover
-      color $nav-hover
-    &:first-child
+    span
+      margin-left 0.4rem
+      margin-right 0.7rem
+    label
+      transition 0.2s ease-in-out
+      font-weight bold
       margin-left 0.25rem
-      margin-right 1rem
+      margin-right 0.75rem
+      &:hover
+        color $nav-hover
+    input[type="radio"]:checked+label
+      color $nav-hover
 
   a
     font-size 1.2rem
