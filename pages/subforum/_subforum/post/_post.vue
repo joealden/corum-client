@@ -18,7 +18,19 @@
         </div>
       </div>
       <div id="vote-count">
-        <button>
+        <button
+          v-if="userId"
+          class="enabled"
+          @click="upvoteButtonClick"
+        >
+          <i class="fa fa-chevron-up" aria-hidden="true"/>
+        </button>
+        <button
+          v-else
+          class="disabled-button"
+          title="Please login to vote"
+          disabled
+        >
           <i class="fa fa-chevron-up" aria-hidden="true"/>
         </button>
         <span v-if="Post.voteCount < 0" class="negative">
@@ -30,7 +42,19 @@
         <span v-else class="neutral">
           {{ Post.voteCount }}
         </span>
-        <button>
+        <button
+          v-if="userId"
+          class="enabled"
+          @click="downvoteButtonClick"
+        >
+          <i class="fa fa-chevron-down" aria-hidden="true"/>
+        </button>
+        <button
+          v-else
+          class="disabled-button"
+          title="Please login to vote"
+          disabled
+        >
           <i class="fa fa-chevron-down" aria-hidden="true"/>
         </button>
       </div>
@@ -122,7 +146,7 @@ export default {
   data: () => ({
     Post: '',
     comment: '',
-    loading: 0
+    localVote: 0
   }),
 
   head() {
@@ -130,6 +154,34 @@ export default {
   },
 
   methods: {
+    upvoteButtonClick(event) {
+      if (this.localVote === 0) {
+        console.log('The user has not voted')
+        this.localVote = 1
+      } else if (this.localVote === 1) {
+        console.log('The user has already upvoted')
+        this.localVote = 0
+      } else if (this.localVote === -1) {
+        console.log('The user has already downvoted')
+        this.localVote = 1
+      }
+      console.log(this.localVote)
+    },
+
+    downvoteButtonClick(event) {
+      if (this.localVote === 0) {
+        console.log('The user has not voted')
+        this.localVote = -1
+      } else if (this.localVote === 1) {
+        console.log('The user has already upvoted')
+        this.localVote = -1
+      } else if (this.localVote === -1) {
+        console.log('The user has already downvoted')
+        this.localVote = 0
+      }
+      console.log(this.localVote)
+    },
+
     submitComment() {
       const author = this.$store.state.username
       const { comment: content } = this
@@ -274,23 +326,25 @@ section
 
   button
     padding 1rem
-    background-color $hover-blue
-    color white
     border none
     border-radius 0.3rem
     transition 0.15s ease-in-out
     outline none
     width 100%
 
-    &:hover:first-child
-      background-color $nav-hover
-    &:hover:last-child 
-      background-color red
-
   span
     display block
     font-size 2rem
     padding 0.5rem
+
+.enabled    
+  background-color $hover-blue
+  color white
+  cursor pointer
+  &:hover:first-child
+    background-color $nav-hover
+  &:hover:last-child 
+    background-color red
 
 .negative
   color red
