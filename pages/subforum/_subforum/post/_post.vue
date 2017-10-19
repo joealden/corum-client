@@ -157,13 +157,13 @@ export default {
     upvoteButtonClick(event) {
       if (this.localVote === 0) {
         console.log('The user has not voted')
-        this.localVote = 1
+        this.localVote += 1
       } else if (this.localVote === 1) {
         console.log('The user has already upvoted')
-        this.localVote = 0
+        this.localVote -= 1
       } else if (this.localVote === -1) {
         console.log('The user has already downvoted')
-        this.localVote = 1
+        this.localVote += 2
       }
       console.log(this.localVote)
     },
@@ -171,13 +171,13 @@ export default {
     downvoteButtonClick(event) {
       if (this.localVote === 0) {
         console.log('The user has not voted')
-        this.localVote = -1
+        this.localVote -= 1
       } else if (this.localVote === 1) {
         console.log('The user has already upvoted')
-        this.localVote = -1
+        this.localVote -= 2
       } else if (this.localVote === -1) {
         console.log('The user has already downvoted')
-        this.localVote = 0
+        this.localVote += 1
       }
       console.log(this.localVote)
     },
