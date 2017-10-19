@@ -1,10 +1,20 @@
 # TODO
 
+## Current Task
+Create voting functionality
+- [x] Disabled voting when user is not logged in
+- [-] Can only vote once (+1 or -1)
+  - [x] Add basic click handlers for the buttons (Dynamic to users current vote)
+  - [-] Figure out best way to update graphcool data, possibilities:
+    - Create 4 different GraphQL mutations
+    1) upVotePost - Used to up-vote when user has not voted yet
+    1) downVotePost - Used to down-vote when user has not voted yet
+    1) upVotePostFromDownVote - Used when up-vote is pressed when user has already down-voted
+    1) downVotePostFromUpVote - Used when down-vote is pressed when user has already up-voted
+  - [-] Implement best method into page
+  - [-] Load data in on how the user has voted on the post (If logged in) (AKA Persist vote data)
+
 ## Next to Implement
-- Create voting functionality
-  - Can only vote once (+1 or -1)
-  - Persist vote across post visits
-    - add array of up voted and down voted posts for each user??
 - Create automation system of removing down voted posts
 - Create favorites system
   - Place - and + to the right of subforums
