@@ -27,6 +27,7 @@ Create voting functionality
   - Place - and + to the right of subforums
   - Stored in an array of favorites
   - Create add and remove mutations
+- Make the site work offline (PWA), for example, provide an error page if GraphQL query fails
 - Change post and post list loading state (display header, sort etc.)
 - Update ESLint config (Make it not error on style linting, like create-react-app)
 - Unit Tests (Possibly integration + e2e as well)
