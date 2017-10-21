@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'LoggedIn',
+  name: 'logged-in',
   props: {
     bottomText: {
       type: String,

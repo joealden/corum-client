@@ -108,6 +108,7 @@ export default {
   methods: {
     signup() {
       const { username, email, password } = this
+
       this.$apollo.mutate({
         mutation: createUser,
         variables: {
@@ -118,9 +119,14 @@ export default {
       }).then(({ data: { signinUser } }) => {
         const { id, username } = signinUser.user
         const token = signinUser.token
+
         this.$store.commit('saveUserData', { id, username, token })
-        this.$router.back() // Returns the user to the page they were on before
+
+        // Returns the user to the page they were on before
+        // TODO: If user was on signup before, redirect to home
+        this.$router.back()
       }).catch(({ message }) => {
+        // TODO: Extract cleanedMessage functionality into a function
         const colonIndex = message.indexOf(':')
         const cleanedMessage = message.substring(colonIndex + 2, message.length)
         alert(`Error: ${cleanedMessage}`)

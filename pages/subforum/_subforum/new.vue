@@ -86,6 +86,7 @@ export default {
         Subforum: { id }
       } = this
 
+      // TODO: add link to vue-apollo mutation docs
       this.$apollo.mutate({
         mutation: createPost,
         variables: {
@@ -98,8 +99,7 @@ export default {
         const { subforum } = this.$route.params
         const { id } = data.data.createPost
         this.$router.push(`/subforum/${subforum}/post/${id}`)
-      }).catch(error => {
-        console.error(error)
+      }).catch(() => {
         this.$router.push(`/error`) // TODO: create actual error page
       });
     }

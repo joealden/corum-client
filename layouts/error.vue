@@ -19,14 +19,24 @@ import Header from '~/components/layout/Header'
 import Navigation from '~/components/layout/Navigation'
 
 export default {
+  name: 'nuxt-error',
+  props: ['error'],
+
   components: {
     corumLogo: Logo,
     corumHeader: Header,
     corumNav: Navigation
   },
+
   head: () => ({ title: 'Error' }),
-  name: 'nuxt-error',
-  props: ['error']
+
+  /*
+    Fetch userid from localStorage after SSR
+    TODO: Unify fetch for default & error layouts
+  */
+  mounted() {
+    this.$store.commit('updateUserState')
+  }
 }
 </script>
 

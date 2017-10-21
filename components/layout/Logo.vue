@@ -6,6 +6,12 @@
 </div>
 </template>
 
+<script>
+export default {
+  name: 'corum-logo'
+}
+</script>
+
 <style lang="stylus" scoped>
 div
   grid-area logo

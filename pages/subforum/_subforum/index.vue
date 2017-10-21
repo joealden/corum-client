@@ -78,7 +78,7 @@ export default {
   apollo: {
     allPosts: {
       query: allPosts,
-      fetchPolicy: 'cache-and-network', // fetch new posts on different visits
+      fetchPolicy: 'cache-and-network',
       variables() {
         return {
           url: this.$route.params.subforum,
@@ -106,10 +106,16 @@ export default {
   data: () => ({
     Subforum: '',
     allPosts: '',
+    // Default soft to popularity
     order: 'voteCount_DESC'
   }),
 
   filters: {
+    // Formats the unformatted date that is returned from graphcool
+    /*
+      TODO: extract this filter and the computed property
+      located at '~/pages/subforum/_subforum/post/_post'
+    */
     formatDate(date) {
       const time = new Date(date)
       const day = time.getDate()
@@ -117,11 +123,11 @@ export default {
       const year = time.getFullYear()
       const hours = time.getHours()
 
-      // make the output of time.getMinutes() padded
+      // Pad minutes (E.G. 1 -> 01)
       let minutes = time.getMinutes()
-      if (minutes < 10) {
-        minutes = `0${minutes}`
-      }
+      if (minutes < 10) minutes = `0${minutes}`
+
+      // Format the date in the form 'HH:mm - DD:MM:YYYY'
       return `${hours}:${minutes} - ${day}/${month}/${year}`
     }
   },
@@ -129,8 +135,9 @@ export default {
   head() {
     if (this.Subforum.name) {
       return { title: this.Subforum.name }
+    } else {
+      return { title: 'Loading...' }
     }
-    return { title: 'Loading...' }
   }
 }
 </script>

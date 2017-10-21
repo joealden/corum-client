@@ -1,3 +1,5 @@
+// TODO: Link to nuxt Vuex docs
+
 // ESlint is not happy about nuxt injecting deps
 /* eslint-disable */
 
@@ -5,12 +7,21 @@ import { Store } from 'vuex'
 import Vue from 'vue'
 
 /* eslint-enable */
-// Vue.set() used to get around Vue's inability to detect the state change
+
+/*
+  Vue.set() is used to get around Vue's inability to detect the
+  state change.
+*/
 
 export default () => {
   return new Store({
+    // Disallow state mutation not through defined mutations
     strict: true,
 
+    /* 
+      Initial state is fetched in a hook that executes on the client.
+      Fetch can be found at '~/layouts/default' or '~/layouts/error'.
+    */
     state: {
       userId: undefined,
       username: undefined

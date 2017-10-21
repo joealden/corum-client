@@ -107,6 +107,8 @@
 </template>
 
 <script>
+// TODO: Extract out components from page
+
 import post from '~/apollo/queries/post'
 import createComment from '~/apollo/mutations/createComment'
 
@@ -122,7 +124,11 @@ export default {
   },
 
   computed: {
-    // Graph.cool returns unformatted date.
+    // Formats the unformatted date that is returned from graphcool
+    /*
+      TODO: extract this computed property and filter located at
+      '~/pages/subforum/_subforum/'
+    */
     formattedTime() {
       const time = new Date(this.Post.createdAt)
       const day = time.getDate()
@@ -130,11 +136,11 @@ export default {
       const year = time.getFullYear()
       const hours = time.getHours()
 
-      // make the output of time.getMinutes() padded
+      // Pad minutes (E.G. 1 -> 01)
       let minutes = time.getMinutes()
-      if (minutes < 10) {
-        minutes = `0${minutes}`
-      }
+      if (minutes < 10) minutes = `0${minutes}`
+
+      // Format the date in the form 'HH:mm - DD:MM:YYYY'
       return `${hours}:${minutes} - ${day}/${month}/${year}`
     },
 
@@ -146,6 +152,7 @@ export default {
   data: () => ({
     Post: '',
     comment: '',
+    // Temp for vote functionality implemention
     localVote: 0
   }),
 
@@ -187,16 +194,19 @@ export default {
       const { comment: content } = this
       const id = this.$route.params.post
 
-      // Clear user input from textarea
+      // Clear user input from textarea early on
       this.comment = ''
 
+      // TODO: add link to vue-apollo mutation docs 
       this.$apollo.mutate({
         mutation: createComment,
+
         variables: {
           author,
           content,
           id
         },
+
         update(store, { data: { createComment: commentData } }) {
           const data = store.readQuery({
             query: post,
@@ -222,6 +232,7 @@ export default {
           const main = document.getElementById('main-content-wrapper')
           main.scrollTop = main.scrollHeight
         },
+
         optimisticResponse: {
           __typename: 'Mutation',
           createComment: {

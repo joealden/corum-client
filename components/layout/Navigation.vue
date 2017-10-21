@@ -39,15 +39,18 @@ import allSubforums from '~/apollo/queries/allSubforums'
 
 // TODO: Fix nav scrolling (Favourites + All should be independent)
 export default {
-  apollo: {
-    allSubforums
-  },
+  name: 'corum-nav',
+  apollo: { allSubforums },
 
   computed: {
     subforumSearch() {
+      const caseInsensitiveInput = this.search.toLowerCase()
+
       return this.allSubforums.filter(subforum => (
-        subforum.name.toLowerCase().includes(this.search.toLowerCase())
-      ));
+        subforum.name
+          .toLowerCase()
+          .includes(caseInsensitiveInput)
+      ))
     },
 
     userId() {

@@ -1,3 +1,5 @@
+// TODO: Link to nuxt config docs
+
 module.exports = {
   // Headers of the page
   head: {
@@ -18,7 +20,8 @@ module.exports = {
   css: ['~/assets/styles/globals.styl'],
 
   // Customize the progress bar color
-  loading: { color: '#53c556' }, // $nav-hover,
+  // $nav-hover (Found at '~/assets/styles/variables.styl')
+  loading: { color: '#53c556' },
 
   // Build configuration
   build: {
@@ -35,8 +38,15 @@ module.exports = {
     }
   },
 
+  /*
+    Define modules used.
+    
+    @nuxtjs/apollo - Provides vue-apollo + apollo-client
+    @nuxtjs/font-awesome - Provides icons
+  */
   modules: ['@nuxtjs/apollo', '@nuxtjs/font-awesome'],
 
+  // Specify the file where the network interface resides
   apollo: {
     networkInterfaces: {
       default: '~/apollo/network-interfaces/default.js'

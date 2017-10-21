@@ -19,6 +19,8 @@
 
 <script>
 export default {
+  name: 'corum-header',
+
   computed: {
     userId() {
       return this.$store.state.userId
