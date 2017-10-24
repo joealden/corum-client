@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import tinydate from 'tinydate'
+
 import allPosts from '~/apollo/queries/allPosts'
 import subforumName from '~/apollo/queries/subforumName'
 
@@ -112,23 +114,10 @@ export default {
 
   filters: {
     // Formats the unformatted date that is returned from graphcool
-    /*
-      TODO: extract this filter and the computed property
-      located at '~/pages/subforum/_subforum/post/_post'
-    */
-    formatDate(date) {
-      const time = new Date(date)
-      const day = time.getDate()
-      const month = time.getMonth()
-      const year = time.getFullYear()
-      const hours = time.getHours()
-
-      // Pad minutes (E.G. 1 -> 01)
-      let minutes = time.getMinutes()
-      if (minutes < 10) minutes = `0${minutes}`
-
-      // Format the date in the form 'HH:mm - DD:MM:YYYY'
-      return `${hours}:${minutes} - ${day}/${month}/${year}`
+    formatDate(unformattedDate) {
+      const stamp = tinydate('{HH}:{mm} - {DD}/{MM}/{YYYY}')
+      const date = new Date(unformattedDate)
+      return stamp(date)
     }
   },
 
