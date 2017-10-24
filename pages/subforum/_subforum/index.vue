@@ -115,7 +115,7 @@ export default {
   filters: {
     // Formats the unformatted date that is returned from graphcool
     formatDate(unformattedDate) {
-      const stamp = tinydate('{HH}:{mm} - {DD}/{MM}/{YYYY}')
+      const stamp = tinydate('{HH}:{mm} - {DD}/{MM}/{YY}')
       const date = new Date(unformattedDate)
       return stamp(date)
     }

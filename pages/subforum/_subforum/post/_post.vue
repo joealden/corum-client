@@ -128,7 +128,7 @@ export default {
   computed: {
     // Formats the unformatted date that is returned from graphcool
     formattedTime() {
-      const stamp = tinydate('{HH}:{mm} - {DD}/{MM}/{YYYY}')
+      const stamp = tinydate('{HH}:{mm} - {DD}/{MM}/{YY}')
       const date = new Date(this.Post.createdAt)
       return stamp(date)
     },
