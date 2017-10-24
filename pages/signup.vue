@@ -109,6 +109,10 @@ export default {
     signup() {
       const { username, email, password } = this
 
+      /*
+        For more info on how mutations work within vue-apollo,
+        visit https://github.com/Akryum/vue-apollo#mutations
+      */
       this.$apollo.mutate({
         mutation: createUser,
         variables: {

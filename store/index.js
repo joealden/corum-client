@@ -1,8 +1,8 @@
-// TODO: Link to nuxt Vuex docs
+// For more info, visit https://nuxtjs.org/guide/vuex-store/
 
-// ESlint is not happy about nuxt injecting deps
 /* eslint-disable */
 
+// ESlint is not happy about nuxt injecting deps
 import { Store } from 'vuex'
 import Vue from 'vue'
 

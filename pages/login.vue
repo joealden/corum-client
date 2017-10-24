@@ -77,7 +77,10 @@ export default {
     login() {
       const { email, password } = this
 
-      // TODO: add link to vue-apollo mutation docs
+      /*
+        For more info on how mutations work within vue-apollo,
+        visit https://github.com/Akryum/vue-apollo#mutations
+      */
       this.$apollo.mutate({
         mutation: signinUser,
         variables: {

@@ -1,8 +1,8 @@
-// TODO: Link to @nuxt/apollo docs
+// For more info, visit https://github.com/nuxt-community/apollo-module
 
-// ESlint is not happy about nuxt injecting deps
 /* eslint-disable */
 
+// ESlint is not happy about nuxt injecting deps
 import {
   createBatchingNetworkInterface,
   applyBatchMiddleware

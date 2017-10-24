@@ -1,4 +1,4 @@
-// TODO: Link to nuxt config docs
+// For more info, visit https://nuxtjs.org/api/configuration-build
 
 module.exports = {
   // Headers of the page
