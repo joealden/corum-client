@@ -13,7 +13,7 @@ module.exports = {
         content: 'An open, democratic & self governing forum.'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/png', href: 'favicon.png' }]
+    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
   },
 
   // CSS globals
