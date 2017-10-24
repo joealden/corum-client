@@ -28,7 +28,6 @@ Create voting functionality
   - Stored in an array of favorites
   - Create add and remove mutations
 - Make the site work offline (PWA), for example, provide an error page if GraphQL query fails
-- Move allSubforum list into global store so that when a subforum is visited on the client, the name can be displays instantly
 - Change post and post list loading state (display header, sort etc.)
 - Update ESLint config (Make it not error on style linting, like create-react-app)
 - Unit Tests (Possibly integration + e2e as well)
