@@ -1,6 +1,14 @@
+# npm
 npm-debug.log
 node_modules
+
+# nuxt
 .nuxt
 dist
 
+# @nuxtjs/pwa
+sw.*
+workbox-*
+
+# README.md to PDF
 README.pdf

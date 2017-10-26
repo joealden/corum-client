@@ -40,13 +40,18 @@ module.exports = {
 
   /*
     Define modules used.
+    For more info, visit https://nuxtjs.org/guide/modules
     
     @nuxtjs/apollo - Provides vue-apollo + apollo-client
+    @nuxtjs/pwa - Adds PWA features like offline support etc.
     @nuxtjs/font-awesome - Provides icons
-  */
-  modules: ['@nuxtjs/apollo', '@nuxtjs/font-awesome'],
 
-  // Specify the file where the network interface resides
+    Documentation for the modules used here can be found at:
+    https://github.com/nuxt-community/awesome-nuxt#modules
+  */
+  modules: ['@nuxtjs/apollo', '@nuxtjs/pwa', '@nuxtjs/font-awesome'],
+
+  // Specify the file where the apollo network interface resides
   apollo: {
     networkInterfaces: {
       default: '~/apollo/network-interfaces/default.js'

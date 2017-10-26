@@ -1,5 +1,8 @@
 # TODO
 
+## When Home
+- Get Joe Sutton to export the corum favicon at a higher res (>= 512px x 512px) for @nuxtjs/pwa
+
 ## Docs
 - Do more analysis on user feedback + relate features to this
 - need more on why system is 'amenable' to computational methods, what features make it this way?
