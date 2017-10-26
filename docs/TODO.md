@@ -2,6 +2,9 @@
 
 ## When Home
 - Get Joe Sutton to export the corum favicon at a higher res (>= 512px x 512px) for @nuxtjs/pwa
+  - Save this as /static/icon.png
+- See if test.joealden.com works
+- Covert from @nuxt/font-awesome to https://github.com/Qonfucius/nuxt-fontawesome
 
 ## Docs
 - Do more analysis on user feedback + relate features to this
