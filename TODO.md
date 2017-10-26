@@ -1,16 +1,16 @@
 # TODO
 
-## When Home
-- Get Joe Sutton to export the corum favicon at a higher res (>= 512px x 512px) for @nuxtjs/pwa
-  - Save this as /static/icon.png
-- Convert from @nuxtjs/font-awesome to https://github.com/Qonfucius/nuxt-fontawesome
-
 ## Docs
 - Do more analysis on user feedback + relate features to this
 - need more on why system is 'amenable' to computational methods, what features make it this way?
 - More on stakeholders
   - How big an audience is there
   - What do people use it for - research, chatting etc.
+
+## When Home
+- Get Joe Sutton to export the corum favicon at a higher res (>= 512px x 512px) for @nuxtjs/pwa
+  - Save this as /static/icon.png
+- Convert from @nuxtjs/font-awesome to https://github.com/Qonfucius/nuxt-fontawesome
 
 ## Current Task
 Create voting functionality
@@ -32,7 +32,14 @@ Create voting functionality
   - Place - and + to the right of subforums
   - Stored in an array of favorites
   - Create add and remove mutations
-- Make the site work offline (PWA), for example, provide an error page if GraphQL query fails
+- Move to graphcool framework
+  - Update docs to reflect service deployment
+    - Create scripts + document
+      - **`dev:offline`** (run dev server + deploy graphcool locally [docker])
+      - **`deploy:client`** (Deploy client only [NuxtJS using 'now'])
+      - **`deploy:api`** (Deploy API only [Graphcool Cloud])
+      - **`deploy`** (Run both `deploy:client` and `deploy:api`)
+- Provide error pages if a GraphQL query fails
 - Change post and post list loading state (display header, sort etc.)
 - Update ESLint config (Make it not error on style linting, like create-react-app)
 - Unit Tests (Possibly integration + e2e as well)
@@ -40,7 +47,7 @@ Create voting functionality
 ## Needs Attention
 - Separate favorites and all subforums scroll
 - Use CSS Grid on post list page to align things properly
-- Make max lengths for info (characters):
+- Make max lengths for info (characters [client-side only first]):
   - usernames (50)
   - passwords (50)
   - titles (100 / 150)
