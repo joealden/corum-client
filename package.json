@@ -19,6 +19,7 @@
   "dependencies": {
     "@nuxtjs/apollo": "^2.1.1",
     "@nuxtjs/font-awesome": "^1.0.2",
+    "@nuxtjs/localtunnel": "^1.0.0",
     "@nuxtjs/pwa": "^1.0.2",
     "nuxt": "^1.0.0-rc9",
     "tinydate": "^1.0.0"

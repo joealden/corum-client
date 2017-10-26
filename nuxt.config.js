@@ -49,7 +49,12 @@ module.exports = {
     Documentation for the modules used here can be found at:
     https://github.com/nuxt-community/awesome-nuxt#modules
   */
-  modules: ['@nuxtjs/apollo', '@nuxtjs/pwa', '@nuxtjs/font-awesome'],
+  modules: [
+    '@nuxtjs/apollo',
+    '@nuxtjs/pwa',
+    '@nuxtjs/font-awesome',
+    ['@nuxtjs/localtunnel', { subdomain: 'joealden' }]
+  ],
 
   // Specify the file where the apollo network interface resides
   apollo: {
