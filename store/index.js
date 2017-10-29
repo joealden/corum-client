@@ -18,7 +18,7 @@ export default () => {
     // Disallow state mutation not through defined mutations
     strict: true,
 
-    /* 
+    /*
       Initial state is fetched in a hook that executes on the client.
       Fetch can be found at '~/layouts/default' or '~/layouts/error'.
     */

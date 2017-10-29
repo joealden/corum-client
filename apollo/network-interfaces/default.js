@@ -4,8 +4,8 @@
 
 // ESlint is not happy about nuxt injecting deps
 import {
-  createBatchingNetworkInterface,
-  applyBatchMiddleware
+	createBatchingNetworkInterface,
+	applyBatchMiddleware
 } from 'apollo-client'
 
 /* eslint-enable */
@@ -26,7 +26,7 @@ const authMiddleware = {
     /*
       Due to this being parsed SSR, process.browser must be used to
       make sure localStorage is only attempted to be accessed on the
-      client. This isn't an issue as no queries or mutations that 
+      client. This isn't an issue as no queries or mutations that
       require authentaction are made on an SSR request of the page.
     */
     const token = process.browser

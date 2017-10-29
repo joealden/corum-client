@@ -10,10 +10,10 @@
   TODO:
   Change this page to have 2 states. 1 for when the
   user is logged in, and 1 for when the user is not
-  
+
   When the user is logged in, display a collection of posts
   from their favourites.
-  
+
   When the user is not logged in, display a 'getting started'
   page.
 */

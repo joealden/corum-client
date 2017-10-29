@@ -186,7 +186,7 @@ export default {
       // Clear user input from textarea early on
       this.comment = ''
 
-      // TODO: add link to vue-apollo mutation docs 
+      // TODO: add link to vue-apollo mutation docs
       this.$apollo.mutate({
         mutation: createComment,
 
