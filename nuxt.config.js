@@ -55,8 +55,7 @@ module.exports = {
     '@nuxtjs/component-cache',
     '@nuxtjs/apollo',
     '@nuxtjs/pwa',
-    '@nuxtjs/font-awesome',
-    ['@nuxtjs/localtunnel', { subdomain: 'joealden' }]
+    '@nuxtjs/font-awesome'
   ],
 
   // Specify the file where the apollo network interface resides
