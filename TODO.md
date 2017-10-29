@@ -7,11 +7,6 @@
   - How big an audience is there
   - What do people use it for - research, chatting etc.
 
-## When Home
-- Get Joe Sutton to export the corum favicon at a higher res (>= 512px x 512px) for @nuxtjs/pwa
-  - Save this as /static/icon.png
-- Convert from @nuxtjs/font-awesome to https://github.com/Qonfucius/nuxt-fontawesome
-
 ## Current Task
 Create voting functionality
 - [x] Disabled voting when user is not logged in
@@ -41,6 +36,7 @@ Create voting functionality
       - **`deploy`** (Run both `deploy:client` and `deploy:api`)
 - Provide error pages if a GraphQL query fails
 - Change post and post list loading state (display header, sort etc.)
+- Fix issue with font-awesome importing ALL assets (Resulting in a 444kb uncompressed file)
 - Update ESLint config (Make it not error on style linting, like create-react-app)
 - Unit Tests (Possibly integration + e2e as well)
 
