@@ -3,6 +3,7 @@
 ## Table of Contents
 - [GUI Design](#gui-design)
 - [Component Design](#component-design)
+- [Route Design](#route-design)
 
 ### GUI Design
 #### Sub-forum not selected (Logged in)
@@ -62,16 +63,50 @@ Each sub-forum in either section will be a Link component.
 They will link to a sub-forum in the pattern `'/subforum/:subforum'`. (For example, `'/subforum/programming'`) 
 
 #### Main Content
-This component will handle nearly all of the client side routing.
+This component will handle nearly all of the client side routing (See [Route Design](#route-design)).
 Whatever action a user takes, such as clicking on a sub-forum, pressing the `Sign Up` or `Login` buttons, clicking on a post within a sub-forum etc. (Shown in the [GUI Design section](#gui-design))
-
-##### Planned Routes
-- [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
-- [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
-- [`'/subforum/:subforum/post/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
-- [`'/subforum/:subforum/new'`](#new-post) - Displays the new post entry fields.
-- [`'/login'`](#login-page) - Displays a login screen (Username + password)
-- [`'/signup'`](#sign-up-page) - Displays a sign up screen (Username + password + password)
 
 #### Social Links + Footer
 _These two components have since been removed from the sites design, as I thought it didn't have much of a benefit to the user._
+
+### Route Design
+As Corum is a website, accessing different parts of the application is done by routing (For example, clicking on links or altering the contents of the URL bar)
+As mentioned before, I am using Vue as my view layer library.
+This means that I can easily do client side routing.
+Client side routing is where the routing is done on the users machine. (More information on this web development technique can be found by searching for SPAs. ([Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application)) 
+This is the opposite to server side routing that is common for sites developed with PHP and no view library.
+Server side routing means loading entire new pages from a server, instead of dynamically rewriting the current page.
+
+As quoted from Wikipedia's article on SPAs:
+> This approach avoids interruption of the user experience between successive pages, making the application behave more like a desktop application.
+
+#### Route Summary
+- [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
+- [`'/login'`](#login-page) - Displays a login screen (Username + password)
+- [`'/signup'`](#sign-up-page) - Displays a sign up screen (Username + password + password)
+- [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
+- [`'/subforum/:subforum/post/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
+- [`'/subforum/:subforum/new'`](#new-post) - Displays the new post entry fields.
+
+#### Home Page ([`'/'`](#sub-forum-not-selected-logged-in))
+placeholder
+
+#### Login Page ([`'/login'`](#login-page))
+placeholder
+
+#### Sign Up Page ([`'/signup'`](#sign-up-page))
+placeholder
+
+#### Subforum Page ([`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in))
+placeholder
+
+#### Post Page ([`'/subforum/:subforum/post/:post'`](#post-view-logged-in))
+placeholder
+
+#### New Post Page ([`'/subforum/:subforum/new'`](#new-post))
+placeholder
+
+### Test Plan
+- Describe the steps taken to test that the site is in working condition
+- Talk about how ESLint helps to catch bugs before runtime
+- Talk about how unit + integration + e2e testing will automate the test plan described above when implemented
