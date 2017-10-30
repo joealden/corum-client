@@ -8,13 +8,11 @@
   - [A Modern and Minimalist Experience](#a-modern-and-minimalist-experience)
 - [The Investigation](#the-investigation)
   - [Interviews](#interviews)
-  - [The End User](#the-end-user)
+  - [The End User (Stakeholders)](#the-end-user-stakeholders)
   - [The Focus Group](#the-focus-group)
   - [Research into Existing Systems](#research-into-existing-systems)
 - [The Analysis](#the-analysis)
   - [Essential Features](#essential-features)
-  - [GUI Design](#gui-design)
-  - [Component Design](#component-design)
   - [Computational Methods Required](#computational-methods-required)
   - [Success Criteria](#success-criteria)
   - [Limitations of the Project](#limitations-of-the-project)
@@ -118,27 +116,45 @@ This will help me understand what features I should borrow, leave out, as well t
 1. > I think the profile preference section is way too complicated, and it doesn't need to be.
 1. > For Reddit to open source their code again, I don't like the fact that I cannot see the source code of software I use regularly.
 
+#### Insights Gained from these Interviews
+As a summary from these interview responses, I can tell the following:
 
-### The End User
+- People like how the Reddit voting system works
+- People want a more modern version of Reddit (Like a web app)
+- People dont like how cluttered Reddit's UI is
+- People like the idea of Reddit, but think it could be executed better
+
+I will take these interviews responses into account when designing and developing Corum.
+
+### The End User (Stakeholders)
 In the case of a forum like Reddit, as evident from the [above interviews](#interviews), the end user / audience of a project like this can be wide.
 For example, on Reddit, there are sub forums ranging from politics to comedy to programming.
-Also, there are two different types of users within each sub forum; the users that regularly visit and actively engage in discussion, and there are the users that will only ever visit the forum when directed from a search engine. 
+This also means that the potential target audience is large, as anyone that wants to visit the site to read or engage in discussion can.
+
+As Corum aims to be similar to Reddit, it will likely foster the same type of content on it.
+Unlike forums that are designed for a single topic or purpose, Reddit, and therefore Corum, is designed to have anything on it.
+This means that whatever people want to talk about on it, then can. (This could be sharing news, collaborating on research, or just chatting to each other.)
+
+The reason why an end user would use Corum over a site such as Reddit could be for many reasons.
+For example, it could be that they like the democratic system of moderation as discussed, or that they prefer the modern experience that Corum will provide.
+
+Also, there are two different types of users that could use Corum; the users that regularly visit and actively engage in discussion, and the users that will only ever visit the site when directed from a search engine. 
 In the following sub sections, I will outline what Corum should do to try and cater to the needs of these two types of users.
- 
+
 #### Users That Have Different Interests
-Users of the site will have different interests, which means that Corum needs to work well for all, and the site should not be designed for one type of content. 
-Good computer literacy should not be a given, so the interface should be layed out in a simple manner. 
+Users of the site will have different interests, which means that Corum needs to work well for all, and the site should not be designed for only one type of content. 
+**Good computer literacy should not be a given**, so the interface should be layed out in a simple manner. 
 Colour should also be kept to a minimum to keep the site looking neutral.
 
 #### Users That Use the Forum Differently
-For users that have never visited or rarely visit the site, the UI and UX shouldn't be surprising so that this type of user can get whatever information they are looking for quickly and efficiently. 
+For users that have never visited or rarely visit the site, the UI (User Interface) and UX (User Experience) shouldn't be surprising so that this type of user can get whatever information they are looking for quickly and efficiently.
 Also, the site should work equally as well for returning, regular users. 
 This means that the site should keep a similar structure and look throughout, and should not get in the way of the user.
 
 ### The Focus Group
-The focus group will consist of people I know that both regularly use sites such as reddit, and of those that only use such sites for information gathering. 
+The focus group will consist of people I know that regularly use sites such as reddit, and of those that only use such sites for information gathering. 
 This means that the focus group will contains the two possible types of end users as mentioned in the previous section. I will use this group for testing and feedback on Corum as it develops.
-The group will contains people of a wide age range, to most accurately represent the end users, as my project is not aimed at any particular age group.
+The group will contains people of a wide age range, to most accurately represent the end users, as Corum is not aimed at any particular age group.
 
 ### Research into Existing Systems
 #### [Reddit](https://reddit.com) (Proprietary [as of September 2017](#being-open))
@@ -189,20 +205,20 @@ From my research into existing systems, as well as the interviews I have done, I
 - Header (Top of the page)
   - Top left - Logo linking to homepage
   - Top Right - Login/logout/sign-up button/link
-- Navigation (Left side under Header, think this is better placement than Reddit at the top)
-  - Sub-forum subscriptions at the top (Called Favorites, users can access their favorites first)
-  - All other sub-forums below (Search bar of all sub-forums for easy movement around the site)
+- Navigation (Left side under Header, think this is better placement than Reddit at the top as it is easier to navigate through)
+  - Sub-forum subscriptions at the top (Called Favorites, users can access their favorites first. This will mean that returning users can access content they want to see quicker)
+  - All other sub-forums below (Search bar of all sub-forums for easier navigation around the site)
   - Highlight the currently selected sub-forum in the nav (So the user can easily see where they are)
-- Current sub-forum (Render selection message upon first load/after login when no sub-forum is selected - gives first time user some instructions on what to do)
-  - Give user sort selection (newest / most popular)
+- Current sub-forum (Render selection message upon first load/after login when no sub-forum is selected - gives first time user some helpful instructions on what to do)
+  - Give user sort selection (newest / most popular [This gives the user a choice on how they wish to view the content])
   - Eventually make it so posts are loaded in dynamically (paginated)
   - Each post
-    - Current amount of up votes (Shows popularity of post)
+    - Current amount of up votes (Shows popularity of post, which could be an indication of how good the post is and if it is worth viewing)
     - Title -> links to link/post
 - Selected post (Fills the space where the sub-forum was)
-  - Title
-  - Time Posted
-  - User that posted it
+  - Title (So that the user can always see where they are)
+  - Time Posted (This can give context of how relevant the content is [For example, an older post may not be so up to date])
+  - User that posted it (Could tell the user if the information is credible)
   - Amount of votes
   - Content
   - Comments (For discussion of the post, show message if empty)
@@ -222,79 +238,7 @@ From my research into existing systems, as well as the interviews I have done, I
     - This means, that instead of a moderator moderating the sub-forum, the users do it themselves. This comes back to the point for neutrality and fairness, as the sub-forum community as a whole gets to decide what is allowed on the sub-forum.
 - API
   - Use GraphQL
-  - Setup the backend on graph.cool to start, possibly create a standalone server if time permits.
-
-### GUI Design
-#### Sub-forum not selected (Logged in)
-![Sub-forum not selected](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sub-forum-not-selected.jpg) 
-
-#### Sub-forum selected (Not logged in)
-![Sub-forum selected](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sub-forum-selected.jpg)
-
-
-#### Post view (Logged In)
-![Post view](https://raw.githubusercontent.com/joealden/corum/master/docs/images/post-view.jpg)
-
-#### New post
-![New post](https://raw.githubusercontent.com/joealden/corum/master/docs/images/new-post.jpg)
-
-#### Login Page
-![Login Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/login.jpg)
-
-#### Sign-up Page
-![Sign-up Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sign-up.jpg)
-
-### Component Design
-As I am using [Vue](http://vuejs.org) to build my UI, I can think of the site being composed of individual components with isolated responsibilities. 
-Here I will define what each of these main component's roles are, and what they will render when.
-
-![Component Design](https://raw.githubusercontent.com/joealden/corum/master/docs/images/component-design.jpg)
-
-#### Logo
-This component will have the sole responsibility to render Corum's logo in the top left of the page along side the header component. 
-The logo will be a link to `'/'` using [vue-router's Link component (nuxt-link)](https://nuxtjs.org/api/components-nuxt-link).
-
-#### Header
-This component will have 2 different states. 
-1 for when the user is logged in, and 1 for when they are not. 
-
-When the user is logged in, the component will render a `Logout` button. (As shown [here](#new-post)) 
-The logout button will be a Link component that links to '/logout'. 
-This route will log the user out of the site, then it will redirect them to `'/'`.
-
-When the user is not logged in, the component will render 2 buttons. The 1st button will be a `Sign Up` Link component that links to `'/signup'`. The 2nd button will be a `Login` Link component that links to `'/login'`.
-
-#### Navigation
-This component will also have 2 different states like the Header component.
-
-When the user is not logged in, only the `All sub-forums` section will render. (As shown [here](#login-page)) 
-This `All sub-forums` component will show all of the sub-forums that Corum has with a search bar at the top. 
-If the sub-forum list is longer than the components height, it will scroll independently of the page, with the search bar staying at the top of the navigation.
-
-When the user is logged in, a `favorites` section will also be rendered above the `All sub-forums` section.
-(As shown [here](#new-post)) The `favorites` section will list the sub-forums that the user has added to their `favorites`.
-A user can add a sub-forum to their favorites by clicking on the `+` icon next to the sub-forum in the 'All sub-forums' section.
-The `+` icon is only rendered if the user is logged in. 
-A user can remove a sub-forum from their favorites by clicking the `-` sign next to the sub-forum they wish to remove.
-The `favorites` section will be very similar to the `All sub-forums` section, however it will not have a search bar.
-
-Each sub-forum in either section will be a Link component.
-They will link to a sub-forum in the pattern `'/subforum/:subforum'`. (For example, `'/subforum/programming'`) 
-
-#### Main Content
-This component will handle nearly all of the client side routing.
-Whatever action a user takes, such as clicking on a sub-forum, pressing the `Sign Up` or `Login` buttons, clicking on a post within a sub-forum etc. (Shown in the [GUI Design section](#gui-design))
-
-##### Planned Routes
-- [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
-- [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
-- [`'/subforum/:subforum/post/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
-- [`'/subforum/:subforum/new'`](#new-post) - Displays the new post entry fields.
-- [`'/login'`](#login-page) - Displays a login screen (Username + password)
-- [`'/signup'`](#sign-up-page) - Displays a sign up screen (Username + password + password)
-
-#### Social Links + Footer
-_These two components have since been removed from the sites design, as I thought it didn't have much of a benefit to the user._
+  - Setup the backend on graphcool
 
 ### Computational Methods Required
 Here is a list of computational methods that could be used to create Corum, as well as how they will be useful.
@@ -302,21 +246,26 @@ Here is a list of computational methods that could be used to create Corum, as w
 #### Decomposition
 By using [Vue](https://vuejs.org/), I will be able to break the UI down into small, reusable components. 
 This allows developers to create large projects while keeping it manageable and maintainable.
+In the case of Corum, it would not be manageable or maintainable to create the whole site in one large file.
+Not only would it be a nightmare to work on, common code and components could not be reused across different pages.
 
 #### Abstraction
 Also with the aid of [Vue](https://vuejs.org/), I will be able to compose large components from multiple smaller components.
 This means that the complexity of each component can be abstracted away when taking a high level view of the composite components.
+For example, each page of the site will be considered its own component, but it will contain many smaller components such as the navigation component and a main content component.
 
 #### Pattern matching
-As shown in the [GUI design section](#gui-design), I will attempt to implement search functionality into the navigation part of the application. 
-This will require pattern matching. 
-Furthermore, as this project will make use of client-side routing with [vue-router](https://nuxtjs.org/api/components-nuxt-link), pattern matching is required to direct the user to the correct page.
+I will attempt to implement search functionality into the navigation part of the application, this will require pattern matching. 
+Also, as this project will make use of client-side routing with [vue-router](https://nuxtjs.org/api/components-nuxt-link), pattern matching is required to direct the user to the correct page.
+For example, navigating to `/subforum/:subforum` will render the subforum page component with the data from the path variable `:subforum`
 
 #### Sorting and searching
 Related to the method above, searching will be used as the subforum navigation will be searchable.
 This will most likely be achieved by using a regex (Regular expression), or a composition of built in javascript string methods.
 Sorting will also be used, as the user will be able to select the order in which they see posts in the sub-forum.
-This will most likely be handled on the server side, as in the end, I will want the subforum post list to be paginated. This means that a sort would require a re-fetch from the server, as the client will not have all the data at once. Graphcool provides a 'orderBy' parameter in their queries, so it should not be too complex to implement. 
+This will most likely be handled on the server side, as in the end, I will want the subforum post list to be paginated. 
+This means that a sort would require a re-fetch from the server, as the client will not have all the data at once.
+Graphcool provides a 'orderBy' parameter in their queries, so it will not be too complex to implement. 
 
 #### Use of Multiple Programming Paradigms
 ##### Declarative
@@ -326,6 +275,8 @@ Also, as I am using Vue, I do not have to worry about _how_ my components will g
 
 ##### Functional
 Programming in a functional style helps improve code maintainability, readability, and [more](https://en.wikipedia.org/wiki/Functional_programming).
+Also, the project will be easier to test (Due to things such as pure functions not having side effects, and function composition allows for better testing in isolation [Unit testing])
+
 JavaScript provides great tools to build software in a functional paradigm, this includes features such as:
 
 - [First-class Functions](https://en.wikipedia.org/wiki/First-class_function) - This means that JavaScript treats functions the same as any other variable. Functions can be passed as arguments to functions, returned from functions, assigned to variables and stored in objects and arrays.
@@ -343,12 +294,14 @@ const concatArrow = string1 => string2 => `${string1} ${string2}`;
 const joinedTextArrow = concatArrow("Hello")("world!"); // "Hello, world!"
 ```
 
-- Functional Array Methods - [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [`Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 
-and 
-[`Array.prototype.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
-- Immutability - [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
+- Functional Array Methods 
+  - [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+  - [`Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+  - [`Array.prototype.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+- Immutability 
+  - [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 
 (Not perfect, reference only so objects + arrays can be mutated, use 
-[`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
+  - [`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 
 (for both objects and arrays) or something like [Immutable.js](http://facebook.github.io/immutable-js/))
 
 #### Real Time Data Processing
@@ -367,9 +320,14 @@ This will be achieved through the use of [GraphQL Subscriptions](https://www.how
 - Logged in users can create new posts
 
 ### Limitations of the Project
-- Account Recovery (If the user losses their email / password, they will not be able to recover it)
-- Creation of new sub-forums?
-- Responsive CSS (It would require quite a bit more work to have it looking nice on mobile devices)
+#### Account Recovery 
+If the user losses their email / password, they will not be able to recover it. I am deciding not to include this feature, as this version of Corum is only a prototype, and the creation of this feature is not essential, and it would take quite a lot of time to get working.
+
+#### Creation of new sub-forums
+Unless I have time near the end of the project, I will not be implementing the ability to add new sub forums. This can still be done manually by the owner of the site, so it is not an essential feature to implement just yet.
+
+#### Responsive CSS 
+Having responsive CSS would mean that the site would look good on both desktop and mobile devices. As mentioned, this is just a prototype version of the site, and as it is only a visual problem, it would be unwise to spend a lot of time making it look good on mobile devices.
 
 ### Hardware and Software Requirements
 In the following subsections, I will explain both how to host and view the site. 
@@ -421,9 +379,6 @@ Graphcool is a BaaS (Backend as a service) that combines 'serverless' (A service
 
 This will allow me to easily develop the client side of the application without needing to worry about the implementation details of the GraphQL backend that it fetches data from. 
 Graphcool is a free to use service for small sites, as shown [here](https://www.graph.cool/pricing/).
-
-If time permits, I will possibly move away from graphcool when the frontend of the site is complete.
-This will make the site more reusable, as someone who wants to host a Corum instance of their own, they will not have to use graphcool.
 
 ##### Libraries / Tools To Be used
 **ALL** of the code and technologies that will be used for this project are open source.
