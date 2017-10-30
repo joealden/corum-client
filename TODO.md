@@ -1,12 +1,5 @@
 # TODO
 
-## Docs
-- Do more analysis on user feedback + relate features to this
-- need more on why system is 'amenable' to computational methods, what features make it this way?
-- More on stakeholders
-  - How big an audience is there
-  - What do people use it for - research, chatting etc.
-
 ## Current Task
 Create voting functionality
 - [x] Disabled voting when user is not logged in
