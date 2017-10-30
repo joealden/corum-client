@@ -14,4 +14,4 @@ For my Computer Science coursework project, I intend to create an **open, democr
 - [Analysis](docs/1-analysis.md)
 - [Design](docs/2-design.md)
 - [Development](docs/3-development.md)
-- [Evaluation](docs/3-evaluation.md)
+- [Evaluation](docs/4-evaluation.md)
