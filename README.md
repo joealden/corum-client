@@ -15,3 +15,22 @@ For my Computer Science coursework project, I intend to create an **open, democr
 - [Design](docs/2-design.md)
 - [Development](docs/3-development.md)
 - [Evaluation](docs/4-evaluation.md)
+
+## Usage
+
+### Development
+To start the development server, run the following commands:
+
+```bash
+npm install
+npm run dev
+```
+To view the site, navigate to `http://localhost:3000` in your browser.
+
+### Production
+To start the production server, run the following commands:
+
+```bash
+npm install
+npm run deploy
+```
