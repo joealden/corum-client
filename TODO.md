@@ -21,12 +21,9 @@ Create voting functionality
   - Stored in an array of favorites
   - Create add and remove mutations
 - Move to graphcool framework
-  - Update docs to reflect service deployment
-    - Create scripts + document
-      - **`dev:offline`** (run dev server + deploy graphcool locally [docker])
-      - **`deploy:client`** (Deploy client only [NuxtJS using 'now'])
-      - **`deploy:api`** (Deploy API only [Graphcool Cloud])
-      - **`deploy`** (Run both `deploy:client` and `deploy:api`)
+  - **NOTE**: Frontend code will need to change for migration
+    - username field has been removed (Not really required, only used in greeting message in header)
+    - mutation names have changed
 - Provide error pages if a GraphQL query fails
 - Change post and post list loading state (display header, sort etc.)
 - Fix issue with font-awesome importing ALL assets (Resulting in a 444kb uncompressed file)
