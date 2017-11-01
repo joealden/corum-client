@@ -41,7 +41,7 @@ module.exports = {
   /*
     Define modules used.
     For more info, visit https://nuxtjs.org/guide/modules
-    
+
     @nuxtjs/component-cache - Component level caching
     @nuxtjs/apollo - Provides vue-apollo + apollo-client
     @nuxtjs/pwa - Adds PWA features like offline support etc.
