@@ -95,12 +95,10 @@ export default {
         // TODO: If user was on signup before, redirect to home
         this.$router.back()
       }).catch(({ message }) => {
-        alert(message)
-
         // TODO: Extract cleanedMessage functionality into a function
-        // const colonIndex = message.indexOf(':')
-        // const cleanedMessage = message.substring(colonIndex + 2, message.length)
-        // alert(`Error: ${cleanedMessage}`)
+        const colonIndex = message.lastIndexOf(':')
+        const cleanedMessage = message.substring(colonIndex + 2, message.length)
+        alert(`Error: ${cleanedMessage}`)
       })
     }
   }
