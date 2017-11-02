@@ -10,8 +10,8 @@ import {
 
 /* eslint-enable */
 
-// TODO: Move endpoint uri into a config file
-const uri = 'https://api.graph.cool/simple/v1/cj7gqa4hb0iuj0114abl8ewcs'
+// TODO: Switch from API_ENDPOINT_OLD to API_ENDPOINT
+const uri = process.env.API_ENDPOINT_OLD
 const networkInterface = createBatchingNetworkInterface({ uri })
 
 /*

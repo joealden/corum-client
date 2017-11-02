@@ -42,20 +42,21 @@ module.exports = {
     Define modules used.
     For more info, visit https://nuxtjs.org/guide/modules
 
-    @nuxtjs/component-cache - Component level caching
     @nuxtjs/apollo - Provides vue-apollo + apollo-client
-    @nuxtjs/pwa - Adds PWA features like offline support etc.
+    @nuxtjs/component-cache - Component level caching
     @nuxtjs/font-awesome - Provides icons
-    @nuxtjs/localtunnel - Exposes dev server to web over https
+    @nuxtjs/dotenv - Reads .env and merges with process.env
+    @nuxtjs/pwa - Adds PWA features like offline support etc.
 
     Documentation for the modules used here can be found at:
     https://github.com/nuxt-community/awesome-nuxt#modules
   */
   modules: [
-    '@nuxtjs/component-cache',
     '@nuxtjs/apollo',
-    '@nuxtjs/pwa',
-    '@nuxtjs/font-awesome'
+    '@nuxtjs/component-cache',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/font-awesome',
+    '@nuxtjs/pwa'
   ],
 
   // Specify the file where the apollo network interface resides
