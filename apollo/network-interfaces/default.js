@@ -4,14 +4,13 @@
 
 // ESlint is not happy about nuxt injecting deps
 import {
-	createBatchingNetworkInterface,
-	applyBatchMiddleware
+  createBatchingNetworkInterface,
+  applyBatchMiddleware
 } from 'apollo-client'
 
 /* eslint-enable */
 
-// TODO: Switch from API_ENDPOINT_OLD to API_ENDPOINT
-const uri = process.env.API_ENDPOINT_OLD
+const uri = process.env.API_ENDPOINT
 const networkInterface = createBatchingNetworkInterface({ uri })
 
 /*

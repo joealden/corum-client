@@ -63,7 +63,7 @@
 
 <script>
 import LoggedIn from '~/components/LoggedIn'
-import createUser from '~/apollo/mutations/createUser'
+import signupUser from '~/apollo/mutations/signupUser'
 
 export default {
   components: {
@@ -114,26 +114,26 @@ export default {
         visit https://github.com/Akryum/vue-apollo#mutations
       */
       this.$apollo.mutate({
-        mutation: createUser,
+        mutation: signupUser,
         variables: {
           username,
           email,
           password
         }
-      }).then(({ data: { signinUser } }) => {
-        const { id, username } = signinUser.user
-        const token = signinUser.token
-
+      }).then(({ data: { signupUser } }) => {
+        const { id, username, token } = signupUser
         this.$store.commit('saveUserData', { id, username, token })
 
         // Returns the user to the page they were on before
         // TODO: If user was on signup before, redirect to home
         this.$router.back()
       }).catch(({ message }) => {
+        alert(message)
+
         // TODO: Extract cleanedMessage functionality into a function
-        const colonIndex = message.indexOf(':')
-        const cleanedMessage = message.substring(colonIndex + 2, message.length)
-        alert(`Error: ${cleanedMessage}`)
+        // const colonIndex = message.indexOf(':')
+        // const cleanedMessage = message.substring(colonIndex + 2, message.length)
+        // alert(`Error: ${cleanedMessage}`)
       })
     }
   }
