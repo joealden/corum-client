@@ -1,9 +1,6 @@
 # TODO
 
 ## Current Task
-- Move to graphcool framework
-  - **NOTE**: Frontend code will need to change for migration
-    - username field has been removed (Not really required, only used in greeting message in header)
 - Create voting functionality
   - [x] Disabled voting when user is not logged in
   - [] Can only vote once (+1 or -1)
