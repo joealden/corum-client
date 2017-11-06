@@ -322,7 +322,7 @@ section
   background-color $primary-blue
   color white
   border-radius 0.5rem
-  height 10rem // keep vote count the same height
+  height fit-content
 
   button
     padding 1rem
