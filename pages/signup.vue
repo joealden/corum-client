@@ -108,7 +108,6 @@ export default {
   methods: {
     signup() {
       const { username, email, password } = this
-
       /*
         For more info on how mutations work within vue-apollo,
         visit https://github.com/Akryum/vue-apollo#mutations
@@ -121,7 +120,7 @@ export default {
           password
         }
       }).then(({ data: { signupUser } }) => {
-        const { id, username, token } = signupUser
+        const { id, token } = signupUser
         this.$store.commit('saveUserData', { id, username, token })
 
         // Returns the user to the page they were on before

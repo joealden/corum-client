@@ -1,11 +1,11 @@
 mutation createPost(
-  $author: String!
+  $authorId: ID!
   $title: String!
   $content: String!
   $id: ID!
 ) {
   createPost(
-    author: $author
+    authorId: $authorId
     title: $title
     content: $content
     subforumId: $id

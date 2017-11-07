@@ -1,7 +1,9 @@
 query Post($id: ID!) {
   Post(id: $id) {
     title
-    author
+    author {
+      username
+    }
     createdAt
     voteCount
     content

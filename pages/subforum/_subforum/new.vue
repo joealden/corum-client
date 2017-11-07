@@ -79,7 +79,8 @@ export default {
 
   methods: {
     submitPost() {
-      const author = this.$store.state.username
+      const authorId = this.$store.state.userId
+
       const {
         postTitle: title,
         postContent: content,
@@ -90,7 +91,7 @@ export default {
       this.$apollo.mutate({
         mutation: createPost,
         variables: {
-          author,
+          authorId,
           title,
           content,
           id

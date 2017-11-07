@@ -6,7 +6,7 @@
 </section>
 <section v-else>
   <div id="title-wrapper">
-    <div><i class="fa fa-user-circle" aria-hidden="true"/> Author: <span>{{ Post.author }}</span></div>
+    <div><i class="fa fa-user-circle" aria-hidden="true"/> Author: <span>{{ Post.author.username }}</span></div>
     <h1>{{ Post.title }}</h1>
     <div><i class="fa fa-calendar" aria-hidden="true"/> Created At: <span>{{ formattedTime }}</span></div>
   </div>
