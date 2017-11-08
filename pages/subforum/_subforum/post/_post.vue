@@ -262,7 +262,7 @@ section
   justify-content space-between
   align-items center
   border-radius 0.5rem 0.5rem 0 0
-  padding 1rem 1.5rem
+  padding 0.75rem 1.5rem
   background-color $primary-blue
   color white
   min-height 2.5rem
@@ -291,7 +291,7 @@ section
   h1
     margin 0
     padding 0 0.5rem
-    font-size 2.25rem
+    font-size 2.5rem
 
 #main-content-wrapper
   padding 1rem
