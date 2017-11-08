@@ -70,6 +70,7 @@ a
   i
     color $nav-hover
     margin-right 0.4rem
+    transition 0.15s ease-in-out
   &:hover
     background-color $nav-hover
     i

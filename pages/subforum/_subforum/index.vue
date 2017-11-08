@@ -30,7 +30,10 @@
       >
       <label for="new">Newest</label>
     </form>
-    <nuxt-link v-if="userId" :to="`/subforum/${$route.params.subforum}/new`">
+    <nuxt-link 
+      :class="userId ? 'enabled-button' : 'disabled-button'"
+      :to="`/subforum/${$route.params.subforum}/new`"
+    >
       <i class="fa fa-plus" aria-hidden="true"></i>New Post
     </nuxt-link>
   </div>
@@ -133,6 +136,7 @@ export default {
 
 <style lang="stylus" scoped>
 @require '../../../assets/styles/variables'
+@require '../../../assets/styles/buttons'
 
 section
   flex-grow 1
@@ -187,21 +191,19 @@ h1
   a
     font-size 1.2rem
     padding 0.8rem 1.1rem
-    background $primary-blue
-    color white
     border-radius 5px
     text-decoration none
     text-transform uppercase
     font-weight bold
     transition 0.15s ease-in-out
-
     i
       margin-right 0.4rem
-      color $nav-hover
-    &:hover 
+      transition 0.15s ease-in-out
+  
+  .enabled-button
+    background-color $primary-blue
+    &:hover
       background-color $nav-hover
-      i 
-        color white
 
 #row-titles
   padding 0.75rem 1.75rem
