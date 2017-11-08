@@ -176,6 +176,11 @@ form
     i
       margin-right 0.5rem
       transition 0.15s ease-in-out
+  
+  .enabled-button
+    background-color $primary-blue
+    &:hover
+      background-color $nav-hover
 
 #not-logged-in
   flex-grow 1
