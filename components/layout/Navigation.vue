@@ -22,7 +22,10 @@
         placeholder="Search..."
         spellcheck="false"
       >
-      <ul>
+      <div v-if="subforumSearch.length === 0" id="no-results">
+        No subforums matching your search were found!
+      </div>
+      <ul v-else>
         <li v-for="subforum in subforumSearch" :key="subforum.id">
           <nuxt-link :to="`/subforum/${subforum.url}`">
             {{ subforum.name }}
@@ -94,6 +97,13 @@ input[type="search"]
   font-size 1.5rem
   border none
   outline none
+
+#no-results
+  height fit-content
+  color white
+  font-size 1.25rem
+  text-align center
+  padding 1.5rem
 
 ul
   margin 0
