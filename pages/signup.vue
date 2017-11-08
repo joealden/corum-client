@@ -41,7 +41,15 @@
         onblur="this.placeholder='Confirm Password'"
       >
       <input
-        v-if="correctDetails"
+        v-if="loading"
+        type="submit" 
+        value="Please Wait..." 
+        @click.prevent
+        class="disabled-button"
+        title="Waiting for a response from the server..."
+      >
+      <input
+        v-else-if="correctDetails"
         type="submit"
         value="Sign Up"
         @click.prevent="signup"
@@ -101,12 +109,16 @@ export default {
       email: '',
       username: '',
       password1: '',
-      password2: ''
+      password2: '',
+      loading: false
     }
   },
 
   methods: {
     signup() {
+      // Renders the loading submit button
+      this.loading = true
+
       const { username, email, password } = this
       /*
         For more info on how mutations work within vue-apollo,
@@ -127,6 +139,9 @@ export default {
         // TODO: If user was on signup before, redirect to home
         this.$router.back()
       }).catch(({ message }) => {
+        // Renders the normal submit button
+        this.loading = false
+
         // TODO: Extract cleanedMessage functionality into a function
         const colonIndex = message.lastIndexOf(':')
         const cleanedMessage = message.substring(colonIndex + 2, message.length)

@@ -1,11 +1,11 @@
 <template>
 <section :id="!userId ? 'not-logged-in' : undefined">
-  <logged-in 
+  <logged-in
     v-if="userId"
     bottomText="If you want to login to a different account, please logout first."
   />
   <div v-else>
-    <img 
+    <img
       src="~/assets/images/logo-light.svg"
       alt="corum"
     >
@@ -26,14 +26,22 @@
         onfocus="this.placeholder=''" 
         onblur="this.placeholder='Password'"
       >
-      <input 
-        v-if="email !== '' && password !== ''"
+      <input
+        v-if="loading"
+        type="submit" 
+        value="Please Wait..." 
+        @click.prevent
+        class="disabled-button"
+        title="Waiting for a response from the server..."
+      >
+      <input
+        v-else-if="email !== '' && password !== ''"
         type="submit" 
         value="Login" 
         @click.prevent="login"
         class="enabled-button"
       >
-      <input 
+      <input
         v-else
         type="submit" 
         value="Login" 
@@ -69,18 +77,21 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      loading: false
     }
   },
 
   methods: {
     login() {
+      // Renders the loading submit button
+      this.loading = true
+
       /*
         For more info on how mutations work within vue-apollo,
         visit https://github.com/Akryum/vue-apollo#mutations
       */
       const { email, password } = this
-
       this.$apollo.mutate({
         mutation: authenticateUser,
         variables: {
@@ -95,6 +106,9 @@ export default {
         // TODO: If user was on signup before, redirect to home
         this.$router.back()
       }).catch(({ message }) => {
+        // Renders the normal submit button
+        this.loading = false
+
         // TODO: Extract cleanedMessage functionality into a function
         const colonIndex = message.lastIndexOf(':')
         const cleanedMessage = message.substring(colonIndex + 2, message.length)
