@@ -305,9 +305,19 @@ When the user switches between the two sort types, the query will be resent to t
 This means that graphcool abstracts away the sorting functionality, meaning that I don't have to implement it myself.
 
 #### Post Page ([`'/subforum/:subforum/post/:post'`](#post-view-logged-in))
+
+##### Client Side
+placeholder
+
+##### Server Side
 placeholder
 
 #### New Post Page ([`'/subforum/:subforum/new'`](#new-post))
+
+##### Client Side
+placeholder
+
+##### Server Side
 placeholder
 
 ### Test Plan
