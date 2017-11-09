@@ -3,26 +3,39 @@
 ## Table of Contents
 - [GUI Design](#gui-design)
 - [Component Design](#component-design)
+  - [Logo](#logo)
+  - [Header](#header)
+  - [Navigation](#navigation)
+  - [Main Content](#main-content)
+- [API Design](#api-design)
 - [Route Design](#route-design)
+  - [Route Summary](#route-summary)
+  - [Home Page](#home-page)
+  - [Login Page](#login-page-login)
+  - [Signup Page](#signup-page-signup)
+  - [Subforum Page](#subforum-page-subforumsubforum)
+  - [Post Page](#post-page-subforumsubforumpostpost)
+  - [New Post Page](#new-post-page-subforumsubforumnew)
+- [Test Plan](#test-plan)
 
 ### GUI Design
-#### Sub-forum not selected (Logged in)
+#### Sub-forum not selected (Logged in) UI
 ![Sub-forum not selected](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sub-forum-not-selected.jpg) 
 
-#### Sub-forum selected (Not logged in)
+#### Sub-forum selected (Not logged in) UI
 ![Sub-forum selected](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sub-forum-selected.jpg)
 
 
-#### Post view (Logged In)
+#### Post view (Logged In) UI
 ![Post view](https://raw.githubusercontent.com/joealden/corum/master/docs/images/post-view.jpg)
 
-#### New post
+#### New Post UI
 ![New post](https://raw.githubusercontent.com/joealden/corum/master/docs/images/new-post.jpg)
 
-#### Login Page
+#### Login Page UI
 ![Login Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/login.jpg)
 
-#### Sign-up Page
+#### Sign-up Page UI
 ![Sign-up Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sign-up.jpg)
 
 ### Component Design
@@ -68,7 +81,7 @@ Whatever action a user takes, such as clicking on a sub-forum, pressing the `Sig
 #### Social Links + Footer
 _These two components have since been removed from the sites design, as I thought it didn't have much of a benefit to the user._
 
-### API Summary (The Server [GraphQL/Graphcool])
+### API Design
 As I have discussed in the analysis section of this report, I will be using something called GraphQL to develop the API of Corum.
 If you haven't heard of GraphQL before, it very simple terms, it is a more flexible alternative to REST style APIs.
 
@@ -106,8 +119,7 @@ As quoted from Wikipedia's article on SPAs:
 
 If you would like to find out more information about Vue, visit the documentation at the following link. ([vuejs.org](https://vuejs.org/))
 
-#### Route Summary (The Client)
-
+#### Route Summary
 Here is a brief summary of what all of the different routes will do.
 - [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
 - [`'/login'`](#login-page) - Displays a login screen (Username + password)
