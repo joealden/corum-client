@@ -121,18 +121,18 @@ If you would like to find out more information about Vue, visit the documentatio
 
 #### Route Summary
 Here is a brief summary of what all of the different routes will do.
-- [`'/'`](#sub-forum-not-selected-logged-in) - Displays a message to the user to select a sub-forum from the navigation.
-- [`'/login'`](#login-page) - Displays a login screen (Username + password)
-- [`'/signup'`](#sign-up-page) - Displays a sign up screen (Username + password + password)
-- [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
-- [`'/subforum/:subforum/post/:post'`](#post-view-logged-in) - Displays the post selected. (Using the `:post` variable)
-- [`'/subforum/:subforum/new'`](#new-post) - Displays the new post entry fields.
+- [`'/'`](#sub-forum-not-selected-logged-in-ui) - Displays a message to the user to select a sub-forum from the navigation.
+- [`'/login'`](#login-page-ui) - Displays a login screen (Username + password)
+- [`'/signup'`](#sign-up-page-ui) - Displays a sign up screen (Username + password + password)
+- [`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in-ui) - Displays the posts from the selected sub-forum. (Using the `:subforum` variable)
+- [`'/subforum/:subforum/post/:post'`](#post-view-logged-in-ui) - Displays the post selected. (Using the `:post` variable)
+- [`'/subforum/:subforum/new'`](#new-post-ui) - Displays the new post entry fields.
 
 The following sections will describe each of these routes in more detail.
 Most of the following sections will contains subsections about the design of the client and the design of the server/backend. (API)
 If they do not have these subsections, it will because all of the information is about the client, as no server side processing is required.
 
-#### Home Page ([`'/'`](#sub-forum-not-selected-logged-in))
+#### Home Page ([`'/'`](#sub-forum-not-selected-logged-in-ui))
 This is the page that the user sees when they first visit the site. (At the path `'/'`)
 To start with, this page will only display a message to the user telling them to take some kind of action (Choose a subforum, login, signup etc.)
 
@@ -142,7 +142,7 @@ If the user _is not_ logged in, then this page will contain helpful information 
 If the user _is_ logged in, then this page will be like any other sub-forum page, but it will instead the users favorite subforums combined into one page.
 One consideration would be to make sure that if the user does not have an subforums in their favorites, it tells the user just that.
 
-#### Login Page ([`'/login'`](#login-page))
+#### Login Page ([`'/login'`](#login-page-ui))
 
 ##### Client Side
 This is the page that the user will see when they visit the path `'/login'`.
@@ -214,7 +214,7 @@ To find out more about JWTs, visit the following link. ([jwt.io](https://jwt.io/
 
 Some of this will only make complete sense after reading through how Corum will create the users in the first place. This is described in the section below.
 
-#### Signup Page ([`'/signup'`](#sign-up-page))
+#### Signup Page ([`'/signup'`](#sign-up-page-ui))
 
 ##### Client Side
 While the 'Login Page' section describes how the system will log the user into the site, it doesn't say how users can create accounts.
@@ -266,7 +266,7 @@ Here is the algorithm for the `signupUser` resolver:
     - This User type contains the email address, username and hashed password, as well things like the users generated ID.
 - Now we can return the user the data that they requested.
 
-#### Subforum Page ([`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in))
+#### Subforum Page ([`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in-ui))
 
 ##### Client Side
 Like any other page, there are two ways to access this page.
@@ -316,7 +316,7 @@ By default, the sort will be by vote count ('voteCount_DESC').
 When the user switches between the two sort types, the query will be resent to the server with the different enum value.
 This means that graphcool abstracts away the sorting functionality, meaning that I don't have to implement it myself.
 
-#### Post Page ([`'/subforum/:subforum/post/:post'`](#post-view-logged-in))
+#### Post Page ([`'/subforum/:subforum/post/:post'`](#post-view-logged-in-ui))
 
 ##### Client Side
 placeholder
@@ -324,7 +324,7 @@ placeholder
 ##### Server Side
 placeholder
 
-#### New Post Page ([`'/subforum/:subforum/new'`](#new-post))
+#### New Post Page ([`'/subforum/:subforum/new'`](#new-post-ui))
 
 ##### Client Side
 placeholder
