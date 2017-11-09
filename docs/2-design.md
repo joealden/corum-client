@@ -10,7 +10,7 @@
 - [API Design](#api-design)
 - [Route Design](#route-design)
   - [Route Summary](#route-summary)
-  - [Home Page](#home-page)
+  - [Home Page](#home-page-)
   - [Login Page](#login-page-login)
   - [Signup Page](#signup-page-signup)
   - [Subforum Page](#subforum-page-subforumsubforum)
@@ -214,7 +214,7 @@ To find out more about JWTs, visit the following link. ([jwt.io](https://jwt.io/
 
 Some of this will only make complete sense after reading through how Corum will create the users in the first place. This is described in the section below.
 
-#### Sign Up Page ([`'/signup'`](#sign-up-page))
+#### Signup Page ([`'/signup'`](#sign-up-page))
 
 ##### Client Side
 While the 'Login Page' section describes how the system will log the user into the site, it doesn't say how users can create accounts.
