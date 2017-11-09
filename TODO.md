@@ -2,6 +2,9 @@
 
 # Docs
 - Add section in computational methods about hashing and salting the passwords before storage on the server
+- Redo UI design mockups to more accurately reflect the current state of the site
+- Go into more details about why I have used Vue and what problems it solves (modularity)
+- Simplify algorithms into diagrams / pseudocode
 
 ## Current Task
 - Create voting functionality
