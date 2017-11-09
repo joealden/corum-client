@@ -71,6 +71,14 @@ _These two components have since been removed from the sites design, as I though
 ### API Summary (The Server [GraphQL/Graphcool])
 As I have discussed in the analysis section of this report, I will be using something called GraphQL to develop the API of Corum.
 If you haven't heard of GraphQL before, it very simple terms, it is a more flexible alternative to REST style APIs.
+
+Some of the reasons I am using GraphQL to develop my API over REST are:
+- It allows the server to define what data the client can access, and then the client can choose the information it wants
+  - This is unlike REST APIs, as they usually define API endpoints that are for 1 client (For example, the mobile site only)
+- The way GraphQL is designed allows for a large tooling eco-system to be built around it
+  - For example, I will be using a GraphQL Client library called Apollo that does things like caching and fetching automatically
+- It is easier for the server to add and remove data that clients can access without breaking existing client that depend on it 
+
 If you would like to find out more about GraphQL, I recommend the following site as a good resource to get started. ([howtographql.com](https://www.howtographql.com/))
 
 To more quickly develop a production standard GraphQL API, I will be using a framework called Graphcool.
@@ -95,6 +103,8 @@ Server side routing means loading entire new pages from a server, instead of dyn
 
 As quoted from Wikipedia's article on SPAs:
 > This approach avoids interruption of the user experience between successive pages, making the application behave more like a desktop application.
+
+If you would like to find out more information about Vue, visit the documentation at the following link. ([vuejs.org](https://vuejs.org/))
 
 #### Route Summary (The Client)
 
@@ -132,10 +142,12 @@ For the user to login, they must have first created an account. (Which is done t
 
 The login form will contain the following:
 - The Corum logo
-- An email address text field
-- A password text field
+- An email address field
+- A password field
 - A login button
 - A message and link directing the user to the `signup` page if they do not already have an account.
+
+The login button will only be enabled (clickable) if both an email address and a password are supplied.
 
 If the user successfully logs in, they will be redirected back to the page they were previously on before visiting the login page.
 If the user have an unsuccessful login attempt, then the error returned by the GraphQL API will be displayed to the user.
@@ -191,10 +203,106 @@ To find out more about JWTs, visit the following link. ([jwt.io](https://jwt.io/
 Some of this will only make complete sense after reading through how Corum will create the users in the first place. This is described in the section below.
 
 #### Sign Up Page ([`'/signup'`](#sign-up-page))
-placeholder
+
+##### Client Side
+While the 'Login Page' section describes how the system will log the user into the site, it doesn't say how users can create accounts.
+This will be done through the signup page.
+Just like the login page, this page will be accessible either by clicking on the `signup` button in the header, or from the url bar. (At the path `'/signup'`)
+Also like the login page, the user will not be able to visit the signup page if they are already logged in.
+
+The signup form will contain the following:
+- The Corum logo
+- An email address field
+- A username field
+- A password field
+- Another password field to verify that the user has type in their password correctly (Verification will be needed to check that they are the same)
+- A signup button
+- A message and link directing the user to the `login` page if they already have an account.
+
+The signup button will only be enabled (clickable) if an email address has been entered, both password fields have data in and they match.
+
+If the user successfully creates an account,
+(If there are no errors with the data they entered, for example, an error would be an incorrect email or a user with the same email already exists)
+then not only will the account have been created, they will also be logged into the site with the data that they entered in the signup form.
+This means that the same state changes occur as mentioned in the 'Login Page' section. (Ability to create posts, comments etc.)
+
+##### Server Side
+As mentioned in the 'Login Page' section, the graphcool framework doesn't provide a user authentication system.
+Please read the 'Login Page' section for more context of this subsection. (For information about resolvers etc.)
+
+As well as the `authenticateUser` mutation that is created for the `login` page, there will need to be a `signupUser` mutation to create an account.
+
+Here is the algorithm for the `signupUser` resolver:
+- Expose a GraphQL mutation called `signupUser`
+- This mutation will have the following inputs and outputs:
+  - Inputs:
+    - `email` -> type String (The email address associated with the account that will be used to login in the future)
+    - `username` -> type String (The username of the user that will be displayed to other users in things such as posts and comments)
+    - `password` -> type String (The password that will be hashed and stored, then checked against when the user logs in in the future)
+  - Outputs:
+    - `id` -> type ID (ids are generated by graphcool and are unique, this ID is used in Corum to determine the state of the UI)
+    - `token` -> type String (A JWT (JSON Web Token) that will be stored to be later used to authenticate the user when making requests such as to create a new post. For more information about JWTs, look at the 'Login Page' section)
+- It will first verify for that the email address is valid (using the library `validator`)
+  - If it is not a valid email, return an error to the user that the email is invalid
+- Now that the email address is valid, we must check if a user has already registered with the same email address
+  - If an account already uses this email address, return an error to the user that the email address is already in use.
+- Now that the email address is valid, we must also check if a user has already registered with the same username
+  - If an account already uses this username, return an error to the user that the username is already in use.
+- Now that we know a user with either the same email address or username doesn't exist, we can start creating the account.
+  - First, we need to hash and salt the password before storing it, as storing password in plain text isn't a good idea.
+  - Next, the user details actually need to be stored on the server, so a new User type is created.
+    - This User type contains the email address, username and hashed password, as well things like the users generated ID.
+- Now we can return the user the data that they requested.
 
 #### Subforum Page ([`'/subforum/:subforum'`](#sub-forum-selected-not-logged-in))
-placeholder
+
+##### Client Side
+Like any other page, there are two ways to access this page.
+The first way is to navigate to it via the navigation on the left of the site.
+The second way is for the user to enter the url of a subforum the already know exists (For example, `'/subforum/test'`)
+
+The way the client knows what subforum to fetch data for is by the path variable `:subforum` that is in the url.
+This value can be accessed from within the JavaScript of the page.
+
+This page will show the posts that have been posted in the subforum.
+A visual representation of the following information can also be found in the 'UI Design' section.
+
+This is what a subforum page will contain:
+- The title of the subforum
+- A way to sort the posts (Two radio buttons):
+  - Sort by most popular posts
+  - Sort by newest posts
+- A `New Post` button that will link to `'/subforum/:subforum/new'`
+- Headers for each piece of data of a post:
+  - The posts title
+  - The time and date it was created at
+  - The current vote count of the post
+- A list containing the posts associated with the current subforum with the data specified by the headers above
+- Each post will be a linked to `'/subforum/:subforum/post/:post'`
+
+The `New Post` button will only be enabled (clickable) if the user is logged in, otherwise, it will be greyed out.
+This is because a user should only be allowed to create a post if they are logged in.
+
+##### Server Side
+As mentioned before, the GraphQL API exposes automatically generated queries and mutations to perform CRUD operations.
+One of these exposed queries is called `allPosts`.
+If I provide no parameters to the query, it will return every post that exists on the whole site.
+
+Two parameters that will be used to fetch the posts for a specific subforums will be the following:
+- `filter`
+  - This expects an data type of 'Subforum'
+  - The way I will be filtering the data is by the 'url' field on the 'Subforum' type.
+  - This means that only the data that was posted on the subforum will be returned
+- `orderBy`
+  - This an enum called 'PostOrderBy'
+  - This enum has values to sort by both descending ('DESC') and ascending ('ASC') of each field of 'Post'
+  - The enum values that we are interested in are 'voteCount_DESC' and 'createdAt_DESC'
+
+The client will pass the path variable mentioned above (`:subforum`) as the value for `filter`.
+
+By default, the sort will be by vote count ('voteCount_DESC').
+When the user switches between the two sort types, the query will be resent to the server with the different enum value.
+This means that graphcool abstracts away the sorting functionality, meaning that I don't have to implement it myself.
 
 #### Post Page ([`'/subforum/:subforum/post/:post'`](#post-view-logged-in))
 placeholder
@@ -203,6 +311,7 @@ placeholder
 placeholder
 
 ### Test Plan
+TODO:
 - Describe the steps taken to test that the site is in working condition
 - Talk about how ESLint helps to catch bugs before runtime
-- Talk about how unit + integration + e2e testing will automate the test plan described above when implemented
+- Talk about how unit + integration + e2e (end to end) testing will automate the test plan described above when implemented
