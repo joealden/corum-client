@@ -1,5 +1,8 @@
 # TODO
 
+# Docs
+- Add section in computational methods about hashing and salting the passwords before storage on the server
+
 ## Current Task
 - Create voting functionality
   - [x] Disabled voting when user is not logged in
