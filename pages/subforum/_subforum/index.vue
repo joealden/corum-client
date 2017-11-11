@@ -32,6 +32,7 @@
     </form>
     <nuxt-link 
       :class="userId ? 'enabled-button' : 'disabled-button'"
+      :title="userId ? '' : 'Please login to create posts'"
       :to="`/subforum/${$route.params.subforum}/new`"
     >
       <i class="fa fa-plus" aria-hidden="true"></i>New Post
