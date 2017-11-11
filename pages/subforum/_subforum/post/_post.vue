@@ -275,7 +275,7 @@ section
     font-weight bold
 
     // Hack to get post title centered
-    width 25%
+    width 25rem
     &:first-child
       text-align left
     &:last-child
