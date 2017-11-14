@@ -120,6 +120,7 @@ Also:
 - Field types such as `String` can be followed by an `!` (`String!`) to show that a field is required
 - Arrays are specified by surrounding a type with `[]`. For example, an array of strings would be specified by `[String]`
 
+
 > Additional information can be provided as custom directives.
 
 For example, I could:
