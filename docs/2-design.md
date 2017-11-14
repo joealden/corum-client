@@ -520,10 +520,61 @@ These are the following types of tests I will write:
 The following subsections will describe what each of these types of test are, and examples of where they could be used.
 
 #### Unit Tests
-placeholder
+Unit testing is where individual parts (units) of a program are tested in isolation.
+For example, a single function or a single class method could be considered a unit, and tested on its own.
+Sometimes, to test a unit in a predictable way, its inputs and outputs (IO) may need to be whats called 'mocked' (faked).
+
+Examples of mocking include the following:
+- File system reads and writes
+- Database reads and writes
+- Network interactions
+
+All of the above examples could fail and cause an error without the unit in question being at fault.
+
+For example:
+- The OS might prevent a file from being written to or read from because its permissions have been changed or the file is locked by another program
+- Database reads and writes require a database to be running, and for it to be consistent, it needs to be in the same state for every test
+- The network connection may be disconnected, or it may be really slow, these factors could both effect the outcome of a test
+
+It is evident from the examples above that mocking is about keeping uncontrollable / unpredictable state predictable and consistent.
+
+##### Advantages
+- Relatively easy and quick to write
+- Quick to run
+- Allows safer refactors
+- Simplifies writing integration tests
+
+##### Disadvantages
+- Does not necessarily represent how the program will act in the real world
+- Can be difficult to draw the line of what to test and what not to test (Should simple units be left out of code coverage?)
+
+##### Example
+An easy unit test to write would be the validation that happens on certain pages.
+
+For example, the signup page will have a validation function to check the following:
+- An email address has been entered
+- A username has been entered
+- The first password field has been entered
+- The second password field has been entered
+- The first and second password fields match
+
+The function would expect the following inputs:
+- Email address
+- Username
+- Password 1
+- Password 2
+
+The function would return the following output:
+- boolean true if all is valid
+- boolean false if something is not valid
+
+In this case, I could test for the following:
+- Call the function with inputs that should work and test that true is returned.
+- Call the function with inputs that shouldn't work and test that false is returned.
+- Call the function with edge case inputs such as a password containing only spaces.
 
 #### Integration Tests
 placeholder
 
-#### Unit Tests
+#### End to End Tests
 placeholder
