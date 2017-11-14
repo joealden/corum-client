@@ -133,8 +133,10 @@ For example, I could:
 
 To find out more information about GraphQL schemas, visit [graph.cool](https://www.graph.cool/docs/reference/database/data-modelling-eiroozae8u/) and search the documentation for the section on 'Data Modelling'
 
-##### The Schema for Corum
-**NOTE: This is subject to change**
+**The Schema for Corum**
+
+NOTE: This is subject to change
+
 ```graphql
 type User @model {
   id: ID! @isUnique
