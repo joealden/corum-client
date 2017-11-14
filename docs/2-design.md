@@ -106,6 +106,70 @@ For example, I will extend graphcool to do things such as create and authorize u
 
 For more information about graphcool, visit there website here. ([graph.cool](https://www.graph.cool/))
 
+#### API Schema (Data Structures)
+In GraphQL, similar to to SQL databases, the API has a schema.
+This schema is defined in the GraphQL SDL. (Schema Definition Language)
+This allows me to declaratively define the structure of my data.
+
+As quoted from graphcool's website:
+
+> The main components of a Schema Definition are the types and their fields.
+
+For example, the `Post` type will have a field such a `title`, that will be of type `String`.
+Also:
+- Field types such as `String` can be followed by an `!` (`String!`) to show that a field is required
+- Arrays are specified by surrounding a type with `[]`. For example, an array of strings would be specified by `[String]`
+
+> Additional information can be provided as custom directives.
+
+For example, I could:
+- Specify default values for a field using the `@default` directive
+- Specify that a field must be unique to all other data of the same type using the `@isUnique` directive
+- Tell graphcool to generated the CRUD API for this type using the `@model` directive
+- Tell graphcool that there is a relation between two field of different type (Like relations in SQL) with the `@relation` directive
+  - These can be `1-1`, `1-n`, or `n-n` relations
+  - In my data, I will only be needing `1-1` and `1-n` mappings
+
+To find out more information about GraphQL schemas, visit [graph.cool](https://www.graph.cool/docs/reference/database/data-modelling-eiroozae8u/) and search the documentation for the section on 'Data Modelling'
+
+##### The Schema for Corum
+```graphql
+type User @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  username: String! @isUnique
+  email: String! @isUnique
+  password: String!
+  posts: [Post!]! @relation(name: "UserToPost")
+}
+
+type Subforum @model {
+  id: ID! @isUnique
+  url: String! @isUnique
+  name: String!
+  posts: [Post!]! @relation(name: "SubforumToPost")
+}
+
+type Post @model {
+  id: ID! @isUnique
+  subforum: Subforum! @relation(name: "SubforumToPost")
+  title: String!
+  author: User! @relation(name: "UserToPost")
+  content: String!
+  voteCount: Int
+  createdAt: DateTime!
+  comments: [Comment!]! @relation(name: "PostToComment")
+}
+
+type Comment @model {
+  id: ID! @isUnique
+  post: Post! @relation(name: "PostToComment")
+  author: String!
+  content: String!
+}
+```
+
 ### Route Design
 As Corum is a website, accessing different parts of the application is done by routing (For example, clicking on links or altering the contents of the URL bar)
 As mentioned before, I am using Vue as my view layer library.
@@ -319,10 +383,47 @@ This means that graphcool abstracts away the sorting functionality, meaning that
 #### Post Page ([`'/subforum/:subforum/post/:post'`](#post-view-logged-in-ui))
 
 ##### Client Side
-placeholder
+Other than from the url bar of the browser, the user can access a post by following a link provided on the subforum page.
+
+As shown by this pages route, it has two path variables, `:subforum` and `:post`.
+The client will use these variables to construct a GraphQL query that will be sent to Corum's API.
+It is important to note that a post may only belong to a single subforum.
+
+This is what the post page will contain:
+- The post title
+- The username of the post's author
+- The time the post was created at (In the format `HH:mm - DD/MM/YY`)
+  - `H` = Hours
+  - `m` = Minutes
+  - `D` = Day
+  - `M` = Month
+  - `Y` = Year
+- The main body / the content of the post
+- The current vote status of the post. The number will be:
+  - Green when the vote is positive (>= 1)
+  - Red when the vote is negative (<= -1)
+  - White when the vote is neutral (0)
+- An upvote and a downvote button
+- A comment section that will contain:
+  - A title of 'comments' with a count of the current amount of comments
+  - A list of comments. Each comment will contain:
+    - The content of the comment
+    - The author of the comment
+- A 'New Comment' section that will contain:
+  - A text area to entered the content of the new comment
+    - This will need to be validated so it cannot be empty, and possibly not too long
+  - A 'Post Comment' button that will submit the comment
+
+If the user is not logged in, the following will happen to the page:
+- The upvote and downvote button will be greyed out as only logged in users can vote
+- The 'New Comment' section will be completely removed, as only logged in users can post comments
 
 ##### Server Side
-placeholder
+The CRUD API exposed by graphcool exposes a way to retrieve a single item of data by passing a parameter that identifies an item of data to be unique.
+For the post page, we will want to retrieve a single item of data of type `Post`, a single post.
+The only field on the Post type that can be used to uniquely identify a post is the `id` field.
+This is easy enough to retrieve as the posts id is the path variable `:post`.
+From having the post's id, the user can now retrieve all of the data needed to view a post.
 
 #### New Post Page ([`'/subforum/:subforum/new'`](#new-post-ui))
 
