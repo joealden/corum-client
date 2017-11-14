@@ -8,6 +8,7 @@
   - [Navigation](#navigation)
   - [Main Content](#main-content)
 - [API Design](#api-design)
+  - [API Schema (Data Structures)](#api-schema-data-structures)
 - [Route Design](#route-design)
   - [Route Summary](#route-summary)
   - [Home Page](#home-page-)
@@ -16,7 +17,12 @@
   - [Subforum Page](#subforum-page-subforumsubforum)
   - [Post Page](#post-page-subforumsubforumpostpost)
   - [New Post Page](#new-post-page-subforumsubforumnew)
-- [Test Plan](#test-plan)
+- [Testing](#testing)
+  - [Linter](#linter)
+  - [Test Plan](#test-plan)
+  - [Unit Testing](#unit-testing)
+  - [Integration Testing](#integration-testing)
+  - [End To End Testing](#end-to-end-testing)
 
 ### GUI Design
 #### Sub-forum not selected (Logged in) UI
@@ -519,7 +525,7 @@ These are the following types of tests I will write:
 
 The following subsections will describe what each of these types of test are, and examples of where they could be used.
 
-#### Unit Tests
+#### Unit Testing
 Unit testing is where individual parts (units) of a program are tested in isolation.
 For example, a single function or a single class method could be considered a unit, and tested on its own.
 Sometimes, to test a unit in a predictable way, its inputs and outputs (IO) may need to be whats called 'mocked' (faked).
@@ -573,8 +579,8 @@ In this case, I could test for the following:
 - Call the function with inputs that shouldn't work and test that false is returned.
 - Call the function with edge case inputs such as a password containing only spaces.
 
-#### Integration Tests
+#### Integration Testing
 placeholder
 
-#### End to End Tests
+#### End to End Testing
 placeholder
