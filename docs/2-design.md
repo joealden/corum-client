@@ -26,29 +26,29 @@
 
 ### GUI Design
 #### Sub-forum not selected (Logged in) UI
-![Sub-forum not selected](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sub-forum-not-selected.jpg) 
+![Sub-forum not selected](images/sub-forum-not-selected.jpg) 
 
 #### Sub-forum selected (Not logged in) UI
-![Sub-forum selected](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sub-forum-selected.jpg)
+![Sub-forum selected](images/sub-forum-selected.jpg)
 
 
 #### Post view (Logged In) UI
-![Post view](https://raw.githubusercontent.com/joealden/corum/master/docs/images/post-view.jpg)
+![Post view](images/post-view.jpg)
 
 #### New Post UI
-![New post](https://raw.githubusercontent.com/joealden/corum/master/docs/images/new-post.jpg)
+![New post](images/new-post.jpg)
 
 #### Login Page UI
-![Login Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/login.jpg)
+![Login Page](images/login.jpg)
 
 #### Sign-up Page UI
-![Sign-up Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/sign-up.jpg)
+![Sign-up Page](images/sign-up.jpg)
 
 ### Component Design
 As I am using [Vue](http://vuejs.org) to build my UI, I can think of the site being composed of individual components with isolated responsibilities. 
 Here I will define what each of these main component's roles are, and what they will render when.
 
-![Component Design](https://raw.githubusercontent.com/joealden/corum/master/docs/images/component-design.jpg)
+![Component Design](images/component-design.jpg)
 
 #### Logo
 This component will have the sole responsibility to render Corum's logo in the top left of the page along side the header component. 
@@ -141,8 +141,6 @@ To find out more information about GraphQL schemas, visit [graph.cool](https://w
 
 **The Schema for Corum**
 
-NOTE: This is subject to change
-
 ```graphql
 type User @model {
   id: ID! @isUnique
@@ -179,6 +177,10 @@ type Comment @model {
   content: String!
 }
 ```
+
+Here is a graphical representation of the schema above:
+
+![Graph View of API Schema](images/api-schema-graph-view.jpg)
 
 ### Route Design
 As Corum is a website, accessing different parts of the application is done by routing (For example, clicking on links or altering the contents of the URL bar)
