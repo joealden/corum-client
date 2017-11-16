@@ -159,7 +159,7 @@ The group will contains people of a wide age range, to most accurately represent
 ### Research into Existing Systems
 #### [Reddit](https://reddit.com) (Proprietary [as of September 2017](#being-open))
 
-![Reddit Front Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/reddit.png)
+![Reddit Front Page](images/reddit.png)
 
 **Reddit** is a very popular forum site that is home to a wide range of topics, where people can post links to other websites, or just have discussions actually on the site. 
 Users can up-vote or down-vote posts if they like or dislike them. 
@@ -175,7 +175,7 @@ Corum will strive to be a simpler version of Reddit.
 
 #### [Hacker News](https://news.ycombinator.com/) (Proprietary)
 
-![Hacker News Front Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/hackernews.png)
+![Hacker News Front Page](images/hackernews.png)
 
 **Hacker News** is a similar site to Reddit, however it is a lot simpler.
 There are no sub-forums, as it is a site dedicated only for computer science related topics such as programming.
@@ -185,7 +185,7 @@ I believe that there is space in the forum software landscape for a site that is
 
 #### [phpBB](https://www.phpbb.com/) (Open source)
 
-![Solus' Forum Front Page](https://raw.githubusercontent.com/joealden/corum/master/docs/images/solusforum.png)
+![Solus' Forum Front Page](images/solusforum.png)
 
 **phpBB** has different goals than Corum, Reddit and Hacker News. 
 Instead of being designed to run from one website, it is designed to be used by anyone who wants to setup their own forum.
