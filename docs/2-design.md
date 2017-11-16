@@ -647,3 +647,7 @@ If the details are correct:
 - The server sends back the data the client requested
 - The client stores the the data sent back from the server
 - The UI updates to reflect this change (Now in a logged in state)
+
+#### Software and Libraries to be used for testing
+- [Jest (For unit and integration testing)](https://facebook.github.io/jest/)
+- [Cypress (For e2e testing)](https://www.cypress.io/)
