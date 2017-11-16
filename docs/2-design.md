@@ -180,7 +180,7 @@ type Comment @model {
 
 Here is a graphical representation of the schema above:
 
-![Graph View of API Schema](images/api-schema-graph-view.jpg)
+![Graph View of API Schema](images/api-schema-graph-view.png)
 
 ### Route Design
 As Corum is a website, accessing different parts of the application is done by routing (For example, clicking on links or altering the contents of the URL bar)
