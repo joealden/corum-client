@@ -580,7 +580,68 @@ In this case, I could test for the following:
 - Call the function with edge case inputs such as a password containing only spaces.
 
 #### Integration Testing
-placeholder
+While unit testing is testing in isolation, integration testing is testing that units work together.
+This type of testing is usually done after unit testing.
+The reason for this is that it is easier to narrow down bugs as they happen if the unit tests are known to pass.
+
+##### Advantages
+- They can find issues with a system that unit tests alone cannot
+- The test cases are closer to how the code is actually executed in production
+
+##### Disadvantages
+- Writing them properly is harder than writing unit tests
+
+##### Example
+An example of a possible integration for Corum would be testing that the UI state is correct depending on the logged in state.
+
+These are couple of things that are supposed to happen when a user is logged in:
+- The header should display the username of the user that is logged in, and a logout button
+- A 'favorites' section should be visible in the navigation along with the 'All Subforums' section
+
+In this example, these are the steps that would have to happen in this integration test:
+- The global state store would have to be queried in order to test that a user is logged in
+- The UI would have to be checked that it is in the correct state depending on what is currently in the store
+
+As evident from above, this tests requires that multiple units are working together to provide the correct output. 
 
 #### End to End Testing
-placeholder
+As suggested by the name, end to end testing (e2e) is where a complete user story is tested.
+
+In the case of a website, the following would be considered e2e testing:
+A button is pressed, which sends a message to the server, and the server responses with another message.
+
+In this example, the following sub-systems are tested
+- The user interface
+- The client side logic
+- The server side logic
+
+The following could also be tested depending on the test:
+- A database action, such as reading or writing
+- The server querying another server and getting the correct response
+
+By testing all of these sub-systems, these tests ensure that when the code is put into production, it will work as intended.
+Also, it is important to note that e2e tests can be made up of 1 or more integration tests.
+
+##### Advantages
+- Tests an entire user story, which means that it is as close to what the user will experience as possible
+
+##### Disadvantages
+- Writing them properly is even harder than writing good integration tests
+
+##### Example
+An example of a possible e2e test for Corum would be testing the entire user login flow.
+
+This is what is suppose to happen when the user goes to login:
+- The user visits the login page at `'/login'`
+- They fill out both the email and password field
+- The client sends a message to the API server requesting to authenticate them
+
+If the details are not correct:
+- The server sends an error response to the client
+- The client displays the error message to the user
+- The client allows the user to try again
+
+If the details are correct:
+- The server sends back the data the client requested
+- The client stores the the data sent back from the server
+- The UI updates to reflect this change (Now in a logged in state)
