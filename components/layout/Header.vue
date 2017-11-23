@@ -49,11 +49,13 @@ header
 #logged-in
   display flex
   align-items center
+
   p
     font-size 1.5rem
     margin 0
     margin-right 1.5rem
-    span 
+
+    span
       color $nav-hover
 
 a
@@ -67,18 +69,22 @@ a
   font-weight bold
   transition 0.15s ease-in-out
   margin-right 1.5rem
+
   i
     color $nav-hover
     margin-right 0.4rem
     transition 0.15s ease-in-out
+
   &:hover
     background-color $nav-hover
+
     i
       color white
 
 .nuxt-link-active
   background-color $nav-hover
   color white
+
   i
     color white
 </style>

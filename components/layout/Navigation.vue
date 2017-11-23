@@ -49,11 +49,9 @@ export default {
     subforumSearch() {
       const caseInsensitiveInput = this.search.toLowerCase()
 
-      return this.allSubforums.filter(subforum => (
-        subforum.name
-          .toLowerCase()
-          .includes(caseInsensitiveInput)
-      ))
+      return this.allSubforums.filter(subforum =>
+        subforum.name.toLowerCase().includes(caseInsensitiveInput)
+      )
     },
 
     userId() {
@@ -91,7 +89,7 @@ h1
   color white
   text-transform uppercase
 
-input[type="search"]
+input[type='search']
   width 100%
   padding 0.6rem 1.5rem
   font-size 1.5rem
@@ -112,6 +110,7 @@ ul
 li
   list-style none
   margin 0
+
   a
     font-size 1.3rem
     display block
@@ -120,8 +119,7 @@ li
     font-weight bold
     outline none
 
-    &:hover
-    &:focus
+    &:hover, &:focus
       background-color $hover-blue
       color white
       padding-left 1.1rem

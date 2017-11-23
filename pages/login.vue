@@ -92,28 +92,34 @@ export default {
         visit https://github.com/Akryum/vue-apollo#mutations
       */
       const { email, password } = this
-      this.$apollo.mutate({
-        mutation: authenticateUser,
-        variables: {
-          email,
-          password
-        }
-      }).then(({ data: { authenticateUser } }) => {
-        const { id, username, token } = authenticateUser
-        this.$store.commit('saveUserData', { id, username, token })
+      this.$apollo
+        .mutate({
+          mutation: authenticateUser,
+          variables: {
+            email,
+            password
+          }
+        })
+        .then(({ data: { authenticateUser } }) => {
+          const { id, username, token } = authenticateUser
+          this.$store.commit('saveUserData', { id, username, token })
 
-        // Returns the user to the page they were on before
-        // TODO: If user was on signup before, redirect to home
-        this.$router.back()
-      }).catch(({ message }) => {
-        // Renders the normal submit button
-        this.loading = false
+          // Returns the user to the page they were on before
+          // TODO: If user was on signup before, redirect to home
+          this.$router.back()
+        })
+        .catch(({ message }) => {
+          // Renders the normal submit button
+          this.loading = false
 
-        // TODO: Extract cleanedMessage functionality into a function
-        const colonIndex = message.lastIndexOf(':')
-        const cleanedMessage = message.substring(colonIndex + 2, message.length)
-        alert(`Error: ${cleanedMessage}`)
-      })
+          // TODO: Extract cleanedMessage functionality into a function
+          const colonIndex = message.lastIndexOf(':')
+          const cleanedMessage = message.substring(
+            colonIndex + 2,
+            message.length
+          )
+          alert(`Error: ${cleanedMessage}`)
+        })
     }
   }
 }

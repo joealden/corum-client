@@ -81,28 +81,27 @@ export default {
     submitPost() {
       const authorId = this.$store.state.userId
 
-      const {
-        postTitle: title,
-        postContent: content,
-        Subforum: { id }
-      } = this
+      const { postTitle: title, postContent: content, Subforum: { id } } = this
 
       // TODO: add link to vue-apollo mutation docs
-      this.$apollo.mutate({
-        mutation: createPost,
-        variables: {
-          authorId,
-          title,
-          content,
-          id
-        }
-      }).then(data => {
-        const { subforum } = this.$route.params
-        const { id } = data.data.createPost
-        this.$router.push(`/subforum/${subforum}/post/${id}`)
-      }).catch(() => {
-        this.$router.push(`/error`) // TODO: create actual error page
-      });
+      this.$apollo
+        .mutate({
+          mutation: createPost,
+          variables: {
+            authorId,
+            title,
+            content,
+            id
+          }
+        })
+        .then(data => {
+          const { subforum } = this.$route.params
+          const { id } = data.data.createPost
+          this.$router.push(`/subforum/${subforum}/post/${id}`)
+        })
+        .catch(() => {
+          this.$router.push(`/error`) // TODO: create actual error page
+        })
     }
   }
 }
@@ -141,8 +140,7 @@ form
   display flex
   flex-direction column
 
-  input
-  textarea 
+  input, textarea
     padding 1.25rem
     margin-bottom 1rem
     font-size 1.65rem
@@ -173,12 +171,14 @@ form
     font-weight bold
     outline none
     transition 0.15s ease-in-out
+
     i
       margin-right 0.5rem
       transition 0.15s ease-in-out
-  
+
   .enabled-button
     background-color $primary-blue
+
     &:hover
       background-color $nav-hover
 
@@ -188,9 +188,11 @@ form
   flex-direction column
   justify-content center
   align-items center
+
   p
     font-size 2rem
     margin 1rem
+
     a
       color $nav-hover
 </style>

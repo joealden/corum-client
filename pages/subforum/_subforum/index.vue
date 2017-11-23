@@ -176,17 +176,21 @@ h1
 
   form
     text-transform uppercase
+
     span
       margin-left 0.4rem
       margin-right 0.7rem
+
     label
       transition 0.2s ease-in-out
       font-weight bold
       margin-left 0.25rem
       margin-right 0.75rem
+
       &:hover
         color $nav-hover
-    input[type="radio"]:checked+label
+
+    input[type='radio']:checked+label
       color $nav-hover
 
   a
@@ -197,12 +201,14 @@ h1
     text-transform uppercase
     font-weight bold
     transition 0.15s ease-in-out
+
     i
       margin-right 0.4rem
       transition 0.15s ease-in-out
-  
+
   .enabled-button
     background-color $primary-blue
+
     &:hover
       background-color $nav-hover
 
@@ -217,6 +223,7 @@ h1
   span
     font-weight bold
     text-transform uppercase
+
   div > span
     &:first-child
       margin-right 4rem
@@ -246,17 +253,21 @@ ul
 
 li
   list-style none
+
   a
     display flex
     justify-content space-between
     padding 1.75rem
+
     &:hover
       background-color #eee
 
-.negative 
+.negative
   color red
+
 .neutral
   color black
+
 .positive
   color $nav-hover
 </style>

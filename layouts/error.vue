@@ -56,7 +56,7 @@ h1
   margin-bottom 0.4rem
   font-size 2.5rem
 
-p 
+p
   margin 0
   font-size 1.5rem
 </style>

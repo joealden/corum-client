@@ -20,7 +20,7 @@ div
   padding-left 1.5rem
   align-items center
   background-color #101218
-  
+
 img
   height 4rem
   vertical-align middle

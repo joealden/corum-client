@@ -187,51 +187,52 @@ export default {
       this.comment = ''
 
       // TODO: add link to vue-apollo mutation docs
-      this.$apollo.mutate({
-        mutation: createComment,
+      this.$apollo
+        .mutate({
+          mutation: createComment,
 
-        variables: {
-          author,
-          content,
-          id
-        },
-
-        update(store, { data: { createComment: commentData } }) {
-          const data = store.readQuery({
-            query: post,
-            variables: { id }
-          })
-
-          const newComment = {
-            __typename: 'Comment',
-            id: commentData.id,
-            author: commentData.author,
-            content:
-             commentData.content
-          }
-
-          data.Post.comments.push(newComment);
-          store.writeQuery({
-            query: post,
-            variables: { id },
-            data
-          })
-
-          // scroll to bottom of page when comment is inserted
-          const main = document.getElementById('main-content-wrapper')
-          main.scrollTop = main.scrollHeight
-        },
-
-        optimisticResponse: {
-          __typename: 'Mutation',
-          createComment: {
-            __typename: 'Comment',
-            id: 'loading',
+          variables: {
             author,
-            content
+            content,
+            id
+          },
+
+          update(store, { data: { createComment: commentData } }) {
+            const data = store.readQuery({
+              query: post,
+              variables: { id }
+            })
+
+            const newComment = {
+              __typename: 'Comment',
+              id: commentData.id,
+              author: commentData.author,
+              content: commentData.content
+            }
+
+            data.Post.comments.push(newComment)
+            store.writeQuery({
+              query: post,
+              variables: { id },
+              data
+            })
+
+            // scroll to bottom of page when comment is inserted
+            const main = document.getElementById('main-content-wrapper')
+            main.scrollTop = main.scrollHeight
+          },
+
+          optimisticResponse: {
+            __typename: 'Mutation',
+            createComment: {
+              __typename: 'Comment',
+              id: 'loading',
+              author,
+              content
+            }
           }
-        }
-      }).catch(() => this.$router.push(`/error`))
+        })
+        .catch(() => this.$router.push(`/error`))
     }
   }
 }
@@ -273,11 +274,11 @@ section
   div
     text-transform uppercase
     font-weight bold
+    width 25rem // Hack to get post title centered
 
-    // Hack to get post title centered
-    width 25rem
     &:first-child
       text-align left
+
     &:last-child
       text-align right
 
@@ -312,6 +313,7 @@ section
 
   div
     overflow auto
+
     p
       padding 0 1.5rem
       margin 0
@@ -338,19 +340,23 @@ section
     font-size 2rem
     padding 0.5rem
 
-.enabled    
+.enabled
   background-color $hover-blue
   color white
   cursor pointer
+
   &:hover:first-child
     background-color $nav-hover
-  &:hover:last-child 
+
+  &:hover:last-child
     background-color red
 
 .negative
   color red
+
 .neutral
   color white
+
 .positive
   color $nav-hover
 
@@ -389,6 +395,7 @@ section
 
       &:first-child
         margin-top 0
+
       &:last-child
         margin-bottom 0
 
@@ -400,6 +407,7 @@ section
           flex-grow 1
           text-align left
           white-space pre-wrap
+
         &:last-child
           padding 1rem
           background-color $primary-blue
@@ -418,6 +426,7 @@ section
 
 .author-comment
   color $nav-hover
+
 .non-author-comment
   color white
 

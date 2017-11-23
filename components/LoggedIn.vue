@@ -21,6 +21,7 @@ export default {
 <style lang="stylus" scoped>
 img
   height 6rem
+
 p
   font-size 1.7rem
   margin-bottom -1rem
