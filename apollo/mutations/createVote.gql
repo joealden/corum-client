@@ -1,0 +1,5 @@
+mutation createVote($vote: VoteType!, $postId: ID!, $userId: ID!) {
+  createVote(vote: $vote, postId: $postId, userId: $userId) {
+    id
+  }
+}

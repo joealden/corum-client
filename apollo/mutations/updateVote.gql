@@ -1,0 +1,5 @@
+mutation updateVote($id: ID!, $vote: VoteType!) {
+  updateVote(id: $id, vote: $vote) {
+    id
+  }
+}
