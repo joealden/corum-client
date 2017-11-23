@@ -193,8 +193,10 @@ export default {
       // Clear user input from textarea early on
       this.comment = ''
 
-      // To find out more information about mutations in vue-apollo,
-      // visit https://github.com/Akryum/vue-apollo#mutations
+      /*
+        For more info on how mutations work within vue-apollo,
+        visit https://github.com/Akryum/vue-apollo#mutations
+      */
       this.$apollo
         .mutate({
           mutation: createComment,
