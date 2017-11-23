@@ -34,13 +34,13 @@
           <i class="fa fa-chevron-up" aria-hidden="true"/>
         </button>
         <span v-if="Post.voteCount < 0" class="negative">
-          {{ Post.voteCount }}
+          {{ vote }}
         </span>
         <span v-else-if="Post.voteCount > 0" class="positive">
-          {{ Post.voteCount }}
+          {{ vote }}
         </span>
         <span v-else class="neutral">
-          {{ Post.voteCount }}
+          {{ vote }}
         </span>
         <button
           v-if="userId"
@@ -141,8 +141,9 @@ export default {
   data: () => ({
     Post: '',
     comment: '',
-    // Temp for vote functionality implemention
-    localVote: 0
+    vote: 0,
+    upvoted: false,
+    downvoted: false
   }),
 
   head() {
@@ -150,32 +151,38 @@ export default {
   },
 
   methods: {
-    upvoteButtonClick(event) {
-      if (this.localVote === 0) {
-        console.log('The user has not voted')
-        this.localVote += 1
-      } else if (this.localVote === 1) {
-        console.log('The user has already upvoted')
-        this.localVote -= 1
-      } else if (this.localVote === -1) {
-        console.log('The user has already downvoted')
-        this.localVote += 2
+    upvoteButtonClick() {
+      if (this.upvoted === true) {
+        // The user has already upvoted
+        this.vote -= 1
+        this.upvoted = false
+      } else if (this.downvoted === true) {
+        // The user has already downvoted
+        this.vote += 2
+        this.downvoted = false
+        this.upvoted = true
+      } else {
+        // The user has not voted
+        this.vote += 1
+        this.upvoted = true
       }
-      console.log(this.localVote)
     },
 
-    downvoteButtonClick(event) {
-      if (this.localVote === 0) {
-        console.log('The user has not voted')
-        this.localVote -= 1
-      } else if (this.localVote === 1) {
-        console.log('The user has already upvoted')
-        this.localVote -= 2
-      } else if (this.localVote === -1) {
-        console.log('The user has already downvoted')
-        this.localVote += 1
+    downvoteButtonClick() {
+      if (this.upvoted === true) {
+        // The user has already upvoted
+        this.vote -= 2
+        this.upvoted = false
+        this.downvoted = true
+      } else if (this.downvoted === true) {
+        // The user has already downvoted
+        this.vote += 1
+        this.downvoted = false
+      } else {
+        // The user has not voted
+        this.vote -= 1
+        this.downvoted = true
       }
-      console.log(this.localVote)
     },
 
     submitComment() {
@@ -186,7 +193,8 @@ export default {
       // Clear user input from textarea early on
       this.comment = ''
 
-      // TODO: add link to vue-apollo mutation docs
+      // To find out more information about mutations in vue-apollo,
+      // visit https://github.com/Akryum/vue-apollo#mutations
       this.$apollo
         .mutate({
           mutation: createComment,
