@@ -12,8 +12,9 @@
 
 ## Working on now
 
-* Update ESLint config (Make it not error on style linting, like
-  create-react-app)
+* Fix voting problems
+  * Rapid clicking of voting buttons causing numbers to be out
+  * Fix by doing optimistic updates / debouncing the vote buttons (lodash.debouce?)
 
 ## Next to Implement
 
