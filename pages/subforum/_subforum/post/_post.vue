@@ -20,7 +20,7 @@
       <div id="vote-count">
         <button
           v-if="userId"
-          class="enabled"
+          :class="upvoted ? 'enabled upvoted' : 'enabled'"
           @click="upvoteButtonClick"
         >
           <i class="fa fa-chevron-up" aria-hidden="true"/>
@@ -33,10 +33,10 @@
         >
           <i class="fa fa-chevron-up" aria-hidden="true"/>
         </button>
-        <span v-if="Post.voteCount < 0" class="negative">
+        <span v-if="vote < 0" class="negative">
           {{ vote }}
         </span>
-        <span v-else-if="Post.voteCount > 0" class="positive">
+        <span v-else-if="vote > 0" class="positive">
           {{ vote }}
         </span>
         <span v-else class="neutral">
@@ -44,7 +44,7 @@
         </span>
         <button
           v-if="userId"
-          class="enabled"
+          :class="downvoted ? 'enabled downvoted' : 'enabled'"
           @click="downvoteButtonClick"
         >
           <i class="fa fa-chevron-down" aria-hidden="true"/>
@@ -69,7 +69,7 @@
       <ul v-else>
         <li v-for="comment in Post.comments" :key="comment.id">
           <div>{{ comment.content }}</div>
-          <div v-if="comment.author === Post.author" class="author-comment">
+          <div v-if="comment.author === Post.author.username" class="author-comment">
             {{ comment.author }}
           </div>
           <div v-else class="non-author-comment">
@@ -111,17 +111,38 @@
 
 import tinydate from 'tinydate'
 
-import post from '~/apollo/queries/post'
-import createComment from '~/apollo/mutations/createComment'
+import postQuery from '~/apollo/queries/post'
+import userVoteQuery from '~/apollo/queries/userVote'
+
+import createVoteMutation from '~/apollo/mutations/createVote'
+import updateVoteMutation from '~/apollo/mutations/updateVote'
+import deleteVoteMutation from '~/apollo/mutations/deleteVote'
+import createCommentMutation from '~/apollo/mutations/createComment'
 
 export default {
   apollo: {
+    // Fetch the current post's data
     Post: {
-      query: post,
+      query: postQuery,
       variables() {
         return { id: this.$route.params.post }
       },
       fetchPolicy: 'cache-and-network'
+    },
+
+    // If the user is logged in, fetch their vote data (if any)
+    allVotes: {
+      query: userVoteQuery,
+      variables() {
+        const { userId } = this
+        const postId = this.$route.params.post
+
+        return { userId, postId }
+      },
+
+      skip() {
+        return this.userId ? false : true
+      }
     }
   },
 
@@ -135,15 +156,42 @@ export default {
 
     userId() {
       return this.$store.state.userId
+    },
+
+    userVoteData() {
+      if (this.allVotes) {
+        return this.allVotes[0]
+      } else {
+        return undefined
+      }
+    },
+
+    upvoted() {
+      if (this.userVoteData && this.userVoteData.vote === 'VOTE_UP') {
+        return true
+      } else {
+        return false
+      }
+    },
+
+    downvoted() {
+      if (this.userVoteData && this.userVoteData.vote === 'VOTE_DOWN') {
+        return true
+      } else {
+        return false
+      }
+    },
+
+    vote() {
+      return this.Post.voteCount + this.localVote
     }
   },
 
   data: () => ({
     Post: '',
+    allVotes: undefined,
     comment: '',
-    vote: 0,
-    upvoted: false,
-    downvoted: false
+    localVote: 0
   }),
 
   head() {
@@ -151,37 +199,135 @@ export default {
   },
 
   methods: {
+    // TODO: extract update functions to reduce duplication
+    createVote(variables) {
+      this.$apollo
+        .mutate({
+          mutation: createVoteMutation,
+          variables,
+          update: (store, { data: { createVote } }) => {
+            const data = store.readQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              }
+            })
+            data.allVotes.push({
+              __typename: 'Vote',
+              id: createVote.id,
+              vote: variables.vote
+            })
+            store.writeQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              },
+              data
+            })
+          }
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    },
+
+    updateVote(variables) {
+      this.$apollo
+        .mutate({
+          mutation: updateVoteMutation,
+          variables,
+          update: store => {
+            const data = store.readQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              }
+            })
+            data.allVotes[0].vote = variables.vote
+            store.writeQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              },
+              data
+            })
+          }
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    },
+
+    deleteVote(variables) {
+      this.$apollo
+        .mutate({
+          mutation: deleteVoteMutation,
+          variables,
+          update: store => {
+            const data = store.readQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              }
+            })
+            data.allVotes = []
+            store.writeQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              },
+              data
+            })
+          }
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    },
+
     upvoteButtonClick() {
       if (this.upvoted === true) {
         // The user has already upvoted
-        this.vote -= 1
-        this.upvoted = false
+        this.localVote -= 1
+        this.deleteVote({ id: this.userVoteData.id })
       } else if (this.downvoted === true) {
         // The user has already downvoted
-        this.vote += 2
-        this.downvoted = false
-        this.upvoted = true
+        this.localVote += 2
+        this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_UP' })
       } else {
         // The user has not voted
-        this.vote += 1
-        this.upvoted = true
+        this.localVote += 1
+        this.createVote({
+          vote: 'VOTE_UP',
+          postId: this.$route.params.post,
+          userId: this.userId
+        })
       }
     },
 
     downvoteButtonClick() {
       if (this.upvoted === true) {
         // The user has already upvoted
-        this.vote -= 2
-        this.upvoted = false
-        this.downvoted = true
+        this.localVote -= 2
+        this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_DOWN' })
       } else if (this.downvoted === true) {
         // The user has already downvoted
-        this.vote += 1
-        this.downvoted = false
+        this.localVote += 1
+        this.deleteVote({ id: this.userVoteData.id })
       } else {
         // The user has not voted
-        this.vote -= 1
-        this.downvoted = true
+        this.localVote -= 1
+        this.createVote({
+          vote: 'VOTE_DOWN',
+          postId: this.$route.params.post,
+          userId: this.userId
+        })
       }
     },
 
@@ -199,7 +345,7 @@ export default {
       */
       this.$apollo
         .mutate({
-          mutation: createComment,
+          mutation: createCommentMutation,
 
           variables: {
             author,
@@ -209,7 +355,7 @@ export default {
 
           update(store, { data: { createComment: commentData } }) {
             const data = store.readQuery({
-              query: post,
+              query: postQuery,
               variables: { id }
             })
 
@@ -222,7 +368,7 @@ export default {
 
             data.Post.comments.push(newComment)
             store.writeQuery({
-              query: post,
+              query: postQuery,
               variables: { id },
               data
             })
@@ -360,6 +506,12 @@ section
 
   &:hover:last-child
     background-color red
+
+.upvoted
+  background-color $nav-hover
+
+.downvoted
+  background-color red
 
 .negative
   color red

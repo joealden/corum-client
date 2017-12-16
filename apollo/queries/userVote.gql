@@ -1,0 +1,8 @@
+query userVote($postId: ID!, $userId: ID!) {
+  allVotes(
+    filter: { AND: [{ post: { id: $postId } }, { user: { id: $userId } }] }
+  ) {
+    id
+    vote
+  }
+}
