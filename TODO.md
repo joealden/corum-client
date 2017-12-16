@@ -41,6 +41,7 @@
 * Show error page when user goes to:
   * `/subforum/:NOT_FOUND`
   * `/subforum/:subforum/post/:NOT_FOUND`
+* Add pre-commit hooks (For example, eslint, prettier, testing etc.)
 
 ## Possible Ideas
 
