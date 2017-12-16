@@ -13,22 +13,23 @@ module.exports = {
     node: true
   },
 
-  extends: 'standard',
+  /*
+    TODO: Create my own custom eslint config (eslint-config-joealden)
+
+    Adhere to the 'Javascript Standard Style', but remove stylistic rules
+    eslint-config-standard (https://github.com/standard/eslint-config-standard)
+    eslint-config-prettier (https://github.com/prettier/eslint-config-prettier)
+  */
+  extends: ['prettier', 'standard'],
+
   // required to lint *.vue files
   plugins: ['html'],
 
+  // Custom rules (Basically remove the rules from standard I don't like)
   rules: {
-    semi: 0,
-    'no-unneeded-ternary': 0,
-    'space-before-function-paren': 0,
-    // allow optionalDependencies
-    'import/no-extraneous-dependencies': [
-      0,
-      {
-        optionalDependencies: ['test/unit/index.js']
-      }
-    ],
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    semi: 'off',
+    'no-unneeded-ternary': 'off',
+    'space-before-function-paren': 'off',
+    'spaced-comment': 'warn'
   }
 }
