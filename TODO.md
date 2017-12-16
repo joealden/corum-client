@@ -10,15 +10,10 @@
   (modularity)
 * Simplify algorithms into diagrams / pseudocode
 
-## Current Task
+## Working on now
 
-* Create voting functionality
-  * [x] Disabled voting when user is not logged in
-  * [] Can only vote once (+1 or -1)
-    * [x] Add basic click handlers for the buttons (Dynamic to users current
-          vote)
-    * [] Load data in on how the user has voted on the post (If logged in) (AKA
-      Persist vote data)
+* Update ESLint config (Make it not error on style linting, like
+  create-react-app)
 
 ## Next to Implement
 
@@ -31,8 +26,6 @@
 * Change post and post list loading state (display header, sort etc.)
 * Fix issue with font-awesome importing ALL assets (Resulting in a 444kb
   uncompressed file)
-* Update ESLint config (Make it not error on style linting, like
-  create-react-app)
 * Unit Tests (Possibly integration + e2e as well)
 
 ## Needs Attention
