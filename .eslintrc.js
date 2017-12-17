@@ -31,6 +31,7 @@ module.exports = {
     'no-unneeded-ternary': 'off',
     'space-before-function-paren': 'off',
     'spaced-comment': 'warn',
-    'no-unused-vars': 'warn'
+    'no-unused-vars': 'warn',
+    'no-trailing-spaces': 'warn'
   }
 }
