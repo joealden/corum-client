@@ -559,12 +559,6 @@ section
   color white
   cursor pointer
 
-  &:hover:first-child
-    background-color $nav-hover
-
-  &:hover:last-child
-    background-color red
-
 .upvoted
   background-color $nav-hover
 
