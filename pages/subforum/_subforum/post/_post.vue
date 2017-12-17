@@ -110,6 +110,7 @@
 // TODO: Extract out components from page
 
 import tinydate from 'tinydate'
+import throttle from 'lodash.throttle'
 
 import postQuery from '~/apollo/queries/post'
 import userVoteQuery from '~/apollo/queries/userVote'
@@ -130,7 +131,7 @@ export default {
       fetchPolicy: 'cache-and-network'
     },
 
-    // If the user is logged in, fetch their vote data (if any)
+    // Fetch users vote data (if any)
     allVotes: {
       query: userVoteQuery,
       variables() {
@@ -140,6 +141,11 @@ export default {
         return { userId, postId }
       },
 
+      /*
+        If the user is not logged in, the vote data is
+        needed, so it is pointless querying the API.
+        https://github.com/Akryum/vue-apollo#skipping-the-query
+      */
       skip() {
         return this.userId ? false : true
       }
@@ -147,17 +153,23 @@ export default {
   },
 
   computed: {
-    // Formats the unformatted date that is returned from graphcool
+    /*
+      Formats the unformatted date that is returned
+      from graphcool using the 'tinydate' library.
+      https://github.com/lukeed/tinydate
+    */
     formattedTime() {
       const stamp = tinydate('{HH}:{mm} - {DD}/{MM}/{YY}')
       const date = new Date(this.Post.createdAt)
       return stamp(date)
     },
 
+    // Gets the user's ID from the vuex store
     userId() {
       return this.$store.state.userId
     },
 
+    // Allows for cleaner access to the user's vote data
     userVoteData() {
       if (this.allVotes) {
         return this.allVotes[0]
@@ -166,6 +178,7 @@ export default {
       }
     },
 
+    // Used to determine what voting logic to execute, as well as UI
     upvoted() {
       if (this.userVoteData && this.userVoteData.vote === 'VOTE_UP') {
         return true
@@ -173,7 +186,6 @@ export default {
         return false
       }
     },
-
     downvoted() {
       if (this.userVoteData && this.userVoteData.vote === 'VOTE_DOWN') {
         return true
@@ -187,111 +199,61 @@ export default {
     }
   },
 
-  data: () => ({
-    Post: '',
-    allVotes: undefined,
-    comment: '',
-    localVote: 0
-  }),
+  data() {
+    return {
+      Post: '',
+      allVotes: '',
+      comment: '',
+      localVote: 0,
+      voteButtonClick: throttle(this.voteFunction, 1000)
+    }
+  },
 
   head() {
     return { title: this.Post.title }
   },
 
   methods: {
-    // TODO: extract update functions to reduce duplication
-    createVote(variables) {
-      this.$apollo
-        .mutate({
-          mutation: createVoteMutation,
-          variables,
-          update: (store, { data: { createVote } }) => {
-            const data = store.readQuery({
-              query: userVoteQuery,
-              variables: {
-                postId: this.$route.params.post,
-                userId: this.userId
-              }
-            })
-            data.allVotes.push({
-              __typename: 'Vote',
-              id: createVote.id,
-              vote: variables.vote
-            })
-            store.writeQuery({
-              query: userVoteQuery,
-              variables: {
-                postId: this.$route.params.post,
-                userId: this.userId
-              },
-              data
-            })
-          }
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    },
+    /*
+      At the moment, the only thing stopping the user from breaking
+      the voting UI is the throttled function that ensures that neither
+      buttons are not pressed in quick succession.
 
-    updateVote(variables) {
-      this.$apollo
-        .mutate({
-          mutation: updateVoteMutation,
-          variables,
-          update: store => {
-            const data = store.readQuery({
-              query: userVoteQuery,
-              variables: {
-                postId: this.$route.params.post,
-                userId: this.userId
-              }
-            })
-            data.allVotes[0].vote = variables.vote
-            store.writeQuery({
-              query: userVoteQuery,
-              variables: {
-                postId: this.$route.params.post,
-                userId: this.userId
-              },
-              data
-            })
-          }
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    },
+      This is needed as there is currently a race condition.
+      This causes a bug if the user votes, then votes again before
+      Apollo can update the store optimistically.
 
-    deleteVote(variables) {
-      this.$apollo
-        .mutate({
-          mutation: deleteVoteMutation,
-          variables,
-          update: store => {
-            const data = store.readQuery({
-              query: userVoteQuery,
-              variables: {
-                postId: this.$route.params.post,
-                userId: this.userId
-              }
-            })
-            data.allVotes = []
-            store.writeQuery({
-              query: userVoteQuery,
-              variables: {
-                postId: this.$route.params.post,
-                userId: this.userId
-              },
-              data
-            })
-          }
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    },
+      This throttling technique is a horrible hack to get around the
+      problem. There is still a race condition, but it is more unlikely.
+      This could still cause a bug if the store is not updated before
+      the throttle time. (Currently 1 second, or 1000ms)
+
+      TODO: Please fix me.
+    */
 
     upvoteButtonClick() {
+      this.voteButtonClick('up')
+    },
+    downvoteButtonClick() {
+      this.voteButtonClick('down')
+    },
+
+    /*
+      Allows calling of the two voting functions from a single function.
+      This is required to correctly throttle the two buttons together.
+    */
+    voteFunction(vote) {
+      if (vote === 'up') {
+        this.upvote()
+      } else if (vote === 'down') {
+        this.downvote()
+      } else {
+        throw new Error('Expected a value of either "up" or "down"')
+      }
+    },
+
+    // Determines what GraphQL mutation to execute based on the vote state
+    upvote() {
       if (this.upvoted === true) {
         // The user has already upvoted
         this.localVote -= 1
@@ -311,7 +273,7 @@ export default {
       }
     },
 
-    downvoteButtonClick() {
+    downvote() {
       if (this.upvoted === true) {
         // The user has already upvoted
         this.localVote -= 2
@@ -331,22 +293,135 @@ export default {
       }
     },
 
+    createVote(variables) {
+      this.$apollo
+        .mutate({
+          mutation: createVoteMutation,
+          variables,
+
+          update: (store, { data: { createVote } }) => {
+            const data = store.readQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              }
+            })
+
+            data.allVotes.push({
+              __typename: 'Vote',
+              id: createVote.id,
+              vote: variables.vote
+            })
+
+            store.writeQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              },
+              data
+            })
+          },
+
+          optimisticResponse: {
+            __typename: 'Mutation',
+            createVote: {
+              id: 0,
+              __typename: 'Vote'
+            }
+          }
+        })
+        .catch(error => console.error(error))
+    },
+
+    updateVote(variables) {
+      this.$apollo
+        .mutate({
+          mutation: updateVoteMutation,
+          variables,
+
+          update: store => {
+            const data = store.readQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              }
+            })
+
+            data.allVotes[0].vote = variables.vote
+
+            store.writeQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              },
+              data
+            })
+          },
+
+          optimisticResponse: {
+            __typename: 'Mutation',
+            updateVote: {
+              id: 0,
+              __typename: 'Vote'
+            }
+          }
+        })
+        .catch(error => console.error(error))
+    },
+
+    deleteVote(variables) {
+      this.$apollo
+        .mutate({
+          mutation: deleteVoteMutation,
+          variables,
+
+          update: store => {
+            const data = store.readQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              }
+            })
+
+            data.allVotes = []
+
+            store.writeQuery({
+              query: userVoteQuery,
+              variables: {
+                postId: this.$route.params.post,
+                userId: this.userId
+              },
+              data
+            })
+          },
+
+          optimisticResponse: {
+            __typename: 'Mutation',
+            deleteVote: {
+              id: 0,
+              __typename: 'Vote'
+            }
+          }
+        })
+        .catch(error => console.error(error))
+    },
+
     submitComment() {
       const author = this.$store.state.username
       const { comment: content } = this
       const id = this.$route.params.post
 
-      // Clear user input from textarea early on
+      // Clears user input from textarea
       this.comment = ''
 
-      /*
-        For more info on how mutations work within vue-apollo,
-        visit https://github.com/Akryum/vue-apollo#mutations
-      */
       this.$apollo
         .mutate({
           mutation: createCommentMutation,
-
           variables: {
             author,
             content,
@@ -388,7 +463,7 @@ export default {
             }
           }
         })
-        .catch(() => this.$router.push(`/error`))
+        .catch(error => console.error(error))
     }
   }
 }

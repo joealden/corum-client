@@ -10,15 +10,12 @@
   (modularity)
 * Simplify algorithms into diagrams / pseudocode
 
-## Working on now
+## Working On Now
 
-* Fix voting problems
-  * Rapid clicking of voting buttons causing numbers to be out
-  * Fix by doing optimistic updates / debouncing the vote buttons (lodash.debouce?)
+* Create automation system of removing down voted posts (Hook function)
 
 ## Next to Implement
 
-* Create automation system of removing down voted posts
 * Create favorites system
   * Place - and + to the right of subforums
   * Stored in an array of favorites
