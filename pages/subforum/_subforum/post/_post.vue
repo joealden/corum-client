@@ -110,7 +110,6 @@
 // TODO: Extract out components from page
 
 import tinydate from 'tinydate'
-import throttle from 'lodash.throttle'
 
 import postQuery from '~/apollo/queries/post'
 import userVoteQuery from '~/apollo/queries/userVote'
@@ -205,7 +204,7 @@ export default {
       allVotes: '',
       comment: '',
       localVote: 0,
-      voteButtonClick: throttle(this.voteFunction, 1000)
+      voteInProgress: false
     }
   },
 
@@ -214,82 +213,51 @@ export default {
   },
 
   methods: {
-    /*
-      At the moment, the only thing stopping the user from breaking
-      the voting UI is the throttled function that ensures that neither
-      buttons are not pressed in quick succession.
-
-      This is needed as there is currently a race condition.
-      This causes a bug if the user votes, then votes again before
-      Apollo can update the store optimistically.
-
-      This throttling technique is a horrible hack to get around the
-      problem. There is still a race condition, but it is more unlikely.
-      This could still cause a bug if the store is not updated before
-      the throttle time. (Currently 1 second, or 1000ms)
-
-      TODO: Please fix me.
-    */
-
-    upvoteButtonClick() {
-      this.voteButtonClick('up')
-    },
-    downvoteButtonClick() {
-      this.voteButtonClick('down')
-    },
-
-    /*
-      Allows calling of the two voting functions from a single function.
-      This is required to correctly throttle the two buttons together.
-    */
-    voteFunction(vote) {
-      if (vote === 'up') {
-        this.upvote()
-      } else if (vote === 'down') {
-        this.downvote()
-      } else {
-        throw new Error('Expected a value of either "up" or "down"')
-      }
-    },
-
     // Determines what GraphQL mutation to execute based on the vote state
-    upvote() {
-      if (this.upvoted === true) {
-        // The user has already upvoted
-        this.localVote -= 1
-        this.deleteVote({ id: this.userVoteData.id })
-      } else if (this.downvoted === true) {
-        // The user has already downvoted
-        this.localVote += 2
-        this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_UP' })
-      } else {
-        // The user has not voted
-        this.localVote += 1
-        this.createVote({
-          vote: 'VOTE_UP',
-          postId: this.$route.params.post,
-          userId: this.userId
-        })
+    upvoteButtonClick() {
+      if (this.voteInProgress === false) {
+        this.voteInProgress = true
+
+        if (this.upvoted === true) {
+          // The user has already upvoted
+          this.localVote -= 1
+          this.deleteVote({ id: this.userVoteData.id })
+        } else if (this.downvoted === true) {
+          // The user has already downvoted
+          this.localVote += 2
+          this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_UP' })
+        } else {
+          // The user has not voted
+          this.localVote += 1
+          this.createVote({
+            vote: 'VOTE_UP',
+            postId: this.$route.params.post,
+            userId: this.userId
+          })
+        }
       }
     },
 
-    downvote() {
-      if (this.upvoted === true) {
-        // The user has already upvoted
-        this.localVote -= 2
-        this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_DOWN' })
-      } else if (this.downvoted === true) {
-        // The user has already downvoted
-        this.localVote += 1
-        this.deleteVote({ id: this.userVoteData.id })
-      } else {
-        // The user has not voted
-        this.localVote -= 1
-        this.createVote({
-          vote: 'VOTE_DOWN',
-          postId: this.$route.params.post,
-          userId: this.userId
-        })
+    downvoteButtonClick() {
+      if (this.voteInProgress === false) {
+        this.voteInProgress = true
+        if (this.upvoted === true) {
+          // The user has already upvoted
+          this.localVote -= 2
+          this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_DOWN' })
+        } else if (this.downvoted === true) {
+          // The user has already downvoted
+          this.localVote += 1
+          this.deleteVote({ id: this.userVoteData.id })
+        } else {
+          // The user has not voted
+          this.localVote -= 1
+          this.createVote({
+            vote: 'VOTE_DOWN',
+            postId: this.$route.params.post,
+            userId: this.userId
+          })
+        }
       }
     },
 
@@ -322,6 +290,11 @@ export default {
               },
               data
             })
+
+            // Doesn't execute on optimstic response update
+            if (createVote.id !== 0) {
+              this.voteInProgress = false
+            }
           },
 
           optimisticResponse: {
@@ -341,7 +314,7 @@ export default {
           mutation: updateVoteMutation,
           variables,
 
-          update: store => {
+          update: (store, { data: { updateVote } }) => {
             const data = store.readQuery({
               query: userVoteQuery,
               variables: {
@@ -360,6 +333,11 @@ export default {
               },
               data
             })
+
+            // Doesn't execute on optimstic response update
+            if (updateVote.id !== 0) {
+              this.voteInProgress = false
+            }
           },
 
           optimisticResponse: {
@@ -379,7 +357,7 @@ export default {
           mutation: deleteVoteMutation,
           variables,
 
-          update: store => {
+          update: (store, { data: { deleteVote } }) => {
             const data = store.readQuery({
               query: userVoteQuery,
               variables: {
@@ -398,6 +376,11 @@ export default {
               },
               data
             })
+
+            // Doesn't execute on optimstic response update
+            if (deleteVote.id !== 0) {
+              this.voteInProgress = false
+            }
           },
 
           optimisticResponse: {
