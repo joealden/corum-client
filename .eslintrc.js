@@ -30,6 +30,7 @@ module.exports = {
     semi: 'off',
     'no-unneeded-ternary': 'off',
     'space-before-function-paren': 'off',
-    'spaced-comment': 'warn'
+    'spaced-comment': 'warn',
+    'no-unused-vars': 'warn'
   }
 }
