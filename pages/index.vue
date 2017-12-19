@@ -1,33 +1,49 @@
 <template>
 <section>
-  <img src="~/assets/images/logo-dark.svg" alt="corum">
-  <p>Please Select a Subforum!</p>
+  <div v-if="userId" v-html="loggedIn"></div>
+  <div v-else v-html="notLoggedIn"></div>
 </section>
 </template>
 
 <script>
-/*
-  TODO:
-  Change this page to have 2 states. 1 for when the
-  user is logged in, and 1 for when the user is not
-
-  When the user is logged in, display a collection of posts
-  from their favourites.
-
-  When the user is not logged in, display a 'getting started'
-  page.
-*/
+import loggedIn from '~/assets/markdown/loggedIn.md'
+import notLoggedIn from '~/assets/markdown/notLoggedIn.md'
 
 export default {
+  data() {
+    return { loggedIn, notLoggedIn }
+  },
+
+  computed: {
+    userId() {
+      return this.$store.state.userId
+    }
+  },
+
   head: () => ({ title: 'Home' })
 }
 </script>
 
 <style lang="stylus" scoped>
-img
-  height 6rem
+@require '../assets/styles/variables'
 
-p
-  font-size 1.7rem
-  font-weight bold
+section
+  flex-grow 1
+  margin 2rem
+  display flex
+  flex-direction column
+  font-size 1.5rem
+  background-color white
+  border-radius 0.5rem
+  box-shadow 10px 10px 25px #999
+
+  div
+    h1
+      text-decoration underline
+
+    a
+      color $nav-hover
+
+      &:hover, &:focus
+        text-decoration underline
 </style>
