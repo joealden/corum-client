@@ -1,6 +1,6 @@
 # TODO
 
-# Docs
+## Docs
 
 * Add section in computational methods about hashing and salting the passwords
   before storage on the server
@@ -12,14 +12,13 @@
 
 ## Working On Now
 
-* Create automation system of removing down voted posts (Hook function)
-
-## Next to Implement
-
 * Create favorites system
   * Place - and + to the right of subforums
   * Stored in an array of favorites
   * Create add and remove mutations
+
+## Next to Implement
+
 * Provide error pages if a GraphQL query fails
 * Change post and post list loading state (display header, sort etc.)
 * Fix issue with font-awesome importing ALL assets (Resulting in a 444kb
