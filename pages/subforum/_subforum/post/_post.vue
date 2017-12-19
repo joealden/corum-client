@@ -127,7 +127,7 @@ export default {
       variables() {
         return { id: this.$route.params.post }
       },
-      fetchPolicy: 'cache-and-network'
+      fetchPolicy: 'network-only'
     },
 
     // Fetch users vote data (if any)
@@ -139,6 +139,7 @@ export default {
 
         return { userId, postId }
       },
+      fetchPolicy: 'network-only',
 
       /*
         If the user is not logged in, the vote data is

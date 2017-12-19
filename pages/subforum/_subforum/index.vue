@@ -84,7 +84,7 @@ export default {
   apollo: {
     allPosts: {
       query: allPosts,
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'network-only',
       variables() {
         return {
           url: this.$route.params.subforum,
