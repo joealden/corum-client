@@ -182,7 +182,7 @@ form
   .enabled-button
     background-color $primary-blue
 
-    &:hover
+    &:hover, &:focus
       background-color $nav-hover
 
 #not-logged-in
