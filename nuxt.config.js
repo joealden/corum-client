@@ -25,9 +25,16 @@ module.exports = {
 
   // Build configuration
   build: {
-    // Run ESLint on save
+    // Extend the webpack config
     extend(config, ctx) {
-      if (ctx.dev && ctx.isClient) {
+      // Add a markdown-loader for markdown files
+      config.module.rules.push({
+        test: /\.md$/,
+        loader: ['html-loader', 'markdown-loader']
+      })
+
+      if (ctx.isClient && ctx.dev) {
+        // Run ESLint on save
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
