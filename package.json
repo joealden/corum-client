@@ -22,7 +22,6 @@
     "@nuxtjs/dotenv": "^1.1.0",
     "@nuxtjs/font-awesome": "^1.0.2",
     "@nuxtjs/pwa": "^1.0.2",
-    "lodash.throttle": "^4.1.1",
     "nuxt": "^1.0.0-rc9",
     "tinydate": "^1.0.0"
   },
