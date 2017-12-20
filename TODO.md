@@ -12,10 +12,11 @@
 
 ## Working On Now
 
-* Create favorites system
-  * Place - and + to the right of subforums
-  * Stored in an array of favorites
-  * Create add and remove mutations
+* Favorites system
+  * Create the remove and add methods
+  * Wire up the '-' and '+' buttons to methods
+  * Ensure that both lists update how they should
+  * Fix CSS (Make active different from hover etc.)
 
 ## Next to Implement
 
