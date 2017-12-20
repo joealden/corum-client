@@ -33,7 +33,7 @@
           <nuxt-link :to="`/subforum/${subforum.url}`">
             {{ subforum.name }}
           </nuxt-link>
-          <button v-if="favoritesUrls.indexOf(subforum.url) === -1">
+          <button v-if="favoritesUrls.indexOf(subforum.url) === -1 && userId">
             +
           </button>
         </li>
