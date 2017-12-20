@@ -143,7 +143,7 @@ export default {
 
       /*
         If the user is not logged in, the vote data is
-        needed, so it is pointless querying the API.
+        not needed, so it is pointless querying the API.
         https://github.com/Akryum/vue-apollo#skipping-the-query
       */
       skip() {
