@@ -1,0 +1,9 @@
+query allFavorites($userId: ID!) {
+  allFavorites(filter: { user: { id: $userId }}) {
+    id
+    subforum {
+      name
+      url
+    }
+  }
+}

@@ -7,10 +7,13 @@
     <div v-if="userId" id="favourites">
       <h1>Favourites</h1>
       <ul>
-        <li>
-          <nuxt-link to="/subforum/css">
-            test
+        <li v-for="favorite in allFavorites" :key="favorite.id">
+          <nuxt-link :to="`/subforum/${favorite.subforum.url}`">
+            {{ favorite.subforum.name }}
           </nuxt-link>
+          <button>
+            -
+          </button>
         </li>
       </ul>
     </div>
@@ -30,6 +33,9 @@
           <nuxt-link :to="`/subforum/${subforum.url}`">
             {{ subforum.name }}
           </nuxt-link>
+          <button v-if="favoritesUrls.indexOf(subforum.url) === -1">
+            +
+          </button>
         </li>
       </ul>
     </div>  
@@ -39,11 +45,31 @@
 
 <script>
 import allSubforums from '~/apollo/queries/allSubforums'
+import allFavorites from '~/apollo/queries/allFavorites'
 
 // TODO: Fix nav scrolling (Favourites + All should be independent)
 export default {
   name: 'corum-nav',
-  apollo: { allSubforums },
+
+  apollo: {
+    allSubforums,
+
+    // Fetch users favorite data (if any)
+    allFavorites: {
+      query: allFavorites,
+      variables() {
+        return { userId: this.userId }
+      },
+      /*
+        If the user is not logged in, the favorite data is
+        not needed, so it is pointless querying the API.
+        https://github.com/Akryum/vue-apollo#skipping-the-query
+      */
+      skip() {
+        return this.userId ? false : true
+      }
+    }
+  },
 
   computed: {
     subforumSearch() {
@@ -54,6 +80,12 @@ export default {
       )
     },
 
+    favoritesUrls() {
+      if (this.allFavorites !== undefined) {
+        return this.allFavorites.map(favorite => favorite.subforum.url)
+      }
+    },
+
     userId() {
       return this.$store.state.userId
     }
@@ -61,7 +93,8 @@ export default {
 
   data() {
     return {
-      allSubforums: '',
+      allSubforums: undefined,
+      allFavorites: undefined,
       search: ''
     }
   }
@@ -110,6 +143,7 @@ ul
 li
   list-style none
   margin 0
+  display flex
 
   a
     font-size 1.3rem
@@ -118,16 +152,38 @@ li
     color $nav-text
     font-weight bold
     outline none
+    width 100%
 
-    &:hover, &:focus
+  button
+    background-color $primary-blue
+    color $nav-hover
+    border none
+    width 30%
+    font-size 50px
+    padding 0
+    cursor pointer
+    outline none
+
+  &:hover, &:focus
+    a
       background-color $hover-blue
       color white
       padding-left 1.1rem
       border-left 0.4rem solid $nav-hover
+
+    button
+      background-color $hover-blue
+
+      &:hover, &:focus
+        background-color $nav-hover
+        color white
 
 .nuxt-link-active
   background-color $hover-blue
   color white
   padding-left 1.1rem
   border-left 0.4rem solid $nav-hover
+
+.nuxt-link-active + button
+  background-color $hover-blue
 </style>
