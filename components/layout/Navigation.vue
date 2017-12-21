@@ -39,7 +39,7 @@
             {{ subforum.name }}
           </nuxt-link>
           <button 
-            v-if="favoritesUrls.indexOf(subforum.url) === -1 && userId"
+            v-if="favoritesUrls && favoritesUrls.indexOf(subforum.url) === -1 && userId"
             @click="createFavorite(subforum)"
           >
             +
