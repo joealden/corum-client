@@ -6,7 +6,12 @@
   <div v-else>
     <div v-if="userId" id="favourites">
       <h1>Favourites</h1>
-      <ul>
+      <div v-if="sortedFavorites.length === 0" class="no-results">
+        You currently don't have any favourites! <br><br>
+        To add a favourite, click on the '+' button next to the
+        subforum you want to add.
+      </div>
+      <ul v-else>
         <li v-for="favorite in sortedFavorites" :key="favorite.id">
           <nuxt-link :to="`/subforum/${favorite.subforum.url}`">
             {{ favorite.subforum.name }}
@@ -25,7 +30,7 @@
         placeholder="Search..."
         spellcheck="false"
       >
-      <div v-if="subforumSearch.length === 0" id="no-results">
+      <div v-if="subforumSearch.length === 0" class="no-results">
         No subforums matching your search were found!
       </div>
       <ul v-else>
@@ -252,7 +257,7 @@ input[type='search']
   border none
   outline none
 
-#no-results
+.no-results
   height fit-content
   color white
   font-size 1.25rem
