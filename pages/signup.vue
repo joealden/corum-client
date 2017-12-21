@@ -99,6 +99,7 @@ export default {
       }
     },
 
+    // Gets the user's ID from the vuex store
     userId() {
       return this.$store.state.userId
     }
