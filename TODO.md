@@ -12,15 +12,13 @@
 
 ## Working On Now
 
-* Favorites system
-  * Create the remove and add methods
-  * Wire up the '-' and '+' buttons to methods
-  * Ensure that both lists update how they should
-  * Fix CSS (Make active different from hover etc.)
+* Provide error pages if a GraphQL query fails
+* Show error page when user goes to:
+  * `/subforum/:NOT_FOUND`
+  * `/subforum/:subforum/post/:NOT_FOUND`
 
 ## Next to Implement
 
-* Provide error pages if a GraphQL query fails
 * Change post and post list loading state (display header, sort etc.)
 * Fix issue with font-awesome importing ALL assets (Resulting in a 444kb
   uncompressed file)
@@ -29,16 +27,13 @@
 ## Needs Attention
 
 * Separate favorites and all subforums scroll
-* Use CSS Grid on post list page to align things properly
+* Use CSS Grid on subforum page to align things properly
 * Make max lengths for info (characters [client-side only first]):
   * usernames (50)
   * passwords (50)
   * titles (100 / 150)
   * content (500ish)
   * comments (250ish)
-* Show error page when user goes to:
-  * `/subforum/:NOT_FOUND`
-  * `/subforum/:subforum/post/:NOT_FOUND`
 * Add pre-commit hooks (For example, eslint, prettier, testing etc.)
 
 ## Possible Ideas
