@@ -7,7 +7,7 @@
     <div v-if="userId" id="favourites">
       <h1>Favourites</h1>
       <ul>
-        <li v-for="favorite in allFavorites" :key="favorite.id">
+        <li v-for="favorite in sortedFavorites" :key="favorite.id">
           <nuxt-link :to="`/subforum/${favorite.subforum.url}`">
             {{ favorite.subforum.name }}
           </nuxt-link>
@@ -85,6 +85,25 @@ export default {
       return this.allSubforums.filter(subforum =>
         subforum.name.toLowerCase().includes(caseInsensitiveInput)
       )
+    },
+
+    /*
+      As graphcool doesn't support ordering by nested data, this
+      computed value sorts the favorites array by subforum names.
+    */
+    sortedFavorites() {
+      if (this.allFavorites !== undefined) {
+        // Spread into a new array as sort mutates original array
+        return [...this.allFavorites].sort((a, b) => {
+          if (a.subforum.name > b.subforum.name) {
+            return 1
+          } else if (a.subforum.name < b.subforum.name) {
+            return -1
+          } else {
+            return 0
+          }
+        })
+      }
     },
 
     /*
