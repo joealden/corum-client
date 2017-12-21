@@ -72,6 +72,7 @@ export default {
   },
 
   computed: {
+    // Used to produce the filtered search
     subforumSearch() {
       const caseInsensitiveInput = this.search.toLowerCase()
 
@@ -80,12 +81,19 @@ export default {
       )
     },
 
+    /* 
+      Creates an array of favorited subforum IDs from the fetched
+      array of favorite objects. This is used to decide whether or not
+      a '+' button needs to be inserted beside a subforum. If the
+      subforum is present in the favorites, then the '+' is not needed.
+    */
     favoritesUrls() {
       if (this.allFavorites !== undefined) {
         return this.allFavorites.map(favorite => favorite.subforum.url)
       }
     },
 
+    // Gets the user's ID from the vuex store
     userId() {
       return this.$store.state.userId
     }
