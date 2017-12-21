@@ -1,0 +1,9 @@
+mutation createFavorite($subforumId: ID!, $userId: ID!) {
+  createFavorite(subforumId: $subforumId, userId: $userId) {
+    id
+    subforum {
+      name
+      url
+    }
+  }
+}

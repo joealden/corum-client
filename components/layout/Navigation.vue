@@ -11,7 +11,7 @@
           <nuxt-link :to="`/subforum/${favorite.subforum.url}`">
             {{ favorite.subforum.name }}
           </nuxt-link>
-          <button>
+          <button @click="deleteFavorite(favorite.id)">
             -
           </button>
         </li>
@@ -33,7 +33,10 @@
           <nuxt-link :to="`/subforum/${subforum.url}`">
             {{ subforum.name }}
           </nuxt-link>
-          <button v-if="favoritesUrls.indexOf(subforum.url) === -1 && userId">
+          <button 
+            v-if="favoritesUrls.indexOf(subforum.url) === -1 && userId"
+            @click="createFavorite(subforum)"
+          >
             +
           </button>
         </li>
@@ -46,6 +49,9 @@
 <script>
 import allSubforums from '~/apollo/queries/allSubforums'
 import allFavorites from '~/apollo/queries/allFavorites'
+
+import createFavoriteMutation from '~/apollo/mutations/createFavorite'
+import deleteFavoriteMutation from '~/apollo/mutations/deleteFavorite'
 
 // TODO: Fix nav scrolling (Favourites + All should be independent)
 export default {
@@ -81,7 +87,7 @@ export default {
       )
     },
 
-    /* 
+    /*
       Creates an array of favorited subforum IDs from the fetched
       array of favorite objects. This is used to decide whether or not
       a '+' button needs to be inserted beside a subforum. If the
@@ -104,6 +110,96 @@ export default {
       allSubforums: undefined,
       allFavorites: undefined,
       search: ''
+    }
+  },
+
+  methods: {
+    // Adds a favorite to the users list of favorites
+    createFavorite(subforum) {
+      const { userId } = this
+      const subforumId = subforum.id
+
+      this.$apollo
+        .mutate({
+          mutation: createFavoriteMutation,
+          variables: { subforumId, userId },
+
+          update: (store, { data: { createFavorite } }) => {
+            const data = store.readQuery({
+              query: allFavorites,
+              variables: { userId }
+            })
+
+            data.allFavorites.push({
+              __typename: 'Favorite',
+              id: createFavorite.id,
+              subforum: {
+                __typename: 'Subforum',
+                name: createFavorite.subforum.name,
+                url: createFavorite.subforum.url
+              }
+            })
+
+            store.writeQuery({
+              query: allFavorites,
+              variables: { userId },
+              data
+            })
+          },
+
+          optimisticResponse: {
+            __typename: 'Mutation',
+            createFavorite: {
+              __typename: 'Favorite',
+              id: 0,
+              subforum: {
+                __typename: 'Subforum',
+                name: subforum.name,
+                url: subforum.url
+              }
+            }
+          }
+        })
+        .catch(error => console.error(error))
+    },
+
+    // Deletes a favorite from the users list of favorites
+    deleteFavorite(id) {
+      const { userId } = this
+
+      this.$apollo
+        .mutate({
+          mutation: deleteFavoriteMutation,
+          variables: { id },
+
+          update: store => {
+            let data = store.readQuery({
+              query: allFavorites,
+              variables: { userId }
+            })
+
+            // Remove the favorite that is being deleted
+            const newAllFavorites = data.allFavorites.filter(
+              favorite => favorite.id !== id
+            )
+            data.allFavorites = newAllFavorites
+
+            store.writeQuery({
+              query: allFavorites,
+              variables: { userId },
+              data
+            })
+          },
+
+          optimisticResponse: {
+            __typename: 'Mutation',
+            deleteFavorite: {
+              __typename: 'Favorite',
+              id: 0
+            }
+          }
+        })
+        .catch(error => console.error(error))
     }
   }
 }
