@@ -111,6 +111,8 @@
 
 import tinydate from 'tinydate'
 
+import logIfDev from '~/utils/logIfDev'
+
 import postQuery from '~/apollo/queries/post'
 import userVoteQuery from '~/apollo/queries/userVote'
 
@@ -306,7 +308,7 @@ export default {
             }
           }
         })
-        .catch(error => console.error(error))
+        .catch(error => logIfDev('error', error))
     },
 
     updateVote(variables) {
@@ -349,7 +351,7 @@ export default {
             }
           }
         })
-        .catch(error => console.error(error))
+        .catch(error => logIfDev('error', error))
     },
 
     deleteVote(variables) {
@@ -392,7 +394,7 @@ export default {
             }
           }
         })
-        .catch(error => console.error(error))
+        .catch(error => logIfDev('error', error))
     },
 
     submitComment() {
@@ -447,7 +449,7 @@ export default {
             }
           }
         })
-        .catch(error => console.error(error))
+        .catch(error => logIfDev('error', error))
     }
   }
 }

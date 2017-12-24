@@ -58,6 +58,8 @@ import allFavorites from '~/apollo/queries/allFavorites'
 import createFavoriteMutation from '~/apollo/mutations/createFavorite'
 import deleteFavoriteMutation from '~/apollo/mutations/deleteFavorite'
 
+import logIfDev from '~/utils/logIfDev'
+
 // TODO: Fix nav scrolling (Favourites + All should be independent)
 export default {
   name: 'corum-nav',
@@ -184,7 +186,7 @@ export default {
             }
           }
         })
-        .catch(error => console.error(error))
+        .catch(error => logIfDev('error', error))
     },
 
     // Deletes a favorite from the users list of favorites
@@ -223,7 +225,7 @@ export default {
             }
           }
         })
-        .catch(error => console.error(error))
+        .catch(error => logIfDev('error', error))
     }
   }
 }

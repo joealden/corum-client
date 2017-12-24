@@ -6,8 +6,13 @@
   <main>
     <section>
       <img src="~/assets/images/logo-dark.svg" alt="corum">
-      <h1>{{ error.statusCode }}</h1>
-      <p class="error-message">{{ error.message }}</p>
+      <div v-if="prod">
+        <h1 class="error-message">Something went wrong, sorry!</h1>
+      </div>
+      <div v-else>
+        <h1>{{ error.statusCode }}</h1>
+        <p class="error-message">{{ error.message }}</p>
+      </div>
     </section>
   </main>
 </div>
@@ -17,6 +22,8 @@
 import Logo from '~/components/layout/Logo'
 import Header from '~/components/layout/Header'
 import Navigation from '~/components/layout/Navigation'
+
+import stringToBoolean from '~/utils/stringToBoolean'
 
 export default {
   name: 'nuxt-error',
@@ -28,11 +35,17 @@ export default {
     corumNav: Navigation
   },
 
+  data() {
+    return {
+      // Used to determine what error message to print
+      prod: stringToBoolean(process.env.PROD)
+    }
+  },
+
   head: () => ({ title: 'Error' }),
 
   /*
     Fetch userid from localStorage after SSR
-    TODO: Unify fetch for default & error layouts
   */
   mounted() {
     this.$store.commit('updateUserState')

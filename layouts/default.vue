@@ -25,7 +25,6 @@ export default {
 
   /*
     Fetch userid from localStorage after SSR
-    TODO: Unify fetch for default & error layouts
   */
   mounted() {
     this.$store.commit('updateUserState')
