@@ -17,7 +17,7 @@
             {{ favorite.subforum.name }}
           </nuxt-link>
           <button @click="deleteFavorite(favorite.id)">
-            -
+            <i class="fa fa-minus" aria-hidden="true"/>
           </button>
         </li>
       </ul>
@@ -42,7 +42,7 @@
             v-if="favoritesUrls && favoritesUrls.indexOf(subforum.url) === -1 && userId"
             @click="createFavorite(subforum)"
           >
-            +
+           <i class="fa fa-plus" aria-hidden="true"/> 
           </button>
         </li>
       </ul>
@@ -287,7 +287,7 @@ li
     color $nav-hover
     border none
     width 30%
-    font-size 50px
+    font-size 25px
     padding 0
     cursor pointer
     outline none
