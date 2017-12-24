@@ -34,9 +34,7 @@ input
 	transition 0.2s ease-in-out
 	outline none
 
-input[type='email']
-input[type='text']
-input[type='password']
+input[type='email'], input[type='text'], input[type='password']
 	background-color #eee
 	font-size 1.5rem
 
@@ -56,8 +54,9 @@ p
 	color white
 	margin-top 1.5rem
 	margin-bottom 3rem
+
 	a
 		color $nav-hover
-		&:hover,
-		&:focus
+
+		&:hover, &:focus
 			text-decoration underline
