@@ -589,7 +589,7 @@ source.
 * **VCS
   ([Version Control System](https://en.wikipedia.org/wiki/Version_control))** -
   [Git](https://git-scm.com/) with [Github](https://github.com/joealden/corum)
-* **Package Manager** - [NPM 5](https://npmjs.com)
+* **Package Manager** - [Yarn](https://yarnpkg.com)
 * **Task Runner** - [NPM Scripts](https://docs.npmjs.com/misc/scripts)
 * **Framework** - [nuxt](https://nuxtjs.org/)
 * **View** - [Vue](https://vuejs.org/)
