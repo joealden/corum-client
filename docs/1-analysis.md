@@ -600,4 +600,4 @@ source.
 * **Module Bundler** - [webpack](https://webpack.js.org/)
 * **JS Compiler** - [babel](https://babeljs.io/)
 * **JS Linter** - [ESLint](https://eslint.org/)
-* **Testing** - [Mocha](http://mochajs.org/)
+* **Testing** - [Jest](https://facebook.github.io/jest/)
