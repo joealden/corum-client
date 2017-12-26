@@ -529,8 +529,8 @@ in-browser error overlay, which allows for easier debugging.
 To start the dev server, run the following commands:
 
 ```bash
-npm install
-npm run dev
+yarn
+yarn dev
 ```
 
 To view the site, navigate to `http://localhost:3000` in your browser.
@@ -540,8 +540,8 @@ To view the site, navigate to `http://localhost:3000` in your browser.
 To start the production server, run the following commands:
 
 ```bash
-npm install
-npm run deploy
+yarn
+yarn deploy
 ```
 
 #### Viewing the Site
