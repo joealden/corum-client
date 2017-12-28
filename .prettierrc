@@ -6,5 +6,5 @@
   "tabWidth": 2,
   "bracketSpacing": true,
   "trailingComma": "none",
-  "parser": "babylon"
+  "proseWrap": "always"
 }
