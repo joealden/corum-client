@@ -10,5 +10,5 @@ dist
 sw.*
 workbox-*
 
-# Generated MD --> PDF
-*.pdf
+# .env file
+.env
