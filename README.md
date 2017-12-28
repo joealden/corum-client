@@ -21,13 +21,25 @@ democratic & self governing** alternative to the forum site
 
 ## Usage
 
+### **IMPORTANT**
+
+Before running either the development or the production server, it is important
+that a Corum API instance has been created, and a '.env' file has been created
+with the following environment variables:
+
+* API_ENDPOINT (String) - The graphcool endpoint for Corum's API.
+* PROD (Boolean) - Determines what error messages and logging should occur.
+
+If you do not know how to setup a Corum API, head over to the following github
+repo, [corum-api](https://github.com/joealden/corum-api).
+
 ### Development
 
 To start the development server, run the following commands:
 
 ```bash
-npm install
-npm run dev
+yarn
+yarn dev
 ```
 
 To view the site, navigate to `http://localhost:3000` in your browser.
@@ -37,6 +49,6 @@ To view the site, navigate to `http://localhost:3000` in your browser.
 To start the production server, run the following commands:
 
 ```bash
-npm install
-npm run deploy
+yarn
+yarn deploy
 ```
