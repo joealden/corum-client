@@ -198,12 +198,12 @@ and search the documentation for the section on 'Data Modelling'
 ```graphql
 type User @model {
   id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
   username: String! @isUnique
   email: String! @isUnique
   password: String!
   posts: [Post!]! @relation(name: "UserToPost")
+  votes: [Vote!]! @relation(name: "UserToVote")
+  favorites: [Favorite!]! @relation(name: "UserToFavorite")
 }
 
 type Subforum @model {
@@ -211,6 +211,13 @@ type Subforum @model {
   url: String! @isUnique
   name: String!
   posts: [Post!]! @relation(name: "SubforumToPost")
+  favorites: [Favorite!]! @relation(name: "SubforumToFavorite")
+}
+
+type Favorite @model {
+  id: ID! @isUnique
+  user: User! @relation(name: "UserToFavorite")
+  subforum: Subforum! @relation(name: "SubforumToFavorite")
 }
 
 type Post @model {
@@ -222,6 +229,7 @@ type Post @model {
   voteCount: Int
   createdAt: DateTime!
   comments: [Comment!]! @relation(name: "PostToComment")
+  votes: [Vote!]! @relation(name: "PostToVote")
 }
 
 type Comment @model {
@@ -229,6 +237,18 @@ type Comment @model {
   post: Post! @relation(name: "PostToComment")
   author: String!
   content: String!
+}
+
+type Vote @model {
+  id: ID! @isUnique
+  post: Post! @relation(name: "PostToVote")
+  user: User! @relation(name: "UserToVote")
+  vote: VoteType!
+}
+
+enum VoteType {
+  VOTE_UP
+  VOTE_DOWN
 }
 ```
 
