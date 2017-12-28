@@ -7,7 +7,8 @@
     <section>
       <img src="~/assets/images/logo-dark.svg" alt="corum">
       <div v-if="prod">
-        <h1 class="error-message">Something went wrong, sorry!</h1>
+        <h1>Error</h1>
+        <p class="error-message">{{ errorMessage }}</p>
       </div>
       <div v-else>
         <h1>{{ error.statusCode }}</h1>
@@ -39,6 +40,22 @@ export default {
     return {
       // Used to determine what error message to print
       prod: stringToBoolean(process.env.PROD)
+    }
+  },
+
+  computed: {
+    errorMessage() {
+      const routeParams = this.$route.params
+
+      if (routeParams.subforum) {
+        if (routeParams.post) {
+          return `The post with ID '${routeParams.post}' could not be found.`
+        } else {
+          return `The subforum '${routeParams.subforum}' could not be found.`
+        }
+      } else {
+        return 'Please ensure you have entered a valid URL.'
+      }
     }
   },
 
