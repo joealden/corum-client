@@ -12,17 +12,13 @@
 
 ## Working On Now
 
-* Provide error pages if a GraphQL query fails
-* Show error page when user goes to:
-  * `/subforum/:NOT_FOUND`
-  * `/subforum/:subforum/post/:NOT_FOUND`
+* Unit Tests (Possibly integration + e2e as well)
 
 ## Next to Implement
 
 * Change post and post list loading state (display header, sort etc.)
 * Fix issue with font-awesome importing ALL assets (Resulting in a 444kb
   uncompressed file)
-* Unit Tests (Possibly integration + e2e as well)
 
 ## Needs Attention
 
