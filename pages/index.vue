@@ -1,7 +1,6 @@
 <template>
 <section>
-  <div v-if="userId" v-html="loggedIn"></div>
-  <div v-else v-html="notLoggedIn"></div>
+  <div v-html="userId ? loggedIn : notLoggedIn"></div>
 </section>
 </template>
 
