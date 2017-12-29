@@ -27,7 +27,6 @@
     * [Unit Testing](#unit-testing)
     * [Integration Testing](#integration-testing)
     * [End To End Testing](#end-to-end-testing)
-* [Data to Collect for Evaluation](#data-to-collect-for-evaluation)
 
 ### GUI Design
 
@@ -752,8 +751,11 @@ I will write automated tests so that I can ensure the site works quickly.
 
 #### Test Data
 
-For some of the items listed about in the test plan, test data is required. The
-following test data will be used throughout testing:
+For some of the items listed about in the test plan, test data is required. In
+the following subsections, the items that required test data are given relevant,
+justified test data. The items that are not covered below cannot be given test
+data, and they instead rely on testing using a web browser / 'end to end'
+testing. (Explained later on)
 
 ##### Creating a User
 
@@ -773,6 +775,9 @@ The following data will be used:
 
 * A valid email - `test@test.com`
 * Invalid emails - `test@`, `test`, `@test`, `@test.com`, `@`
+
+This data ensures that edge cases like some of those above (For example, `test@`
+or `@test.com`) are not allowed into the system.
 
 ##### Logging in a User
 
@@ -1009,7 +1014,3 @@ If the details are correct:
 * The server sends back the data the client requested
 * The client stores the the data sent back from the server
 * The UI updates to reflect this change (Now in a logged in state)
-
-### Data to Collect for Evaluation
-
-placeholder.
