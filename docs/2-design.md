@@ -18,12 +18,16 @@
   * [Subforum Page](#subforum-page-subforumsubforum)
   * [Post Page](#post-page-subforumsubforumpostpost)
   * [New Post Page](#new-post-page-subforumsubforumnew)
+  * [Error Page](#error-page)
 * [Testing](#testing)
   * [Linter](#linter)
   * [Test Plan](#test-plan)
-  * [Unit Testing](#unit-testing)
-  * [Integration Testing](#integration-testing)
-  * [End To End Testing](#end-to-end-testing)
+  * [Test Data](#test-data)
+  * [Automated Testing](#automated-testing)
+    * [Unit Testing](#unit-testing)
+    * [Integration Testing](#integration-testing)
+    * [End To End Testing](#end-to-end-testing)
+* [Data to Collect for Evaluation](#data-to-collect-for-evaluation)
 
 ### GUI Design
 
@@ -95,12 +99,15 @@ the `All sub-forums` section. (As shown [here](#new-post)) The `favorites`
 section will list the sub-forums that the user has added to their `favorites`. A
 user can add a sub-forum to their favorites by clicking on the `+` icon next to
 the sub-forum in the 'All sub-forums' section. The `+` icon is only rendered if
-the user is logged in. A user can remove a sub-forum from their favorites by
-clicking the `-` sign next to the sub-forum they wish to remove. The `favorites`
-section will be very similar to the `All sub-forums` section, however it will
-not have a search bar.
+the user is logged in and the subforum is not already in their favorites. A user
+can remove a sub-forum from their favorites by clicking the `-` sign next to the
+sub-forum they wish to remove. The `favorites` section will be very similar to
+the `All sub-forums` section, however it will not have a search bar.
 
-Each sub-forum in either section will be a Link component. They will link to a
+Both the `favorites` and the `All sub-forums` section will be sorted
+alphabetically so that it is easier to find a subforum.
+
+Each sub-forum in both sections will be a Link component. They will link to a
 sub-forum in the pattern `'/subforum/:subforum'`. (For example,
 `'/subforum/programming'`)
 
@@ -119,8 +126,8 @@ thought it didn't have much of a benefit to the user._
 ### API Design
 
 As I have discussed in the analysis section of this report, I will be using
-something called GraphQL to develop the API of Corum. If you haven't heard of
-GraphQL before, it very simple terms, it is a more flexible alternative to REST
+GraphQL to develop the API of Corum. If you haven't heard of GraphQL before,
+putting it very simply, it is a more flexible and powerful alternative to REST
 style APIs.
 
 Some of the reasons I am using GraphQL to develop my API over REST are:
@@ -128,7 +135,7 @@ Some of the reasons I am using GraphQL to develop my API over REST are:
 * It allows the server to define what data the client can access, and then the
   client can choose the information it wants
   * This is unlike REST APIs, as they usually define API endpoints that are for
-    1 client (For example, the mobile site only)
+    a single client (For example, the mobile site only)
 * The way GraphQL is designed allows for a large tooling eco-system to be built
   around it
   * For example, I will be using a GraphQL Client library called Apollo that
@@ -142,24 +149,26 @@ as a good resource to get started.
 
 To more quickly develop a production standard GraphQL API, I will be using a
 framework called Graphcool. The framework abstracts away some of the complexity
-that comes with developing an API, such as database management, data access
-permissions etc. The real magic of graphcool is that is automatically generated
-a CRUD (Create, Read, Update and Delete) interface to Corum's data. This is very
-much like how an SQL database works, however instead of using SQL, we use
-GraphQL to define what data we want. This allows me to declaratively design my
-API, without worrying that much about how everything works under the hood.
+that comes with developing a GraphQL API, such as database management, data
+access permissions etc. The best feature of graphcool is that is automatically
+generated a CRUD (Create, Read, Update and Delete) interface to the schema
+defined. This is very much like how an SQL database works, however instead of
+using SQL, we use GraphQL to define what data we want. This allows me to
+declaratively design my API, without having to think that much about how
+everything works under the hood.
 
 As well as abstracting away complexity, graphcool allows you to easily extend
 its capabilities. For example, I will extend graphcool to do things such as
-create and authorize users, and initialize data so that the client doesn't have
-to. (E.G. Set vote count of a new post to 0 automatically)
+create and authorize users, initialize data so that the client doesn't have to,
+(E.G. Set vote count of a new post to 0 automatically) and do some validation on
+the data. (E.G. Ensure a user can only vote once on a single post)
 
 For more information about graphcool, visit there website here.
 ([graph.cool](https://www.graph.cool/))
 
 #### API Schema (Data Structures)
 
-In GraphQL, similar to to SQL databases, the API has a schema. This schema is
+In GraphQL, similar to SQL databases, the API has a schema. This schema is
 defined in the GraphQL SDL. (Schema Definition Language) This allows me to
 declaratively define the structure of my data.
 
@@ -184,8 +193,8 @@ For example, I could:
   the `@isUnique` directive
 * Tell graphcool to generated the CRUD API for this type using the `@model`
   directive
-* Tell graphcool that there is a relation between two field of different type
-  (Like relations in SQL) with the `@relation` directive
+* Tell graphcool that there is a relation between two fields (Like relations in
+  SQL) with the `@relation` directive
   * These can be `1-1`, `1-n`, or `n-n` relations
   * In my data, I will only be needing `1-1` and `1-n` mappings
 
@@ -261,9 +270,10 @@ Here is a graphical representation of the schema above:
 As Corum is a website, accessing different parts of the application is done by
 routing (For example, clicking on links or altering the contents of the URL bar)
 As mentioned before, I am using Vue as my view layer library. This means that I
-can easily do client side routing. Client side routing is where the routing is
-done on the users machine. (More information on this web development technique
-can be found by searching for SPAs.
+can easily do client side routing using the accompanying library vue-router.
+Client side routing is where the routing is done on the users machine. (More
+information on this web development technique can be found by searching for
+SPAs.
 ([Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application))
 This is the opposite to server side routing that is common for sites developed
 with PHP and no view library. Server side routing means loading entire new pages
@@ -281,8 +291,8 @@ documentation at the following link. ([vuejs.org](https://vuejs.org/))
 
 Here is a brief summary of what all of the different routes will do.
 
-* [`'/'`](#sub-forum-not-selected-logged-in-ui) - Displays a message to the user
-  to select a sub-forum from the navigation.
+* [`'/'`](#sub-forum-not-selected-logged-in-ui) - Displays a user guide that
+  explains how the site works and how to do things.
 * [`'/login'`](#login-page-ui) - Displays a login screen (Username + password)
 * [`'/signup'`](#sign-up-page-ui) - Displays a sign up screen (Username +
   password + password)
@@ -302,16 +312,8 @@ server side processing is required.
 #### Home Page ([`'/'`](#sub-forum-not-selected-logged-in-ui))
 
 This is the page that the user sees when they first visit the site. (At the path
-`'/'`) To start with, this page will only display a message to the user telling
-them to take some kind of action (Choose a subforum, login, signup etc.)
-
-If I have enough time, I will overhaul this page. The home page will have 2
-different states depending on if the user is logged in or not. If the user _is
-not_ logged in, then this page will contain helpful information about how to use
-the site. If the user _is_ logged in, then this page will be like any other
-sub-forum page, but it will instead the users favorite subforums combined into
-one page. One consideration would be to make sure that if the user does not have
-an subforums in their favorites, it tells the user just that.
+`'/'`) The home page will contain helpful information about how to use the site
+such as how the site works and where to find things etc.
 
 #### Login Page ([`'/login'`](#login-page-ui))
 
@@ -334,7 +336,7 @@ The login form will contain the following:
   already have an account.
 
 The login button will only be enabled (clickable) if both an email address and a
-password are supplied.
+password have been supplied.
 
 If the user successfully logs in, they will be redirected back to the page they
 were previously on before visiting the login page. If the user have an
@@ -382,8 +384,8 @@ To create a user authentication system, the resolver must do the following:
     * `email` -> type String (The email of the user)
     * `password` -> type String (The password of the user)
   * Outputs:
-    * `ID` -> type ID (ids are generated by graphcool and are unique, this ID is
-      used in Corum to determine the state of the UI)
+    * `ID` -> type ID (ids are generated by graphcool and are unique, the users
+      ID will be used to determine the state of the UI)
     * `username` -> type String (The username that is associated with the email
       address entered. This is what other users see on posts and comments)
     * `token` -> type String (A JWT (JSON Web Token) that will be stored to be
@@ -396,8 +398,8 @@ To create a user authentication system, the resolver must do the following:
 * Now that we have confirmed that the user exists, we can check if the user
   entered the correct password for the user
 * Using a password hashing library (probably something like bcryptjs), hash the
-  password the user entered and compare the hash with the one stored in the
-  database
+  password the user entered and compare the hash with the one stored on the
+  server
   * If they do not match, then return the same generic error of 'Invalid
     credentials'
 * If the hashes match, then we know that the user has entered both the correct
@@ -440,14 +442,14 @@ The signup form will contain the following:
   an account.
 
 The signup button will only be enabled (clickable) if an email address has been
-entered, both password fields have data in and they match.
+entered and both password fields have matching data in.
 
 If the user successfully creates an account, (If there are no errors with the
 data they entered, for example, an error would be an incorrect email or a user
-with the same email already exists) then not only will the account have been
-created, they will also be logged into the site with the data that they entered
-in the signup form. This means that the same state changes occur as mentioned in
-the 'Login Page' section. (Ability to create posts, comments etc.)
+with the same email or username already exists) then not only will the account
+have been created, they will also be logged into the site with the data that
+they entered in the signup form. This means that the same state changes occur as
+mentioned in the 'Login Page' section. (Ability to create posts, comments etc.)
 
 ##### Server Side
 
@@ -470,28 +472,28 @@ Here is the algorithm for the `signupUser` resolver:
     * `password` -> type String (The password that will be hashed and stored,
       then checked against when the user logs in in the future)
   * Outputs:
-    * `id` -> type ID (ids are generated by graphcool and are unique, this ID is
-      used in Corum to determine the state of the UI)
+    * `id` -> type ID (ids are generated by graphcool and are unique, the user's
+      ID will be used to determine the state of the UI)
     * `token` -> type String (A JWT (JSON Web Token) that will be stored to be
       later used to authenticate the user when making requests such as to create
       a new post. For more information about JWTs, look at the 'Login Page'
       section)
-* It will first verify for that the email address is valid (using the library
+* It will first verify for that the email address is valid (Using the library
   `validator`)
   * If it is not a valid email, return an error to the user that the email is
     invalid
-* Now that the email address is valid, we must check if a user has already
-  registered with the same email address
+* Now that we know the email address is valid, we must check if a user has
+  already registered with the same email address
   * If an account already uses this email address, return an error to the user
     that the email address is already in use.
-* Now that the email address is valid, we must also check if a user has already
-  registered with the same username
+* Now that we know the email address is also not already taken, we must also
+  check if a user has already registered with the same username
   * If an account already uses this username, return an error to the user that
     the username is already in use.
 * Now that we know a user with either the same email address or username doesn't
   exist, we can start creating the account.
   * First, we need to hash and salt the password before storing it, as storing
-    password in plain text isn't a good idea.
+    password in plain text isn't a good idea for obvious reasons.
   * Next, the user details actually need to be stored on the server, so a new
     User type is created.
     * This User type contains the email address, username and hashed password,
@@ -545,7 +547,7 @@ Two parameters that will be used to fetch the posts for a specific subforums
 will be the following:
 
 * `filter`
-  * This expects an data type of 'Subforum'
+  * This expects a data type of 'Subforum'
   * The way I will be filtering the data is by the 'url' field on the 'Subforum'
     type.
   * This means that only the data that was posted on the subforum will be
@@ -618,7 +620,7 @@ data by passing a parameter that identifies an item of data to be unique. For
 the post page, we will want to retrieve a single item of data of type `Post`, a
 single post. The only field on the Post type that can be used to uniquely
 identify a post is the `id` field. This is easy enough to retrieve as the posts
-id is the path variable `:post`. From having the post's id, the user can now
+id is the path variable `:post`. From having the post's id, the client can now
 retrieve all of the data needed to view a post.
 
 #### New Post Page ([`'/subforum/:subforum/new'`](#new-post-ui))
@@ -677,6 +679,20 @@ These pieces of data are all available to the client when they send a request:
 * `authorId` can be found in the clients local storage, as it was stored when
   the user logged in
 
+### Error Page
+
+In development, these error pages will give detailed error messages for
+debugging purposes, however in production, showing these details error messages
+may be of use to malicious users. For this reason, when in production mode,
+Corum will show helpful messages for the following situations:
+
+* They attempt to visit a subforum that doesn't exist
+* They attempt to visit a post that doesn't exist
+* They attempt to visit any other route that doesn't exist
+
+If an unhandled error occurs, a generic error will be displayed to not give any
+information to a malicious users that could result in an exploit.
+
 ### Testing
 
 #### Linter
@@ -725,12 +741,89 @@ This included the following:
   site (Check details against the backend)
 * Logged in users can add & remove subforums to their `favorites`
 * Logged in users can vote on posts
-* Logged in users can comment on posts
 * Logged in users can create new posts
+* Logged in users can comment on posts
 
 If all of these tests pass, then the site is verified to be in working order.
-Towards the end of the development cycle, I will write automated tests so that I
-can ensure the site works quickly.
+All of these tests should be done many time during the iterative development
+process, and then once gain once development has finished.
+
+I will write automated tests so that I can ensure the site works quickly.
+
+#### Test Data
+
+For some of the items listed about in the test plan, test data is required. The
+following test data will be used throughout testing:
+
+##### Creating a User
+
+To properly test the account creation implementation, I will need to test what
+happens when the following occurs:
+
+* A valid, not already taken email and / or username are given
+* A valid, already taken email is given
+* An already taken username is given
+* An invalid email is given
+
+When testing the situation where a not already taken email or username are
+given, I need to ensure beforehand that no entries exist with the used test
+data, otherwise the test might fail when it shouldn't.
+
+The following data will be used:
+
+* A valid email - `test@test.com`
+* Invalid emails - `test@`, `test`, `@test`, `@test.com`, `@`
+
+##### Logging in a User
+
+To properly test the account authentication implementation, I will need to test
+what happens when the following occurs:
+
+* An existing email and correct password are given
+* An existing email and incorrect password are given
+* An email that doesn't exist is given
+
+Just like when testing the creation of a user, I need to ensure beforehand that
+when testing that giving the correct details works, the user exists on the
+server. Likewise, I need to ensure that the user doesn't exist when testing
+failing login attempts.
+
+The following data will be used:
+
+* An existing set of details:
+  * Email - `exists@test.com`
+  * Password - `exists123`
+* An incorrect email - `nothing@test.com`
+* An incorrect password - `nothing321`
+
+##### Creating a Post
+
+To properly test the new post page, I will need to give it data that is varied
+in length. This is because I need to test how the post page will handle titles
+and content of different sizes.
+
+The following data will be used:
+
+* Short title - `testing title`
+* Short content - `testing content`
+* Long title -
+  `This is quite a long title that will be used for testing purposes to verify the post page displays it correctly`
+* Long content (From randomtextgenerator.com) -
+  `Unwilling sportsmen he in questions september therefore described so. Attacks may set few believe moments was. Reasonably how possession shy way introduced age inquietude. Missed he engage no test of. Still tried means we aware order among on. Eldest father can design tastes did joy settle. Roused future he ye an marked. Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking. Is allowance instantly strangers applauded discourse so. Separate entrance welcomed sensible laughing why one moderate shy. We seeing piqued garden he. As in merry at forth least ye stood. And cold sons yet with. Delivered middleton therefore me at. Attachment companions man way excellence how her pianoforte. Oh to talking improve produce in limited offices fifteen an. Wicket branch to answer do we. Place are decay men hours tiled. If or of ye throwing friendly required. Marianne interest in exertion as. Offering my branched confined oh test. Dispatched entreaties boisterous say why stimulated. Certain forbade picture now prevent carried she get see sitting. Up twenty limits as months. Inhabit so perhaps of in to certain. Sex excuse chatty was seemed warmth. Nay add far few immediate sweetness earnestly dejection.`
+
+##### Creating a Comment
+
+To properly test the creation of a comment, I will need to give it data that is
+varied in length. This is because I need to test how the post page will handle
+comments of different sizes.
+
+The following data will be used:
+
+* Short comment - `testing comment`
+* Long comment (From randomtextgenerator.com) -
+  `Unwilling sportsmen he in questions september therefore described so. Attacks may set few believe moments was. Reasonably how possession shy way introduced age inquietude. Missed he engage no test of. Still tried means we aware order among on. Eldest father can design tastes did joy settle. Roused future he ye an marked. Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking.`
+
+#### Automated Testing
 
 These are the following types of tests I will write:
 
@@ -738,10 +831,15 @@ These are the following types of tests I will write:
 * Integration Tests
 * End to End Tests (e2e)
 
+I will be using the following software to automate my testing:
+
+* [Jest (For unit and integration testing)](https://facebook.github.io/jest/)
+* [Cypress (For e2e testing)](https://www.cypress.io/)
+
 The following subsections will describe what each of these types of test are,
 and examples of where they could be used.
 
-#### Unit Testing
+##### Unit Testing
 
 Unit testing is where individual parts (units) of a program are tested in
 isolation. For example, a single function or a single class method could be
@@ -770,20 +868,20 @@ For example:
 It is evident from the examples above that mocking is about keeping
 uncontrollable / unpredictable state predictable and consistent.
 
-##### Advantages
+###### Advantages
 
 * Relatively easy and quick to write
 * Quick to run
 * Allows safer refactors
 * Simplifies writing integration tests
 
-##### Disadvantages
+###### Disadvantages
 
 * Does not necessarily represent how the program will act in the real world
 * Can be difficult to draw the line of what to test and what not to test (Should
   simple units be left out of code coverage?)
 
-##### Example
+###### Example
 
 An easy unit test to write would be the validation that happens on certain
 pages.
@@ -817,23 +915,23 @@ In this case, I could test for the following:
 * Call the function with edge case inputs such as a password containing only
   spaces.
 
-#### Integration Testing
+##### Integration Testing
 
 While unit testing is testing in isolation, integration testing is testing that
 units work together. This type of testing is usually done after unit testing.
 The reason for this is that it is easier to narrow down bugs as they happen if
 the unit tests are known to pass.
 
-##### Advantages
+###### Advantages
 
 * They can find issues with a system that unit tests alone cannot
 * The test cases are closer to how the code is actually executed in production
 
-##### Disadvantages
+###### Disadvantages
 
 * Writing them properly is harder than writing unit tests
 
-##### Example
+###### Example
 
 An example of a possible integration for Corum would be testing that the UI
 state is correct depending on the logged in state.
@@ -856,7 +954,7 @@ integration test:
 As evident from above, this tests requires that multiple units are working
 together to provide the correct output.
 
-#### End to End Testing
+##### End to End Testing
 
 As suggested by the name, end to end testing (e2e) is where a complete user
 story is tested.
@@ -880,16 +978,16 @@ By testing all of these sub-systems, these tests ensure that when the code is
 put into production, it will work as intended. Also, it is important to note
 that e2e tests can be made up of 1 or more integration tests.
 
-##### Advantages
+###### Advantages
 
 * Tests an entire user story, which means that it is as close to what the user
   will experience as possible
 
-##### Disadvantages
+###### Disadvantages
 
 * Writing them properly is even harder than writing good integration tests
 
-##### Example
+###### Example
 
 An example of a possible e2e test for Corum would be testing the entire user
 login flow.
@@ -912,7 +1010,6 @@ If the details are correct:
 * The client stores the the data sent back from the server
 * The UI updates to reflect this change (Now in a logged in state)
 
-#### Software and Libraries to be used for testing
+### Data to Collect for Evaluation
 
-* [Jest (For unit and integration testing)](https://facebook.github.io/jest/)
-* [Cypress (For e2e testing)](https://www.cypress.io/)
+placeholder.
