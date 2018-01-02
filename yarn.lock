@@ -10,12 +10,6 @@
     isomorphic-fetch "^2.2.1"
     vue-apollo "^2.1.0-rc.5"
 
-"@nuxtjs/component-cache@^1.1.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/component-cache/-/component-cache-1.1.1.tgz#d94aa450e1b0df0451a2e938262234b534df9dfd"
-  dependencies:
-    lru-cache "^4.1.1"
-
 "@nuxtjs/dotenv@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/dotenv/-/dotenv-1.1.0.tgz#18b4246fcbdf2c4c51fce03ed485fdc44b100c4c"

@@ -60,7 +60,6 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/apollo',
-    '@nuxtjs/component-cache',
     '@nuxtjs/dotenv',
     '@nuxtjs/font-awesome',
     '@nuxtjs/pwa'
