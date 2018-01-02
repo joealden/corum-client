@@ -1,12 +1,8 @@
 <template>
-<section v-if="!Subforum || !allPosts" id="loading">
-  <div>
-    <img src="~/assets/images/loading-dark.svg" alt="loading">
-  </div>
-</section>
-<section v-else>
+<section>
   <div id="title-wrapper">
-    <h1>{{ Subforum.name }}</h1>
+    <h1 v-if="!Subforum">Loading...</h1>
+    <h1 v-else>{{ Subforum.name }}</h1>
   </div>
   <div id="toolbar">
     <form>
@@ -45,32 +41,37 @@
       <span>Vote Count</span>
     </div>
   </div>
-  <div v-if="allPosts.length === 0" id="no-posts">
-    <p>It looks like there aren't any posts here yet!</p>
+  <div v-if="!Subforum || !allPosts" id="loading">
+    <img src="~/assets/images/loading-dark.svg" alt="loading">
   </div>
-  <ul v-else>
-    <li v-for="post in allPosts" :key="post.id">
-      <nuxt-link :to="`/subforum/${$route.params.subforum}/post/${post.id}`">
-        <div class="post-title">
-          {{ post.title }}
-        </div>
-        <div class="time-and-vote">
-          <div>
-            {{ post.createdAt | formatDate }}
+  <div v-else id="post-wrapper">
+    <div v-if="allPosts.length === 0" id="no-posts">
+      <p>It looks like there aren't any posts here yet!</p>
+    </div>
+    <ul v-else>
+      <li v-for="post in allPosts" :key="post.id">
+        <nuxt-link :to="`/subforum/${$route.params.subforum}/post/${post.id}`">
+          <div class="post-title">
+            {{ post.title }}
           </div>
-          <div v-if="post.voteCount < 0" class="negative">
-            {{ post.voteCount }}
+          <div class="time-and-vote">
+            <div>
+              {{ post.createdAt | formatDate }}
+            </div>
+            <div v-if="post.voteCount < 0" class="negative">
+              {{ post.voteCount }}
+            </div>
+            <div v-else-if="post.voteCount > 0" class="positive">
+              {{ post.voteCount }}
+            </div>
+            <div v-else class="neutral">
+              {{ post.voteCount }}
+            </div>            
           </div>
-          <div v-else-if="post.voteCount > 0" class="positive">
-            {{ post.voteCount }}
-          </div>
-          <div v-else class="neutral">
-            {{ post.voteCount }}
-          </div>            
-        </div>
-      </nuxt-link> 
-    </li>
-  </ul> 
+        </nuxt-link> 
+      </li>
+    </ul>
+  </div>
 </section>
 </template>
 
@@ -152,6 +153,7 @@ section
 
 #loading
   display flex
+  flex-grow 1
   flex-direction column
   justify-content center
 
@@ -237,6 +239,10 @@ h1
       width 8rem
       text-align right
       margin-left 3rem
+
+#post-wrapper
+  flex-grow 1
+  display flex
 
 #no-posts
   flex-grow 1

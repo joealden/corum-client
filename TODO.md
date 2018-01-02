@@ -16,12 +16,8 @@
 
 ## Next to Implement
 
-* Change post and post list loading state (display header, sort etc.)
 * Fix issue with font-awesome importing ALL assets (Resulting in a 444kb
   uncompressed file)
-
-## Needs Attention
-
 * Separate favorites and all subforums scroll
 * Use CSS Grid on subforum page to align things properly
 * Make max lengths for info (characters [client-side only first]):
