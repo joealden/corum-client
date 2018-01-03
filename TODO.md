@@ -13,6 +13,7 @@
 ## Working On Now
 
 * Unit Tests (Possibly integration + e2e as well)
+* Add pre-commit hooks (For example, eslint, prettier, testing etc.)
 
 ## Next to Implement
 
@@ -26,7 +27,6 @@
   * titles (100 / 150)
   * content (500ish)
   * comments (250ish)
-* Add pre-commit hooks (For example, eslint, prettier, testing etc.)
 
 ## Possible Ideas
 
