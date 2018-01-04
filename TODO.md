@@ -12,11 +12,10 @@
 
 ## Working On Now
 
-* Add pre-commit hooks (For example, eslint, prettier, testing etc.)
+* Unit Tests (Possibly integration + e2e as well)
 
 ## Next to Implement
 
-* Unit Tests (Possibly integration + e2e as well)
 * Fix issue with font-awesome importing ALL assets (Resulting in a 444kb
   uncompressed file)
 * Separate favorites and all subforums scroll
