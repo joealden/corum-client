@@ -14,15 +14,17 @@
     "node": ">=8",
     "npm": ">= 5"
   },
+  "lint-staged": {
+    "*.{js}": ["eslint ./*.js", "git add"],
+    "*.{js,json,css,md,vue,graphql}": ["prettier --write", "git add"]
+  },
   "scripts": {
     "dev": "nuxt --hostname 0.0.0.0",
     "build": "nuxt build",
     "start": "nuxt start --hostname 0.0.0.0",
     "deploy": "npm run build; npm run start",
-    "lint": "eslint ./*.js",
-    "format": "echo format...",
     "test": "echo test...",
-    "precommit": "yarn lint && yarn format && yarn test"
+    "precommit": "lint-staged && yarn test"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^2.1.1",
@@ -46,7 +48,9 @@
     "eslint-plugin-standard": "^3.0.1",
     "html-loader": "^0.5.1",
     "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
     "markdown-loader": "^2.0.1",
+    "prettier": "^1.9.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1"
   }
