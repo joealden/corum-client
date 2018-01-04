@@ -19,7 +19,7 @@
     "build": "nuxt build",
     "start": "nuxt start --hostname 0.0.0.0",
     "deploy": "npm run build; npm run start",
-    "lint": "eslint",
+    "lint": "eslint ./*.js",
     "format": "echo format...",
     "test": "echo test...",
     "precommit": "yarn lint && yarn format && yarn test"
