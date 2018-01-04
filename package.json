@@ -25,7 +25,7 @@
     "dev": "nuxt --hostname 0.0.0.0",
     "build": "nuxt build",
     "start": "nuxt start --hostname 0.0.0.0",
-    "deploy": "npm run build; npm run start",
+    "deploy": "yarn build && yarn start",
     "test": "echo test...",
     "precommit": "lint-staged && yarn test"
   },
