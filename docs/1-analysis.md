@@ -476,6 +476,8 @@ updates without a page refresh. This will be achieved through the use of
 * Logged in users can vote on posts
 * Logged in users can comment on posts
 * Logged in users can create new posts
+* Posts are automatically deleted when a voting threshold is reached
+  * This threshold will be something like when the votes reaches -10
 
 ### Limitations of the Project
 
