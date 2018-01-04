@@ -10,15 +10,19 @@
     "type": "git",
     "url": "git+https://github.com/joealden/corum.git"
   },
+  "engines": {
+    "node": ">=8",
+    "npm": ">= 5"
+  },
   "scripts": {
     "dev": "nuxt --hostname 0.0.0.0",
     "build": "nuxt build",
     "start": "nuxt start --hostname 0.0.0.0",
     "deploy": "npm run build; npm run start",
-    "lint": "echo Lint...",
+    "lint": "eslint",
     "format": "echo format...",
     "test": "echo test...",
-    "precommit": "yarn lint; yarn format; yarn test;"
+    "precommit": "yarn lint && yarn format && yarn test"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^2.1.1",
