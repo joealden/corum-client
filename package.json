@@ -16,7 +16,10 @@
   },
   "lint-staged": {
     "*.{js}": ["eslint ./*.js", "git add"],
-    "*.{js,json,css,md,vue,graphql}": ["prettier --write", "git add"]
+    "*.{js,json,css,md,vue,graphql}": [
+      "prettier --config ./.prettierrc --write",
+      "git add"
+    ]
   },
   "scripts": {
     "dev": "nuxt --hostname 0.0.0.0",
