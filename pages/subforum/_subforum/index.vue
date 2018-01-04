@@ -207,6 +207,7 @@ h1
 
     i
       margin-right 0.4rem
+      vertical-align baseline
       transition 0.15s ease-in-out
 
   .enabled-button
