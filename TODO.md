@@ -12,7 +12,7 @@
 
 ## Working On Now
 
-* Unit Tests (Possibly integration + e2e as well)
+* Unit Tests (Possibly integration + e2e as well, + pre commit hook)
 
 ## Next to Implement
 

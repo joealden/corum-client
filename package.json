@@ -26,7 +26,7 @@
     "build": "nuxt build",
     "start": "nuxt start --hostname 0.0.0.0",
     "deploy": "yarn build && yarn start",
-    "test": "echo test...",
+    "test": "echo '[INFO] Tests are not yet implemented.'",
     "precommit": "lint-staged && yarn test"
   },
   "dependencies": {
