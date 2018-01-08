@@ -16,7 +16,7 @@
   dependencies:
     dotenv "^4.0.0"
 
-"@nuxtjs/font-awesome@^1.0.2":
+"@nuxtjs/font-awesome@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@nuxtjs/font-awesome/-/font-awesome-1.0.3.tgz#66a88c8d9b0883dca992e3dd72e53fce22fcc418"
   dependencies:
