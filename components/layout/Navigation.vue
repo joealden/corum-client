@@ -1,12 +1,15 @@
 <template>
 <nav>
   <div v-if="!allSubforums" id="loading">
-    <img src="~/assets/images/loading-light.svg" alt="loading">
+    <img src="~/assets/images/loading-light.svg" alt="loading" />
   </div>
   <div v-else>
     <div v-if="userId" id="favourites">
       <h1>Favourites</h1>
-      <div v-if="sortedFavorites.length === 0" class="no-results">
+      <div v-if="sortedFavorites === undefined" class="no-results">
+        Loading...
+      </div>
+      <div v-else-if="sortedFavorites.length === 0" class="no-results">
         You currently don't have any favourites! <br><br>
         To add a favourite, click on the '+' button next to the
         subforum you want to add.
@@ -110,6 +113,8 @@ export default {
             return 0
           }
         })
+      } else {
+        return undefined
       }
     },
 
