@@ -33,7 +33,7 @@ module.exports = {
         loader: ['html-loader', 'markdown-loader']
       })
 
-      if (ctx.isClient && ctx.dev) {
+      if (ctx.isClient && ctx.isDev) {
         // Run ESLint on save
         config.module.rules.push({
           enforce: 'pre',
