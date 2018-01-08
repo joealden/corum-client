@@ -55,9 +55,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@nuxtjs/apollo@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/apollo/-/apollo-3.0.0.tgz#6045ba632df2fc937acf4ceb80893ed5b9109930"
+"@nuxtjs/apollo@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/apollo/-/apollo-3.0.1.tgz#0af78526a4867751e531450108933c74e2bdf1a0"
   dependencies:
     apollo-cache-inmemory "^1.0.0"
     apollo-client "^2.0.1"

@@ -30,7 +30,7 @@
     "precommit": "lint-staged && yarn test"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "3.0.0",
+    "@nuxtjs/apollo": "3.0.1",
     "@nuxtjs/dotenv": "1.1.0",
     "@nuxtjs/font-awesome": "1.0.3",
     "@nuxtjs/pwa": "2.0.5",
