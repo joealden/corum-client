@@ -34,7 +34,7 @@
     "@nuxtjs/dotenv": "^1.1.0",
     "@nuxtjs/font-awesome": "^1.0.2",
     "@nuxtjs/pwa": "^1.0.2",
-    "nuxt": "^1.0.0-rc9",
+    "nuxt": "1.0.0",
     "tinydate": "^1.0.0"
   },
   "devDependencies": {
