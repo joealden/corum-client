@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "*.{js}": ["eslint ./*.js", "git add"],
-    "*.{js,json,css,md,vue,graphql}": [
+    "*.{js,json,css,md,graphql}": [
       "prettier --config ./.prettierrc --write",
       "git add"
     ]
