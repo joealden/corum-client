@@ -1,12 +1,7 @@
-// For more info, visit https://nuxtjs.org/guide/vuex-store/
-
-/* eslint-disable */
-
-// ESlint is not happy about nuxt injecting deps
 import { Store } from 'vuex'
 import Vue from 'vue'
 
-/* eslint-enable */
+// For more info, visit https://nuxtjs.org/guide/vuex-store/
 
 /*
   Vue.set() is used to get around Vue's inability to detect the
