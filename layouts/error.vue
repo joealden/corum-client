@@ -1,40 +1,40 @@
 <template>
-<div id="grid">
-  <corum-logo />
-  <corum-header />
-  <corum-nav />
-  <main>
-    <section>
-      <img src="~/assets/images/logo-dark.svg" alt="corum">
-      <div v-if="prod">
-        <h1>Error</h1>
-        <p class="error-message">{{ errorMessage }}</p>
-      </div>
-      <div v-else>
-        <h1>{{ error.statusCode }}</h1>
-        <p class="error-message">{{ error.message }}</p>
-      </div>
-    </section>
-  </main>
-</div>
+<section>
+  <img src="~/assets/images/logo-dark.svg" alt="corum">
+  <div v-if="prod">
+    <h1>Error</h1>
+    <p class="error-message">{{ errorMessage }}</p>
+  </div>
+  <div v-else>
+    <h1>{{ error.statusCode }}</h1>
+    <p class="error-message">{{ error.message }}</p>
+  </div>
+</section>
 </template>
 
 <script>
-import Logo from '~/components/layout/Logo'
-import Header from '~/components/layout/Header'
-import Navigation from '~/components/layout/Navigation'
+/*
+  NOTE:
+
+  This layout has been changed due to a regression in
+  nuxt 1.0.0. The issue can be tracked at the following
+  link: https://github.com/nuxt/nuxt.js/issues/2537
+
+  For whatever reason, nuxt is rendering the error layout
+  inside of the default layout, instead of just rendering
+  the error layout when an error occurs. This means that
+  for the time being, this layout can be treated like a
+  page.
+
+  When this regression is fixed, find the old version
+  of this layout in 'error.old.vue'.
+*/
 
 import stringToBoolean from '~/utils/stringToBoolean'
 
 export default {
   name: 'nuxt-error',
   props: ['error'],
-
-  components: {
-    corumLogo: Logo,
-    corumHeader: Header,
-    corumNav: Navigation
-  },
 
   data() {
     return {
@@ -59,25 +59,11 @@ export default {
     }
   },
 
-  head: () => ({ title: 'Error' }),
-
-  /*
-    Fetch userid from localStorage after SSR
-  */
-  mounted() {
-    this.$store.commit('updateUserState')
-  }
+  head: () => ({ title: 'Error' })
 }
 </script>
 
 <style lang="stylus" scoped>
-@require '../assets/styles/layouts'
-
-main
-  display flex
-  flex-direction column
-  justify-content center
-
 img
   height 6rem
 
