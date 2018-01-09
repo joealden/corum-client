@@ -16,6 +16,7 @@
 
 ## Next to Implement
 
+* Fix error pages that bug out post nuxt v1 update
 * Fix issue with font-awesome importing ALL assets (Resulting in a 444kb
   uncompressed file)
 * Separate favorites and all subforums scroll
@@ -26,10 +27,3 @@
   * titles (100 / 150)
   * content (500ish)
   * comments (250ish)
-
-## Possible Ideas
-
-* Creation of subforums
-* Comments
-  * Voting on comments
-  * Nesting of comments
