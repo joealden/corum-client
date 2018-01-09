@@ -34,7 +34,16 @@
         spellcheck="false"
       >
       <div v-if="subforumSearch.length === 0" class="no-results">
-        No subforums matching your search were found!
+        No subforums matching your search were found! <br/><br/>
+        <div v-if="userId">
+          Want to create a new subforum?
+          <br/>
+          Click 
+          <nuxt-link
+            to="/new-subforum"
+            active-class="null"
+          >here</nuxt-link>.
+        </div>
       </div>
       <ul v-else>
         <li v-for="subforum in subforumSearch" :key="subforum.id">
@@ -270,6 +279,9 @@ input[type='search']
   font-size 1.25rem
   text-align center
   padding 1.5rem
+
+  a
+    color $nav-hover
 
 ul
   margin 0

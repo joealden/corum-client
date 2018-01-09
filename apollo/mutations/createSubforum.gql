@@ -1,0 +1,5 @@
+mutation createSubforum($name: String!, $url: String!) {
+  createSubforum(name: $name, url: $url) {
+    id
+  }
+}
