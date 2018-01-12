@@ -13,6 +13,7 @@
 ## Working On Now
 
 * Unit Tests (Possibly integration + e2e as well, + pre commit hook)
+* Update Nuxt when past 1.1.0 due to regression bug
 
 ## Next to Implement
 
