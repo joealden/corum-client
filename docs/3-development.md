@@ -1,14 +1,30 @@
 # Development
 
+## TODO
+
+* Use `peek` to record GIFs of functionality (Instead of still images)
+* Come up with a list of key 'code blocks' to analyse
+* Relate implementation back to design and user requirements
+* Talk about testing during development (relate to automated tests)
+
 ## Table of Contents
 
 * [Structure of the Project](#structure-of-the-project)
   * [Monolith vs Micro](#monolith-vs-micro)
   * [Client Architecture](#client-architecture)
+    * [Vue](#vue)
+    * [Nuxt](#nuxt)
+    * [Apollo](#apollo)
+    * [Production vs Development](#production-vs-development)
   * [API Architecture](#api-architecture)
-* [Dependency Management](#dependeny-management)
-* [Problems experienced](#problems-experienced)
+    * [Graphcool](#graphcool)
+* [Dependency Management](#dependency-management)
 * [Iterations during Development](#iterations-during-development)
+  * [Version Control](#version-control)
+  * [Iteration Stages](#iteration-stages)
+  * [User and Stakeholder Feedback](#user-and-stakeholder-feedback)
+* [Problems experienced](#problems-experienced)
+* [Code Analysis](#code-analysis)
 
 ## Structure of the Project
 
@@ -81,8 +97,8 @@
 
 * Abstracts away a lot of configuration and boilerplate code
 * Bakes in routing and state management
-* Provides server side rendering (Makes inital load faster and allows for easier
-  SEO)
+* Provides server side rendering (Makes initial load faster and allows for
+  easier SEO)
 
 ##### How Nuxt Works
 
@@ -119,7 +135,7 @@
     * Code minification
     * Turn off dev help
       * ESLint overlay (If something breaks, don't say exacting why)
-      * Vue devtools (That lets you explore info state)
+      * Vue developer tools (That lets you explore info state)
       * Logging errors to the console (Why you don't want that in production)
       * Changing error page (Why)
     * Turn on service worker (With nuxt pwa module)
@@ -163,22 +179,6 @@
 
 * Talk about yarn (yarn.lock)
 
-## Problems experienced
-
-### Client
-
-* How to manage login state
-* How to handle errors
-* Updating state based on data mutations
-
-### API
-
-* User account creation and authentication
-* Setting the initial vote count of a post to 0 on creation
-* Ensuring a user could only favorite a subforum once
-* Ensuring a user could only vote once on a post
-* Figuring out permissions
-
 ## Iterations during Development
 
 ### Version Control
@@ -195,6 +195,8 @@
 
 ### Iteration Stages
 
+* Talk about iterative development style
+* Talk about each develop cycle as a 'module' (testing at the end of each)
 * Implementing a dumb frontend (Mostly coding with just HTML and CSS at that
   point)
   * The landing page
@@ -219,3 +221,30 @@
   * The post page loads post details (name, author, content, comments etc.)
   * The new post page creates a new post and redirects the the new post
   * The new subforum page creates a new subforum and updates the navigation
+* Ensure that the moderator knows that it all works as it should
+
+## Problems experienced
+
+### Client
+
+* How to manage login state
+* How to handle errors
+* Updating state based on data mutations
+
+### API
+
+* User account creation and authentication
+* Setting the initial vote count of a post to 0 on creation
+* Ensuring a user could only favorite a subforum once
+* Ensuring a user could only vote once on a post
+* Figuring out permissions
+
+### User and Stakeholder Feedback
+
+placeholder
+
+## Code Analysis
+
+* Show ALL user input validation code (Talk about how they cover all cases
+  (robust))
+*
