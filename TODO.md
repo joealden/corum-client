@@ -13,11 +13,15 @@
 ## Working On Now
 
 * Unit Tests (Possibly integration + e2e as well, + pre commit hook)
-* Update Nuxt when past 1.1.0 due to regression bug
 
 ## Next to Implement
 
-* Fix error pages that bug out post nuxt v1 update
+* Update Nuxt when past 1.1.0 due to regression bug
+* Merge `corum` and `corum-api` into a single repo using the following:
+  * lerna or just yarn workspaces
+  * extract docs section from `corum` into top level
+  * extract `.vscode`, `.gitignore`, `LICENSE` and `.pretterrc` out
+  * have `packages` folder with `corum` and `corum-api` under it
 * Fix issue with font-awesome importing ALL assets (Resulting in a 444kb
   uncompressed file)
 * Separate favorites and all subforums scroll
