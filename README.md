@@ -30,7 +30,7 @@ in the root of the project with the following environment variables:
 * `API_ENDPOINT` (String) - The graphcool endpoint for Corum's API.
 * `PROD` (Boolean) - Determines what error messages and logging should occur.
 
-An example `.env` file can be found at `.env.example`
+An example `.env` file can be found at `.env.example`.
 
 If you do not know how to setup a Corum API, head over to the following github
 repo, [corum-api](https://github.com/joealden/corum-api).
