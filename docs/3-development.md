@@ -18,13 +18,16 @@
     * [Production vs Development](#production-vs-development)
   * [API Architecture](#api-architecture)
     * [Graphcool](#graphcool)
-* [Dependency Management](#dependency-management)
 * [Iterations during Development](#iterations-during-development)
   * [Version Control](#version-control)
   * [Iteration Stages](#iteration-stages)
   * [User and Stakeholder Feedback](#user-and-stakeholder-feedback)
 * [Problems experienced](#problems-experienced)
+  * [Client Problems](#client-problems)
+  * [API Problems](#api-problems)
 * [Code Analysis](#code-analysis)
+  * [Client Analysis](#client-analysis)
+  * [API Analysis](#api-analysis)
 
 ## Structure of the Project
 
@@ -175,10 +178,6 @@
     specify that only logged in users can create posts, create comments and
     vote. Or that no one it allowed to delete posts.
 
-## Dependency Management
-
-* Talk about yarn (yarn.lock)
-
 ## Iterations during Development
 
 ### Version Control
@@ -225,13 +224,13 @@
 
 ## Problems experienced
 
-### Client
+### Client Problems
 
 * How to manage login state
 * How to handle errors
 * Updating state based on data mutations
 
-### API
+### API Problems
 
 * User account creation and authentication
 * Setting the initial vote count of a post to 0 on creation
@@ -245,7 +244,7 @@ placeholder
 
 ## Code Analysis
 
-### Client
+### Client Analysis
 
 #### Navigation Component
 
@@ -759,7 +758,7 @@ export default () => {
 }
 ```
 
-### API
+### API Analysis
 
 #### Permission Configuration
 
