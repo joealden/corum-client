@@ -1162,11 +1162,10 @@ module.exports = function(event) {
 
 ##### `VOTE_COUNT_TO_DELETE_POST` Constant
 
+This number determines the amount of votes required for the post to be deleted
+by the automatic post management system.
+
 ```js
-/*
-  This number determines the amount of votes required for the
-  post to be deleted by the automatic post management system.
-*/
 export const VOTE_COUNT_TO_DELETE_POST = -1
 ```
 
