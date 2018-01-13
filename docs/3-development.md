@@ -245,5 +245,978 @@ placeholder
 
 ## Code Analysis
 
-* Show ALL user input validation code (Talk about how they cover all cases
-  (robust))
+### Client
+
+#### Navigation Component
+
+##### `subforumSearch`
+
+```js
+// Used to produce the filtered search
+subforumSearch() {
+  const caseInsensitiveInput = this.search.toLowerCase()
+
+  return this.allSubforums.filter(subforum =>
+    subforum.name.toLowerCase().includes(caseInsensitiveInput)
+  )
+}
+```
+
+placeholder explanation
+
+##### `sortedFavorites`
+
+```js
+/*
+  As graphcool doesn't support ordering by nested data, this
+  computed value sorts the favorites array by subforum names.
+*/
+sortedFavorites() {
+  if (this.allFavorites !== undefined) {
+    // Spread into a new array as sort mutates original array
+    return [...this.allFavorites].sort((a, b) => {
+      if (a.subforum.name > b.subforum.name) {
+        return 1
+      } else if (a.subforum.name < b.subforum.name) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+  } else {
+    return undefined
+  }
+}
+```
+
+placeholder explanation
+
+#### Apollo Configuration
+
+```js
+import { ApolloLink } from 'apollo-link'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+
+export default () => {
+  const uri = process.env.API_ENDPOINT
+  const httpLink = new HttpLink({ uri })
+
+  // This middleware sends the JWT (if present) that is needed for
+  // mutations such as 'createPost' or 'createComment', as only logged
+  // in users are allowed to peform such mutations.
+  const middlewareLink = new ApolloLink((operation, forward) => {
+    /*
+      Due to this being parsed SSR, process.browser must be used to
+      make sure localStorage is only attempted to be accessed on the
+      client. This isn't a  n issue as no queries or mutations that
+      require authentaction are made on an SSR request of the page.
+    */
+    const token = process.browser
+      ? localStorage.getItem('auth-token')
+      : undefined
+
+    operation.setContext({
+      headers: { authorization: `Bearer ${token}` }
+    })
+    return forward(operation)
+  })
+
+  const link = middlewareLink.concat(httpLink)
+  const cache = new InMemoryCache()
+
+  return { link, cache }
+}
+```
+
+placeholder explanation
+
+#### Post Page
+
+##### `upvoteButtonClick`
+
+```js
+// Determines what GraphQL mutation to execute based on the vote state
+upvoteButtonClick() {
+  if (this.voteInProgress === false) {
+    this.voteInProgress = tru
+    if (this.upvoted === true) {
+      // The user has already upvoted
+      this.localVote -= 1
+      this.deleteVote({ id: this.userVoteData.id })
+    } else if (this.downvoted === true) {
+      // The user has already downvoted
+      this.localVote += 2
+      this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_UP' })
+    } else {
+      // The user has not voted
+      this.localVote += 1
+      this.createVote({
+        vote: 'VOTE_UP',
+        postId: this.$route.params.post,
+        userId: this.userId
+      })
+    }
+  }
+}
+```
+
+* placeholder explanation
+* mention the fact there is an also a `downvoteButtonClick function`, but it is
+  not referenced here because it is very similar to this function
+
+##### `createVote`
+
+```js
+createVote(variables) {
+  this.$apollo
+    .mutate({
+      mutation: createVoteMutation,
+      variables,
+
+      update: (store, { data: { createVote } }) => {
+        const data = store.readQuery({
+          query: userVoteQuery,
+          variables: {
+            postId: this.$route.params.post,
+            userId: this.userId
+          }
+        })
+
+        data.allVotes.push({
+          __typename: 'Vote',
+          id: createVote.id,
+          vote: variables.vote
+        })
+
+        store.writeQuery({
+          query: userVoteQuery,
+          variables: {
+            postId: this.$route.params.post,
+            userId: this.userId
+          },
+          data
+        })
+
+        // Doesn't execute on optimstic response update
+        if (createVote.id !== 0) {
+          this.voteInProgress = false
+        }
+      },
+
+      optimisticResponse: {
+        __typename: 'Mutation',
+        createVote: {
+          id: 0,
+          __typename: 'Vote'
+        }
+      }
+    })
+    .catch(error => logIfDev('error', error))
+}
+```
+
+* placeholder
+* Talk about that this also has similar functions called `updateVote` and
+  `deleteVote`
+
+##### `submitComment`
+
+```js
+submitComment() {
+  const author = this.$store.state.username
+  const { comment: content } = this
+  const id = this.$route.params.post
+
+  // Clears user input from textarea
+  this.comment = ''
+
+  this.$apollo
+    .mutate({
+      mutation: createCommentMutation,
+      variables: {
+        author,
+        content,
+        id
+      },
+
+      update(store, { data: { createComment: commentData } }) {
+        const data = store.readQuery({
+          query: postQuery,
+          variables: { id }
+        })
+
+        const newComment = {
+          __typename: 'Comment',
+          id: commentData.id,
+          author: commentData.author,
+          content: commentData.content
+        }
+
+        data.Post.comments.push(newComment)
+        store.writeQuery({
+          query: postQuery,
+          variables: { id },
+          data
+        })
+
+        // scroll to bottom of page when comment is inserted
+        const main = document.getElementById('main-content-wrapper')
+        main.scrollTop = main.scrollHeight
+      },
+
+      optimisticResponse: {
+        __typename: 'Mutation',
+        createComment: {
+          __typename: 'Comment',
+          id: 'loading',
+          author,
+          content
+        }
+      }
+    })
+    .catch(error => logIfDev('error', error))
+}
+```
+
+placeholder
+
+#### Nuxt configuration (`nuxt.config.js`)
+
+```js
+// For more info, visit https://nuxtjs.org/api/configuration-build
+
+module.exports = {
+  // Headers of the page
+  head: {
+    titleTemplate: '%s - Corum',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'An open, democratic & self governing forum.'
+      }
+    ],
+    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
+  },
+
+  // CSS globals
+  css: ['~/assets/styles/globals.styl'],
+
+  // Customize the progress bar color
+  // $nav-hover (Found at '~/assets/styles/variables.styl')
+  loading: { color: '#53c556' },
+
+  // Build configuration
+  build: {
+    // Extend the webpack config
+    extend(config, { isClient, isDev }) {
+      // Add a markdown-loader for markdown files
+      config.module.rules.push({
+        test: /\.md$/,
+        loader: ['html-loader', 'markdown-loader']
+      })
+
+      if (isClient && isDev) {
+        // Run ESLint on save
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
+  },
+
+  //  Define modules used.
+  //  For more info, visit https://nuxtjs.org/guide/modules
+
+  //  @nuxtjs/apollo - Provides vue-apollo + apollo-client
+  //  @nuxtjs/dotenv - Reads .env and merges with process.env
+  //  @nuxtjs/font-awesome - Provides icons
+  //  @nuxtjs/pwa - Adds PWA features like offline support etc.
+
+  //  Documentation for the modules used here can be found at:
+  //  https://github.com/nuxt-community/awesome-nuxt#modules
+
+  modules: [
+    '@nuxtjs/apollo',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/font-awesome',
+    '@nuxtjs/pwa'
+  ],
+
+  // Specify the file where the apollo client config resides
+  apollo: {
+    clientConfigs: {
+      default: '~/apollo/client-configs/default.js'
+    }
+  }
+}
+```
+
+placeholder
+
+#### New Post Page
+
+##### `submitPost`
+
+```js
+submitPost() {
+  const authorId = this.$store.state.userId
+  const { postTitle: title, postContent: content, Subforum: { id } } = this
+
+  /*
+    For more info on how mutations work within vue-apollo,
+    visit https://github.com/Akryum/vue-apollo#mutations
+  */
+  this.$apollo
+    .mutate({
+      mutation: createPost,
+      variables: {
+        authorId,
+        title,
+        content,
+        id
+      }
+    })
+    .then(data => {
+      const { subforum } = this.$route.params
+      const { id } = data.data.createPost
+      this.$router.push(`/subforum/${subforum}/post/${id}`)
+    })
+    .catch(() => {
+      this.$router.push(`/error`) // TODO: create actual error page
+    })
+}
+```
+
+placeholder
+
+#### Login Page
+
+#### `login`
+
+```js
+login() {
+  // Renders the loading submit button
+  this.loading = true
+
+  /*
+    For more info on how mutations work within vue-apollo,
+    visit https://github.com/Akryum/vue-apollo#mutations
+  */
+  const { email, password } = this
+  this.$apollo
+    .mutate({
+      mutation: authenticateUser,
+      variables: {
+        email,
+        password
+      }
+    })
+    .then(({ data: { authenticateUser } }) => {
+      const { id, username, token } = authenticateUser
+      this.$store.commit('saveUserData', { id, username, token })
+
+      // Returns the user to the page they were on before
+      // TODO: If user was on signup before, redirect to home
+      this.$router.back()
+    })
+    .catch(({ message }) => {
+      // Renders the normal submit button
+      this.loading = false
+
+      // TODO: Extract cleanedMessage functionality into a function
+      const colonIndex = message.lastIndexOf(':')
+      const cleanedMessage = message.substring(
+        colonIndex + 2,
+        message.length
+      )
+      alert(`Error: ${cleanedMessage}`)
+    })
+}
+```
+
+* placeholder
+* note that the signup function is very similar, just a different GraphQL
+  mutation sending different data
+
+#### Signup Page
+
+##### `correctDetails`
+
+```js
+correctDetails() {
+  const emailEntered = this.email !== ''
+
+  const password1Entered = this.password1 !== ''
+  const password2Entered = this.password2 !== ''
+  const passwordsEntered = password1Entered && password2Entered
+  const passwordsMatch = this.password1 === this.password2
+
+  return emailEntered && passwordsEntered && passwordsMatch
+}
+```
+
+placeholder
+
+#### Utility Functions
+
+##### `logIfDev`
+
+```js
+import stringToBoolean from '~/utils/stringToBoolean'
+
+// Only logs to console if process.env.PROD is false
+
+const logIfDev = (logType, message) => {
+  if (stringToBoolean(process.env.PROD) === false) {
+    console[logType]('test')
+  }
+}
+
+export default logIfDev
+```
+
+placeholder
+
+##### `stringToBoolean`
+
+```js
+// Helper function to handle process.env booleans
+
+const stringToBoolean = stringBool => {
+  if (stringBool === 'true') {
+    return true
+  } else if (stringBool === 'false') {
+    return false
+  } else {
+    return undefined
+  }
+}
+
+export default stringToBoolean
+```
+
+#### Global Store Configuration (Vuex)
+
+```js
+import { Store } from 'vuex'
+import Vue from 'vue'
+
+// For more info, visit https://nuxtjs.org/guide/vuex-store/
+
+/*
+  Vue.set() is used to get around Vue's inability to detect the
+  state change.
+*/
+
+export default () => {
+  return new Store({
+    // Disallow state mutation not through defined mutations
+    strict: true,
+
+    /*
+      Initial state is fetched in a hook that executes on the client.
+      Fetch can be found at '~/layouts/default' or '~/layouts/error'.
+    */
+    state: {
+      userId: undefined,
+      username: undefined
+    },
+
+    mutations: {
+      logout(state) {
+        localStorage.removeItem('user-id')
+        localStorage.removeItem('username')
+        localStorage.removeItem('auth-token')
+        Vue.set(state, 'userId', localStorage.getItem('user-id'))
+        Vue.set(state, 'username', localStorage.getItem('username'))
+      },
+
+      saveUserData(state, { id, username, token }) {
+        localStorage.setItem('user-id', id)
+        localStorage.setItem('username', username)
+        localStorage.setItem('auth-token', token)
+        Vue.set(state, 'userId', localStorage.getItem('user-id'))
+        Vue.set(state, 'username', localStorage.getItem('username'))
+      },
+
+      updateUserState(state) {
+        Vue.set(state, 'userId', localStorage.getItem('user-id'))
+        Vue.set(state, 'username', localStorage.getItem('username'))
+      }
+    }
+  })
+}
+```
+
+### API
+
+#### Permission Configuration
+
+```yml
+# Where 'authenticated: true' is present in an operation,
+# the client must pass along their JWT auth token in the
+# request headers. (In the form -> Authorization: 'Bearer ${TOKEN}')
+
+permissions:
+    # User Permissions
+
+    # Allows access to User from Post
+    # Only the username field is made queryable. This means
+    # that malicious users cannot query for someones elses
+    # infomation such as their password, id, or email.
+  - operation: User.read  
+    fields: [username]
+
+  # Subforum Permissions
+  - operation: Subforum.create
+    authenticated: true
+  - operation: Subforum.read
+
+  # Favorite Permissions
+  - operation: Favorite.create
+    authenticated: true
+    # permission query here
+  - operation: Favorite.read
+  - operation: Favorite.delete
+    authenticated: true
+    # permission query here
+
+  # Post Permissions
+  - operation: Post.create
+    authenticated: true
+    # permission query here
+  - operation: Post.read
+
+  # Comment Permissions
+  - operation: Comment.create
+    authenticated: true
+    # permission query here
+  - operation: Comment.read
+
+  # Vote Permissions
+  - operation: Vote.create
+    authenticated: true
+    # permission query here
+  - operation: Vote.read
+  - operation: Vote.update
+    authenticated: true
+    # permission query here
+  - operation: Vote.delete
+    authenticated: true
+    # permission query here
+
+  # Relation Permissions
+  - operation: SubforumToPost.connect
+    authenticated: true
+    # permission query here
+  - operation: PostToComment.connect
+    authenticated: true
+    # permission query here
+  - operation: UserToPost.connect
+    authenticated: true
+    # permission query here
+  - operation: UserToVote.connect
+    authenticated: true
+    # permission query here
+  - operation: PostToVote.connect
+    authenticated: true
+    # permission query here
+  - operation: UserToFavorite.connect
+    authenticated: true
+    # permission query here
+  - operation: SubforumToFavorite.connect
+    authenticated: true
+    # permission query here
+```
+
+placeholder
+
+#### API Schema
+
+* To avoid repetition, link to design section with the schema
+
+#### Hook Functions
+
+##### `userAndSubforumIsUnique`
+
+```js
+import { fromEvent } from 'graphcool-lib'
+import { makeRequest } from '../../utils/common'
+
+/*
+  This is a hook function that executes every time before a favorite is created.
+  It ensures that only 1 favorite of a subforum by a single user can happen.
+*/
+
+const favoriteQuery = `
+query FavoriteQuery($userId: ID!, $subforumId: ID!) {
+  allFavorites(
+    filter: { AND: [{ user: { id: $userId } }, { subforum: { id: $subforumId } }] }
+  ) {
+    id
+  }
+}
+`
+
+export default async event => {
+  // Retrieve payload from event
+  const { data } = event
+  const { userId, subforumId } = data
+
+  // Create Graphcool API (based on https://github.com/graphcool/graphql-request)
+  const graphcool = fromEvent(event)
+  const api = graphcool.api('simple/v1')
+
+  try {
+    const { allFavorites } = await makeRequest(api, favoriteQuery, {
+      userId,
+      subforumId
+    })
+
+    if (allFavorites.length === 0) {
+      return { data }
+    } else {
+      return { error: 'This user has already favorited this subforum' }
+    }
+  } catch (error) {
+    return { error }
+  }
+}
+```
+
+* placeholder
+* mention that there is a hook function to ensure user and post is unique but
+  the functions are very similar
+
+##### `initVoteCount`
+
+```js
+// Ensures that when a post is created, the vote Count is set to 0
+
+export default event => {
+  const { data } = event
+  data.voteCount = 0
+  return { data }
+}
+```
+
+placeholder
+
+##### `updateVoteCountOnVoteCreation`
+
+```js
+import { fromEvent } from 'graphcool-lib'
+import {
+  VOTE_COUNT_TO_DELETE_POST,
+  makeRequest,
+  deleteAllVotesOnPost,
+  postIdFromVoteQuery,
+  currentPostVoteCount,
+  getAllVoteIdsOnPost,
+  deleteVote,
+  deletePost,
+  updatePost
+} from '../../utils/common'
+
+/*
+  This is a hook function that executes every time after a vote is created.
+  It updates the voteCount field on the post to reflect the vote creation.
+  Also, if the new vote count is equal or less than the VOTE_COUNT_TO_DELETE_POST
+  constant, then the post will be deleted (The automated management system)
+*/
+
+export default async event => {
+  // Retrieve payload from event
+  const { data } = event
+  const voteId = data.id
+  const voteType = data.vote
+
+  // Create Graphcool API (based on https://github.com/graphcool/graphql-request)
+  const graphcool = fromEvent(event)
+  const api = graphcool.api('simple/v1')
+
+  try {
+    const { Vote } = await makeRequest(api, postIdFromVoteQuery, { voteId })
+    const postId = Vote.post.id
+
+    const { Post } = await makeRequest(api, currentPostVoteCount, { postId })
+    const oldVoteCount = Post.voteCount
+
+    let newVoteCount
+    if (voteType === 'VOTE_UP') {
+      newVoteCount = oldVoteCount + 1
+    } else if (voteType === 'VOTE_DOWN') {
+      newVoteCount = oldVoteCount - 1
+    } else {
+      return Promise.reject('voteType is not defined')
+    }
+
+    if (newVoteCount <= VOTE_COUNT_TO_DELETE_POST) {
+      await deleteAllVotesOnPost(api, postId)
+      return await makeRequest(api, deletePost, { postId })
+    } else {
+      return await makeRequest(api, updatePost, { postId, newVoteCount })
+    }
+  } catch (error) {
+    return { error }
+  }
+}
+```
+
+* placeholder
+* mention how there are also the other hook functions for delete and update
+
+#### Resolvers
+
+##### `authenticate`
+
+```js
+const { fromEvent } = require('graphcool-lib')
+const bcryptjs = require('bcryptjs')
+
+const userQuery = `
+query UserQuery($email: String!) {
+  User(email: $email){
+    id
+    password
+    username
+  }
+}`
+
+const getGraphcoolUser = (api, email) => {
+  return api.request(userQuery, { email }).then(userQueryResult => {
+    if (userQueryResult.error) {
+      return Promise.reject(userQueryResult.error)
+    } else {
+      return userQueryResult.User
+    }
+  })
+}
+
+module.exports = event => {
+  if (!event.context.graphcool.pat) {
+    console.log('Please provide a valid root token!')
+    return { error: 'Email Authentication not configured correctly.' }
+  }
+
+  // Retrieve payload from event
+  const { email, password } = event.data
+
+  // Create Graphcool API (based on https://github.com/graphcool/graphql-request)
+  const graphcool = fromEvent(event)
+  const api = graphcool.api('simple/v1')
+
+  return getGraphcoolUser(api, email)
+    .then(graphcoolUser => {
+      if (!graphcoolUser) {
+        // returning same generic error so user can't find out what emails are registered.
+        return Promise.reject('Invalid Credentials')
+      } else {
+        return bcryptjs
+          .compare(password, graphcoolUser.password)
+          .then(passwordCorrect => {
+            if (passwordCorrect) {
+              const { id, username } = graphcoolUser
+              return { id, username }
+            } else {
+              return Promise.reject('Invalid Credentials')
+            }
+          })
+      }
+    })
+    .then(async graphcoolUserDetails => {
+      const { username, id } = graphcoolUserDetails
+      const token = await graphcool.generateAuthToken(id, 'User')
+      return {
+        data: {
+          id,
+          username,
+          token
+        }
+      }
+    })
+    .catch(error => {
+      return { error }
+    })
+}
+```
+
+placeholder
+
+##### `signup`
+
+```js
+const { fromEvent } = require('graphcool-lib')
+const bcryptjs = require('bcryptjs')
+const validator = require('validator')
+
+const userQuery = `
+query UserQuery($email: String!, $username: String!) {
+  allUsers(filter: {
+    OR: [{
+      email: $email
+    }, {
+      username: $username
+    }]
+  }) {
+    id
+    password
+    email
+    username
+  }
+}`
+
+const createUserMutation = `
+mutation CreateUserMutation($username: String!, $email: String!, $passwordHash: String!) {
+  createUser(
+    username: $username
+    email: $email,
+    password: $passwordHash
+  ) {
+    id
+  }
+}`
+
+const getGraphcoolUsers = (api, email, username) => {
+  return api.request(userQuery, { email, username }).then(userQueryResult => {
+    if (userQueryResult.error) {
+      return Promise.reject(userQueryResult.error)
+    } else {
+      return userQueryResult.allUsers
+    }
+  })
+}
+
+const createGraphcoolUser = (api, username, email, passwordHash) => {
+  return api
+    .request(createUserMutation, { username, email, passwordHash })
+    .then(userMutationResult => {
+      return userMutationResult.createUser.id
+    })
+}
+
+module.exports = function(event) {
+  if (!event.context.graphcool.pat) {
+    console.log('Please provide a valid root token!')
+    return { error: 'Email Signup not configured correctly.' }
+  }
+
+  // Retrieve payload from event
+  const { username, email, password } = event.data
+
+  // Create Graphcool API (based on https://github.com/graphcool/graphql-request)
+  const graphcool = fromEvent(event)
+  const api = graphcool.api('simple/v1')
+
+  const SALT_ROUNDS = 10
+
+  if (validator.isEmail(email)) {
+    return getGraphcoolUsers(api, email, username)
+      .then(graphcoolUsers => {
+        if (graphcoolUsers.length === 0) {
+          return bcryptjs
+            .hash(password, SALT_ROUNDS)
+            .then(hash => createGraphcoolUser(api, username, email, hash))
+        } else if (
+          graphcoolUsers.length === 2 ||
+          (graphcoolUsers[0].email === email &&
+            graphcoolUsers[0].username === username)
+        ) {
+          return Promise.reject('The email address and username are in use')
+        } else if (graphcoolUsers[0].email === email) {
+          return Promise.reject('The email address is in use')
+        } else if (graphcoolUsers[0].username === username) {
+          return Promise.reject('The username is in use')
+        } else {
+          return Promise.reject('An unknown error occured')
+        }
+      })
+      .then(id => {
+        return graphcool.generateAuthToken(id, 'User').then(token => {
+          return { data: { id, token } }
+        })
+      })
+      .catch(error => {
+        return { error }
+      })
+  } else {
+    return { error: 'The email address entered is not valid' }
+  }
+}
+```
+
+placeholder
+
+#### Utility Functions and Constants
+
+##### `VOTE_COUNT_TO_DELETE_POST` Constant
+
+```js
+/*
+  This number determines the amount of votes required for the
+  post to be deleted by the automatic post management system.
+*/
+export const VOTE_COUNT_TO_DELETE_POST = -1
+```
+
+talk about how this can be changed to set the vote delete threshold
+
+##### `makeRequest`
+
+```js
+/*
+  A wrapper around the fromEvent(event).request that is provided
+  by 'graphcool-lib' to handle errors in query responses.
+*/
+export const makeRequest = async (api, query, variables) => {
+  const queryResult = await api.request(query, variables)
+
+  if (queryResult.error) {
+    return Promise.reject(queryResult.error)
+  } else {
+    return queryResult
+  }
+}
+```
+
+placeholder
+
+##### `deleteAllVotesOnPost`
+
+```js
+/*
+  Currently, the CRUD API generated by graphcool does not expose a
+  query that allows you to update or delete multiple data records at
+  once.
+
+  It looks like this feature is coming in the graphcool 1.0 release.
+  https://github.com/graphcool/framework/issues/81
+
+  In the meantime, this function will be used to delete all the Votes
+  on a Post record. This is required because graphcool doesn't allow
+  you to delete records that would leave other records orphans.
+
+  In the case of the Post type, if it was deleted, it would leave the
+  Vote records that reference the Post, orphans. To allow us to delete
+  a post, we must first delete the Votes that reference it.
+*/
+export const deleteAllVotesOnPost = async (api, postId) => {
+  const { allVotes } = await makeRequest(api, getAllVoteIdsOnPost, { postId })
+  const voteIdList = allVotes.map(vote => vote.id)
+
+  return await Promise.all(
+    voteIdList.map(voteId => {
+      return makeRequest(api, deleteVote, { voteId })
+    })
+  )
+}
+```
+
+placeholder
