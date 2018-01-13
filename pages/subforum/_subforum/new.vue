@@ -81,7 +81,6 @@ export default {
   methods: {
     submitPost() {
       const authorId = this.$store.state.userId
-
       const { postTitle: title, postContent: content, Subforum: { id } } = this
 
       /*
