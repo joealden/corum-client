@@ -1160,7 +1160,7 @@ module.exports = function(event) {
 
 #### Utility Functions and Constants
 
-##### `VOTE_COUNT_TO_DELETE_POST` Constant
+##### `VOTE_COUNT_TO_DELETE_POST`
 
 This number determines the amount of votes required for the post to be deleted
 by the automatic post management system.
