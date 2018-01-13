@@ -251,6 +251,8 @@ placeholder
 
 ##### `subforumSearch`
 
+placeholder explanation
+
 ```js
 // Used to produce the filtered search
 subforumSearch() {
@@ -262,9 +264,9 @@ subforumSearch() {
 }
 ```
 
-placeholder explanation
-
 ##### `sortedFavorites`
+
+placeholder explanation
 
 ```js
 /*
@@ -289,9 +291,9 @@ sortedFavorites() {
 }
 ```
 
-placeholder explanation
-
 #### Apollo Configuration
+
+placeholder explanation
 
 ```js
 import { ApolloLink } from 'apollo-link'
@@ -329,11 +331,13 @@ export default () => {
 }
 ```
 
-placeholder explanation
-
 #### Post Page
 
 ##### `upvoteButtonClick`
+
+* placeholder explanation
+* mention the fact there is an also a `downvoteButtonClick function`, but it is
+  not referenced here because it is very similar to this function
 
 ```js
 // Determines what GraphQL mutation to execute based on the vote state
@@ -361,11 +365,11 @@ upvoteButtonClick() {
 }
 ```
 
-* placeholder explanation
-* mention the fact there is an also a `downvoteButtonClick function`, but it is
-  not referenced here because it is very similar to this function
-
 ##### `createVote`
+
+* placeholder
+* Talk about that this also has similar functions called `updateVote` and
+  `deleteVote`
 
 ```js
 createVote(variables) {
@@ -416,11 +420,9 @@ createVote(variables) {
 }
 ```
 
-* placeholder
-* Talk about that this also has similar functions called `updateVote` and
-  `deleteVote`
-
 ##### `submitComment`
+
+placeholder
 
 ```js
 submitComment() {
@@ -479,9 +481,9 @@ submitComment() {
 }
 ```
 
-placeholder
-
 #### Nuxt configuration (`nuxt.config.js`)
+
+placeholder
 
 ```js
 // For more info, visit https://nuxtjs.org/api/configuration-build
@@ -558,11 +560,11 @@ module.exports = {
 }
 ```
 
-placeholder
-
 #### New Post Page
 
 ##### `submitPost`
+
+placeholder
 
 ```js
 submitPost() {
@@ -594,11 +596,13 @@ submitPost() {
 }
 ```
 
-placeholder
-
 #### Login Page
 
 #### `login`
+
+* placeholder
+* note that the signup function is very similar, just a different GraphQL
+  mutation sending different data
 
 ```js
 login() {
@@ -641,13 +645,11 @@ login() {
 }
 ```
 
-* placeholder
-* note that the signup function is very similar, just a different GraphQL
-  mutation sending different data
-
 #### Signup Page
 
 ##### `correctDetails`
+
+placeholder
 
 ```js
 correctDetails() {
@@ -662,11 +664,11 @@ correctDetails() {
 }
 ```
 
-placeholder
-
 #### Utility Functions
 
 ##### `logIfDev`
+
+placeholder
 
 ```js
 import stringToBoolean from '~/utils/stringToBoolean'
@@ -682,9 +684,9 @@ const logIfDev = (logType, message) => {
 export default logIfDev
 ```
 
-placeholder
-
 ##### `stringToBoolean`
+
+placeholder
 
 ```js
 // Helper function to handle process.env booleans
@@ -703,6 +705,8 @@ export default stringToBoolean
 ```
 
 #### Global Store Configuration (Vuex)
+
+placeholder
 
 ```js
 import { Store } from 'vuex'
@@ -758,6 +762,8 @@ export default () => {
 ### API
 
 #### Permission Configuration
+
+placeholder
 
 ```yml
 # Where 'authenticated: true' is present in an operation,
@@ -836,8 +842,6 @@ permissions:
     # permission query here
 ```
 
-placeholder
-
 #### API Schema
 
 * To avoid repetition, link to design section with the schema
@@ -845,6 +849,10 @@ placeholder
 #### Hook Functions
 
 ##### `userAndSubforumIsUnique`
+
+* placeholder
+* mention that there is a hook function to ensure user and post is unique but
+  the functions are very similar
 
 ```js
 import { fromEvent } from 'graphcool-lib'
@@ -891,11 +899,9 @@ export default async event => {
 }
 ```
 
-* placeholder
-* mention that there is a hook function to ensure user and post is unique but
-  the functions are very similar
-
 ##### `initVoteCount`
+
+placeholder
 
 ```js
 // Ensures that when a post is created, the vote Count is set to 0
@@ -907,9 +913,10 @@ export default event => {
 }
 ```
 
-placeholder
-
 ##### `updateVoteCountOnVoteCreation`
+
+* placeholder
+* mention how there are also the other hook functions for delete and update
 
 ```js
 import { fromEvent } from 'graphcool-lib'
@@ -970,12 +977,11 @@ export default async event => {
 }
 ```
 
-* placeholder
-* mention how there are also the other hook functions for delete and update
-
 #### Resolvers
 
 ##### `authenticate`
+
+placeholder
 
 ```js
 const { fromEvent } = require('graphcool-lib')
@@ -1048,9 +1054,9 @@ module.exports = event => {
 }
 ```
 
-placeholder
-
 ##### `signup`
+
+placeholder
 
 ```js
 const { fromEvent } = require('graphcool-lib')
@@ -1152,8 +1158,6 @@ module.exports = function(event) {
 }
 ```
 
-placeholder
-
 #### Utility Functions and Constants
 
 ##### `VOTE_COUNT_TO_DELETE_POST` Constant
@@ -1166,9 +1170,9 @@ placeholder
 export const VOTE_COUNT_TO_DELETE_POST = -1
 ```
 
-talk about how this can be changed to set the vote delete threshold
-
 ##### `makeRequest`
+
+placeholder
 
 ```js
 /*
@@ -1186,9 +1190,9 @@ export const makeRequest = async (api, query, variables) => {
 }
 ```
 
-placeholder
-
 ##### `deleteAllVotesOnPost`
+
+placeholder
 
 ```js
 /*
@@ -1218,5 +1222,3 @@ export const deleteAllVotesOnPost = async (api, postId) => {
   )
 }
 ```
-
-placeholder
