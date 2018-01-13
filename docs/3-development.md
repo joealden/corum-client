@@ -25,6 +25,7 @@
 * [Problems experienced](#problems-experienced)
   * [Client Problems](#client-problems)
   * [API Problems](#api-problems)
+* [Testing During Development](#testing-during-development)
 * [Code Analysis](#code-analysis)
   * [Client Analysis](#client-analysis)
   * [API Analysis](#api-analysis)
@@ -222,6 +223,10 @@
   * The new subforum page creates a new subforum and updates the navigation
 * Ensure that the moderator knows that it all works as it should
 
+### User and Stakeholder Feedback
+
+placeholder
+
 ## Problems experienced
 
 ### Client Problems
@@ -238,7 +243,7 @@
 * Ensuring a user could only vote once on a post
 * Figuring out permissions
 
-### User and Stakeholder Feedback
+## Testing During Development
 
 placeholder
 
