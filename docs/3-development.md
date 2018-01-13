@@ -3,9 +3,8 @@
 ## TODO
 
 * Use `peek` to record GIFs of functionality (Instead of still images)
-* Come up with a list of key 'code blocks' to analyse
+  * Talk about testing during development (relate to automated tests)
 * Relate implementation back to design and user requirements
-* Talk about testing during development (relate to automated tests)
 
 ## Table of Contents
 
