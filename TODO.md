@@ -12,7 +12,8 @@
 
 ## Working On Now
 
-* Unit Tests (Possibly integration + e2e as well, + pre commit hook)
+* Tests (Unit, Possibly integration + e2e as well with cypress, + pre commit
+  hook)
 
 ## Next to Implement
 
