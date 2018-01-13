@@ -1,23 +1,9 @@
 {
   "editor.tabSize": 2,
-  "prettier.cssEnable": [
-    "css",
-    "less",
-    "scss",
-    "vue"
-  ],
-  "prettier.javascriptEnable": [
-    "javascript",
-    "javascriptreact",
-    "vue"
-  ],
+  "prettier.cssEnable": ["css", "less", "scss", "vue"],
+  "prettier.javascriptEnable": ["javascript", "javascriptreact", "vue"],
   "prettier.singleQuote": true,
-  "cSpell.enabledLanguageIds": [
-    "latex",
-    "markdown",
-    "plaintext",
-    "text"
-  ],
+  "cSpell.enabledLanguageIds": ["latex", "markdown", "plaintext", "text"],
   "cSpell.words": [
     "Corum",
     "corum's",
@@ -44,6 +30,13 @@
     "Slint's",
     "pluggable",
     "customised",
-    "randomtextgenerator"
+    "randomtextgenerator",
+    "nuxt",
+    "gifs",
+    "gitignore",
+    "vuex",
+    "optimisation",
+    "optimisations",
+    "minification"
   ]
 }

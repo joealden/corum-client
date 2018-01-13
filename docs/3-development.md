@@ -247,4 +247,3 @@ placeholder
 
 * Show ALL user input validation code (Talk about how they cover all cases
   (robust))
-*
