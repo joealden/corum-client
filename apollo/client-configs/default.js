@@ -16,7 +16,7 @@ export default () => {
       Due to this being parsed SSR, process.browser must be used to
       make sure localStorage is only attempted to be accessed on the
       client. This isn't a  n issue as no queries or mutations that
-      require authentaction are made on an SSR request of the page.
+      require authentication are made on an SSR request of the page.
     */
     const token = process.browser
       ? localStorage.getItem('auth-token')
