@@ -95,13 +95,8 @@ export default {
         .then(() => {
           this.$router.push(`/subforum/${url}`)
         })
-        .catch(({ message }) => {
-          const colonIndex = message.lastIndexOf(':')
-          const cleanedMessage = message.substring(
-            colonIndex + 2,
-            message.length
-          )
-          alert(`Error: ${cleanedMessage}`)
+        .catch(() => {
+          alert('Error: That subforum already exists')
         })
     }
   }
