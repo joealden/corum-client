@@ -27,12 +27,6 @@ module.exports = {
   build: {
     // Extend the webpack config
     extend(config, { isClient, isDev }) {
-      // Add a markdown-loader for markdown files
-      config.module.rules.push({
-        test: /\.md$/,
-        loader: ['html-loader', 'markdown-loader']
-      })
-
       if (isClient && isDev) {
         // Run ESLint on save
         config.module.rules.push({
