@@ -244,6 +244,32 @@ placeholder
 
 ## Testing During Development
 
+### Signup Page
+
+placeholder
+
+### Login Page
+
+![Login Page GIF](images/correct-login.gif)
+
+### Navigation
+
+placeholder
+
+### Subforum Page
+
+placeholder
+
+### Post Page
+
+placeholder
+
+### New Post Page
+
+placeholder
+
+### New Subforum Page
+
 placeholder
 
 ## Code Analysis
