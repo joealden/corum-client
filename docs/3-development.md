@@ -250,7 +250,7 @@ placeholder
 
 ### Login Page
 
-![Login Page GIF](images/correct-login.gif)
+![Login Page GIF](images/gifs/correct-login.gif)
 
 ### Navigation
 
