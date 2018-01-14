@@ -2,9 +2,8 @@
 
 ## TODO
 
-* Use `peek` to record GIFs of functionality (Instead of still images)
-  * Talk about testing during development (relate to automated tests)
 * Relate implementation back to design and user requirements
+* Put new subforum page in design
 
 ## Table of Contents
 
@@ -25,6 +24,13 @@
   * [Client Problems](#client-problems)
   * [API Problems](#api-problems)
 * [Testing During Development](#testing-during-development)
+  * [Signup Page](#signup-page)
+  * [Login Page](#login-page)
+  * [Navigation](#navigation)
+  * [Subforum Page](#subforum-page)
+  * [Post Page](#post-page)
+  * [New Post Page](#new-post-page)
+  * [New Subforum Page](#new-subforum-page)
 * [Code Analysis](#code-analysis)
   * [Client Analysis](#client-analysis)
   * [API Analysis](#api-analysis)
@@ -244,33 +250,234 @@ placeholder
 
 ## Testing During Development
 
+* Talk about testing during development (relate to automated tests)
+* Say that these manual tests could have been automated with e2e / cypress
+* However, they do not mean unit tests are pointless
+
 ### Signup Page
 
-placeholder
+These also show the following:
+
+* The url can be seen at the top (`/signup`)
+* The Sign Up button in the header is highlighted correctly
+* On submit, the sign up button is no clickable and says 'Please Wait...'
+
+#### Successful Signup Attempt
+
+* The user is redirected to the page they were on before if successful
+* The logged in state has been changed (Show in navigation and header)
+* It is assumed that the email and username are not already taken
+
+![Successful Signup Attempt GIF](images/gifs/signup/correct.gif)
+
+#### Input validation
+
+* Mention that the validation code can be found below (maybe link)
+* The Sign Up button can only be pressed when:
+  * All fields have been filled
+  * The two passwords fields match
+* In this GIF, it can be seen that the passwords do not match, as they of
+  different length
+
+![Input validation GIF](images/gifs/signup/input-validation.gif)
+
+#### Email is Already Taken
+
+* The correct error message is displayed
+* It is assumed that the email `test@test.com` is already taken
+* It is assumed that the username `test12345` is not taken
+
+![Username taken GIF](images/gifs/signup/email-taken.gif)
+
+#### Username is Already Taken
+
+* The correct error message is displayed
+* It is assumed that the username `test` is already taken
+* It is assumed that the email `test123@test.com` is not taken
+
+![Username taken GIF](images/gifs/signup/username-taken.gif)
+
+#### Email and Username are Already Taken
+
+* The correct error message is displayed
+* It is assumed that the email `test@test.com` is already taken
+* It is assumed that the username `test` is already taken
+
+![Both taken GIF](images/gifs/signup/both-taken.gif)
+
+#### Navigating to the Login Page
+
+* The link provided on the signup page to the login page works
+
+![Successful Login Attempt GIF](images/gifs/signup/login-link.gif)
 
 ### Login Page
 
-![Login Page GIF](images/gifs/correct-login.gif)
+These also show the following:
+
+* The url can be seen at the top (`/login`)
+* The login button in the header is highlighted correctly
+* The login button is only clickable when both fields have been filled
+* On submit, the login button is no clickable and says 'Please Wait...'
+
+#### Successful Login Attempt
+
+* The user is redirected to the page they were on before if successful
+* The logged in state has been changed (Show in navigation and header)
+
+![Successful Login Attempt GIF](images/gifs/login/correct.gif)
+
+#### Unsuccessful Login Attempt
+
+* The error message is displayed to the user when an attempt is not successful
+* Once the user dismisses the error, (With the button or the enter key) they are
+  free to tr again
+
+![Unsuccessful Login Attempt GIF](images/gifs/login/invalid-credentials.gif)
+
+#### Navigating to the Signup Page
+
+* The link provided on the login page to the signup page works
+
+![Navigating to the Signup Page GIF](images/gifs/login/signup-link.gif)
 
 ### Navigation
 
-placeholder
+#### Links to Subforums Work
+
+* The links navigate to the correct subforum page
+* When on a subforum, it is highlighted in the navigation
+
+![Links to Subforums Work GIF](images/gifs/navigation/links.gif)
+
+#### Search Functionality Works
+
+* The 'All Subforums' list is filtered by the search input
+* The search is case insensitive
+* Mention the filtering code below (Link)
+* When no items match the search term, show a message
+
+![Search Functionality Works GIF](images/gifs/navigation/search.gif)
+
+* If the user is logged in and no items match, show a slightly different message
+  with a link to create a subforum
+* Link to the create a subforum page works
+
+![Logged in search message GIF](images/gifs/navigation/search-logged-in.gif)
+
+#### Navigation shows Favorites when Logged In
+
+* When the user logs in, the navigation updates correctly
+* The favorites section is not shown when a user is not logged in
+
+![Favorites shown on login GIF](images/gifs/navigation/login.gif)
+
+#### Favorites Works
+
+* When the user has favorites, they are displayed in the favorites section
+* Each item in the favorites section has a '-' button to remove items from the
+  favorites section
+* Each item in the 'All Subforums' section that is not already in the favorites
+  section has a '+' button to add items to the favorites section
+* When the favorites section is empty, a message is shown
+* The add and remove button work correctly
+* The favorites are sorted correctly (Refer to sort cod below, link)
+
+![Favorites Works GIF](images/gifs/navigation/favorites.gif)
 
 ### Subforum Page
 
-placeholder
+#### Empty Subforum Message
+
+* Display a message when a subforum has no posts
+
+![Empty subforum message GIF](images/gifs/subforum/empty.gif)
+
+#### The 'New Post' Button
+
+* When a user is logged in, the button is clickable
+* When a user is not logged in, the button is greyed out and not clickable
+
+![New Post Button GIF](images/gifs/subforum/new-post-button.gif)
+
+#### The Post List
+
+* The list contains the following information about the post:
+  * Post title
+  * Created at
+  * Vote count
+* Each post in the list is a link to the post
+
+![The post list GIF](images/gifs/subforum/post-list.gif)
+
+#### Sorting Functionality
+
+* The default sorting method is by 'most popular' posts
+* Both sort methods sort in descending order
+* The 'most popular' sort method sorts by vote count
+* The 'newest' sort method sorts by created at time and date
+
+![Sorting Functionality GIF](images/gifs/subforum/sorting.gif)
 
 ### Post Page
 
-placeholder
+#### Posts are Loading Correctly
+
+* Links from subforum pages work and post details are loaded
+
+![Post info loading GIF](images/gifs/post/load.gif)
+
+#### Comments Section
+
+* If there are no comments, show a message
+* You cannot comment when not logged in
+* When logged in, add a section add the bottom of the page to add a comment
+* When a comment is submitted, it is added to the comment section of the page
+* The user cannot submit a comment when no text has been entered
+* The comment count is updated correctly
+
+![Comments section GIF](images/gifs/post/comment.gif)
+
+#### Post Voting
+
+* The vote count is displayed in the top right of a post
+* There is a button to upvote and a button to downvote a post
+* If a user is not logged in, then vote buttons are greyed out and not clickable
+* If a user is logged in, the vote buttons are clickable
+* The vote count updates properly (Reference code below, link)
+
+![Post voting GIF](images/gifs/post/vote.gif)
 
 ### New Post Page
 
-placeholder
+* The 'New Post' button in a subforum brings the user to this page
+* A new post can only be submitted when both fields are filled in
+* The user is then redirected to the newly created post after they submit it
+* The new post is inserted into the subforum from which the user click the 'New
+  Post' button
+
+![New post page GIF](images/gifs/new-post/index.gif)
+
+* If a user tries to visit this page when they are not logged in, an error
+  message is displayed with links to either signup or login
+
+![New post page error GIF](images/gifs/new-post/error.gif)
 
 ### New Subforum Page
 
-placeholder
+* The only way to access this page is through the navigation when a user is
+  logged in
+
+![New subforum page GIF](images/gifs/new-subforum/index.gif)
+
+* If the user tries to create a subforum that already exists, an error occurs
+
+![Subforum already exists GIF](images/gifs/new-subforum/exists.gif)
+
+* If a user tries to visit this page when they are not logged in, an error
+  message is displayed with links to either signup or login
+
+![New subforum page error GIF](images/gifs/new-subforum/error.gif)
 
 ## Code Analysis
 
