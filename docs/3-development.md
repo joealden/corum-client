@@ -489,74 +489,6 @@ These also show the following:
 
 #### Nuxt configuration (`nuxt.config.js`)
 
-Please refer to the [`nuxt.config.js`](#how-nuxt-works) section located near the
-top of this document for more information about what this file does and why it
-exists.
-
-These are the main section of Corum's Nuxt configuration file:
-
-* `head`
-* `css`
-* `loading`
-* `build`
-* `modules`
-* `apollo`
-
-The following sections will describe what Corum uses them for.
-
-##### `head`
-
-This is where page headers are defined that will be the same across all pages.
-
-As seen below, an useful property nuxt expose is `titleTemplate`. This allows
-pages to pass their names into a template, so the page title changes between
-pages. Corum's title template is `'%s - Corum'`, so for example, a post page
-will have its title, followed by `'- corum'`.
-
-This also includes things such as meta tags for character encoding and site
-description. Also specified here is the link to the site's favicon.
-
-##### `css`
-
-This is where you can specify what CSS files you want to be added to the head of
-every page, so these styles will be global to the entire site.
-
-Corum's configuration reference a file called `globals.styl`. It contains a
-basic CSS reset, as well as globals such as the base font size and font family.
-
-The `.styl` file extension is short for stylus. Stylus is a CSS preprocessor.
-(You may have heard of SASS, which is another example of a CSS preprocessor) The
-fact that I am referencing a `.styl` file is important because nuxt reads the
-file extension, and applies the correct loader to process this file into regular
-CSS.
-
-##### `loading`
-
-In the GIFs files above that show how the site actually functions, you may have
-noticed a small green loading bar going across the top of the page when
-navigating between pages. This is a feature built into nuxt. Nuxt allows you to
-customise this loading bar with CSS. Corum only changes the color of the bar to
-match the overall theme.
-
-##### `build`
-
-The build property is where Nuxt allows you to extend its functionality. The
-only thing Corum uses this for is to linting to JavaScript and Vue.
-
-##### `modules`
-
-This is where you defined the Nuxt modules that you want to use. Nuxt modules
-are packages that features to Nuxt just by installing them and telling nuxt to
-use them.
-
-The modules used by Corum and why they are used can be found in the code
-comments below.
-
-##### `apollo`
-
-This is exposed by the `@nuxtjs/apollo` module, and requires you to specify
-where the Apollo Client configuration file resides.
-
 ```js
 // For more info, visit https://nuxtjs.org/api/configuration-build
 
@@ -626,40 +558,75 @@ module.exports = {
 }
 ```
 
+Please refer to the [`nuxt.config.js`](#how-nuxt-works) section located near the
+top of this document for more information about what this file does and why it
+exists.
+
+These are the main section of Corum's Nuxt configuration file:
+
+* `head`
+* `css`
+* `loading`
+* `build`
+* `modules`
+* `apollo`
+
+The following sections will describe what Corum uses them for.
+
+##### `head`
+
+This is where page headers are defined that will be the same across all pages.
+
+As seen below, an useful property nuxt expose is `titleTemplate`. This allows
+pages to pass their names into a template, so the page title changes between
+pages. Corum's title template is `'%s - Corum'`, so for example, a post page
+will have its title, followed by `'- corum'`.
+
+This also includes things such as meta tags for character encoding and site
+description. Also specified here is the link to the site's favicon.
+
+##### `css`
+
+This is where you can specify what CSS files you want to be added to the head of
+every page, so these styles will be global to the entire site.
+
+Corum's configuration reference a file called `globals.styl`. It contains a
+basic CSS reset, as well as globals such as the base font size and font family.
+
+The `.styl` file extension is short for stylus. Stylus is a CSS preprocessor.
+(You may have heard of SASS, which is another example of a CSS preprocessor) The
+fact that I am referencing a `.styl` file is important because nuxt reads the
+file extension, and applies the correct loader to process this file into regular
+CSS.
+
+##### `loading`
+
+In the GIFs files above that show how the site actually functions, you may have
+noticed a small green loading bar going across the top of the page when
+navigating between pages. This is a feature built into nuxt. Nuxt allows you to
+customise this loading bar with CSS. Corum only changes the color of the bar to
+match the overall theme.
+
+##### `build`
+
+The build property is where Nuxt allows you to extend its functionality. The
+only thing Corum uses this for is to linting to JavaScript and Vue.
+
+##### `modules`
+
+This is where you defined the Nuxt modules that you want to use. Nuxt modules
+are packages that features to Nuxt just by installing them and telling nuxt to
+use them.
+
+The modules used by Corum and why they are used can be found in the code
+comments below.
+
+##### `apollo`
+
+This is exposed by the `@nuxtjs/apollo` module, and requires you to specify
+where the Apollo Client configuration file resides.
+
 #### Apollo Configuration
-
-To find out more about how configuring Apollo client works, visit the url that
-is at the top of the code block.
-
-As mentioned before, Apollo is used to communicate with Corum's GraphQL API.
-Before Apollo can communicate the with the API, it needs to be configured. In
-version 2 of Apollo Client, it was made a lot more modular. The two important
-things to configure now are Apollo Links and Caches.
-
-Apollo Links allow you to configure how GraphQL queries are handled. A common
-Apollo link is `apollo-link-http` as seen below. This allows you to configure
-how queries are sent over HTTP. The `apollo-link-http` package exposes a class
-called `HttpLink`. As seen below, it expects and object containing the `uri` of
-the API server. In Corum's case, the API endpoint address is fetched from the
-`.env` file located in the root directory of the project. This means that
-queries sent through Apollo are now sent to our Graphcool API.
-
-There is also a generic Apollo link in the package `apollo-link`. This package
-exposes a class called `ApolloLink`. This link allows you to modify the request
-before it is sent in any way you like. (Also known as middleware) The reason
-Corum needs to modify the request is so that the authentication token (if
-present) is sent along with the request, allowing protected queries to be
-performed. (Such as creating posts) The authentication token is fetched when the
-user is logged in, and it is checked by the API before any protected queries are
-performed, so it ensures that only logged in users can perform protected
-queries.
-
-Apollo Caches are used to cache data fetched from the server, so that unneeded
-network requests are not made. How this works is that Apollo checks the cache
-before following the Apollo Link chain. A type of Apollo Cache called
-`apollo-cache-inmemory` is used by corum. This simply means that the cache is
-kept in memory on the client, so it is deleted when the user goes off of the
-site.
 
 ```js
 // https://github.com/nuxt-community/apollo-module
@@ -705,9 +672,53 @@ export default () => {
 }
 ```
 
+To find out more about how configuring Apollo client works, visit the url that
+is at the top of the code block.
+
+As mentioned before, Apollo is used to communicate with Corum's GraphQL API.
+Before Apollo can communicate the with the API, it needs to be configured. In
+version 2 of Apollo Client, it was made a lot more modular. The two important
+things to configure now are Apollo Links and Caches.
+
+Apollo Links allow you to configure how GraphQL queries are handled. A common
+Apollo link is `apollo-link-http` as seen below. This allows you to configure
+how queries are sent over HTTP. The `apollo-link-http` package exposes a class
+called `HttpLink`. As seen below, it expects and object containing the `uri` of
+the API server. In Corum's case, the API endpoint address is fetched from the
+`.env` file located in the root directory of the project. This means that
+queries sent through Apollo are now sent to our Graphcool API.
+
+There is also a generic Apollo link in the package `apollo-link`. This package
+exposes a class called `ApolloLink`. This link allows you to modify the request
+before it is sent in any way you like. (Also known as middleware) The reason
+Corum needs to modify the request is so that the authentication token (if
+present) is sent along with the request, allowing protected queries to be
+performed. (Such as creating posts) The authentication token is fetched when the
+user is logged in, and it is checked by the API before any protected queries are
+performed, so it ensures that only logged in users can perform protected
+queries.
+
+Apollo Caches are used to cache data fetched from the server, so that unneeded
+network requests are not made. How this works is that Apollo checks the cache
+before following the Apollo Link chain. A type of Apollo Cache called
+`apollo-cache-inmemory` is used by corum. This simply means that the cache is
+kept in memory on the client, so it is deleted when the user goes off of the
+site.
+
 #### Navigation Component
 
 ##### `subforumSearch`
+
+```js
+// Used to produce the filtered search
+subforumSearch() {
+  const caseInsensitiveInput = this.search.toLowerCase()
+
+  return this.allSubforums.filter(subforum =>
+    subforum.name.toLowerCase().includes(caseInsensitiveInput)
+  )
+}
+```
 
 The `subforumSearch` function is used as a computed property by Vue. Computed
 properties can be used in any place where component data can be used, however
@@ -732,18 +743,30 @@ prototype is called on the users search term. Then, using the `filter` method on
 the array prototype and the `includes` method on the string prototype, the
 subforums that match the search term are returned from the function.
 
-```js
-// Used to produce the filtered search
-subforumSearch() {
-  const caseInsensitiveInput = this.search.toLowerCase()
+##### `sortedFavorites`
 
-  return this.allSubforums.filter(subforum =>
-    subforum.name.toLowerCase().includes(caseInsensitiveInput)
-  )
+```js
+/*
+  As graphcool doesn't support ordering by nested data, this
+  computed value sorts the favorites array by subforum names.
+*/
+sortedFavorites() {
+  if (this.allFavorites !== undefined) {
+    // Spread into a new array as sort mutates original array
+    return [...this.allFavorites].sort((a, b) => {
+      if (a.subforum.name > b.subforum.name) {
+        return 1
+      } else if (a.subforum.name < b.subforum.name) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+  } else {
+    return undefined
+  }
 }
 ```
-
-##### `sortedFavorites`
 
 This is a Vue computed property, refer to the
 [`subforumSearch`](#subforumsearch) section for more information.
@@ -772,36 +795,9 @@ If the favorites data is present, using the `sort` method on the array
 prototype, a new array of `Favorite` objects is returned sorted by their
 `subforum.name` property.
 
-```js
-/*
-  As graphcool doesn't support ordering by nested data, this
-  computed value sorts the favorites array by subforum names.
-*/
-sortedFavorites() {
-  if (this.allFavorites !== undefined) {
-    // Spread into a new array as sort mutates original array
-    return [...this.allFavorites].sort((a, b) => {
-      if (a.subforum.name > b.subforum.name) {
-        return 1
-      } else if (a.subforum.name < b.subforum.name) {
-        return -1
-      } else {
-        return 0
-      }
-    })
-  } else {
-    return undefined
-  }
-}
-```
-
 #### Post Page
 
 ##### `upvoteButtonClick`
-
-* placeholder explanation
-* mention the fact there is an also a `downvoteButtonClick function`, but it is
-  not referenced here because it is very similar to this function
 
 ```js
 // Determines what GraphQL mutation to execute based on the vote state
@@ -829,11 +825,11 @@ upvoteButtonClick() {
 }
 ```
 
-##### `createVote`
+* placeholder explanation
+* mention the fact there is an also a `downvoteButtonClick function`, but it is
+  not referenced here because it is very similar to this function
 
-* placeholder
-* Talk about that this also has similar functions called `updateVote` and
-  `deleteVote`
+##### `createVote`
 
 ```js
 createVote(variables) {
@@ -884,9 +880,11 @@ createVote(variables) {
 }
 ```
 
-##### `submitComment`
+* placeholder
+* Talk about that this also has similar functions called `updateVote` and
+  `deleteVote`
 
-placeholder
+##### `submitComment`
 
 ```js
 submitComment() {
@@ -945,11 +943,11 @@ submitComment() {
 }
 ```
 
+placeholder
+
 #### New Post Page
 
 ##### `submitPost`
-
-placeholder
 
 ```js
 submitPost() {
@@ -981,13 +979,11 @@ submitPost() {
 }
 ```
 
+placeholder
+
 #### Login Page
 
 #### `login`
-
-* placeholder
-* note that the signup function is very similar, just a different GraphQL
-  mutation sending different data
 
 ```js
 login() {
@@ -1030,11 +1026,13 @@ login() {
 }
 ```
 
+* placeholder
+* note that the signup function is very similar, just a different GraphQL
+  mutation sending different data
+
 #### Signup Page
 
 ##### `correctDetails`
-
-placeholder
 
 ```js
 correctDetails() {
@@ -1049,11 +1047,11 @@ correctDetails() {
 }
 ```
 
+placeholder
+
 #### Utility Functions
 
 ##### `logIfDev`
-
-placeholder
 
 ```js
 import stringToBoolean from '~/utils/stringToBoolean'
@@ -1069,9 +1067,9 @@ const logIfDev = (logType, message) => {
 export default logIfDev
 ```
 
-##### `stringToBoolean`
-
 placeholder
+
+##### `stringToBoolean`
 
 ```js
 // Helper function to handle process.env booleans
@@ -1089,9 +1087,9 @@ const stringToBoolean = stringBool => {
 export default stringToBoolean
 ```
 
-#### Global Store Configuration (Vuex)
-
 placeholder
+
+#### Global Store Configuration (Vuex)
 
 ```js
 import { Store } from 'vuex'
@@ -1144,11 +1142,11 @@ export default () => {
 }
 ```
 
+placeholder
+
 ### API Analysis
 
 #### Permission Configuration
-
-placeholder
 
 ```yml
 # Where 'authenticated: true' is present in an operation,
@@ -1227,6 +1225,8 @@ permissions:
     # permission query here
 ```
 
+placeholder
+
 #### API Schema
 
 * To avoid repetition, link to design section with the schema
@@ -1234,10 +1234,6 @@ permissions:
 #### Hook Functions
 
 ##### `userAndSubforumIsUnique`
-
-* placeholder
-* mention that there is a hook function to ensure user and post is unique but
-  the functions are very similar
 
 ```js
 import { fromEvent } from 'graphcool-lib'
@@ -1284,9 +1280,11 @@ export default async event => {
 }
 ```
 
-##### `initVoteCount`
+* placeholder
+* mention that there is a hook function to ensure user and post is unique but
+  the functions are very similar
 
-placeholder
+##### `initVoteCount`
 
 ```js
 // Ensures that when a post is created, the vote Count is set to 0
@@ -1298,10 +1296,9 @@ export default event => {
 }
 ```
 
-##### `updateVoteCountOnVoteCreation`
+placeholder
 
-* placeholder
-* mention how there are also the other hook functions for delete and update
+##### `updateVoteCountOnVoteCreation`
 
 ```js
 import { fromEvent } from 'graphcool-lib'
@@ -1362,11 +1359,12 @@ export default async event => {
 }
 ```
 
+* placeholder
+* mention how there are also the other hook functions for delete and update
+
 #### Resolvers
 
 ##### `authenticate`
-
-placeholder
 
 ```js
 const { fromEvent } = require('graphcool-lib')
@@ -1439,9 +1437,9 @@ module.exports = event => {
 }
 ```
 
-##### `signup`
-
 placeholder
+
+##### `signup`
 
 ```js
 const { fromEvent } = require('graphcool-lib')
@@ -1543,20 +1541,20 @@ module.exports = function(event) {
 }
 ```
 
+placeholder
+
 #### Utility Functions and Constants
 
 ##### `VOTE_COUNT_TO_DELETE_POST`
-
-This number determines the amount of votes required for the post to be deleted
-by the automatic post management system.
 
 ```js
 export const VOTE_COUNT_TO_DELETE_POST = -1
 ```
 
-##### `makeRequest`
+This number determines the amount of votes required for the post to be deleted
+by the automatic post management system.
 
-placeholder
+##### `makeRequest`
 
 ```js
 /*
@@ -1574,9 +1572,9 @@ export const makeRequest = async (api, query, variables) => {
 }
 ```
 
-##### `deleteAllVotesOnPost`
-
 placeholder
+
+##### `deleteAllVotesOnPost`
 
 ```js
 /*
@@ -1606,3 +1604,5 @@ export const deleteAllVotesOnPost = async (api, postId) => {
   )
 }
 ```
+
+placeholder
