@@ -37,6 +37,13 @@
     "vuex",
     "optimisation",
     "optimisations",
-    "minification"
+    "minification",
+    "customisable",
+    "favourite",
+    "favourites",
+    "nuxtjs",
+    "styl",
+    "customise",
+    "inmemory"
   ]
 }

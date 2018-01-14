@@ -127,6 +127,10 @@
   * `pwa`
 * nuxt.config.js
 
+While nuxt provides a great abstraction on top of Vue and related libraries, it
+is also very customisable and extensible. Nuxt provides a central way to
+configure itself, through a file located at the
+
 #### Apollo
 
 * Describe what Apollo is (Reference design)
@@ -483,11 +487,250 @@ These also show the following:
 
 ### Client Analysis
 
+#### Nuxt configuration (`nuxt.config.js`)
+
+Please refer to the [`nuxt.config.js`](#how-nuxt-works) section located near the
+top of this document for more information about what this file does and why it
+exists.
+
+These are the main section of Corum's Nuxt configuration file:
+
+* `head`
+* `css`
+* `loading`
+* `build`
+* `modules`
+* `apollo`
+
+The following sections will describe what Corum uses them for.
+
+##### `head`
+
+This is where page headers are defined that will be the same across all pages.
+
+As seen below, an useful property nuxt expose is `titleTemplate`. This allows
+pages to pass their names into a template, so the page title changes between
+pages. Corum's title template is `'%s - Corum'`, so for example, a post page
+will have its title, followed by `'- corum'`.
+
+This also includes things such as meta tags for character encoding and site
+description. Also specified here is the link to the site's favicon.
+
+##### `css`
+
+This is where you can specify what CSS files you want to be added to the head of
+every page, so these styles will be global to the entire site.
+
+Corum's configuration reference a file called `globals.styl`. It contains a
+basic CSS reset, as well as globals such as the base font size and font family.
+
+The `.styl` file extension is short for stylus. Stylus is a CSS preprocessor.
+(You may have heard of SASS, which is another example of a CSS preprocessor) The
+fact that I am referencing a `.styl` file is important because nuxt reads the
+file extension, and applies the correct loader to process this file into regular
+CSS.
+
+##### `loading`
+
+In the GIFs files above that show how the site actually functions, you may have
+noticed a small green loading bar going across the top of the page when
+navigating between pages. This is a feature built into nuxt. Nuxt allows you to
+customise this loading bar with CSS. Corum only changes the color of the bar to
+match the overall theme.
+
+##### `build`
+
+The build property is where Nuxt allows you to extend its functionality. The
+only thing Corum uses this for is to linting to JavaScript and Vue.
+
+##### `modules`
+
+This is where you defined the Nuxt modules that you want to use. Nuxt modules
+are packages that features to Nuxt just by installing them and telling nuxt to
+use them.
+
+The modules used by Corum and why they are used can be found in the code
+comments below.
+
+##### `apollo`
+
+This is exposed by the `@nuxtjs/apollo` module, and requires you to specify
+where the Apollo Client configuration file resides.
+
+```js
+// For more info, visit https://nuxtjs.org/api/configuration-build
+
+module.exports = {
+  // Headers of the page
+  head: {
+    titleTemplate: '%s - Corum',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'An open, democratic & self governing forum.'
+      }
+    ],
+    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
+  },
+
+  // CSS globals
+  css: ['~/assets/styles/globals.styl'],
+
+  // Customize the progress bar color
+  // $nav-hover (Found at '~/assets/styles/variables.styl')
+  loading: { color: '#53c556' },
+
+  // Build configuration
+  build: {
+    // Extend the webpack config
+    extend(config, { isClient, isDev }) {
+      if (isClient && isDev) {
+        // Run ESLint on save
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
+  },
+
+  //  Define modules used.
+  //  For more info, visit https://nuxtjs.org/guide/modules
+
+  //  @nuxtjs/apollo - Provides vue-apollo + apollo-client
+  //  @nuxtjs/dotenv - Reads .env and merges with process.env
+  //  @nuxtjs/font-awesome - Provides icons
+  //  @nuxtjs/pwa - Adds PWA features like offline support etc.
+
+  //  Documentation for the modules used here can be found at:
+  //  https://github.com/nuxt-community/awesome-nuxt#modules
+
+  modules: [
+    '@nuxtjs/apollo',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/font-awesome',
+    '@nuxtjs/pwa'
+  ],
+
+  // Specify the file where the apollo client config resides
+  apollo: {
+    clientConfigs: {
+      default: '~/apollo/client-configs/default.js'
+    }
+  }
+}
+```
+
+#### Apollo Configuration
+
+To find out more about how configuring Apollo client works, visit the url that
+is at the top of the code block.
+
+As mentioned before, Apollo is used to communicate with Corum's GraphQL API.
+Before Apollo can communicate the with the API, it needs to be configured. In
+version 2 of Apollo Client, it was made a lot more modular. The two important
+things to configure now are Apollo Links and Caches.
+
+Apollo Links allow you to configure how GraphQL queries are handled. A common
+Apollo link is `apollo-link-http` as seen below. This allows you to configure
+how queries are sent over HTTP. The `apollo-link-http` package exposes a class
+called `HttpLink`. As seen below, it expects and object containing the `uri` of
+the API server. In Corum's case, the API endpoint address is fetched from the
+`.env` file located in the root directory of the project. This means that
+queries sent through Apollo are now sent to our Graphcool API.
+
+There is also a generic Apollo link in the package `apollo-link`. This package
+exposes a class called `ApolloLink`. This link allows you to modify the request
+before it is sent in any way you like. (Also known as middleware) The reason
+Corum needs to modify the request is so that the authentication token (if
+present) is sent along with the request, allowing protected queries to be
+performed. (Such as creating posts) The authentication token is fetched when the
+user is logged in, and it is checked by the API before any protected queries are
+performed, so it ensures that only logged in users can perform protected
+queries.
+
+Apollo Caches are used to cache data fetched from the server, so that unneeded
+network requests are not made. How this works is that Apollo checks the cache
+before following the Apollo Link chain. A type of Apollo Cache called
+`apollo-cache-inmemory` is used by corum. This simply means that the cache is
+kept in memory on the client, so it is deleted when the user goes off of the
+site.
+
+```js
+// https://github.com/nuxt-community/apollo-module
+
+import { ApolloLink } from 'apollo-link'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+
+export default () => {
+  // Create a HTTP link to the Graphcool endpoint
+  const uri = process.env.API_ENDPOINT
+  const httpLink = new HttpLink({ uri })
+
+  // This middleware sends the JWT (if present) that is needed for
+  // mutations such as 'createPost' or 'createComment', as only logged
+  // in users are allowed to perform such mutations.
+
+  const middlewareLink = new ApolloLink((operation, forward) => {
+    /*
+      Due to this being parsed SSR, process.browser must be used to
+      make sure localStorage is only attempted to be accessed on the
+      client. This isn't a  n issue as no queries or mutations that
+      require authentication are made on an SSR request of the page.
+    */
+    const token = process.browser
+      ? localStorage.getItem('auth-token')
+      : undefined
+
+    // Set the request headers to include the auth token
+    operation.setContext({
+      headers: { authorization: `Bearer ${token}` }
+    })
+    return forward(operation)
+  })
+
+  // Add this auth token middleware onto the HTTP link
+  const link = middlewareLink.concat(httpLink)
+
+  // Create an memory cache to be used by Apollo
+  const cache = new InMemoryCache()
+
+  return { link, cache }
+}
+```
+
 #### Navigation Component
 
 ##### `subforumSearch`
 
-placeholder explanation
+The `subforumSearch` function is used as a computed property by Vue. Computed
+properties can be used in any place where component data can be used, however
+the main difference is that if any of the variables that the computed property
+function is referencing change, the return value of the function will get
+recomputed and the code that references this computed property will update with
+this new value. To find out more about computed properties, visit the following
+link: [https://vuejs.org/v2/api/#computed](https://vuejs.org/v2/api/#computed)
+
+This function is used to calculate what items match the users search term.
+
+As this function has been taken out of context, it will be useful to know what
+the variables referenced are:
+
+* `this.search` is a string that is linked to the search box in the navigation
+  and is updated when the contents of the search box changes.
+* `this.allSubforums` is an array of `Subforum` objects that has been fetched by
+  Apollo. These objects contain a `name` property.
+
+To make the search case insensitive, the `toLowerCase` method on the string
+prototype is called on the users search term. Then, using the `filter` method on
+the array prototype and the `includes` method on the string prototype, the
+subforums that match the search term are returned from the function.
 
 ```js
 // Used to produce the filtered search
@@ -502,7 +745,32 @@ subforumSearch() {
 
 ##### `sortedFavorites`
 
-placeholder explanation
+This is a Vue computed property, refer to the
+[`subforumSearch`](#subforumsearch) section for more information.
+
+Graphcool (The API framework I am using) does support ordering, (Which I have
+taken advantage of when sorting posts on the subforum page) however it currently
+doesn't support ordering by nested data. (As mentioned in the code comment
+below) This means that instead of relying on the API to do the sorting work, I
+have to perform this sorting on the client.
+
+The reason I want the favorites to be sorted alphabetically is because
+otherwise, like the `All Subforums`, it would be harder for the user to find the
+subforum they are looking for when just scrolling through the list.
+
+Variable references:
+
+* `this.allFavorites` is an array of `Favorite` objects that are fetched by
+  Apollo if the user is logged in. These objects contain a `Subforum` object
+  with a `name` property.
+
+Firstly, a check is made that the favorites have been fetched from the API, if
+this wasn't checked, an error would be thrown. It also means that a message can
+be shown to the user when the data is still loading.
+
+If the favorites data is present, using the `sort` method on the array
+prototype, a new array of `Favorite` objects is returned sorted by their
+`subforum.name` property.
 
 ```js
 /*
@@ -524,46 +792,6 @@ sortedFavorites() {
   } else {
     return undefined
   }
-}
-```
-
-#### Apollo Configuration
-
-placeholder explanation
-
-```js
-import { ApolloLink } from 'apollo-link'
-import { HttpLink } from 'apollo-link-http'
-import { InMemoryCache } from 'apollo-cache-inmemory'
-
-export default () => {
-  const uri = process.env.API_ENDPOINT
-  const httpLink = new HttpLink({ uri })
-
-  // This middleware sends the JWT (if present) that is needed for
-  // mutations such as 'createPost' or 'createComment', as only logged
-  // in users are allowed to peform such mutations.
-  const middlewareLink = new ApolloLink((operation, forward) => {
-    /*
-      Due to this being parsed SSR, process.browser must be used to
-      make sure localStorage is only attempted to be accessed on the
-      client. This isn't a  n issue as no queries or mutations that
-      require authentaction are made on an SSR request of the page.
-    */
-    const token = process.browser
-      ? localStorage.getItem('auth-token')
-      : undefined
-
-    operation.setContext({
-      headers: { authorization: `Bearer ${token}` }
-    })
-    return forward(operation)
-  })
-
-  const link = middlewareLink.concat(httpLink)
-  const cache = new InMemoryCache()
-
-  return { link, cache }
 }
 ```
 
@@ -714,85 +942,6 @@ submitComment() {
       }
     })
     .catch(error => logIfDev('error', error))
-}
-```
-
-#### Nuxt configuration (`nuxt.config.js`)
-
-placeholder
-
-```js
-// For more info, visit https://nuxtjs.org/api/configuration-build
-
-module.exports = {
-  // Headers of the page
-  head: {
-    titleTemplate: '%s - Corum',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'An open, democratic & self governing forum.'
-      }
-    ],
-    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
-  },
-
-  // CSS globals
-  css: ['~/assets/styles/globals.styl'],
-
-  // Customize the progress bar color
-  // $nav-hover (Found at '~/assets/styles/variables.styl')
-  loading: { color: '#53c556' },
-
-  // Build configuration
-  build: {
-    // Extend the webpack config
-    extend(config, { isClient, isDev }) {
-      // Add a markdown-loader for markdown files
-      config.module.rules.push({
-        test: /\.md$/,
-        loader: ['html-loader', 'markdown-loader']
-      })
-
-      if (isClient && isDev) {
-        // Run ESLint on save
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
-  },
-
-  //  Define modules used.
-  //  For more info, visit https://nuxtjs.org/guide/modules
-
-  //  @nuxtjs/apollo - Provides vue-apollo + apollo-client
-  //  @nuxtjs/dotenv - Reads .env and merges with process.env
-  //  @nuxtjs/font-awesome - Provides icons
-  //  @nuxtjs/pwa - Adds PWA features like offline support etc.
-
-  //  Documentation for the modules used here can be found at:
-  //  https://github.com/nuxt-community/awesome-nuxt#modules
-
-  modules: [
-    '@nuxtjs/apollo',
-    '@nuxtjs/dotenv',
-    '@nuxtjs/font-awesome',
-    '@nuxtjs/pwa'
-  ],
-
-  // Specify the file where the apollo client config resides
-  apollo: {
-    clientConfigs: {
-      default: '~/apollo/client-configs/default.js'
-    }
-  }
 }
 ```
 
