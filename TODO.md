@@ -17,7 +17,6 @@
 
 ## Next to Implement
 
-* Update Nuxt when past 1.1.0 due to regression bug
 * Merge `corum` and `corum-api` into a single repo using the following:
   * lerna or just yarn workspaces
   * extract docs section from `corum` into top level
