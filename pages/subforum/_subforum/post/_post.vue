@@ -264,6 +264,7 @@ export default {
       }
     },
 
+    // variables = { vote, postId, userId }
     createVote(variables) {
       this.$apollo
         .mutate({
@@ -294,7 +295,7 @@ export default {
               data
             })
 
-            // Doesn't execute on optimstic response update
+            // Doesn't execute on optimistic response update
             if (createVote.id !== 0) {
               this.voteInProgress = false
             }
@@ -311,6 +312,7 @@ export default {
         .catch(error => logIfDev('error', error))
     },
 
+    // variables = { id, vote }
     updateVote(variables) {
       this.$apollo
         .mutate({
@@ -337,7 +339,7 @@ export default {
               data
             })
 
-            // Doesn't execute on optimstic response update
+            // Doesn't execute on optimistic response update
             if (updateVote.id !== 0) {
               this.voteInProgress = false
             }
@@ -354,6 +356,7 @@ export default {
         .catch(error => logIfDev('error', error))
     },
 
+    // variables = { id }
     deleteVote(variables) {
       this.$apollo
         .mutate({
