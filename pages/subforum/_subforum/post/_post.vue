@@ -296,6 +296,7 @@ export default {
             })
 
             // Doesn't execute on optimistic response update
+            // TODO: look into moving this code into a .then
             if (createVote.id !== 0) {
               this.voteInProgress = false
             }
@@ -340,6 +341,7 @@ export default {
             })
 
             // Doesn't execute on optimistic response update
+            // TODO: look into moving this code into a .then
             if (updateVote.id !== 0) {
               this.voteInProgress = false
             }
@@ -384,6 +386,7 @@ export default {
             })
 
             // Doesn't execute on optimstic response update
+            // TODO: look into moving this code into a .then
             if (deleteVote.id !== 0) {
               this.voteInProgress = false
             }
@@ -438,6 +441,7 @@ export default {
             })
 
             // scroll to bottom of page when comment is inserted
+            // TODO: look into moving this code into a .then
             const main = document.getElementById('main-content-wrapper')
             main.scrollTop = main.scrollHeight
           },
