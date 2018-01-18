@@ -781,7 +781,7 @@ The reason I want the favorites to be sorted alphabetically is because
 otherwise, like the `All Subforums`, it would be harder for the user to find the
 subforum they are looking for when just scrolling through the list.
 
-Variable references:
+Variable Reference:
 
 * `this.allFavorites` is an array of `Favorite` objects that are fetched by
   Apollo if the user is logged in. These objects contain a `Subforum` object
@@ -834,7 +834,7 @@ bound to onClick event handlers called `upvoteButtonClick` and
 similar, it just works in the opposite way. (For example, if the button is
 pressed, then a downvote will be registered instead of an upvote)
 
-Variable References:
+Variable Reference:
 
 * `this.voteInProgress` ensures that only a single vote is being processed at a
   time.
@@ -928,7 +928,7 @@ Like the `upvoteButtonClick` and `downvoteButtonClick` functions, the 3 vote
 mutation functions `createVote`, `updateVote` and `deleteVote` are very similar.
 I will only analyse the `createVote` function.
 
-Variable References:
+Variable Reference:
 
 * `variables`, as mentioned at the top of the code block, is expected to be an
   object with `vote`, `postId` and `userId` properties. These pieces of data are
@@ -1125,7 +1125,36 @@ submitPost() {
 }
 ```
 
-placeholder
+Like the `submitComment` function, this is also an event handler. This function
+is called when the user clicks on the 'Create Post' button on the 'New Post'
+page. Also, instead of submitting a comment, it submits a post.
+
+Variable Reference:
+
+* `this.$store.state.userId` - explained in the `submitComment` sub section
+* `this.postTitle` is a string that is linked to the title text box and is
+  updated when the contents of the text box changes
+* `this.postContent` is a string that is linked to the content textarea and is
+  updated when the contents of the textarea changes
+* `this.Subforum` contains the data of the subforum that the post is wanting to
+  be created on
+* `createPost` is a GraphQL mutation to create a new post
+* `this.$route.params.subforum` is the ID of the subforum that the post is
+  wanting to be created on
+* `this.$router.push` is a function that redirects the user to a given url.
+
+This function is a lot simpler than previous `mutate` function calls. This is
+because when the new post is created, the user is redirected to the new post's
+page, where the new post's data is fetched. This means that the cache doesn't
+need to be manually updated as the redirect will trigger GraphQL queries that
+will update the cache.
+
+Unlike like previous error handling functions, this function redirects the user
+to an error page.
+
+I have left out a section explaining the `newSubforum` function on the new
+subforum page because it is very similar, if not even more simple that this
+function.
 
 #### Login Page
 
@@ -1172,9 +1201,38 @@ login() {
 }
 ```
 
-* placeholder
-* note that the signup function is very similar, just a different GraphQL
-  mutation sending different data
+This function is an event handler that is triggered when the users clicks on the
+'Login' button on the login page. Due to the fact that the `signup` function for
+the signup page is almost identical, I will not be analysing it.
+
+Variable Reference:
+
+* `this.loading` keeps track of if the client is currently waiting for a
+  response from the API. It is used to disable the 'Login' button if it is set
+  to `true` so that the user knows that page is doing something, and so that the
+  user doesn't make multiple authentication requests for no reason.
+* `this.email` is a string that is linked to the email text box and is updated
+  when the contents of the text box changes
+* `this.password` is a string that is linked to the password text box and is
+  updated when the contents of the text box changes
+* `authenticateUser` is a GraphQL mutation that authenticates a user
+* `this.$store.commit` is a function that allows you to mutate the global state
+* `this.$router.back` is a function that send the user back to the previous page
+  that they were on.
+
+This function is like many other event handlers on the site, it is basically
+just a GraphQL mutation call.
+
+If the authentication succeeds, (The user has entered the correct details) the
+code inside the `.then()` function executed. The user's id, username and auth
+token is extracted from the API response and save into the apps global state.
+After this, the user is redirected back to the previous page they were on.
+
+If the authentication fails (The user has entered incorrect details) the code
+inside `.catch()` function will be executed. Firstly, `this.loading` is set to
+false so that the user can correct the incorrect data they entered and resubmit
+the form. Then after this, the error message returned from the API is cleaned up
+and displayed to the user.
 
 #### Signup Page
 
