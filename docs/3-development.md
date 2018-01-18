@@ -1063,13 +1063,33 @@ function is called when the user clicks on the 'Post Comment' button.
 
 Variable Reference:
 
-* `this.$store.state.username`
-* `this.comment`
-* `this.$route.params.post`
-* `createCommentMutation`
-* `postQuery`
+* `this.$store.state.username` is a reference to the user's username.
+  `this.$store` is another global Vue instance property. This is exposed by the
+  `vuex` package. This allows me to store global state in Corum like user data.
+* `this.comment` is a string that is linked to the comment textarea and is
+  updated when the contents of the textarea changes.
+* `this.$route.params.post` is a reference to the post's ID. The `this.$route`
+  global is explained the 'createVote' subsection above.
+* `createCommentMutation` is a GraphQL mutation that creates a comment
+* `postQuery` is a GraphQL query that fetches a post's data
 
-placeholder
+Just like the `createVote` function shown in the 'createVote' sub section above,
+this function is mainly just a call to the `mutate` function found on
+`this.$apollo`. To avoid repetition, I will not explain how this function works
+again. If you don't know how it works, read the above 'createVote' sub section.
+
+This function works in a very similar way to the `createVote` function. First,
+the data required for the mutation is saved into local variables. After this,
+the contents of `this.comment` is set to an empty string. ('') This is done near
+the start of the function to keep the UI feeling snappy.
+
+Then the mutation is made. The mutation is very similar to the `createVote`
+function. The update function pushes the new comment into the post's comments
+array inside of Apollo's cache. After this has happened, the user is
+automatically scrolled to the bottom of the page to see that their new comment
+has appeared in the comments section.
+
+Just like the `createVote` function, error handling is also present.
 
 #### New Post Page
 
