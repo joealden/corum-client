@@ -803,7 +803,8 @@ prototype, a new array of `Favorite` objects is returned sorted by their
 // Determines what GraphQL mutation to execute based on the vote state
 upvoteButtonClick() {
   if (this.voteInProgress === false) {
-    this.voteInProgress = tru
+    this.voteInProgress = true
+
     if (this.upvoted === true) {
       // The user has already upvoted
       this.localVote -= 1
@@ -825,13 +826,56 @@ upvoteButtonClick() {
 }
 ```
 
-* placeholder explanation
-* mention the fact there is an also a `downvoteButtonClick function`, but it is
-  not referenced here because it is very similar to this function
+As shown in the 'Testing During Development' section, the post page has an
+upvote and a downvote button in the top right of the page. These buttons are
+bound to onClick event handlers called `upvoteButtonClick` and
+`downvoteButtonClick` respectively. I am only explaining how the
+`upvoteButtonClick` handler works as the `downvoteButtonClick` handler is very
+similar, it just works in the opposite way. (For example, if the button is
+pressed, then a downvote will be registered instead of an upvote)
+
+Variable References:
+
+* `this.voteInProgress` ensures that only a single vote is being processed at a
+  time.
+* `this.upvoted` keeps track of if the user has already upvoted the post
+* `this.downvoted` keeps track of if the user has already downvoted the post
+* `this.localVote` keeps track of the local vote count, this variable is needed
+  because any data fetched from the API is immutable. If Corum relied on the
+  data coming from the server only, then the UI would be slow to update, because
+  an response from the API would be required to update the vote count displayed
+  to the user
+* `this.createVote`, `this.updateVote` and `this.deleteVote` are functions that
+  send mutations requests to the API, these functions are described in the next
+  code analysis sub section. This functionality is extracted out of the button
+  click handler functions to reduce code duplication and keep the event handlers
+  easier to read at a glance.
+
+Firstly, a check is made to ensure that no vote mutations are in progress. If
+any are in progress, then the button click is ignored. The reasoning behind this
+check is explain in the variable reference section above. If the check passes,
+then the vote mutation starts to execute. To ensure that the user cannot vote
+again before the function has finished executing, `this.voteInProgress` is set
+to `true`.
+
+This function needed to handle the following scenarios:
+
+* If the user hasn't voted already, increment the vote count on the post by 1
+* If the user has already upvoted the post, decrement the vote count by 1
+* If the user has already downvoted the post, increment the vote count by 2
+
+This means that the function needs to handles the 3 possible branches, and
+execute the correct code.
 
 ##### `createVote`
 
 ```js
+/*
+  For more info on how mutations work within vue-apollo,
+  visit https://github.com/Akryum/vue-apollo#mutations
+*/
+
+// variables = { vote, postId, userId }
 createVote(variables) {
   this.$apollo
     .mutate({
@@ -862,7 +906,7 @@ createVote(variables) {
           data
         })
 
-        // Doesn't execute on optimstic response update
+        // Doesn't execute on optimistic response update
         if (createVote.id !== 0) {
           this.voteInProgress = false
         }
@@ -880,9 +924,80 @@ createVote(variables) {
 }
 ```
 
-* placeholder
-* Talk about that this also has similar functions called `updateVote` and
-  `deleteVote`
+Like the `upvoteButtonClick` and `downvoteButtonClick` functions, the 3 vote
+mutation functions `createVote`, `updateVote` and `deleteVote` are very similar.
+I will only analyse the `createVote` function.
+
+Variable References:
+
+* `variables`, as mentioned at the top of the code block, is expected to be an
+  object with `vote`, `postId` and `userId` properties. These pieces of data are
+  needed to correctly create the vote
+* `this.$apollo` is a module exposed by the `vue-apollo` package I am using for
+  Vue bindings to Apollo. This is available on the global Vue instance, this
+  means that is can be accessed from any `.vue` file. It exposes as method
+  called `mutate` that is used to send a mutation to the API
+* `createVoteMutation` is a GraphQL mutation used to create the user
+* `userVoteQuery` is a GraphQL query that returns the data for a users vote
+* `this.$route.params.post` contains the postId that can be seen in the browsers
+  URL bar when on a post page. Like `this.$apollo`, `this.$route` is available
+  on the global Vue instance. However, instead of being exposed by `vue-apollo`,
+  it is exposed by the router, `vue-router`.
+
+The whole function is just a call to the `mutate` function found on
+`this.$apollo`. the `mutate` function expects an object as an argument.
+
+While the object argument can take more properties, these are the properties I
+am using:
+
+* `mutation` - The GraphQL mutation that you want to send to the API
+* `variables` - An object of variables that the mutation takes in
+* `update` - The function that is called when data is returned from the API
+* `optimisticUpdate` - An object that will be used in place of the real data
+  before the data is returned from the API. If this property is present, then
+  the `update` function passed in will be called twice. Once immediately with
+  the `optimisticUpdate` object passed as the `data` parameter of the `update`
+  function, and then again whenever the data is returned from the API. This
+  means that the UI can be optimistically updated before the real data from the
+  API is returned. Otherwise there would be a delay between pressing the vote
+  button and the UI updating, which would be a bad user experience.
+
+To show what the `update` function does, I will explain what happens when it is
+called with the `optimisticUpdate` object. As shown in the `update` function
+signature, the function expects the following parameters:
+
+* `store` - This object is a reference to the Apollo cache that exists in
+  memory. (That was created by the `apollo-cache-inmemory` package as seen in
+  the 'Apollo Configuration' sub section) It exposes two methods that I make use
+  of called `readQuery` and `writeQuery`. As evident from their names, the
+  `readQuery` function takes in a query and queries the cache with it. The
+  `writeQuery` takes a query and the data to be written to the cache.
+* `data` - In the case of the first call of the `update` function, this is the
+  `optimisticUpdate` object.
+
+The usual flow of the `update` function is the following:
+
+* Read the data from the cache
+* Mutation the read data
+* Write the data back to the cache
+
+This function does exactly that, with an extra if statement at the end. The data
+is read, the data object is mutated by pushing the new vote onto the end of the
+`allVotes` array, then the mutation data object is written back to the cache.
+Finally, `this.voteInProgress` is changed to `false` only when the real data is
+returned from the API. The reason for this is so the optimistic update call
+doesn't trigger this, because after the `update` function is called with the
+`optimisticUpdate` object, the mutation is not actually finished.
+
+After the `mutate` function, there is a `catch` function chained into it. This
+is used to catch errors if they occur. This function is exposed because the
+`mutate` function returns a promise. For more information about promises, visit
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+
+This `catch` function expects a function as its argument, and it will be called
+with the error data if an error occurs. For example, if the API goes down, then
+this function will log the error to the console using the `logIfDev` function
+that is explained later on.
 
 ##### `submitComment`
 
@@ -942,6 +1057,17 @@ submitComment() {
     .catch(error => logIfDev('error', error))
 }
 ```
+
+Like the `upvoteButtonClick` function, this is also an event handler. This
+function is called when the user clicks on the 'Post Comment' button.
+
+Variable Reference:
+
+* `this.$store.state.username`
+* `this.comment`
+* `this.$route.params.post`
+* `createCommentMutation`
+* `postQuery`
 
 placeholder
 
