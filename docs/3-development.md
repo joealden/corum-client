@@ -876,9 +876,11 @@ execute the correct code.
 */
 
 // variables = { vote, postId, userId }
-createVote(variables) {
-  this.$apollo
-    .mutate({
+async createVote(variables) {
+  const postId = this.$route.params.post
+
+  try {
+    await this.$apollo.mutate({
       mutation: createVoteMutation,
       variables,
 
@@ -886,7 +888,7 @@ createVote(variables) {
         const data = store.readQuery({
           query: userVoteQuery,
           variables: {
-            postId: this.$route.params.post,
+            postId,
             userId: this.userId
           }
         })
@@ -900,16 +902,11 @@ createVote(variables) {
         store.writeQuery({
           query: userVoteQuery,
           variables: {
-            postId: this.$route.params.post,
+            postId,
             userId: this.userId
           },
           data
         })
-
-        // Doesn't execute on optimistic response update
-        if (createVote.id !== 0) {
-          this.voteInProgress = false
-        }
       },
 
       optimisticResponse: {
@@ -920,7 +917,12 @@ createVote(variables) {
         }
       }
     })
-    .catch(error => logIfDev('error', error))
+
+    // Indicate to the page that the vote has finished execution
+    this.voteInProgress = false
+  } catch (error) {
+    logIfDev('error', error)
+  }
 }
 ```
 
@@ -945,7 +947,7 @@ Variable Reference:
   it is exposed by the router, `vue-router`.
 
 The whole function is just a call to the `mutate` function found on
-`this.$apollo`. the `mutate` function expects an object as an argument.
+`this.$apollo`. The `mutate` function expects an object as an argument.
 
 While the object argument can take more properties, these are the properties I
 am using:
@@ -981,28 +983,20 @@ The usual flow of the `update` function is the following:
 * Mutation the read data
 * Write the data back to the cache
 
-This function does exactly that, with an extra if statement at the end. The data
-is read, the data object is mutated by pushing the new vote onto the end of the
-`allVotes` array, then the mutation data object is written back to the cache.
-Finally, `this.voteInProgress` is changed to `false` only when the real data is
-returned from the API. The reason for this is so the optimistic update call
-doesn't trigger this, because after the `update` function is called with the
-`optimisticUpdate` object, the mutation is not actually finished.
+This function does exactly that. The data is read, the data object is mutated by
+pushing the new vote onto the end of the `allVotes` array, then the mutation
+data object is written back to the cache.
 
-After the `mutate` function, there is a `catch` function chained into it. This
-is used to catch errors if they occur. This function is exposed because the
-`mutate` function returns a promise. For more information about promises, visit
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
-
-This `catch` function expects a function as its argument, and it will be called
-with the error data if an error occurs. For example, if the API goes down, then
-this function will log the error to the console using the `logIfDev` function
-that is explained later on.
+Most of the function's body is wrapped in a try / catch statement. This is
+needed as if any errors occur, the function will gracefully handle them. For
+example, if the API is not running, then an error will be logged to the console
+if the app is in development mode, using the `logIfDev` function that will be
+explained later on.
 
 ##### `submitComment`
 
 ```js
-submitComment() {
+async submitComment() {
   const author = this.$store.state.username
   const { comment: content } = this
   const id = this.$route.params.post
@@ -1010,8 +1004,8 @@ submitComment() {
   // Clears user input from textarea
   this.comment = ''
 
-  this.$apollo
-    .mutate({
+  try {
+    await this.$apollo.mutate({
       mutation: createCommentMutation,
       variables: {
         author,
@@ -1038,10 +1032,6 @@ submitComment() {
           variables: { id },
           data
         })
-
-        // scroll to bottom of page when comment is inserted
-        const main = document.getElementById('main-content-wrapper')
-        main.scrollTop = main.scrollHeight
       },
 
       optimisticResponse: {
@@ -1054,7 +1044,13 @@ submitComment() {
         }
       }
     })
-    .catch(error => logIfDev('error', error))
+
+    // scroll to bottom of page when comment is inserted
+    const main = document.getElementById('main-content-wrapper')
+    main.scrollTop = main.scrollHeight
+  } catch (error) {
+    logIfDev('error', error)
+  }
 }
 ```
 
@@ -1080,8 +1076,8 @@ again. If you don't know how it works, read the above 'createVote' sub section.
 
 This function works in a very similar way to the `createVote` function. First,
 the data required for the mutation is saved into local variables. After this,
-the contents of `this.comment` is set to an empty string. ('') This is done near
-the start of the function to keep the UI feeling snappy.
+the contents of `this.comment` is set to an empty string. This is done near the
+start of the function to keep the UI feeling snappy.
 
 Then the mutation is made. The mutation is very similar to the `createVote`
 function. The update function pushes the new comment into the post's comments
@@ -1096,17 +1092,17 @@ Just like the `createVote` function, error handling is also present.
 ##### `submitPost`
 
 ```js
-submitPost() {
+async submitPost() {
   const authorId = this.$store.state.userId
-  const { postTitle: title, postContent: content, Subforum: { id } } = this
 
+  const { postTitle: title, postContent: content, Subforum: { id } } = this
   /*
     For more info on how mutations work within vue-apollo,
     visit https://github.com/Akryum/vue-apollo#mutations
   */
-  this.$apollo
-    .mutate({
-      mutation: createPost,
+  try {
+    const { data: { createPost } } = await this.$apollo.mutate({
+      mutation: createPostMutation,
       variables: {
         authorId,
         title,
@@ -1114,14 +1110,13 @@ submitPost() {
         id
       }
     })
-    .then(data => {
-      const { subforum } = this.$route.params
-      const { id } = data.data.createPost
-      this.$router.push(`/subforum/${subforum}/post/${id}`)
-    })
-    .catch(() => {
-      this.$router.push(`/error`) // TODO: create actual error page
-    })
+
+    const { subforum } = this.$route.params
+    const postId = createPost.id
+    this.$router.push(`/subforum/${subforum}/post/${postId}`)
+  } catch (error) {
+    this.$router.push(`/error`) // TODO: create actual error page
+  }
 }
 ```
 
@@ -1149,11 +1144,11 @@ page, where the new post's data is fetched. This means that the cache doesn't
 need to be manually updated as the redirect will trigger GraphQL queries that
 will update the cache.
 
-Unlike like previous error handling functions, this function redirects the user
-to an error page.
+Unlike previous error handling code, this function redirects the user to an
+error page.
 
-I have left out a section explaining the `newSubforum` function on the new
-subforum page because it is very similar, if not even more simple that this
+I have left out a section explaining the `newSubforum` function on the 'New
+Subforum' page because it is very similar, if not even more simple that this
 function.
 
 #### Login Page
@@ -1161,43 +1156,36 @@ function.
 #### `login`
 
 ```js
-login() {
+async login() {
   // Renders the loading submit button
   this.loading = true
 
+  const { email, password } = this
   /*
     For more info on how mutations work within vue-apollo,
     visit https://github.com/Akryum/vue-apollo#mutations
   */
-  const { email, password } = this
-  this.$apollo
-    .mutate({
-      mutation: authenticateUser,
+  try {
+    const { data: { authenticateUser } } = await this.$apollo.mutate({
+      mutation: authenticateUserMutation,
       variables: {
         email,
         password
       }
     })
-    .then(({ data: { authenticateUser } }) => {
-      const { id, username, token } = authenticateUser
-      this.$store.commit('saveUserData', { id, username, token })
 
-      // Returns the user to the page they were on before
-      // TODO: If user was on signup before, redirect to home
-      this.$router.back()
-    })
-    .catch(({ message }) => {
-      // Renders the normal submit button
-      this.loading = false
+    const { id, username, token } = authenticateUser
+    this.$store.commit('saveUserData', { id, username, token })
 
-      // TODO: Extract cleanedMessage functionality into a function
-      const colonIndex = message.lastIndexOf(':')
-      const cleanedMessage = message.substring(
-        colonIndex + 2,
-        message.length
-      )
-      alert(`Error: ${cleanedMessage}`)
-    })
+    // Returns the user to the page they were on before
+    // TODO: If user was on signup before, redirect to home
+    this.$router.back()
+  } catch ({ message }) {
+    // Renders the normal submit button
+    this.loading = false
+    // Display the error to the user in an alert box
+    alertError(message)
+  }
 }
 ```
 
@@ -1224,15 +1212,15 @@ This function is like many other event handlers on the site, it is basically
 just a GraphQL mutation call.
 
 If the authentication succeeds, (The user has entered the correct details) the
-code inside the `.then()` function executed. The user's id, username and auth
-token is extracted from the API response and save into the apps global state.
-After this, the user is redirected back to the previous page they were on.
+user's id, username and auth token is extracted from the API response and save
+into the apps global state. After this, the user is redirected back to the
+previous page they were on.
 
-If the authentication fails (The user has entered incorrect details) the code
-inside `.catch()` function will be executed. Firstly, `this.loading` is set to
-false so that the user can correct the incorrect data they entered and resubmit
-the form. Then after this, the error message returned from the API is cleaned up
-and displayed to the user.
+If the authentication fails, (The user has entered incorrect details) the
+`catch` block is executed. `this.loading` is set to false so that the user can
+correct the incorrect data they entered and resubmit the form. Then after this,
+the error message returned from the API is cleaned up and displayed to the user
+through the use of `alertError`, which will be explained later on.
 
 #### Signup Page
 
@@ -1289,6 +1277,30 @@ const stringToBoolean = stringBool => {
 }
 
 export default stringToBoolean
+```
+
+placeholder
+
+##### `alertError`
+
+```js
+// Formats a GraphQL error to display to the user
+
+export const formatError = errorMessage => {
+  const colonIndex = errorMessage.lastIndexOf(':')
+  const cleanedMessage = errorMessage.substring(
+    colonIndex + 2,
+    errorMessage.length
+  )
+  return cleanedMessage
+}
+
+const alertError = errorMessage => {
+  const cleanedMessage = formatError(errorMessage)
+  alert(`Error: ${cleanedMessage}`)
+}
+
+export default alertError
 ```
 
 placeholder
@@ -1571,73 +1583,56 @@ export default async event => {
 ##### `authenticate`
 
 ```js
-const { fromEvent } = require('graphcool-lib')
-const bcryptjs = require('bcryptjs')
+import { fromEvent } from 'graphcool-lib'
+import * as bcryptjs from 'bcryptjs'
+import { makeRequest } from '../../utils/common'
 
 const userQuery = `
-query UserQuery($email: String!) {
-  User(email: $email){
-    id
-    password
-    username
-  }
-}`
-
-const getGraphcoolUser = (api, email) => {
-  return api.request(userQuery, { email }).then(userQueryResult => {
-    if (userQueryResult.error) {
-      return Promise.reject(userQueryResult.error)
-    } else {
-      return userQueryResult.User
+  query UserQuery($email: String!) {
+    User(email: $email) {
+      id
+      password
+      username
     }
-  })
-}
-
-module.exports = event => {
-  if (!event.context.graphcool.pat) {
-    console.log('Please provide a valid root token!')
-    return { error: 'Email Authentication not configured correctly.' }
   }
+`
 
-  // Retrieve payload from event
-  const { email, password } = event.data
+export default async event => {
+  try {
+    // Retrieve payload from event
+    const { email, password } = event.data
 
-  // Create Graphcool API (based on https://github.com/graphcool/graphql-request)
-  const graphcool = fromEvent(event)
-  const api = graphcool.api('simple/v1')
+    // Create Graphcool API (based on https://github.com/graphcool/graphql-request)
+    const graphcool = fromEvent(event)
+    const api = graphcool.api('simple/v1')
 
-  return getGraphcoolUser(api, email)
-    .then(graphcoolUser => {
-      if (!graphcoolUser) {
-        // returning same generic error so user can't find out what emails are registered.
-        return Promise.reject('Invalid Credentials')
-      } else {
-        return bcryptjs
-          .compare(password, graphcoolUser.password)
-          .then(passwordCorrect => {
-            if (passwordCorrect) {
-              const { id, username } = graphcoolUser
-              return { id, username }
-            } else {
-              return Promise.reject('Invalid Credentials')
-            }
-          })
+    // Check if a user exists with the email entered
+    const { User } = await makeRequest(api, userQuery, { email })
+    if (!User) {
+      return { error: 'Invalid credentials!' }
+    }
+
+    // Check if the user entered the correct password for the user
+    const passwordIsCorrect = await bcryptjs.compare(password, User.password)
+    if (!passwordIsCorrect) {
+      return { error: 'Invalid credentials!' }
+    }
+
+    // Generate auth token
+    const { id, username } = User
+    const token = await graphcool.generateAuthToken(id, 'User')
+
+    // Return the payload the user asked for
+    return {
+      data: {
+        id,
+        username,
+        token
       }
-    })
-    .then(async graphcoolUserDetails => {
-      const { username, id } = graphcoolUserDetails
-      const token = await graphcool.generateAuthToken(id, 'User')
-      return {
-        data: {
-          id,
-          username,
-          token
-        }
-      }
-    })
-    .catch(error => {
-      return { error }
-    })
+    }
+  } catch (error) {
+    return { error }
+  }
 }
 ```
 
@@ -1646,61 +1641,35 @@ placeholder
 ##### `signup`
 
 ```js
-const { fromEvent } = require('graphcool-lib')
-const bcryptjs = require('bcryptjs')
-const validator = require('validator')
+import { fromEvent } from 'graphcool-lib'
+import * as bcryptjs from 'bcryptjs'
+import * as validator from 'validator'
+import { makeRequest } from '../../utils/common'
 
 const userQuery = `
-query UserQuery($email: String!, $username: String!) {
-  allUsers(filter: {
-    OR: [{
-      email: $email
-    }, {
-      username: $username
-    }]
-  }) {
-    id
-    password
-    email
-    username
+  query UserQuery($email: String!, $username: String!) {
+    allUsers(filter: { OR: [{ email: $email }, { username: $username }] }) {
+      id
+      password
+      email
+      username
+    }
   }
-}`
+`
 
 const createUserMutation = `
-mutation CreateUserMutation($username: String!, $email: String!, $passwordHash: String!) {
-  createUser(
-    username: $username
-    email: $email,
-    password: $passwordHash
+  mutation CreateUserMutation(
+    $username: String!
+    $email: String!
+    $passwordHash: String!
   ) {
-    id
-  }
-}`
-
-const getGraphcoolUsers = (api, email, username) => {
-  return api.request(userQuery, { email, username }).then(userQueryResult => {
-    if (userQueryResult.error) {
-      return Promise.reject(userQueryResult.error)
-    } else {
-      return userQueryResult.allUsers
+    createUser(username: $username, email: $email, password: $passwordHash) {
+      id
     }
-  })
-}
-
-const createGraphcoolUser = (api, username, email, passwordHash) => {
-  return api
-    .request(createUserMutation, { username, email, passwordHash })
-    .then(userMutationResult => {
-      return userMutationResult.createUser.id
-    })
-}
-
-module.exports = function(event) {
-  if (!event.context.graphcool.pat) {
-    console.log('Please provide a valid root token!')
-    return { error: 'Email Signup not configured correctly.' }
   }
+`
 
+export default async event => {
   // Retrieve payload from event
   const { username, email, password } = event.data
 
@@ -1710,37 +1679,55 @@ module.exports = function(event) {
 
   const SALT_ROUNDS = 10
 
-  if (validator.isEmail(email)) {
-    return getGraphcoolUsers(api, email, username)
-      .then(graphcoolUsers => {
-        if (graphcoolUsers.length === 0) {
-          return bcryptjs
-            .hash(password, SALT_ROUNDS)
-            .then(hash => createGraphcoolUser(api, username, email, hash))
-        } else if (
-          graphcoolUsers.length === 2 ||
-          (graphcoolUsers[0].email === email &&
-            graphcoolUsers[0].username === username)
-        ) {
-          return Promise.reject('The email address and username are in use')
-        } else if (graphcoolUsers[0].email === email) {
-          return Promise.reject('The email address is in use')
-        } else if (graphcoolUsers[0].username === username) {
-          return Promise.reject('The username is in use')
-        } else {
-          return Promise.reject('An unknown error occured')
+  try {
+    // Check is email is valid
+    if (validator.isEmail(email) === false) {
+      return { error: 'The email address entered is not valid' }
+    }
+
+    // Fetch all users that match the users input (if any)
+    const { allUsers } = await makeRequest(api, userQuery, { email, username })
+
+    // If no users exists with the same details, create the user
+    if (allUsers.length === 0) {
+      // Generate the password hash that will be stored in the DB
+      const passwordHash = await bcryptjs.hash(password, SALT_ROUNDS)
+
+      // Create the user
+      const { createUser } = await makeRequest(api, createUserMutation, {
+        email,
+        username,
+        passwordHash
+      })
+
+      // Generate auth token
+      const { id } = createUser
+      const token = await graphcool.generateAuthToken(id, 'User')
+
+      // Return the payload the user asked for
+      return {
+        data: {
+          id,
+          token
         }
-      })
-      .then(id => {
-        return graphcool.generateAuthToken(id, 'User').then(token => {
-          return { data: { id, token } }
-        })
-      })
-      .catch(error => {
-        return { error }
-      })
-  } else {
-    return { error: 'The email address entered is not valid' }
+      }
+    }
+
+    // If any users do exist, throw the correct informative error
+    if (
+      allUsers.length === 2 ||
+      (allUsers[0].email === email && allUsers[0].username === username)
+    ) {
+      return { error: 'The email address and username are in use' }
+    } else if (allUsers[0].email === email) {
+      return { error: 'The email address is in use' }
+    } else if (allUsers[0].username === username) {
+      return { error: 'The username is in use' }
+    } else {
+      return { error: 'An unknown error occured' }
+    }
+  } catch (error) {
+    return { error }
   }
 }
 ```
