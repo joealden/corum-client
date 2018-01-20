@@ -195,6 +195,9 @@ export default {
                 Ensures that if the user adds multiple favorites
                 in quick succession, the favorites section will
                 not contain items with duplicate keys
+
+                TODO: Fix a better way of doing this to ensure
+                      that they will never collide
               */
               id: Date.now(),
               subforum: {
