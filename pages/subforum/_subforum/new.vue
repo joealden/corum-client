@@ -49,7 +49,7 @@
 
 <script>
 import subforumId from '~/apollo/queries/subforumId'
-import createPost from '~/apollo/mutations/createPost'
+import createPostMutation from '~/apollo/mutations/createPost'
 
 export default {
   apollo: {
@@ -79,17 +79,17 @@ export default {
   head: () => ({ title: 'New Post' }),
 
   methods: {
-    submitPost() {
+    async submitPost() {
       const authorId = this.$store.state.userId
-      const { postTitle: title, postContent: content, Subforum: { id } } = this
 
+      const { postTitle: title, postContent: content, Subforum: { id } } = this
       /*
         For more info on how mutations work within vue-apollo,
         visit https://github.com/Akryum/vue-apollo#mutations
       */
-      this.$apollo
-        .mutate({
-          mutation: createPost,
+      try {
+        const { data: { createPost } } = await this.$apollo.mutate({
+          mutation: createPostMutation,
           variables: {
             authorId,
             title,
@@ -97,14 +97,13 @@ export default {
             id
           }
         })
-        .then(data => {
-          const { subforum } = this.$route.params
-          const { id } = data.data.createPost
-          this.$router.push(`/subforum/${subforum}/post/${id}`)
-        })
-        .catch(() => {
-          this.$router.push(`/error`) // TODO: create actual error page
-        })
+
+        const { subforum } = this.$route.params
+        const postId = createPost.id
+        this.$router.push(`/subforum/${subforum}/post/${postId}`)
+      } catch (error) {
+        this.$router.push(`/error`) // TODO: create actual error page
+      }
     }
   }
 }
