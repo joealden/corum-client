@@ -113,7 +113,7 @@ export default {
       } catch ({ message }) {
         // Renders the normal submit button
         this.loading = false
-        // Display error to the user in an alert box
+        // Display the error to the user in an alert box
         alertError(message)
       }
     }
