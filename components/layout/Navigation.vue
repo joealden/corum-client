@@ -155,12 +155,12 @@ export default {
 
   methods: {
     // Adds a favorite to the users list of favorites
-    createFavorite(subforum) {
+    async createFavorite(subforum) {
       const { userId } = this
       const subforumId = subforum.id
 
-      this.$apollo
-        .mutate({
+      try {
+        await this.$apollo.mutate({
           mutation: createFavoriteMutation,
           variables: { subforumId, userId },
 
@@ -191,7 +191,12 @@ export default {
             __typename: 'Mutation',
             createFavorite: {
               __typename: 'Favorite',
-              id: 0,
+              /*
+                Ensures that if the user adds multiple favorites
+                in quick succession, the favorites section will
+                not contain items with duplicate keys
+              */
+              id: Date.now(),
               subforum: {
                 __typename: 'Subforum',
                 name: subforum.name,
@@ -200,15 +205,17 @@ export default {
             }
           }
         })
-        .catch(error => logIfDev('error', error))
+      } catch (error) {
+        logIfDev('error', error)
+      }
     },
 
     // Deletes a favorite from the users list of favorites
-    deleteFavorite(id) {
+    async deleteFavorite(id) {
       const { userId } = this
 
-      this.$apollo
-        .mutate({
+      try {
+        await this.$apollo.mutate({
           mutation: deleteFavoriteMutation,
           variables: { id },
 
@@ -239,7 +246,9 @@ export default {
             }
           }
         })
-        .catch(error => logIfDev('error', error))
+      } catch (error) {
+        logIfDev('error', error)
+      }
     }
   }
 }
