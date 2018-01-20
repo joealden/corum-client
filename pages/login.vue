@@ -59,7 +59,7 @@
 
 <script>
 import LoggedIn from '~/components/LoggedIn'
-import authenticateUser from '~/apollo/mutations/authenticateUser'
+import authenticateUserMutation from '~/apollo/mutations/authenticateUser'
 
 export default {
   components: {
@@ -84,43 +84,39 @@ export default {
   },
 
   methods: {
-    login() {
+    async login() {
       // Renders the loading submit button
       this.loading = true
 
+      const { email, password } = this
       /*
         For more info on how mutations work within vue-apollo,
         visit https://github.com/Akryum/vue-apollo#mutations
       */
-      const { email, password } = this
-      this.$apollo
-        .mutate({
-          mutation: authenticateUser,
+      try {
+        const { data: { authenticateUser } } = await this.$apollo.mutate({
+          mutation: authenticateUserMutation,
           variables: {
             email,
             password
           }
         })
-        .then(({ data: { authenticateUser } }) => {
-          const { id, username, token } = authenticateUser
-          this.$store.commit('saveUserData', { id, username, token })
 
-          // Returns the user to the page they were on before
-          // TODO: If user was on signup before, redirect to home
-          this.$router.back()
-        })
-        .catch(({ message }) => {
-          // Renders the normal submit button
-          this.loading = false
+        const { id, username, token } = authenticateUser
+        this.$store.commit('saveUserData', { id, username, token })
 
-          // TODO: Extract cleanedMessage functionality into a function
-          const colonIndex = message.lastIndexOf(':')
-          const cleanedMessage = message.substring(
-            colonIndex + 2,
-            message.length
-          )
-          alert(`Error: ${cleanedMessage}`)
-        })
+        // Returns the user to the page they were on before
+        // TODO: If user was on signup before, redirect to home
+        this.$router.back()
+      } catch ({ message }) {
+        // Renders the normal submit button
+        this.loading = false
+
+        // TODO: Extract cleanedMessage functionality into a function
+        const colonIndex = message.lastIndexOf(':')
+        const cleanedMessage = message.substring(colonIndex + 2, message.length)
+        alert(`Error: ${cleanedMessage}`)
+      }
     }
   }
 }
