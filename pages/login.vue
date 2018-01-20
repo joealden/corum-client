@@ -61,6 +61,8 @@
 import LoggedIn from '~/components/LoggedIn'
 import authenticateUserMutation from '~/apollo/mutations/authenticateUser'
 
+import alertError from '~/utils/alertError'
+
 export default {
   components: {
     LoggedIn
@@ -111,11 +113,8 @@ export default {
       } catch ({ message }) {
         // Renders the normal submit button
         this.loading = false
-
-        // TODO: Extract cleanedMessage functionality into a function
-        const colonIndex = message.lastIndexOf(':')
-        const cleanedMessage = message.substring(colonIndex + 2, message.length)
-        alert(`Error: ${cleanedMessage}`)
+        // Display error to the user in an alert box
+        alertError(message)
       }
     }
   }
