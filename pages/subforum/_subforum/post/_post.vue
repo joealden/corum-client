@@ -265,9 +265,11 @@ export default {
     },
 
     // variables = { vote, postId, userId }
-    createVote(variables) {
-      this.$apollo
-        .mutate({
+    async createVote(variables) {
+      const postId = this.$route.params.post
+
+      try {
+        await this.$apollo.mutate({
           mutation: createVoteMutation,
           variables,
 
@@ -275,7 +277,7 @@ export default {
             const data = store.readQuery({
               query: userVoteQuery,
               variables: {
-                postId: this.$route.params.post,
+                postId,
                 userId: this.userId
               }
             })
@@ -289,17 +291,11 @@ export default {
             store.writeQuery({
               query: userVoteQuery,
               variables: {
-                postId: this.$route.params.post,
+                postId,
                 userId: this.userId
               },
               data
             })
-
-            // Doesn't execute on optimistic response update
-            // TODO: look into moving this code into a .then
-            if (createVote.id !== 0) {
-              this.voteInProgress = false
-            }
           },
 
           optimisticResponse: {
@@ -310,13 +306,20 @@ export default {
             }
           }
         })
-        .catch(error => logIfDev('error', error))
+
+        // Indicate to the page that the vote has finished execution
+        this.voteInProgress = false
+      } catch (error) {
+        logIfDev('error', error)
+      }
     },
 
     // variables = { id, vote }
-    updateVote(variables) {
-      this.$apollo
-        .mutate({
+    async updateVote(variables) {
+      const postId = this.$route.params.post
+
+      try {
+        await this.$apollo.mutate({
           mutation: updateVoteMutation,
           variables,
 
@@ -324,7 +327,7 @@ export default {
             const data = store.readQuery({
               query: userVoteQuery,
               variables: {
-                postId: this.$route.params.post,
+                postId,
                 userId: this.userId
               }
             })
@@ -334,17 +337,11 @@ export default {
             store.writeQuery({
               query: userVoteQuery,
               variables: {
-                postId: this.$route.params.post,
+                postId,
                 userId: this.userId
               },
               data
             })
-
-            // Doesn't execute on optimistic response update
-            // TODO: look into moving this code into a .then
-            if (updateVote.id !== 0) {
-              this.voteInProgress = false
-            }
           },
 
           optimisticResponse: {
@@ -355,13 +352,20 @@ export default {
             }
           }
         })
-        .catch(error => logIfDev('error', error))
+
+        // Indicate to the page that the vote has finished execution
+        this.voteInProgress = false
+      } catch (error) {
+        logIfDev('error', error)
+      }
     },
 
     // variables = { id }
-    deleteVote(variables) {
-      this.$apollo
-        .mutate({
+    async deleteVote(variables) {
+      const postId = this.$route.params.post
+
+      try {
+        await this.$apollo.mutate({
           mutation: deleteVoteMutation,
           variables,
 
@@ -369,7 +373,7 @@ export default {
             const data = store.readQuery({
               query: userVoteQuery,
               variables: {
-                postId: this.$route.params.post,
+                postId,
                 userId: this.userId
               }
             })
@@ -379,17 +383,11 @@ export default {
             store.writeQuery({
               query: userVoteQuery,
               variables: {
-                postId: this.$route.params.post,
+                postId,
                 userId: this.userId
               },
               data
             })
-
-            // Doesn't execute on optimstic response update
-            // TODO: look into moving this code into a .then
-            if (deleteVote.id !== 0) {
-              this.voteInProgress = false
-            }
           },
 
           optimisticResponse: {
@@ -400,10 +398,15 @@ export default {
             }
           }
         })
-        .catch(error => logIfDev('error', error))
+
+        // Indicate to the page that the vote has finished execution
+        this.voteInProgress = false
+      } catch (error) {
+        logIfDev('error', error)
+      }
     },
 
-    submitComment() {
+    async submitComment() {
       const author = this.$store.state.username
       const { comment: content } = this
       const id = this.$route.params.post
@@ -411,8 +414,8 @@ export default {
       // Clears user input from textarea
       this.comment = ''
 
-      this.$apollo
-        .mutate({
+      try {
+        await this.$apollo.mutate({
           mutation: createCommentMutation,
           variables: {
             author,
@@ -439,11 +442,6 @@ export default {
               variables: { id },
               data
             })
-
-            // scroll to bottom of page when comment is inserted
-            // TODO: look into moving this code into a .then
-            const main = document.getElementById('main-content-wrapper')
-            main.scrollTop = main.scrollHeight
           },
 
           optimisticResponse: {
@@ -456,7 +454,13 @@ export default {
             }
           }
         })
-        .catch(error => logIfDev('error', error))
+
+        // scroll to bottom of page when comment is inserted
+        const main = document.getElementById('main-content-wrapper')
+        main.scrollTop = main.scrollHeight
+      } catch (error) {
+        logIfDev('error', error)
+      }
     }
   }
 }
