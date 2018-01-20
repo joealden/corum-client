@@ -62,7 +62,7 @@ export default {
   head: () => ({ title: 'New Subforum' }),
 
   methods: {
-    submitSubforum() {
+    async submitSubforum() {
       const name = this.subforumName
       const url = name
         .toLowerCase()
@@ -73,8 +73,8 @@ export default {
         For more info on how mutations work within vue-apollo,
         visit https://github.com/Akryum/vue-apollo#mutations
       */
-      this.$apollo
-        .mutate({
+      try {
+        await this.$apollo.mutate({
           mutation: createSubforum,
           variables: { name, url },
 
@@ -92,12 +92,11 @@ export default {
             store.writeQuery({ query: allSubforums, data })
           }
         })
-        .then(() => {
-          this.$router.push(`/subforum/${url}`)
-        })
-        .catch(() => {
-          alert('Error: That subforum already exists')
-        })
+
+        this.$router.push(`/subforum/${url}`)
+      } catch (error) {
+        alert('Error: That subforum already exists')
+      }
     }
   }
 }
