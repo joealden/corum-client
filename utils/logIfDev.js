@@ -4,7 +4,7 @@ import stringToBoolean from '~/utils/stringToBoolean'
 
 const logIfDev = (logType, message) => {
   if (stringToBoolean(process.env.PROD) === false) {
-    console[logType]('test')
+    console[logType](message)
   }
 }
 
