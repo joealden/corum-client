@@ -27,6 +27,7 @@ export default () => {
         localStorage.removeItem('user-id')
         localStorage.removeItem('username')
         localStorage.removeItem('auth-token')
+
         Vue.set(state, 'userId', localStorage.getItem('user-id'))
         Vue.set(state, 'username', localStorage.getItem('username'))
       },
@@ -35,6 +36,7 @@ export default () => {
         localStorage.setItem('user-id', id)
         localStorage.setItem('username', username)
         localStorage.setItem('auth-token', token)
+
         Vue.set(state, 'userId', localStorage.getItem('user-id'))
         Vue.set(state, 'username', localStorage.getItem('username'))
       },

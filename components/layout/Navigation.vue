@@ -156,10 +156,10 @@ export default {
   methods: {
     // Adds a favorite to the users list of favorites
     async createFavorite(subforum) {
-      const { userId } = this
-      const subforumId = subforum.id
-
       try {
+        const { userId } = this
+        const subforumId = subforum.id
+
         await this.$apollo.mutate({
           mutation: createFavoriteMutation,
           variables: { subforumId, userId },
@@ -215,9 +215,9 @@ export default {
 
     // Deletes a favorite from the users list of favorites
     async deleteFavorite(id) {
-      const { userId } = this
-
       try {
+        const { userId } = this
+
         await this.$apollo.mutate({
           mutation: deleteFavoriteMutation,
           variables: { id },

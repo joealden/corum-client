@@ -110,7 +110,6 @@
 // TODO: Extract out components from page
 
 import tinydate from 'tinydate'
-
 import logIfDev from '~/utils/logIfDev'
 
 import postQuery from '~/apollo/queries/post'
@@ -218,57 +217,64 @@ export default {
   methods: {
     // Determines what GraphQL mutation to execute based on the vote state
     upvoteButtonClick() {
-      if (this.voteInProgress === false) {
-        this.voteInProgress = true
+      // Return early if vote mutation is already in progress
+      if (this.voteInProgress === true) {
+        return
+      }
 
-        if (this.upvoted === true) {
-          // The user has already upvoted
-          this.localVote -= 1
-          this.deleteVote({ id: this.userVoteData.id })
-        } else if (this.downvoted === true) {
-          // The user has already downvoted
-          this.localVote += 2
-          this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_UP' })
-        } else {
-          // The user has not voted
-          this.localVote += 1
-          this.createVote({
-            vote: 'VOTE_UP',
-            postId: this.$route.params.post,
-            userId: this.userId
-          })
-        }
+      this.voteInProgress = true
+
+      if (this.upvoted === true) {
+        // The user has already upvoted
+        this.localVote -= 1
+        this.deleteVote({ id: this.userVoteData.id })
+      } else if (this.downvoted === true) {
+        // The user has already downvoted
+        this.localVote += 2
+        this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_UP' })
+      } else {
+        // The user has not voted
+        this.localVote += 1
+        this.createVote({
+          vote: 'VOTE_UP',
+          postId: this.$route.params.post,
+          userId: this.userId
+        })
       }
     },
 
     downvoteButtonClick() {
-      if (this.voteInProgress === false) {
-        this.voteInProgress = true
-        if (this.upvoted === true) {
-          // The user has already upvoted
-          this.localVote -= 2
-          this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_DOWN' })
-        } else if (this.downvoted === true) {
-          // The user has already downvoted
-          this.localVote += 1
-          this.deleteVote({ id: this.userVoteData.id })
-        } else {
-          // The user has not voted
-          this.localVote -= 1
-          this.createVote({
-            vote: 'VOTE_DOWN',
-            postId: this.$route.params.post,
-            userId: this.userId
-          })
-        }
+      // Return early if vote mutation is already in progress
+      if (this.voteInProgress === true) {
+        return
+      }
+
+      this.voteInProgress = true
+
+      if (this.upvoted === true) {
+        // The user has already upvoted
+        this.localVote -= 2
+        this.updateVote({ id: this.userVoteData.id, vote: 'VOTE_DOWN' })
+      } else if (this.downvoted === true) {
+        // The user has already downvoted
+        this.localVote += 1
+        this.deleteVote({ id: this.userVoteData.id })
+      } else {
+        // The user has not voted
+        this.localVote -= 1
+        this.createVote({
+          vote: 'VOTE_DOWN',
+          postId: this.$route.params.post,
+          userId: this.userId
+        })
       }
     },
 
     // variables = { vote, postId, userId }
     async createVote(variables) {
-      const postId = this.$route.params.post
-
       try {
+        const postId = this.$route.params.post
+
         await this.$apollo.mutate({
           mutation: createVoteMutation,
           variables,
@@ -316,9 +322,9 @@ export default {
 
     // variables = { id, vote }
     async updateVote(variables) {
-      const postId = this.$route.params.post
-
       try {
+        const postId = this.$route.params.post
+
         await this.$apollo.mutate({
           mutation: updateVoteMutation,
           variables,
@@ -362,9 +368,9 @@ export default {
 
     // variables = { id }
     async deleteVote(variables) {
-      const postId = this.$route.params.post
-
       try {
+        const postId = this.$route.params.post
+
         await this.$apollo.mutate({
           mutation: deleteVoteMutation,
           variables,
@@ -407,14 +413,14 @@ export default {
     },
 
     async submitComment() {
-      const author = this.$store.state.username
-      const { comment: content } = this
-      const id = this.$route.params.post
-
-      // Clears user input from textarea
-      this.comment = ''
-
       try {
+        // Clears user input from textarea
+        this.comment = ''
+
+        const author = this.$store.state.username
+        const { comment: content } = this
+        const id = this.$route.params.post
+
         await this.$apollo.mutate({
           mutation: createCommentMutation,
           variables: {

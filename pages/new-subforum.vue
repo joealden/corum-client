@@ -63,17 +63,13 @@ export default {
 
   methods: {
     async submitSubforum() {
-      const name = this.subforumName
-      const url = name
-        .toLowerCase()
-        .split(' ')
-        .join('-')
-
-      /*
-        For more info on how mutations work within vue-apollo,
-        visit https://github.com/Akryum/vue-apollo#mutations
-      */
       try {
+        const name = this.subforumName
+        const url = name
+          .toLowerCase()
+          .split(' ')
+          .join('-')
+
         await this.$apollo.mutate({
           mutation: createSubforum,
           variables: { name, url },

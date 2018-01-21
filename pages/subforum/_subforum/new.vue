@@ -80,14 +80,14 @@ export default {
 
   methods: {
     async submitPost() {
-      const authorId = this.$store.state.userId
-
-      const { postTitle: title, postContent: content, Subforum: { id } } = this
-      /*
-        For more info on how mutations work within vue-apollo,
-        visit https://github.com/Akryum/vue-apollo#mutations
-      */
       try {
+        const authorId = this.$store.state.userId
+        const {
+          postTitle: title,
+          postContent: content,
+          Subforum: { id }
+        } = this
+
         const { data: { createPost } } = await this.$apollo.mutate({
           mutation: createPostMutation,
           variables: {
@@ -100,9 +100,10 @@ export default {
 
         const { subforum } = this.$route.params
         const postId = createPost.id
+
         this.$router.push(`/subforum/${subforum}/post/${postId}`)
       } catch (error) {
-        this.$router.push(`/error`) // TODO: create actual error page
+        alert('Error: An unknown error occured, please try again later.')
       }
     }
   }

@@ -119,15 +119,12 @@ export default {
 
   methods: {
     async signup() {
-      // Renders the loading submit button
-      this.loading = true
-
-      const { username, email, password } = this
-      /*
-        For more info on how mutations work within vue-apollo,
-        visit https://github.com/Akryum/vue-apollo#mutations
-      */
       try {
+        // Renders the loading submit button
+        this.loading = true
+
+        const { username, email, password } = this
+
         const { data: { signupUser } } = await this.$apollo.mutate({
           mutation: signupUserMutation,
           variables: {
@@ -146,6 +143,7 @@ export default {
       } catch ({ message }) {
         // Renders the normal submit button
         this.loading = false
+
         // Display the error to the user in an alert box
         alertError(message)
       }

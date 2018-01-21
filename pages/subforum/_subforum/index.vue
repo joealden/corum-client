@@ -128,10 +128,11 @@ export default {
   },
 
   head() {
-    if (this.Subforum.name) {
-      return { title: this.Subforum.name }
-    } else {
+    const title = this.Subforum.name
+    if (!title) {
       return { title: 'Loading...' }
+    } else {
+      return { title }
     }
   }
 }
