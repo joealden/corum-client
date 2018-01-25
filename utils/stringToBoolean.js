@@ -6,7 +6,9 @@ const stringToBoolean = stringBool => {
   } else if (stringBool === 'false') {
     return false
   } else {
-    return undefined
+    throw new Error(
+      `Expected a string of 'true' or 'false', but got ${stringBool}`
+    )
   }
 }
 
