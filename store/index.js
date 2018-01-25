@@ -10,7 +10,7 @@ import Vue from 'vue'
 
 export default () => {
   return new Store({
-    // Disallow state mutation not through defined mutations
+    // Only allow state mutations through the defined mutation methods
     strict: true,
 
     /*
