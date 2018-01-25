@@ -485,6 +485,11 @@ These also show the following:
 
 ## Code Analysis
 
+The following sections analyse the final code for both the client and the API of
+Corum. It is worth noting that I am using modern JavaScript, (Up to ES2017) so
+if you do not recognise some any of the syntax used, I recommend visiting the
+following link, [https://devhints.io/es6](https://devhints.io/es6)
+
 ### Client Analysis
 
 #### Nuxt configuration (`nuxt.config.js`)
@@ -1227,21 +1232,89 @@ through the use of `alertError`, which will be explained later on.
 ##### `correctDetails`
 
 ```js
+// Ensures that all input fields have been entered correctly
 correctDetails() {
   const emailEntered = this.email !== ''
+  const usernameEntered = this.username !== ''
 
   const password1Entered = this.password1 !== ''
   const password2Entered = this.password2 !== ''
   const passwordsEntered = password1Entered && password2Entered
   const passwordsMatch = this.password1 === this.password2
 
-  return emailEntered && passwordsEntered && passwordsMatch
+  return (
+    emailEntered && usernameEntered && passwordsEntered && passwordsMatch
+  )
 }
 ```
 
-placeholder
+This function is used in the signup form to perform input validation on the
+client side, so that the API will have not have to deal with as much processing.
+
+Variable Reference:
+
+* `this.email` is a string that is linked to the email text box and is updated
+  when the contents of the text box changes
+* `this.username` is a string that is linked to the username text box and is
+  updated when the contents of the text box changes
+* `this.password1` is a string that is linked to the first password text box and
+  is updated when the contents of the text box changes
+* `this.password2` is a string that is linked to the second password text box
+  and is updated when the contents of the text box changes
+
+This function returns a boolean that is used in the user interface to
+conditionally render a clickable signup button. If the function returns `false`,
+the signup button will be greyed out. If the function returns `true`, the signup
+button will be clickable.
+
+As this is a Vue computed property, the return value will be recalculated every
+time a dependency changes. (Any of the form fields)
+
+This function works by creating a boolean from each input field. All of the
+fields work in the same way, so I will only give one example.
+
+```js
+const emailEntered = this.username !== ''
+```
+
+If `this.username` is empty, `emailEntered` will evaluate to false.
+
+The only differing piece of code in this function is where the password fields
+are also checked to contain the same input. They must equal, as the user is
+expected to input the exact same password.
 
 #### Utility Functions
+
+##### `stringToBoolean`
+
+```js
+// Helper function to handle process.env booleans
+
+const stringToBoolean = stringBool => {
+  if (stringBool === 'true') {
+    return true
+  } else if (stringBool === 'false') {
+    return false
+  } else {
+    throw new Error(
+      `Expected a string of 'true' or 'false', but got ${stringBool}`
+    )
+  }
+}
+
+export default stringToBoolean
+```
+
+This function is used to convert the string literals `'true'` and `'false'` into
+their actual boolean values, `true` and `false`. This function is used when
+importing data from the configuration file, as everything is treated as a
+string.
+
+The logic of the function is very easy to follow. If the argument to the
+function is the string `'true'`, the function will return the boolean `true`. If
+the argument to the function is the string `'false'`, the function will return
+the boolean `false`. There is also a final check if the other conditions do not
+match. For this case, a helpful error is thrown.
 
 ##### `logIfDev`
 
@@ -1259,27 +1332,22 @@ const logIfDev = (logType, message) => {
 export default logIfDev
 ```
 
-placeholder
+This function conditionally logs messages to the console, depending on the
+configuration option `PROD`. If the site is in development mode, the messages
+passed to the function will be logged. If the site is in production mode, the
+messages passed to the function will not be logged, as the end user does not
+need to see these debug / error messages.
 
-##### `stringToBoolean`
+Variable Reference:
 
-```js
-// Helper function to handle process.env booleans
+* `process.env.PROD` is the configuration option that is used to change if the
+  site is in development or production mode. The `process` global is exposed by
+  Nuxt, and the `env` property is exposed by the Nuxt module `@nuxtjs/dotenv`.
 
-const stringToBoolean = stringBool => {
-  if (stringBool === 'true') {
-    return true
-  } else if (stringBool === 'false') {
-    return false
-  } else {
-    return undefined
-  }
-}
-
-export default stringToBoolean
-```
-
-placeholder
+This functions takes a `logType` and a `message` as arguments. The `logType` can
+be any valid log method on the console global, such as `log`, `warning`, or
+`error`. These methods show the severity of messages logged to the console. The
+`message` is expected to be a string.
 
 ##### `alertError`
 
@@ -1303,7 +1371,15 @@ const alertError = errorMessage => {
 export default alertError
 ```
 
-placeholder
+This function is used in the signup and login pages to convert errors returned
+from the API into a readable format, and then display them to the user.
+
+There are two parts of this code, the `formatError` function and the
+`alertError` function. The `formatError` actually performs the tidying up of the
+error, and the `alertError` calls the `formatError` function and displays it.
+
+The reason this function is needed is because the error message returned from
+the API is for debugging, and contains data that is not useful to the end user.
 
 #### Global Store Configuration (Vuex)
 
@@ -1320,7 +1396,7 @@ import Vue from 'vue'
 
 export default () => {
   return new Store({
-    // Disallow state mutation not through defined mutations
+    // Only allow state mutations through the defined mutation methods
     strict: true,
 
     /*
@@ -1358,9 +1434,106 @@ export default () => {
 }
 ```
 
-placeholder
+This file is used to configure the state management library that I am using,
+`Vuex`. The reason Corum needs a global state management library is because the
+user details need to be available across the entire app. Instead of calling out
+to the `localStorage` API every time Corum needs the user information, it is
+quicker to keep this information in memory.
+
+Nuxt expects this file to export a function that returns the store to use in the
+application. the `Store` class is exposed by the `Vuex` library, and expect a
+configuration object as a parameter. This object can contain many properties,
+but I will only explain the ones that I am using.
+
+* `strict` - As explained in the comment in the code block, if set to `true`,
+  this prevents the state from being changed directly without using the methods
+  defined in the `mutations` property.
+* `state` - This is an object that is used to initialise the state. Corum only
+  uses two state properties, `userId` and `username`.
+* `mutations` - This is a object of functions that can be called to mutate the
+  `state` object, as well as perform other operations, such as setting or
+  removing data from the browsers `localStorage`.
+
+There are three mutation methods in Corum's store. `logout`, `saveUserData` and
+`updateUserState`. `logout` removes saved data from the browsers `localStorage`
+as well as from the store. This mutation is called when the `logout` button is
+pressed in the sites header. `saveUserData` updates the browsers `localStorage`
+and the store with the data passed in. This mutation is called when logging the
+user into the site, or after a user signs up (As it also logs them in).
+`updateUserState` updates the state by fetching the data from the browser's
+`localStorage`. This is needed as `localStorage` persists in the browser across
+visits, whereas Corum's global state cannot persist. Upon every visit, this
+mutation is called. This means that a user can be kept logged into Corum across
+visits.
 
 ### API Analysis
+
+#### API Schema
+
+The schema of the API was created during the design phase of the project.
+However, so it is easier to understand the code in this section, I will repeat
+it here:
+
+```graphql
+type User @model {
+  id: ID! @isUnique
+  username: String! @isUnique
+  email: String! @isUnique
+  password: String!
+  posts: [Post!]! @relation(name: "UserToPost")
+  votes: [Vote!]! @relation(name: "UserToVote")
+  favorites: [Favorite!]! @relation(name: "UserToFavorite")
+}
+
+type Subforum @model {
+  id: ID! @isUnique
+  url: String! @isUnique
+  name: String!
+  posts: [Post!]! @relation(name: "SubforumToPost")
+  favorites: [Favorite!]! @relation(name: "SubforumToFavorite")
+}
+
+type Favorite @model {
+  id: ID! @isUnique
+  user: User! @relation(name: "UserToFavorite")
+  subforum: Subforum! @relation(name: "SubforumToFavorite")
+}
+
+type Post @model {
+  id: ID! @isUnique
+  subforum: Subforum! @relation(name: "SubforumToPost")
+  title: String!
+  author: User! @relation(name: "UserToPost")
+  content: String!
+  voteCount: Int
+  createdAt: DateTime!
+  comments: [Comment!]! @relation(name: "PostToComment")
+  votes: [Vote!]! @relation(name: "PostToVote")
+}
+
+type Comment @model {
+  id: ID! @isUnique
+  post: Post! @relation(name: "PostToComment")
+  author: String!
+  content: String!
+}
+
+type Vote @model {
+  id: ID! @isUnique
+  post: Post! @relation(name: "PostToVote")
+  user: User! @relation(name: "UserToVote")
+  vote: VoteType!
+}
+
+enum VoteType {
+  VOTE_UP
+  VOTE_DOWN
+}
+```
+
+Here is a graphical representation of the schema above:
+
+![Graph View of API Schema](images/api-schema-graph-view.png)
 
 #### Permission Configuration
 
@@ -1375,7 +1548,7 @@ permissions:
     # Allows access to User from Post
     # Only the username field is made queryable. This means
     # that malicious users cannot query for someones elses
-    # infomation such as their password, id, or email.
+    # information such as their password, id, or email.
   - operation: User.read  
     fields: [username]
 
@@ -1387,65 +1560,94 @@ permissions:
   # Favorite Permissions
   - operation: Favorite.create
     authenticated: true
-    # permission query here
   - operation: Favorite.read
   - operation: Favorite.delete
     authenticated: true
-    # permission query here
 
   # Post Permissions
   - operation: Post.create
     authenticated: true
-    # permission query here
   - operation: Post.read
 
   # Comment Permissions
   - operation: Comment.create
     authenticated: true
-    # permission query here
   - operation: Comment.read
 
   # Vote Permissions
   - operation: Vote.create
     authenticated: true
-    # permission query here
   - operation: Vote.read
   - operation: Vote.update
     authenticated: true
-    # permission query here
   - operation: Vote.delete
     authenticated: true
-    # permission query here
 
   # Relation Permissions
   - operation: SubforumToPost.connect
     authenticated: true
-    # permission query here
   - operation: PostToComment.connect
     authenticated: true
-    # permission query here
   - operation: UserToPost.connect
     authenticated: true
-    # permission query here
   - operation: UserToVote.connect
     authenticated: true
-    # permission query here
   - operation: PostToVote.connect
     authenticated: true
-    # permission query here
   - operation: UserToFavorite.connect
     authenticated: true
-    # permission query here
   - operation: SubforumToFavorite.connect
     authenticated: true
-    # permission query here
 ```
 
-placeholder
+As mentioned in the '[How Graphcool Works](#how-graphcool-works)' section,
+graphcool needs a configuration file called `graphcool.yml`. Most of this file
+is just boilerplate to link the below hook functions into graphcool, however a
+very important part of this file is the `permissions` section.
 
-#### API Schema
+This section allows you to define exactly who can do what with the API. This is
+crucial to the proper functioning of Corum as it stops non authenticated users
+from doing things like creating posts, creating comments and voting on posts.
 
-* To avoid repetition, link to design section with the schema
+This configuration file is written in `yml`, which you may not be that familiar
+with. Here are the basics that are put to use in this file:
+
+* `#` starts a comment
+* `-` starts an object
+
+So in this file, `permissions` is a list of objects. Each object in the
+`permissions` array specifies the `operation` to configure. The operations that
+can be configured are derived from the API schema. (Linked above)
+
+For example, The `Vote` data type found in the schema can have the following
+operations configured:
+
+* `Vote.create`
+* `Vote.read`
+* `Vote.update`
+* `Vote.delete`
+
+These operations are found on every data type in the schema. (Which are CRUD
+operations) You can also specify permissions for relations. This is important
+because creating a relationship between data types means that both data type
+instances are mutated. For example, the following operations can be specified
+for the `UserToPost` relation which links a user to the post they created:
+
+* `UserToPost.connect`
+* `UserToPost.Disconnect`
+
+If a certain operation is not specified, (for example, there is not
+`Favorite.update` operation in this configuration) then nothing (expect hook
+functions given root tokens) can perform this operation.
+
+If an object in the `permissions` section specifies an `authenticated` property
+of `true`, the operation can only be performed by authenticated users (Users
+that are logged in)
+
+If an object in the `permission` section specifies a `field` property, then
+operation is restricted to only the values found in the array passed to it. For
+example, in Corum's API, anyone can read from the `Username` data type, however
+they can only read the `username` field.
 
 #### Hook Functions
 
