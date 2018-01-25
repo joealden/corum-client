@@ -85,13 +85,16 @@ export default {
   computed: {
     correctDetails() {
       const emailEntered = this.email !== ''
+      const usernameEntered = this.username !== ''
 
       const password1Entered = this.password1 !== ''
       const password2Entered = this.password2 !== ''
       const passwordsEntered = password1Entered && password2Entered
       const passwordsMatch = this.password1 === this.password2
 
-      return emailEntered && passwordsEntered && passwordsMatch
+      return (
+        emailEntered && usernameEntered && passwordsEntered && passwordsMatch
+      )
     },
 
     password() {
