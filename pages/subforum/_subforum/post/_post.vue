@@ -211,7 +211,11 @@ export default {
   },
 
   head() {
-    return { title: this.Post.title }
+    if (this.Post) {
+      return { title: this.Post.title }
+    } else {
+      return { title: 'Loading...' }
+    }
   },
 
   methods: {
