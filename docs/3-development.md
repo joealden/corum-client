@@ -1698,9 +1698,26 @@ export default async event => {
 }
 ```
 
-* placeholder
-* mention that there is a hook function to ensure user and post is unique but
-  the functions are very similar
+As mentioned in the comment at the top of this file, This hook function ensures
+that only 1 favorite of a subforum by a single user can happen, and it is run
+every time before a favorite is created. There is also a hook function called
+`userAndPostIsUnique` is very similar. Instead of ensuring that only unique
+favourites can be added, it ensures that only unique votes can be made on a
+post. As this hook function is so similar, I will only analyse this hook
+function.
+
+Variable Reference:
+
+* `favoriteQuery` is the GraphQL query used to check if the user has already
+  favorited of this subforum.
+* `event`
+* `fromEvent` is a function exposed by the library `graphcool-lib` that
+  constructs a GraphQL client from the `event` data passed into the function.
+  This allows us to send queries and mutations to the API from within the API
+  code.
+* `makeRequest`
+
+**TODO**
 
 ##### `initVoteCount`
 
