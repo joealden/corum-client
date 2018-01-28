@@ -26,6 +26,7 @@
   uncompressed file)
 * Separate favorites and all subforums scroll
 * Use CSS Grid on subforum page to align things properly
+* Convert API to use `prisma`
 * Make max lengths for info (characters [client-side only first]):
   * usernames (50)
   * passwords (50)

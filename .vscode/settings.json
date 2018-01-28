@@ -48,6 +48,11 @@
     "analysing",
     "initialise",
     "recognise",
-    "favorited"
+    "favorited",
+    "prisma",
+    "pseudocode",
+    "workspaces",
+    "lerna",
+    "pretterrc"
   ]
 }
