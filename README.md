@@ -14,10 +14,7 @@ democratic & self governing** alternative to the forum site
 
 ## Project Report Files
 
-* [Analysis](docs/1-analysis.md)
-* [Design](docs/2-design.md)
-* [Development](docs/3-development.md)
-* [Evaluation](docs/4-evaluation.md)
+Visit the [`corum-docs`](https://github.com/joealden/corum-docs) repo.
 
 ## Usage
 
