@@ -1,5 +1,6 @@
 <div align="center">
   <img src="logo.png" alt="corum" width="215">
+  <b>Client</b>
 </div>
 <br>
 <p align="center">
