@@ -1,8 +1,10 @@
 <div align="center">
   <img src="logo.png" alt="corum" width="215">
-  <b>Client</b>
 </div>
 <br>
+<h2 align="center" style="margin-top: 0">
+  <b>Client</b>
+</h2>
 <p align="center">
   <i><b>An open, democratic &amp; self governing forum.</b></i>
 </p>
