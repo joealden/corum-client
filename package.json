@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",
-    "eslint": "4.16.0",
+    "eslint": "4.17.0",
     "eslint-config-prettier": "2.9.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "3.0.0",
