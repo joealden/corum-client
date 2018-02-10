@@ -30,13 +30,13 @@
     "precommit": "lint-staged && yarn test"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "3.0.1",
+    "@nuxtjs/apollo": "3.0.2",
     "@nuxtjs/dotenv": "1.1.0",
     "@nuxtjs/font-awesome": "1.0.3",
     "@nuxtjs/pwa": "2.0.5",
-    "apollo-link-http": "1.3.2",
-    "graphql": "0.12.3",
-    "graphql-tag": "2.6.1",
+    "apollo-link-http": "1.3.3",
+    "graphql": "0.13.0",
+    "graphql-tag": "2.7.3",
     "nuxt": "1.3.0",
     "tinydate": "1.0.0"
   },
@@ -49,7 +49,7 @@
     "eslint-loader": "1.9.0",
     "eslint-plugin-html": "4.0.2",
     "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-node": "5.2.1",
+    "eslint-plugin-node": "6.0.0",
     "eslint-plugin-promise": "3.6.0",
     "eslint-plugin-standard": "3.0.1",
     "husky": "0.14.3",
