@@ -418,12 +418,12 @@ export default {
 
     async submitComment() {
       try {
-        // Clears user input from textarea
-        this.comment = ''
-
         const author = this.$store.state.username
         const { comment: content } = this
         const id = this.$route.params.post
+
+        // Clears user input from textarea
+        this.comment = ''
 
         await this.$apollo.mutate({
           mutation: createCommentMutation,
