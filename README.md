@@ -16,6 +16,10 @@ democratic & self governing** alternative to the forum site
 
 Visit the [`corum-docs`](https://github.com/joealden/corum-docs) repo.
 
+## Corum's API Codebase
+
+Visit the [`corum-api`](https://github.com/joealden/corum-api) repo.
+
 ## Usage
 
 ### **IMPORTANT**
