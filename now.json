@@ -1,0 +1,19 @@
+{
+  "files": [
+    ".env",
+    "apollo",
+    "assets",
+    "components",
+    "layouts",
+    "pages",
+    "static",
+    "store",
+    "utils",
+    "app.html",
+    "logo.png",
+    "now.json",
+    "nuxt.config.js",
+    "package.json",
+    "yarn.lock"
+  ]
+}
