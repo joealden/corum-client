@@ -8,6 +8,8 @@
 
 ---
 
+![corum screenshot](.github/screenshot.png)
+
 ## Corum's API Codebase
 
 Visit the [`corum-api`](https://github.com/joealden/corum-api) repo.
