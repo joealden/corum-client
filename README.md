@@ -8,14 +8,6 @@
 
 ---
 
-For my Computer Science coursework project, I intend to create an **open,
-democratic & self governing** alternative to the forum site
-[Reddit](https://www.reddit.com/) called **Corum**.
-
-## Project Report Files
-
-Visit the [`corum-docs`](https://github.com/joealden/corum-docs) repo.
-
 ## Corum's API Codebase
 
 Visit the [`corum-api`](https://github.com/joealden/corum-api) repo.
