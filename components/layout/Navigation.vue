@@ -32,6 +32,7 @@
         type="search" 
         placeholder="Search..."
         spellcheck="false"
+        aria-label="Search for a subforum"
       >
       <div v-if="subforumSearch.length === 0" class="no-results">
         No subforums matching your search were found! <br/><br/>
