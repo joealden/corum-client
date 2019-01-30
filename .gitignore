@@ -9,6 +9,3 @@ dist
 # @nuxtjs/pwa
 sw.*
 workbox-*
-
-# .env file
-.env
